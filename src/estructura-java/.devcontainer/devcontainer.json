@@ -1,0 +1,23 @@
+{
+    "name": "estructura-java",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "runArgs": [
+        "--dns=8.8.8.8",
+        "--dns=1.1.1.1"
+    ],
+    "features": {},
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "redhat.vscode-xml",
+                "ms-azuretools.vscode-docker",
+                "editorconfig.editorconfig"
+            ]
+        }
+    },
+    "postCreateCommand": "mvn -q -e -DskipTests package || true",
+    "remoteUser": "root"
+}
