@@ -26,17 +26,32 @@ public class DoclingRunner {
 
   private final String scriptResource;
   private final ObjectMapper mapper;
+  private final DoclingRunnerOptions options;
 
   public DoclingRunner() {
-    this(DEFAULT_RESOURCE);
+    this(DEFAULT_RESOURCE, DoclingRunnerOptions.defaults());
+  }
+
+  public DoclingRunner(DoclingRunnerOptions options) {
+    this(DEFAULT_RESOURCE, options);
   }
 
   DoclingRunner(String scriptResource) {
+    this(scriptResource, DoclingRunnerOptions.defaults());
+  }
+
+  DoclingRunner(String scriptResource, DoclingRunnerOptions options) {
     this.scriptResource = Objects.requireNonNull(scriptResource, "scriptResource");
+    this.options = Objects.requireNonNull(options, "options");
     this.mapper = new ObjectMapper();
   }
 
   public DoclingResult ingest(String input, Path outputDirectory) throws DoclingRunnerException {
+    return ingest(input, outputDirectory, this.options);
+  }
+
+  public DoclingResult ingest(String input, Path outputDirectory, DoclingRunnerOptions options)
+      throws DoclingRunnerException {
     if (input == null || input.trim().isEmpty()) {
       throw new IllegalArgumentException("input must not be null or blank");
     }
@@ -49,11 +64,13 @@ public class DoclingRunner {
     }
 
     final String normalizedInput = normalizeInput(input);
+    final DoclingRunnerOptions effectiveOptions = options != null ? options : DoclingRunnerOptions.defaults();
 
     Path script = null;
     try {
       script = extractScript();
-      ProcessBuilder pb = new ProcessBuilder("python3", script.toString(), normalizedInput, outDir.toString());
+      List<String> command = buildCommand(script, normalizedInput, outDir, effectiveOptions);
+      ProcessBuilder pb = new ProcessBuilder(command);
       pb.redirectErrorStream(true);
       Process process = pb.start();
 
@@ -66,7 +83,7 @@ public class DoclingRunner {
         throw new DoclingRunnerException(
             "Docling runner failed with exit code " + exitCode + ":\n" + combined);
       }
-      return parseResult(outputLines);
+      return parseResult(outputLines, effectiveOptions);
     } catch (IOException e) {
       throw new DoclingRunnerException("Failed running Docling ingestion", e);
     } catch (InterruptedException e) {
@@ -132,7 +149,45 @@ public class DoclingRunner {
     return lines;
   }
 
-  private DoclingResult parseResult(List<String> outputLines) throws DoclingRunnerException {
+  private List<String> buildCommand(Path script, String normalizedInput, Path outDir,
+      DoclingRunnerOptions options) {
+    List<String> command = new ArrayList<>();
+    command.add("python3");
+    command.add(script.toString());
+    command.add(normalizedInput);
+    command.add(outDir.toString());
+
+    if (options.dpi() != null) {
+      command.add("--dpi");
+      command.add(Integer.toString(options.dpi()));
+    }
+    if (!options.runDocling()) {
+      command.add("--no-docling");
+    }
+    if (!options.runOcr()) {
+      command.add("--no-ocr");
+    }
+    if (options.progress()) {
+      command.add("--progress");
+    }
+    if (options.useCache()) {
+      command.add("--use-cache");
+    }
+    if (options.tableStructure()) {
+      command.add("--table-structure");
+    }
+    if (options.verbose()) {
+      command.add("--verbose");
+    }
+    if (options.maxPages() != null) {
+      command.add("--max-pages");
+      command.add(Integer.toString(options.maxPages()));
+    }
+    return command;
+  }
+
+  private DoclingResult parseResult(List<String> outputLines, DoclingRunnerOptions options)
+      throws DoclingRunnerException {
     boolean doclingCreated = false;
     String doclingVersion = null;
     Path inputPath = null;
@@ -170,7 +225,7 @@ public class DoclingRunner {
       }
     }
 
-    if (!doclingCreated) {
+    if (options.runDocling() && !doclingCreated) {
       throw new DoclingRunnerException("Docling runner did not report a created document object.");
     }
     return new DoclingResult(doclingCreated, doclingVersion, inputPath, markdownPath, jsonPath, textPath, snippet,

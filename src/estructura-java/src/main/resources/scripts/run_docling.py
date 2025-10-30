@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+import argparse
 import json
+import logging
 import mimetypes
 import os
 import sys
@@ -75,7 +77,13 @@ def require(pkgs):
         )
         sys.exit(2)
 
-def ocr_tesseract_pdf_to_text(pdf_path: Path, dpi: int = 220, lang: str = "eng") -> str:
+def ocr_tesseract_pdf_to_text(
+    pdf_path: Path,
+    dpi: int = 120,
+    lang: str = "eng",
+    max_pages: int | None = None,
+    progress: bool = False,
+) -> tuple[str, int, float]:
     """
     Render each PDF page with pypdfium2 and run Tesseract (pytesseract).
     Returns concatenated plain text.
@@ -86,25 +94,66 @@ def ocr_tesseract_pdf_to_text(pdf_path: Path, dpi: int = 220, lang: str = "eng")
 
     text_pages = []
     doc = pdfium.PdfDocument(pdf_path.as_posix())
-    n = len(doc)
+    n_total = len(doc)
+    n = min(n_total, max_pages) if max_pages is not None else n_total
+
+    total_render = 0.0
+    total_ocr = 0.0
+
     for i in range(n):
         page = doc[i]
-        # Render to bitmap
+        t_start = time.perf_counter()
         bitmap = page.render(scale=dpi / 72.0).to_pil()  # 72 dpi base → scale up
-        # Ensure grayscale for OCR (often good enough)
         if bitmap.mode != "L":
             bitmap = bitmap.convert("L")
+        render_elapsed = time.perf_counter() - t_start
+
+        t_ocr_start = time.perf_counter()
         page_text = pytesseract.image_to_string(bitmap, lang=lang)
+        ocr_elapsed = time.perf_counter() - t_ocr_start
+
+        total_render += render_elapsed
+        total_ocr += ocr_elapsed
+
         text_pages.append(page_text.strip())
-    return "\n\n".join(text_pages).strip()
+        if progress:
+            print(json.dumps({
+                "event": "ocr_page_timing",
+                "page": i + 1,
+                "total_pages": n_total,
+                "render_seconds": round(render_elapsed, 3),
+                "ocr_seconds": round(ocr_elapsed, 3)
+            }), flush=True)
 
-def main():
-    if len(sys.argv) < 3:
-        print("usage: run_docling.py <pdf_or_url> <out_dir>", file=sys.stderr)
-        sys.exit(2)
+    return "\n\n".join(text_pages).strip(), n, total_render + total_ocr
 
-    src = sys.argv[1]
-    out_dir = Path(sys.argv[2]).resolve()
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Docling + Tesseract runner")
+    parser.add_argument("src", help="Path or URL to PDF/image")
+    parser.add_argument("out_dir", help="Output directory")
+    parser.add_argument("--dpi", type=int, default=int(os.environ.get("DOCLING_OCR_DPI", "120")))
+    parser.add_argument("--ocr", dest="run_ocr", action="store_true", default=True)
+    parser.add_argument("--no-ocr", dest="run_ocr", action="store_false", help="Skip OCR stage")
+    parser.add_argument("--docling", dest="run_docling", action="store_true", default=True)
+    parser.add_argument("--no-docling", dest="run_docling", action="store_false", help="Skip Docling conversion")
+    parser.add_argument("--max-pages", type=int, default=None, help="Limit OCR to first N pages")
+    parser.add_argument("--progress", action="store_true", help="Emit per-page timing events")
+    parser.add_argument("--use-cache", action="store_true", help="Reuse existing cached PDF if present")
+    parser.add_argument("--table-structure", dest="table_structure", action="store_true",
+                        help="Enable Docling table structure analysis")
+    parser.add_argument("--no-table-structure", dest="table_structure", action="store_false")
+    parser.set_defaults(table_structure=False)
+    parser.add_argument("--verbose", action="store_true", help="Include Docling INFO logs")
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None):
+    args = parse_args(sys.argv[1:] if argv is None else argv)
+
+    logging.basicConfig(level=logging.INFO if args.verbose else logging.WARNING, format="%(message)s")
+
+    src = args.src
+    out_dir = Path(args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # Require Docling (PDF only) + our Tesseract pipeline deps
@@ -116,62 +165,144 @@ def main():
 
     # Localize input under a cache folder
     pdf_cache = out_dir / "_cache"
-    pdf_path = ensure_local_document(src, pdf_cache)
+    ensure_cache = args.use_cache and pdf_cache.exists()
+    if ensure_cache:
+        try:
+            desired_stem = Path(urlparse(src).path).stem or Path(src).stem
+            candidates = list(pdf_cache.glob(f"{desired_stem}*")) if desired_stem else []
+            if candidates:
+                pdf_path = candidates[0]
+            else:
+                pdf_path = ensure_local_document(src, pdf_cache)
+        except Exception:
+            pdf_path = ensure_local_document(src, pdf_cache)
+    else:
+        pdf_path = ensure_local_document(src, pdf_cache)
 
     # ---- Docling (no OCR): structure/markdown proof + object creation proof ----
-    from docling.datamodel.base_models import InputFormat
-    from docling.datamodel.pipeline_options import PdfPipelineOptions
-    from docling.document_converter import DocumentConverter, PdfFormatOption
+    md = ""
+    res_json = None
+    docling_version = "unknown"
+    docling_seconds = None
 
-    opts = PdfPipelineOptions()
-    opts.do_ocr = False                 # we do OCR ourselves with Tesseract
-    opts.do_table_structure = True
-    opts.generate_page_images = False
+    if args.run_docling:
+        docling_start = time.perf_counter()
+        from docling.datamodel.base_models import InputFormat
+        from docling.datamodel.pipeline_options import PdfPipelineOptions
+        from docling.document_converter import DocumentConverter, PdfFormatOption
 
-    conv = DocumentConverter(
-        format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=opts)}
-    )
+        opts = PdfPipelineOptions()
+        opts.do_ocr = False                 # we do OCR ourselves with Tesseract
+        opts.do_table_structure = args.table_structure
+        opts.generate_page_images = False
 
-    # Proof-of-life that Docling object exists
-    import docling as _dl
-    print(json.dumps({
-        "event": "docling_object_created",
-        "docling_version": getattr(_dl, "__version__", "unknown")
-    }), flush=True)
+        conv = DocumentConverter(
+            format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=opts)}
+        )
 
-    res = conv.convert(pdf_path.as_posix())
+        import docling as _dl
+        docling_version = getattr(_dl, "__version__", "unknown")
+        print(json.dumps({
+            "event": "docling_object_created",
+            "docling_version": docling_version
+        }), flush=True)
 
-    # Markdown via Docling (no OCR)
-    md = res.document.export_to_markdown()
+        res = conv.convert(pdf_path.as_posix())
+        md = res.document.export_to_markdown()
+        try:
+            res_json = res.document.model_dump_json(indent=2)
+        except Exception:
+            res_json = None
+        docling_seconds = round(time.perf_counter() - docling_start, 3)
+        print(json.dumps({
+            "event": "docling_timing",
+            "seconds": docling_seconds
+        }), flush=True)
+
+    else:
+        print(json.dumps({
+            "event": "docling_skipped"
+        }), flush=True)
 
     # ---- Tesseract OCR → plain-text transcript ----
     # (works for scanned PDFs; also OK for born-digital but slower)
-    txt = ocr_tesseract_pdf_to_text(pdf_path, dpi=220, lang="eng")
+    txt = ""
+    pages_processed = 0
+    ocr_seconds = None
+    if args.run_ocr:
+        ocr_start = time.perf_counter()
+        txt, pages_processed, _ = ocr_tesseract_pdf_to_text(
+            pdf_path,
+            dpi=args.dpi,
+            lang="eng",
+            max_pages=args.max_pages,
+            progress=args.progress,
+        )
+        ocr_seconds = round(time.perf_counter() - ocr_start, 3)
+        print(json.dumps({
+            "event": "ocr_timing",
+            "seconds": ocr_seconds
+        }), flush=True)
+    else:
+        print(json.dumps({
+            "event": "ocr_skipped"
+        }), flush=True)
 
     # ---- Write artifacts ----
     md_path   = out_dir / (pdf_path.stem + ".md")
     json_path = out_dir / (pdf_path.stem + ".json")
     txt_path  = out_dir / (pdf_path.stem + ".txt")
 
-    md_path.write_text(md, encoding="utf-8")
-    # JSON best-effort (API shape may differ by version)
-    try:
-        json_path.write_text(res.document.model_dump_json(indent=2), encoding="utf-8")
-    except Exception:
-        pass
-    txt_path.write_text(txt, encoding="utf-8")
+    if args.run_docling and md:
+        md_path.write_text(md, encoding="utf-8")
+    if args.run_docling and res_json:
+        json_path.write_text(res_json, encoding="utf-8")
+    if args.run_ocr and txt:
+        txt_path.write_text(txt, encoding="utf-8")
 
     # Short snippet so Java logs show transcription clearly
     base = txt if txt.strip() else md
-    lines = base.strip().splitlines()
+    lines = base.strip().splitlines() if base else []
     snippet = "\n".join(lines[:8])[:600]
+
+    metrics_summary = {
+        "event": "metrics_summary",
+        "docling": {
+            "enabled": args.run_docling,
+            "seconds": docling_seconds
+        },
+        "ocr": {
+            "enabled": args.run_ocr,
+            "seconds": ocr_seconds,
+            "pages": pages_processed,
+            "dpi": args.dpi
+        },
+        "options": {
+            "table_structure": args.table_structure,
+            "max_pages": args.max_pages,
+            "cache_used": args.use_cache
+        }
+    }
+    print(json.dumps(metrics_summary), flush=True)
+
+    print("METRICS SUMMARY", flush=True)
+    docling_msg = "  Docling: skipped" if docling_seconds is None else f"  Docling: {docling_seconds:.2f}s"
+    ocr_msg = "  OCR: skipped" if ocr_seconds is None else f"  OCR: {ocr_seconds:.2f}s (pages={pages_processed}, dpi={args.dpi})"
+    tables_msg = "  Tables: enabled" if args.table_structure else "  Tables: disabled"
+    cache_msg = f"  Cache reuse: {'yes' if args.use_cache else 'no'}"
+    if args.max_pages:
+        cache_msg += f" (max_pages={args.max_pages})"
+    print(docling_msg, flush=True)
+    print(ocr_msg, flush=True)
+    print(tables_msg, flush=True)
+    print(cache_msg, flush=True)
 
     print(json.dumps({
         "status": "ok",
         "input": str(pdf_path),
-        "markdown": str(md_path),
-        "json": str(json_path),
-        "text": str(txt_path),
+        "markdown": str(md_path) if args.run_docling else None,
+        "json": str(json_path) if args.run_docling else None,
+        "text": str(txt_path) if args.run_ocr else None,
         "snippet": snippet
     }), flush=True)
 

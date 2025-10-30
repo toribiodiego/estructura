@@ -3,6 +3,7 @@ package com.estructura;
 import com.estructura.docling.DoclingResult;
 import com.estructura.docling.DoclingRunner;
 import com.estructura.docling.DoclingRunnerException;
+import com.estructura.docling.DoclingRunnerOptions;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -24,10 +25,15 @@ public class DoclingOcrDemo {
       throw new IllegalArgumentException("Invalid output directory: " + outDir, e);
     }
 
-    DoclingRunner runner = new DoclingRunner();
+    DoclingRunnerOptions options = loadOptionsFromSystemProperties();
+    DoclingRunner runner = new DoclingRunner(options);
     try {
       DoclingResult result = runner.ingest(input, outPath);
-      System.out.printf("Docling document created (version=%s)%n", result.doclingVersion());
+      if (result.doclingObjectCreated()) {
+        System.out.printf("Docling document created (version=%s)%n", result.doclingVersion());
+      } else {
+        System.out.println("Docling stage skipped by configuration.");
+      }
       if (result.snippet() != null && !result.snippet().isBlank()) {
         System.out.println("Snippet:");
         System.out.println(result.snippet());
@@ -42,5 +48,62 @@ public class DoclingOcrDemo {
       }
       System.exit(1);
     }
+  }
+
+  private static DoclingRunnerOptions loadOptionsFromSystemProperties() {
+    DoclingRunnerOptions opts = DoclingRunnerOptions.defaults();
+
+    String docMode = System.getProperty("doc.mode", "");
+    if ("docling-only".equalsIgnoreCase(docMode)) {
+      opts = opts.withRunOcr(false).withRunDocling(true);
+    } else if ("ocr-only".equalsIgnoreCase(docMode)) {
+      opts = opts.withRunDocling(false).withRunOcr(true);
+    }
+
+    String doclingProp = System.getProperty("doc.docling");
+    if (doclingProp != null) {
+      opts = opts.withRunDocling(Boolean.parseBoolean(doclingProp));
+    }
+
+    String ocrProp = System.getProperty("doc.ocr");
+    if (ocrProp != null) {
+      opts = opts.withRunOcr(Boolean.parseBoolean(ocrProp));
+    }
+
+    if (Boolean.getBoolean("doc.progress")) {
+      opts = opts.withProgress(true);
+    }
+
+    if (Boolean.getBoolean("doc.useCache")) {
+      opts = opts.withUseCache(true);
+    }
+
+    if (Boolean.getBoolean("doc.tableStructure")) {
+      opts = opts.withTableStructure(true);
+    }
+
+    if (Boolean.getBoolean("doc.verbose")) {
+      opts = opts.withVerbose(true);
+    }
+
+    String maxPagesProp = System.getProperty("doc.maxPages");
+    if (maxPagesProp != null && !maxPagesProp.isBlank()) {
+      try {
+        opts = opts.withMaxPages(Integer.parseInt(maxPagesProp));
+      } catch (NumberFormatException ignore) {
+        System.err.println("Ignoring invalid doc.maxPages value: " + maxPagesProp);
+      }
+    }
+
+    String dpiProp = System.getProperty("doc.dpi");
+    if (dpiProp != null && !dpiProp.isBlank()) {
+      try {
+        opts = opts.withDpi(Integer.parseInt(dpiProp));
+      } catch (NumberFormatException ignore) {
+        System.err.println("Ignoring invalid doc.dpi value: " + dpiProp);
+      }
+    }
+
+    return opts;
   }
 }

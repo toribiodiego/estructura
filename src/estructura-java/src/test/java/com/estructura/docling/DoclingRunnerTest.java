@@ -1,6 +1,7 @@
 package com.estructura.docling;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -59,5 +60,37 @@ class DoclingRunnerTest {
     Path missing = tempDir.resolve("missing.pdf");
 
     assertThrows(DoclingRunnerException.class, () -> runner.ingest(missing.toString(), tempDir));
+  }
+
+  @Test
+  void ingestAllowsSkippingDoclingStage() throws Exception {
+    DoclingRunner runner = new DoclingRunner(TEST_SCRIPT);
+    Path input = Files.createTempFile("ocr_only", ".pdf");
+    Files.writeString(input, "dummy");
+
+    DoclingRunnerOptions options = DoclingRunnerOptions.defaults()
+        .withRunDocling(false)
+        .withRunOcr(true);
+
+    DoclingResult result = runner.ingest(input.toString(), tempDir, options);
+
+    assertFalse(result.doclingObjectCreated());
+    assertTrue(result.hasTranscription());
+  }
+
+  @Test
+  void ingestAllowsSkippingOcrStage() throws Exception {
+    DoclingRunner runner = new DoclingRunner(TEST_SCRIPT);
+    Path input = Files.createTempFile("docling_only", ".pdf");
+    Files.writeString(input, "dummy");
+
+    DoclingRunnerOptions options = DoclingRunnerOptions.defaults()
+        .withRunDocling(true)
+        .withRunOcr(false);
+
+    DoclingResult result = runner.ingest(input.toString(), tempDir, options);
+
+    assertTrue(result.doclingObjectCreated());
+    assertFalse(result.hasTranscription());
   }
 }

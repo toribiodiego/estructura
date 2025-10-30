@@ -7,6 +7,10 @@
         "--dns=8.8.8.8",
         "--dns=1.1.1.1"
     ],
+    "mounts": [
+        "source=${localEnv:HOME}/.docling-cache,target=/root/.cache,type=bind",
+        "source=${localEnv:HOME}/.docling-cache,target=/root/.local/share/docling,type=bind"
+    ],
     "features": {},
     "customizations": {
         "vscode": {
