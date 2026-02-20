@@ -279,6 +279,7 @@ def main(argv: list[str] | None = None):
             crops_dir = out_dir / "images" / "crops"
             crops_dir.mkdir(parents=True, exist_ok=True)
             page_seq: dict[int, int] = {}  # page_no -> next sequence number
+            manifest_entries: list[tuple[str, int, str, str]] = []  # (id, page, bbox_str, rel_path)
 
             for item, _level in res.document.iterate_items():
                 if not isinstance(item, PictureItem):
@@ -296,8 +297,11 @@ def main(argv: list[str] | None = None):
                 page_size = page_data.size
                 img_w, img_h = page_img.size
 
-                # Scale bbox from document coordinates to pixel coordinates
+                # Convert bbox to top-left origin in document coordinates
                 bbox = prov.bbox.to_top_left_origin(page_size.height)
+                bbox_str = f"{bbox.l:.1f},{bbox.t:.1f},{bbox.r:.1f},{bbox.b:.1f}"
+
+                # Scale bbox from document coordinates to pixel coordinates
                 scale_x = img_w / page_size.width
                 scale_y = img_h / page_size.height
                 crop_l = max(0, bbox.l * scale_x)
@@ -310,6 +314,8 @@ def main(argv: list[str] | None = None):
 
                 seq = page_seq.get(pg, 1)
                 page_seq[pg] = seq + 1
+                image_id = f"img-p{pg:03d}-{seq:02d}"
+                rel_crop = f"images/crops/p{pg:03d}-{seq:02d}.png"
                 crop_path = crops_dir / f"p{pg:03d}-{seq:02d}.png"
 
                 try:
@@ -318,6 +324,16 @@ def main(argv: list[str] | None = None):
                     crops_count += 1
                 except Exception as exc:
                     logging.warning("Crop failed for page %d seq %d: %s", pg, seq, exc)
+
+                # Record in manifest regardless of crop success (per output contract)
+                manifest_entries.append((image_id, pg, bbox_str, rel_crop))
+
+            # ---- Write manifest ----
+            manifest_path = out_dir / "images" / "manifest.txt"
+            with manifest_path.open("w", encoding="utf-8") as mf:
+                mf.write("# id | page | bbox_left,bbox_top,bbox_right,bbox_bottom | crop_path\n")
+                for img_id, pg, bbox_s, rel_path in manifest_entries:
+                    mf.write(f"{img_id} | {pg} | {bbox_s} | {rel_path}\n")
 
             print(json.dumps({"event": "crops_extracted", "count": crops_count}), flush=True)
 
