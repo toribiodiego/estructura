@@ -217,19 +217,61 @@ pipeline supports three caption sources:
 
 ## Edge Cases
 
+| Scenario | Output file | `images/` directory | Manifest |
+|----------|-------------|---------------------|----------|
+| Text-only document | Text paragraphs only | Not created | Not created |
+| Empty document | Empty (zero bytes) | Not created | Not created |
+| Image with no caption | Anchor + `[No caption available]` | Created with crops | Lists all images |
+| Page with only images | Sequential anchors, no text between | Created with crops | Lists all images |
+| Failed crop extraction | Anchor with failure marker | Created (crop file missing) | Lists image (file absent) |
+| Image capture disabled | Text paragraphs only | Not created | Not created |
+
+<br><br>
+
 ### Text-only document (no figures detected)
 
-The output contains only text paragraphs. No image anchors, no `images/`
-directory, no manifest. The output is identical to a non-image-aware run.
+The output contains only text paragraphs. No image anchors appear, and
+the pipeline does not create an `images/` directory or manifest. The
+output is identical to a non-image-aware run.
+
+See `docs/samples/sample-textonly.md` and `docs/samples/sample-textonly.txt`
+for complete examples.
 
 ### Empty document (no text, no images)
 
 The output file is empty (zero bytes). No `images/` directory is created.
+The pipeline still completes successfully and reports `"status": "ok"` in
+the JSON status line.
+
+### Image with no caption
+
+When annotation is disabled or the vision model fails for a specific
+image, the pipeline uses the placeholder `[No caption available]`.
+
+**Markdown:**
+
+```markdown
+![img-p002-01](images/crops/p002-01.png)
+*[No caption available]*
+```
+
+**TXT:**
+
+```text
+[IMAGE: img-p002-01 | images/crops/p002-01.png]
+  [No caption available]
+```
+
+The crop file still exists on disk. Only the caption is missing. The
+placeholder distinguishes this case from a failed crop extraction, where
+the anchor itself carries the failure marker.
 
 ### Page with only images (no text between anchors)
 
 Image anchors appear in sequence with no intervening text. Each anchor
-still has its caption line.
+still has its caption line. A blank line separates consecutive anchors.
+
+**Markdown:**
 
 ```markdown
 ![img-p005-01](images/crops/p005-01.png)
@@ -240,6 +282,19 @@ still has its caption line.
 
 ![img-p005-03](images/crops/p005-03.png)
 *Floor plan for the ground level.*
+```
+
+**TXT:**
+
+```text
+[IMAGE: img-p005-01 | images/crops/p005-01.png]
+  Satellite view of the proposed construction site.
+
+[IMAGE: img-p005-02 | images/crops/p005-02.png]
+  Elevation diagram showing planned building heights.
+
+[IMAGE: img-p005-03 | images/crops/p005-03.png]
+  Floor plan for the ground level.
 ```
 
 ### Image with failed crop extraction
@@ -262,7 +317,8 @@ the anchor uses a failure marker instead of a path.
 ```
 
 The anchor still uses the stable ID so consumers can identify which image
-failed. The crop file does not exist on disk.
+failed. The crop file does not exist on disk. The manifest still lists
+the image entry with its bounding box.
 
 ### Image capture disabled
 
