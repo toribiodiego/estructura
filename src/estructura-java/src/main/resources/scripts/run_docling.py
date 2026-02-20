@@ -270,14 +270,6 @@ def main(argv: list[str] | None = None):
     if args.output == "text" and args.run_ocr and txt:
         txt_path.write_text(txt, encoding="utf-8")
 
-    # Short snippet so Java logs show transcription clearly
-    base = txt if txt.strip() else md
-    lines = base.strip().splitlines() if base else []
-    if not lines:
-        snippet = "Snippet unavailable: Docling/OCR output was empty."
-    else:
-        snippet = "\n".join(lines[:8])[:600]
-
     metrics_summary = {
         "event": "metrics_summary",
         "docling": {
@@ -321,7 +313,6 @@ def main(argv: list[str] | None = None):
                 "input": str(pdf_path),
                 "markdown": str(md_path) if args.output == "markdown" and args.run_docling else None,
                 "text": str(txt_path) if args.output == "text" and args.run_ocr else None,
-                "snippet": snippet,
             }
         ),
         flush=True,
