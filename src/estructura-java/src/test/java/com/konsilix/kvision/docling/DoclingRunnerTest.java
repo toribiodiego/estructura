@@ -30,8 +30,8 @@ class DoclingRunnerTest {
     assertEquals("test-version", result.doclingVersion());
     assertNotNull(result.inputPath());
     assertTrue(Files.isSameFile(result.inputPath(), input));
-    assertNotNull(result.textPath());
-    assertTrue(Files.exists(result.textPath()), "Transcription file should exist");
+    assertNotNull(result.markdownPath());
+    assertTrue(Files.exists(result.markdownPath()), "Markdown file should exist");
   }
 
   @Test
@@ -71,7 +71,7 @@ class DoclingRunnerTest {
     DoclingResult result = runner.ingest(input.toString(), tempDir, options);
 
     assertFalse(result.doclingObjectCreated());
-    assertTrue(result.hasTranscription());
+    assertFalse(result.hasTranscription(), "No text output in default markdown mode");
   }
 
   @Test

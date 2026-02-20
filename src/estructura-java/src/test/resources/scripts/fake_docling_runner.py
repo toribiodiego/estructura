@@ -18,6 +18,7 @@ def main() -> int:
     parser.add_argument("--image-annotations", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--max-pages", type=int, default=None)
+    parser.add_argument("--output", choices=["markdown", "text"], default="markdown")
 
     args = parser.parse_args()
 
@@ -37,21 +38,18 @@ def main() -> int:
 
     if args.no_docling:
         print(json.dumps({"event": "docling_skipped"}))
-        md_path = out_dir / f"{stem}.md"
-        json_path = out_dir / f"{stem}.json"
     else:
-        md_path = out_dir / f"{stem}.md"
-        json_path = out_dir / f"{stem}.json"
-        md_path.write_text("# fake markdown", encoding="utf-8")
-        json_path.write_text("{}", encoding="utf-8")
+        if args.output == "markdown":
+            md_path = out_dir / f"{stem}.md"
+            md_path.write_text("# fake markdown", encoding="utf-8")
         print(json.dumps({"event": "docling_object_created", "docling_version": "test-version"}))
 
     if args.no_ocr:
         print(json.dumps({"event": "ocr_skipped"}))
-        txt_path = out_dir / f"{stem}.txt"
     else:
-        txt_path = out_dir / f"{stem}.txt"
-        txt_path.write_text("fake transcript", encoding="utf-8")
+        if args.output == "text":
+            txt_path = out_dir / f"{stem}.txt"
+            txt_path.write_text("fake transcript", encoding="utf-8")
         if args.progress:
             print(
                 json.dumps(
@@ -100,10 +98,8 @@ def main() -> int:
             {
                 "status": "ok",
                 "input": str(input_path),
-                "markdown": str(out_dir / f"{stem}.md") if not args.no_docling else None,
-                "json": str(out_dir / f"{stem}.json") if not args.no_docling else None,
-                "text": str(txt_path) if not args.no_ocr else None,
-                "snippet": "fake transcript",
+                "markdown": str(out_dir / f"{stem}.md") if args.output == "markdown" and not args.no_docling else None,
+                "text": str(out_dir / f"{stem}.txt") if args.output == "text" and not args.no_ocr else None,
             }
         )
     )
