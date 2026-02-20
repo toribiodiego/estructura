@@ -92,6 +92,10 @@ public class DoclingCli {
       opts = opts.withImageAnnotations(true);
     }
 
+    if (Boolean.getBoolean("doc.imageCapture")) {
+      opts = opts.withImageCapture(true);
+    }
+
     if (Boolean.getBoolean("doc.verbose")) {
       opts = opts.withVerbose(true);
     }

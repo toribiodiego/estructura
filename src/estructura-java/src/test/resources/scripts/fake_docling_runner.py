@@ -16,6 +16,7 @@ def main() -> int:
     parser.add_argument("--use-cache", action="store_true")
     parser.add_argument("--table-structure", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--image-annotations", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--image-capture", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--max-pages", type=int, default=None)
     parser.add_argument("--output", choices=["markdown", "text"], default="markdown")
@@ -79,6 +80,7 @@ def main() -> int:
         "options": {
             "table_structure": args.table_structure,
             "image_annotations": args.image_annotations,
+            "image_capture": args.image_capture,
             "max_pages": args.max_pages,
             "cache_used": args.use_cache,
         },

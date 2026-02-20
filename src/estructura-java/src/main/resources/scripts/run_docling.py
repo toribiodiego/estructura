@@ -169,6 +169,14 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         default="markdown",
         help="Output format: markdown (.md) or text (.txt). Default: markdown",
     )
+    parser.add_argument(
+        "--image-capture",
+        dest="image_capture",
+        action="store_true",
+        help="Enable page image capture for image-aware pipeline",
+    )
+    parser.add_argument("--no-image-capture", dest="image_capture", action="store_false")
+    parser.set_defaults(image_capture=False)
     return parser.parse_args(argv)
 
 
@@ -213,6 +221,7 @@ def main(argv: list[str] | None = None):
     txt = ""
     docling_version = "unknown"
     docling_seconds = None
+    page_images_count = 0
 
     if args.run_docling:
         docling_start = time.perf_counter()
@@ -223,7 +232,7 @@ def main(argv: list[str] | None = None):
         opts = PdfPipelineOptions()
         opts.do_ocr = False  # we do OCR ourselves with Tesseract
         opts.do_table_structure = args.table_structure
-        opts.generate_page_images = False
+        opts.generate_page_images = args.image_capture
 
         # Docling handles DOCX/PPTX/XLSX natively; only PDF needs custom options.
         conv = DocumentConverter(format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=opts)})
@@ -250,8 +259,24 @@ def main(argv: list[str] | None = None):
         docling_seconds = round(time.perf_counter() - docling_start, 3)
         print(json.dumps({"event": "docling_timing", "seconds": docling_seconds}), flush=True)
 
+        # ---- Page image capture (PDF only) ----
+        if args.image_capture and is_pdf:
+            pages_dir = out_dir / "images" / "pages"
+            pages_dir.mkdir(parents=True, exist_ok=True)
+            for page_no in sorted(res.document.pages.keys()):
+                page = res.document.pages[page_no]
+                if page.image is not None:
+                    img_path = pages_dir / f"page_{page_no:03d}.png"
+                    page.image.pil_image.save(img_path, "PNG")
+                    page_images_count += 1
+            print(json.dumps({"event": "page_images_captured", "count": page_images_count}), flush=True)
+        elif args.image_capture and not is_pdf:
+            print(json.dumps({"event": "image_capture_skipped", "reason": "non-pdf input"}), flush=True)
+
     else:
         print(json.dumps({"event": "docling_skipped"}), flush=True)
+        if args.image_capture:
+            print(json.dumps({"event": "image_capture_skipped", "reason": "docling disabled"}), flush=True)
 
     # ---- Tesseract OCR -> plain-text transcript (PDF only) ----
     pages_processed = 0
@@ -295,8 +320,13 @@ def main(argv: list[str] | None = None):
         },
         "options": {
             "table_structure": args.table_structure,
+            "image_capture": args.image_capture,
             "max_pages": args.max_pages,
             "cache_used": args.use_cache,
+        },
+        "image_capture": {
+            "enabled": args.image_capture and is_pdf,
+            "pages_saved": page_images_count,
         },
     }
     print(json.dumps(metrics_summary), flush=True)
@@ -310,12 +340,19 @@ def main(argv: list[str] | None = None):
     else:
         ocr_msg = f"  OCR: {ocr_seconds:.2f}s (pages={pages_processed}, dpi={args.dpi})"
     tables_msg = "  Tables: enabled" if args.table_structure else "  Tables: disabled"
+    if args.image_capture and is_pdf:
+        capture_msg = f"  Image capture: {page_images_count} pages saved"
+    elif args.image_capture:
+        capture_msg = "  Image capture: skipped (non-PDF input)"
+    else:
+        capture_msg = "  Image capture: disabled"
     cache_msg = f"  Cache reuse: {'yes' if args.use_cache else 'no'}"
     if args.max_pages:
         cache_msg += f" (max_pages={args.max_pages})"
     print(docling_msg, flush=True)
     print(ocr_msg, flush=True)
     print(tables_msg, flush=True)
+    print(capture_msg, flush=True)
     print(cache_msg, flush=True)
 
     print(

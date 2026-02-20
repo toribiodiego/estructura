@@ -176,6 +176,9 @@ public class DoclingRunner {
     if (options.tableStructure()) {
       command.add("--table-structure");
     }
+    if (options.imageCapture()) {
+      command.add("--image-capture");
+    }
     if (options.verbose()) {
       command.add("--verbose");
     }
