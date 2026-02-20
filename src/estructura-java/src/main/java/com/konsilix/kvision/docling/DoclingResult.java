@@ -13,9 +13,7 @@ public record DoclingResult(
     String doclingVersion,
     Path inputPath,
     Path markdownPath,
-    Path jsonPath,
     Path textPath,
-    String snippet,
     DoclingMetrics metrics,
     List<String> rawOutput
 ) {

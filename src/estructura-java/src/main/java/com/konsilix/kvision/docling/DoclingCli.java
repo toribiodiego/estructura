@@ -29,10 +29,6 @@ public class DoclingCli {
       } else {
         System.out.println("Docling stage skipped by configuration.");
       }
-      if (result.snippet() != null && !result.snippet().isBlank()) {
-        System.out.println("Snippet:");
-        System.out.println(result.snippet());
-      }
       if (result.hasTranscription()) {
         System.out.println("Transcription path: " + result.textPath());
       }

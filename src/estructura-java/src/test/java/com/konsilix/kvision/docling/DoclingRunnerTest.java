@@ -32,7 +32,6 @@ class DoclingRunnerTest {
     assertTrue(Files.isSameFile(result.inputPath(), input));
     assertNotNull(result.textPath());
     assertTrue(Files.exists(result.textPath()), "Transcription file should exist");
-    assertEquals("fake transcript", result.snippet());
   }
 
   @Test

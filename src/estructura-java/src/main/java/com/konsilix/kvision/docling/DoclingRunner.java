@@ -192,9 +192,7 @@ public class DoclingRunner {
     String doclingVersion = null;
     Path inputPath = null;
     Path markdownPath = null;
-    Path jsonPath = null;
     Path textPath = null;
-    String snippet = null;
     DoclingMetrics metrics = null;
 
     for (String line : outputLines) {
@@ -227,16 +225,14 @@ public class DoclingRunner {
         }
         inputPath = toOptionalPath(node, "input");
         markdownPath = toOptionalPath(node, "markdown");
-        jsonPath = toOptionalPath(node, "json");
         textPath = toOptionalPath(node, "text");
-        snippet = node.path("snippet").asText(null);
       }
     }
 
     if (options.runDocling() && !doclingCreated) {
       throw new DoclingRunnerException("Docling runner did not report a created document object.");
     }
-    return new DoclingResult(doclingCreated, doclingVersion, inputPath, markdownPath, jsonPath, textPath, snippet,
+    return new DoclingResult(doclingCreated, doclingVersion, inputPath, markdownPath, textPath,
         metrics, outputLines);
   }
 
