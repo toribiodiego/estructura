@@ -222,6 +222,7 @@ def main(argv: list[str] | None = None):
     docling_version = "unknown"
     docling_seconds = None
     page_images_count = 0
+    crops_count = 0
 
     if args.run_docling:
         docling_start = time.perf_counter()
@@ -270,6 +271,56 @@ def main(argv: list[str] | None = None):
                     page.image.pil_image.save(img_path, "PNG")
                     page_images_count += 1
             print(json.dumps({"event": "page_images_captured", "count": page_images_count}), flush=True)
+
+            # ---- Crop extraction from figure bounding boxes ----
+            from docling_core.types.doc.document import PictureItem
+            from PIL import Image as PILImage
+
+            crops_dir = out_dir / "images" / "crops"
+            crops_dir.mkdir(parents=True, exist_ok=True)
+            page_seq: dict[int, int] = {}  # page_no -> next sequence number
+
+            for item, _level in res.document.iterate_items():
+                if not isinstance(item, PictureItem):
+                    continue
+                if not item.prov:
+                    continue
+
+                prov = item.prov[0]
+                pg = prov.page_no
+                page_data = res.document.pages.get(pg)
+                if page_data is None or page_data.image is None:
+                    continue
+
+                page_img = page_data.image.pil_image
+                page_size = page_data.size
+                img_w, img_h = page_img.size
+
+                # Scale bbox from document coordinates to pixel coordinates
+                bbox = prov.bbox.to_top_left_origin(page_size.height)
+                scale_x = img_w / page_size.width
+                scale_y = img_h / page_size.height
+                crop_l = max(0, bbox.l * scale_x)
+                crop_t = max(0, bbox.t * scale_y)
+                crop_r = min(img_w, bbox.r * scale_x)
+                crop_b = min(img_h, bbox.b * scale_y)
+
+                if crop_r <= crop_l or crop_b <= crop_t:
+                    continue
+
+                seq = page_seq.get(pg, 1)
+                page_seq[pg] = seq + 1
+                crop_path = crops_dir / f"p{pg:03d}-{seq:02d}.png"
+
+                try:
+                    cropped = page_img.crop((crop_l, crop_t, crop_r, crop_b))
+                    cropped.save(crop_path, "PNG")
+                    crops_count += 1
+                except Exception as exc:
+                    logging.warning("Crop failed for page %d seq %d: %s", pg, seq, exc)
+
+            print(json.dumps({"event": "crops_extracted", "count": crops_count}), flush=True)
+
         elif args.image_capture and not is_pdf:
             print(json.dumps({"event": "image_capture_skipped", "reason": "non-pdf input"}), flush=True)
 
@@ -327,6 +378,7 @@ def main(argv: list[str] | None = None):
         "image_capture": {
             "enabled": args.image_capture and is_pdf,
             "pages_saved": page_images_count,
+            "crops_extracted": crops_count,
         },
     }
     print(json.dumps(metrics_summary), flush=True)
@@ -341,7 +393,7 @@ def main(argv: list[str] | None = None):
         ocr_msg = f"  OCR: {ocr_seconds:.2f}s (pages={pages_processed}, dpi={args.dpi})"
     tables_msg = "  Tables: enabled" if args.table_structure else "  Tables: disabled"
     if args.image_capture and is_pdf:
-        capture_msg = f"  Image capture: {page_images_count} pages saved"
+        capture_msg = f"  Image capture: {page_images_count} pages, {crops_count} crops"
     elif args.image_capture:
         capture_msg = "  Image capture: skipped (non-PDF input)"
     else:
