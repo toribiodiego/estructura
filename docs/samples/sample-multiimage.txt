@@ -1,0 +1,53 @@
+Environmental Impact Assessment -- Riverside Development
+
+1. Introduction
+
+This report presents the environmental impact assessment for the
+proposed Riverside Development project in Clark County. The assessment
+covers land use changes, water quality projections, and habitat impact
+across the 240-hectare site.
+
+The study period spans January 2024 through December 2025, with field
+surveys conducted during three seasonal windows.
+
+[IMAGE: img-p001-01 | images/crops/p001-01.png]
+  [Placeholder: figure on page 1, region 1]
+
+The site boundary shown above encompasses the full project area,
+including the 18-hectare riparian buffer zone along the eastern edge.
+
+2. Land Use Analysis
+
+Current land use breaks down as follows: 62% agricultural (primarily
+row crops), 24% grassland, 8% forested riparian corridor, and 6%
+existing impervious surface from the former industrial facility.
+
+[IMAGE: img-p002-01 | images/crops/p002-01.png]
+  [Placeholder: figure on page 2, region 1]
+
+[IMAGE: img-p002-02 | images/crops/p002-02.png]
+  [Placeholder: figure on page 2, region 2]
+
+The aerial comparison above shows land cover in 2020 versus the
+projected 2027 post-development state. Impervious surface increases
+from 6% to 34%, offset by the permanent conservation of the riparian
+buffer and a 12-hectare stormwater wetland.
+
+Table 2.1 summarizes the projected changes by category. Net habitat
+loss is 41 hectares after accounting for restoration credits.
+
+3. Water Quality Projections
+
+Baseline sampling at six monitoring stations established mean total
+phosphorus at 0.08 mg/L and total suspended solids at 22 mg/L during
+dry-weather conditions.
+
+[IMAGE: img-p003-01 | images/crops/p003-01.png]
+  [Placeholder: figure on page 3, region 1]
+
+The model predicts a 15% increase in peak stormwater volume for the
+2-year return period event, controlled to pre-development rates by
+the regional detention facility shown in the site plan.
+
+Post-construction monitoring will continue for five years at the same
+six stations to verify model predictions against observed conditions.
