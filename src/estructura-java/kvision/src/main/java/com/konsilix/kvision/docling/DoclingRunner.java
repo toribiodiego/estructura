@@ -194,6 +194,7 @@ public class DoclingRunner {
     Path jsonPath = null;
     Path textPath = null;
     String snippet = null;
+    DoclingMetrics metrics = null;
 
     for (String line : outputLines) {
       String trimmed = line.trim();
@@ -205,9 +206,16 @@ public class DoclingRunner {
         continue;
       }
 
-      if ("docling_object_created".equals(node.path("event").asText(null))) {
+      String event = node.path("event").asText(null);
+
+      if ("docling_object_created".equals(event)) {
         doclingCreated = true;
         doclingVersion = node.path("docling_version").asText(null);
+        continue;
+      }
+
+      if ("metrics_summary".equals(event)) {
+        metrics = parseMetrics(node);
         continue;
       }
 
@@ -228,7 +236,46 @@ public class DoclingRunner {
       throw new DoclingRunnerException("Docling runner did not report a created document object.");
     }
     return new DoclingResult(doclingCreated, doclingVersion, inputPath, markdownPath, jsonPath, textPath, snippet,
-        outputLines);
+        metrics, outputLines);
+  }
+
+  private DoclingMetrics parseMetrics(JsonNode node) {
+    JsonNode doclingNode = node.path("docling");
+    DoclingMetrics.Stage docling = new DoclingMetrics.Stage(
+        doclingNode.path("enabled").asBoolean(false),
+        toOptionalDouble(doclingNode, "seconds"));
+
+    JsonNode ocrNode = node.path("ocr");
+    DoclingMetrics.OcrStage ocr = new DoclingMetrics.OcrStage(
+        ocrNode.path("enabled").asBoolean(false),
+        toOptionalDouble(ocrNode, "seconds"),
+        toOptionalInt(ocrNode, "pages"),
+        toOptionalInt(ocrNode, "dpi"));
+
+    JsonNode optionsNode = node.path("options");
+    DoclingMetrics.Options opts = new DoclingMetrics.Options(
+        optionsNode.path("table_structure").asBoolean(false),
+        optionsNode.path("image_annotations").asBoolean(false),
+        toOptionalInt(optionsNode, "max_pages"),
+        optionsNode.path("cache_used").asBoolean(false));
+
+    return new DoclingMetrics(docling, ocr, opts);
+  }
+
+  private Double toOptionalDouble(JsonNode parent, String field) {
+    JsonNode value = parent.get(field);
+    if (value == null || value.isNull()) {
+      return null;
+    }
+    return value.asDouble();
+  }
+
+  private Integer toOptionalInt(JsonNode parent, String field) {
+    JsonNode value = parent.get(field);
+    if (value == null || value.isNull()) {
+      return null;
+    }
+    return value.asInt();
   }
 
   private Path toOptionalPath(JsonNode node, String field) {
