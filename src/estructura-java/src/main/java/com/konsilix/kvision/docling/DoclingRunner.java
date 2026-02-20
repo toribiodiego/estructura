@@ -183,6 +183,10 @@ public class DoclingRunner {
       command.add("--max-pages");
       command.add(Integer.toString(options.maxPages()));
     }
+    if (options.outputFormat() != null) {
+      command.add("--output");
+      command.add(options.outputFormat());
+    }
     return command;
   }
 

@@ -75,6 +75,22 @@ class DoclingRunnerTest {
   }
 
   @Test
+  void ingestTextOutputProducesTranscription() throws Exception {
+    DoclingRunner runner = new DoclingRunner(TEST_SCRIPT);
+    Path input = Files.createTempFile("text_output", ".pdf");
+    Files.writeString(input, "dummy");
+
+    DoclingRunnerOptions options = DoclingRunnerOptions.defaults().withOutputFormat("text");
+
+    DoclingResult result = runner.ingest(input.toString(), tempDir, options);
+
+    assertTrue(result.doclingObjectCreated());
+    assertTrue(result.hasTranscription(), "Text output mode should produce transcription");
+    assertNotNull(result.textPath());
+    assertTrue(Files.exists(result.textPath()), "Transcription file should exist");
+  }
+
+  @Test
   void ingestAllowsSkippingOcrStage() throws Exception {
     DoclingRunner runner = new DoclingRunner(TEST_SCRIPT);
     Path input = Files.createTempFile("docling_only", ".pdf");

@@ -114,6 +114,11 @@ public class DoclingCli {
       }
     }
 
+    String outputProp = System.getProperty("doc.output");
+    if (outputProp != null && !outputProp.isBlank()) {
+      opts = opts.withOutputFormat(outputProp);
+    }
+
     return opts;
   }
 }
