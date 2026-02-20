@@ -12,6 +12,8 @@ from urllib.request import urlretrieve
 
 PDF_EXTS = {".pdf"}
 IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp", ".gif"}
+OFFICE_EXTS = {".docx", ".pptx", ".xlsx"}
+ALL_KNOWN_EXTS = PDF_EXTS | IMAGE_EXTS | OFFICE_EXTS
 
 
 def ensure_local_file(src: str, dst_dir: Path) -> Path:
@@ -26,10 +28,10 @@ def ensure_local_file(src: str, dst_dir: Path) -> Path:
             raise RuntimeError(f"Downloaded zero-byte file from {src}")
 
         suffix = downloaded.suffix.lower()
-        if not suffix or suffix not in PDF_EXTS | IMAGE_EXTS:
+        if not suffix or suffix not in ALL_KNOWN_EXTS:
             content_type = headers.get_content_type() if headers else None
             guessed = (mimetypes.guess_extension(content_type or "") or "").lower()
-            if guessed in PDF_EXTS | IMAGE_EXTS:
+            if guessed in ALL_KNOWN_EXTS:
                 suffix = guessed
             else:
                 # Treat unrecognized extensions as PDF by default.
@@ -61,6 +63,8 @@ def ensure_local_document(src: str, dst_dir: Path) -> Path:
     suffix = local_path.suffix.lower()
     if suffix in PDF_EXTS:
         return local_path
+    if suffix in OFFICE_EXTS:
+        return local_path  # Docling handles DOCX/PPTX/XLSX natively
     if suffix in IMAGE_EXTS:
         return convert_image_to_pdf(local_path, dst_dir)
     raise ValueError(f"Unsupported document type: {local_path.suffix or 'unknown'}")
@@ -140,7 +144,7 @@ def ocr_tesseract_pdf_to_text(
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Docling + Tesseract runner")
-    parser.add_argument("src", help="Path or URL to PDF/image")
+    parser.add_argument("src", help="Path or URL to PDF, DOCX, PPTX, XLSX, or image")
     parser.add_argument("out_dir", help="Output directory")
     parser.add_argument("--dpi", type=int, default=int(os.environ.get("DOCLING_OCR_DPI", "120")))
     parser.add_argument("--ocr", dest="run_ocr", action="store_true", default=True)
@@ -187,23 +191,26 @@ def main(argv: list[str] | None = None):
     )
 
     # Localize input under a cache folder
-    pdf_cache = out_dir / "_cache"
-    ensure_cache = args.use_cache and pdf_cache.exists()
+    doc_cache = out_dir / "_cache"
+    ensure_cache = args.use_cache and doc_cache.exists()
     if ensure_cache:
         try:
             desired_stem = Path(urlparse(src).path).stem or Path(src).stem
-            candidates = list(pdf_cache.glob(f"{desired_stem}*")) if desired_stem else []
+            candidates = list(doc_cache.glob(f"{desired_stem}*")) if desired_stem else []
             if candidates:
-                pdf_path = candidates[0]
+                doc_path = candidates[0]
             else:
-                pdf_path = ensure_local_document(src, pdf_cache)
+                doc_path = ensure_local_document(src, doc_cache)
         except Exception:
-            pdf_path = ensure_local_document(src, pdf_cache)
+            doc_path = ensure_local_document(src, doc_cache)
     else:
-        pdf_path = ensure_local_document(src, pdf_cache)
+        doc_path = ensure_local_document(src, doc_cache)
 
-    # ---- Docling (no OCR): structure/markdown proof + object creation proof ----
+    is_pdf = doc_path.suffix.lower() in PDF_EXTS
+
+    # ---- Docling: structure/markdown extraction ----
     md = ""
+    txt = ""
     docling_version = "unknown"
     docling_seconds = None
 
@@ -218,6 +225,7 @@ def main(argv: list[str] | None = None):
         opts.do_table_structure = args.table_structure
         opts.generate_page_images = False
 
+        # Docling handles DOCX/PPTX/XLSX natively; only PDF needs custom options.
         conv = DocumentConverter(format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=opts)})
 
         import docling as _dl
@@ -233,24 +241,25 @@ def main(argv: list[str] | None = None):
             flush=True,
         )
 
-        res = conv.convert(pdf_path.as_posix())
+        res = conv.convert(doc_path.as_posix())
         if args.output == "markdown":
             md = res.document.export_to_markdown()
+        elif args.output == "text" and not is_pdf:
+            # For office formats, Docling provides the text (OCR is PDF-only).
+            txt = res.document.export_to_markdown()
         docling_seconds = round(time.perf_counter() - docling_start, 3)
         print(json.dumps({"event": "docling_timing", "seconds": docling_seconds}), flush=True)
 
     else:
         print(json.dumps({"event": "docling_skipped"}), flush=True)
 
-    # ---- Tesseract OCR → plain-text transcript ----
-    # (works for scanned PDFs; also OK for born-digital but slower)
-    txt = ""
+    # ---- Tesseract OCR -> plain-text transcript (PDF only) ----
     pages_processed = 0
     ocr_seconds = None
-    if args.run_ocr:
+    if args.run_ocr and is_pdf:
         ocr_start = time.perf_counter()
         txt, pages_processed, _ = ocr_tesseract_pdf_to_text(
-            pdf_path,
+            doc_path,
             dpi=args.dpi,
             lang="eng",
             max_pages=args.max_pages,
@@ -258,16 +267,18 @@ def main(argv: list[str] | None = None):
         )
         ocr_seconds = round(time.perf_counter() - ocr_start, 3)
         print(json.dumps({"event": "ocr_timing", "seconds": ocr_seconds}), flush=True)
+    elif args.run_ocr and not is_pdf:
+        print(json.dumps({"event": "ocr_skipped", "reason": "non-pdf input"}), flush=True)
     else:
         print(json.dumps({"event": "ocr_skipped"}), flush=True)
 
     # ---- Write artifacts ----
-    md_path = out_dir / (pdf_path.stem + ".md")
-    txt_path = out_dir / (pdf_path.stem + ".txt")
+    md_path = out_dir / (doc_path.stem + ".md")
+    txt_path = out_dir / (doc_path.stem + ".txt")
 
     if args.output == "markdown" and args.run_docling and md:
         md_path.write_text(md, encoding="utf-8")
-    if args.output == "text" and args.run_ocr and txt:
+    if args.output == "text" and txt:
         txt_path.write_text(txt, encoding="utf-8")
 
     metrics_summary = {
@@ -277,7 +288,7 @@ def main(argv: list[str] | None = None):
             "seconds": docling_seconds,
         },
         "ocr": {
-            "enabled": args.run_ocr,
+            "enabled": args.run_ocr and is_pdf,
             "seconds": ocr_seconds,
             "pages": pages_processed,
             "dpi": args.dpi,
@@ -292,11 +303,12 @@ def main(argv: list[str] | None = None):
 
     print("METRICS SUMMARY", flush=True)
     docling_msg = "  Docling: skipped" if docling_seconds is None else f"  Docling: {docling_seconds:.2f}s"
-    ocr_msg = (
-        "  OCR: skipped"
-        if ocr_seconds is None
-        else f"  OCR: {ocr_seconds:.2f}s (pages={pages_processed}, dpi={args.dpi})"
-    )
+    if args.run_ocr and not is_pdf:
+        ocr_msg = "  OCR: skipped (non-PDF input)"
+    elif ocr_seconds is None:
+        ocr_msg = "  OCR: skipped"
+    else:
+        ocr_msg = f"  OCR: {ocr_seconds:.2f}s (pages={pages_processed}, dpi={args.dpi})"
     tables_msg = "  Tables: enabled" if args.table_structure else "  Tables: disabled"
     cache_msg = f"  Cache reuse: {'yes' if args.use_cache else 'no'}"
     if args.max_pages:
@@ -310,9 +322,9 @@ def main(argv: list[str] | None = None):
         json.dumps(
             {
                 "status": "ok",
-                "input": str(pdf_path),
+                "input": str(doc_path),
                 "markdown": str(md_path) if args.output == "markdown" and args.run_docling else None,
-                "text": str(txt_path) if args.output == "text" and args.run_ocr else None,
+                "text": str(txt_path) if args.output == "text" and txt else None,
             }
         ),
         flush=True,
