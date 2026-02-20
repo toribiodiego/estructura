@@ -159,6 +159,12 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--no-table-structure", dest="table_structure", action="store_false")
     parser.set_defaults(table_structure=False)
     parser.add_argument("--verbose", action="store_true", help="Include Docling INFO logs")
+    parser.add_argument(
+        "--output",
+        choices=["markdown", "text"],
+        default="markdown",
+        help="Output format: markdown (.md) or text (.txt). Default: markdown",
+    )
     return parser.parse_args(argv)
 
 
@@ -229,7 +235,8 @@ def main(argv: list[str] | None = None):
         )
 
         res = conv.convert(pdf_path.as_posix())
-        md = res.document.export_to_markdown()
+        if args.output == "markdown":
+            md = res.document.export_to_markdown()
         try:
             res_json = res.document.model_dump_json(indent=2)
         except Exception:
@@ -264,11 +271,11 @@ def main(argv: list[str] | None = None):
     json_path = out_dir / (pdf_path.stem + ".json")
     txt_path = out_dir / (pdf_path.stem + ".txt")
 
-    if args.run_docling and md:
+    if args.output == "markdown" and args.run_docling and md:
         md_path.write_text(md, encoding="utf-8")
     if args.run_docling and res_json:
         json_path.write_text(res_json, encoding="utf-8")
-    if args.run_ocr and txt:
+    if args.output == "text" and args.run_ocr and txt:
         txt_path.write_text(txt, encoding="utf-8")
 
     # Short snippet so Java logs show transcription clearly
@@ -320,9 +327,9 @@ def main(argv: list[str] | None = None):
             {
                 "status": "ok",
                 "input": str(pdf_path),
-                "markdown": str(md_path) if args.run_docling else None,
+                "markdown": str(md_path) if args.output == "markdown" and args.run_docling else None,
                 "json": str(json_path) if args.run_docling else None,
-                "text": str(txt_path) if args.run_ocr else None,
+                "text": str(txt_path) if args.output == "text" and args.run_ocr else None,
                 "snippet": snippet,
             }
         ),
