@@ -1,0 +1,17 @@
+# Build output
+target/
+out/
+
+# OS files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Project
