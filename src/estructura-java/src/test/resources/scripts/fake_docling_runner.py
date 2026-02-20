@@ -14,6 +14,9 @@ def main() -> int:
     parser.add_argument("--no-ocr", action="store_true")
     parser.add_argument("--progress", action="store_true")
     parser.add_argument("--use-cache", action="store_true")
+    parser.add_argument("--table-structure", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--image-annotations", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--max-pages", type=int, default=None)
 
     args = parser.parse_args()
@@ -76,7 +79,8 @@ def main() -> int:
             "dpi": args.dpi,
         },
         "options": {
-            "table_structure": False,
+            "table_structure": args.table_structure,
+            "image_annotations": args.image_annotations,
             "max_pages": args.max_pages,
             "cache_used": args.use_cache,
         },
