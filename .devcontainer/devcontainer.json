@@ -22,6 +22,6 @@
             ]
         }
     },
-    "postCreateCommand": "mvn -q -e -DskipTests package || true",
+    "postCreateCommand": "cd src/estructura-java && mvn -q -e -DskipTests package || true",
     "remoteUser": "root"
 }

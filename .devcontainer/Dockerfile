@@ -1,18 +1,17 @@
-FROM ghcr.io/graalvm/jdk-community:25
+FROM maven:3.9-eclipse-temurin-21
 
-# System tools + OCR engine + Maven
-RUN microdnf install -y \
-    tesseract tesseract-langpack-eng \
-    git wget unzip python3-pip maven tar gzip \
-    curl ca-certificates \
-    && microdnf clean all
+# System tools + OCR engine
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    tesseract-ocr tesseract-ocr-eng \
+    python3 python3-pip python3-venv \
+    git wget unzip curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
 WORKDIR /workspace
 
-# --- Python stack (Docling w/ PDF support only, plus Tesseract OCR pipeline) ---
-RUN python3 -m pip install --upgrade pip setuptools wheel && \
-    python3 -m pip install \
+# Python stack (Docling with PDF support, plus Tesseract OCR pipeline)
+RUN python3 -m pip install --break-system-packages \
     "docling[pdf]" \
     "pypdfium2>=4.30.0" \
     "pytesseract>=0.3.10"
