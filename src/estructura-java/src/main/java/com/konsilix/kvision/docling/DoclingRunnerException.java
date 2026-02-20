@@ -1,3 +1,4 @@
+/* (C) 2026 Konsilix. All rights reserved. */
 package com.konsilix.kvision.docling;
 
 /**
