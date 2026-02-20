@@ -204,7 +204,6 @@ def main(argv: list[str] | None = None):
 
     # ---- Docling (no OCR): structure/markdown proof + object creation proof ----
     md = ""
-    res_json = None
     docling_version = "unknown"
     docling_seconds = None
 
@@ -237,10 +236,6 @@ def main(argv: list[str] | None = None):
         res = conv.convert(pdf_path.as_posix())
         if args.output == "markdown":
             md = res.document.export_to_markdown()
-        try:
-            res_json = res.document.model_dump_json(indent=2)
-        except Exception:
-            res_json = None
         docling_seconds = round(time.perf_counter() - docling_start, 3)
         print(json.dumps({"event": "docling_timing", "seconds": docling_seconds}), flush=True)
 
@@ -268,13 +263,10 @@ def main(argv: list[str] | None = None):
 
     # ---- Write artifacts ----
     md_path = out_dir / (pdf_path.stem + ".md")
-    json_path = out_dir / (pdf_path.stem + ".json")
     txt_path = out_dir / (pdf_path.stem + ".txt")
 
     if args.output == "markdown" and args.run_docling and md:
         md_path.write_text(md, encoding="utf-8")
-    if args.run_docling and res_json:
-        json_path.write_text(res_json, encoding="utf-8")
     if args.output == "text" and args.run_ocr and txt:
         txt_path.write_text(txt, encoding="utf-8")
 
@@ -328,7 +320,6 @@ def main(argv: list[str] | None = None):
                 "status": "ok",
                 "input": str(pdf_path),
                 "markdown": str(md_path) if args.output == "markdown" and args.run_docling else None,
-                "json": str(json_path) if args.run_docling else None,
                 "text": str(txt_path) if args.output == "text" and args.run_ocr else None,
                 "snippet": snippet,
             }
