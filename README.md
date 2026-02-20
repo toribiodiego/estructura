@@ -1,0 +1,123 @@
+# estructura
+
+POC sandbox for image-aware document processing. This repo validates the
+pipeline design -- output contract, image extraction, annotation flow,
+limits, and degradation behavior -- before porting to the KVision Java
+production service.
+
+<br><br>
+
+## Relationship to KVision
+
+KVision is the production Spring Boot service for document transcription.
+estructura proves out new features in a lightweight Java + Python wrapper
+so design decisions are settled before writing production code. Findings
+from this POC map directly to KVision implementation tasks.
+
+<br><br>
+
+## Prerequisites
+
+- Java 21+
+- Maven 3.9+
+- Python 3.10+ with Docling and Tesseract installed (or use the dev container)
+
+<br><br>
+
+## Build and Run
+
+Compile:
+
+```bash
+cd src/estructura-java
+mvn compile
+```
+
+Run against a local file:
+
+```bash
+mvn exec:java -Ddoc.input=/path/to/document.pdf
+```
+
+Run against a URL:
+
+```bash
+mvn exec:java -Ddoc.input=https://example.com/document.pdf
+```
+
+Output files are written to `out/` by default. Override with `-Ddoc.out=<dir>`.
+
+### Run Modes
+
+Use `-Ddoc.mode` to select a preset configuration:
+
+| Mode | Docling | OCR | Tables | Annotations |
+|------|---------|-----|--------|-------------|
+| (default) | on | on | off | off |
+| `docling-only` | on | off | on | off |
+| `ocr-only` | off | on | off | off |
+| `tables` | on | on | on | off |
+| `annotations` | on | on | on | on |
+
+Example:
+
+```bash
+mvn exec:java -Ddoc.input=report.pdf -Ddoc.mode=tables
+```
+
+### Individual Properties
+
+Fine-grained control beyond mode presets:
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `doc.input` | string | (required) | File path or URL to process |
+| `doc.out` | string | `out` | Output directory |
+| `doc.mode` | string | (none) | Preset mode (see table above) |
+| `doc.docling` | boolean | `true` | Enable/disable Docling stage |
+| `doc.ocr` | boolean | `true` | Enable/disable OCR stage |
+| `doc.tableStructure` | boolean | `false` | Enable table structure extraction |
+| `doc.imageAnnotations` | boolean | `false` | Enable image annotation |
+| `doc.progress` | boolean | `false` | Show per-page timing |
+| `doc.useCache` | boolean | `false` | Reuse cached Docling results |
+| `doc.verbose` | boolean | `false` | Verbose runner output |
+| `doc.maxPages` | integer | (none) | Limit pages to process |
+| `doc.dpi` | integer | `120` | OCR resolution |
+
+<br><br>
+
+## Run Tests
+
+```bash
+cd src/estructura-java
+mvn test
+```
+
+The test suite uses a fake Python runner so no Docling installation is needed.
+
+<br><br>
+
+## Project Structure
+
+```
+estructura/
+  README.md
+  src/estructura-java/
+    pom.xml
+    src/
+      main/
+        java/com/konsilix/kvision/docling/
+          DoclingCli.java            # CLI entry point
+          DoclingRunner.java         # Subprocess orchestration
+          DoclingRunnerOptions.java  # Configuration record
+          DoclingResult.java         # Structured output record
+          DoclingMetrics.java        # Metrics from the Python runner
+          DoclingRunnerException.java
+        resources/scripts/
+          run_docling.py             # Python Docling + OCR runner
+      test/
+        java/com/konsilix/kvision/docling/
+          DoclingRunnerTest.java     # Unit tests
+        resources/scripts/
+          fake_docling_runner.py     # Test fake (no Docling needed)
+```
