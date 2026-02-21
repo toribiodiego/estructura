@@ -16,7 +16,51 @@ from this POC map directly to KVision implementation tasks.
 
 <br><br>
 
-## Prerequisites
+## Docker Compose (recommended)
+
+The easiest way to run the full pipeline is with Docker Compose. The `dev` service
+builds an image with Java 21, Maven, Python 3, Docling, Tesseract, Pillow, and
+the Google AI annotation client pre-installed.
+
+```bash
+# Build and start the dev container
+docker compose build dev
+docker compose up -d dev
+
+# Verify Python dependencies
+docker compose exec dev python3 -c "import docling, PIL, google.generativeai; print('ok')"
+```
+
+For annotation mode, copy `.env.example` to `.env` and set your `GOOGLE_API_KEY`.
+
+### Running inside the container
+
+```bash
+# Run the Python pipeline directly
+docker compose exec dev python3 \
+    src/estructura-java/src/main/resources/scripts/run_docling.py \
+    fixtures/downloaded/gemini3_pro_model_card.pdf \
+    out/test --image-capture --progress
+
+# Run with annotation mode (requires GOOGLE_API_KEY in .env)
+docker compose exec dev python3 \
+    src/estructura-java/src/main/resources/scripts/run_docling.py \
+    fixtures/downloaded/gemini3_pro_model_card.pdf \
+    out/test --image-capture --annotate --progress
+
+# Run Java tests
+docker compose exec dev bash -c "cd src/estructura-java && mvn test"
+
+# Compile the Java project
+docker compose exec dev bash -c "cd src/estructura-java && mvn compile"
+
+# Interactive shell
+docker compose exec dev bash
+```
+
+<br><br>
+
+## Prerequisites (host install)
 
 - Java 21+
 - Maven 3.9+

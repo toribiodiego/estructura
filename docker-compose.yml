@@ -1,0 +1,20 @@
+services:
+  dev:
+    build:
+      context: .devcontainer
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace
+      - maven-repo:/root/.m2
+      - ${HOME}/.docling-cache:/root/.cache
+      - ${HOME}/.docling-cache:/root/.local/share/docling
+    environment:
+      - GOOGLE_API_KEY
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    command: sleep infinity
+    working_dir: /workspace
+
+volumes:
+  maven-repo:

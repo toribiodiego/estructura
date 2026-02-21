@@ -16,3 +16,6 @@ __pycache__/
 
 # Project
 fixtures/downloaded/
+
+# Secrets
+.env
