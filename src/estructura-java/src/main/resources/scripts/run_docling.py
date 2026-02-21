@@ -222,6 +222,69 @@ def annotate_image(
         raise ValueError(f"Unknown annotation mode: {mode}")
 
 
+def assemble_interleaved_output(
+    document,
+    figure_map: dict[int, str],
+    annotations: dict[str, str],
+    output_format: str,
+) -> str:
+    """Build output with image anchors interleaved at figure positions.
+
+    Iterates the Docling document model in reading order, emitting text
+    paragraphs and image anchors at their source positions. For PictureItems
+    present in figure_map, inserts an anchor with the caption from
+    annotations (or "[No caption available]" if absent).
+    """
+    from docling_core.types.doc.document import PictureItem, TableItem
+
+    parts: list[str] = []
+    is_md = output_format == "markdown"
+
+    for item, level in document.iterate_items():
+        if isinstance(item, PictureItem):
+            image_id = figure_map.get(id(item))
+            if image_id is None:
+                continue
+            rel_crop = "images/crops/" + image_id.removeprefix("img-") + ".png"
+            caption = annotations.get(image_id, "[No caption available]")
+            if is_md:
+                parts.append(f"![{image_id}]({rel_crop})")
+                parts.append(f"*{caption}*")
+            else:
+                parts.append(f"[IMAGE: {image_id} | {rel_crop}]\n  {caption}")
+
+        elif isinstance(item, TableItem):
+            try:
+                parts.append(item.export_to_markdown())
+            except Exception:
+                text = getattr(item, "text", "")
+                if text:
+                    parts.append(text)
+
+        else:
+            text = getattr(item, "text", "")
+            if not text:
+                continue
+            label_str = str(getattr(item, "label", "")).lower()
+            if is_md:
+                if "title" in label_str:
+                    parts.append("# " + text)
+                elif "header" in label_str:
+                    heading_level = min(level + 1, 6)
+                    parts.append("#" * heading_level + " " + text)
+                elif "list" in label_str:
+                    marker = getattr(item, "enumeration_marker", "-") or "-"
+                    parts.append(f"{marker} {text}")
+                elif "code" in label_str:
+                    parts.append(f"```\n{text}\n```")
+                else:
+                    parts.append(text)
+            else:
+                parts.append(text)
+
+    return "\n\n".join(parts)
+
+
 def ocr_tesseract_pdf_to_text(
     pdf_path: Path,
     dpi: int = 120,
@@ -409,6 +472,7 @@ def main(argv: list[str] | None = None):
     crops_count = 0
     crop_failures = 0
     annotations: dict[str, str] = {}
+    figure_map: dict[int, str] = {}  # id(PictureItem) -> image_id
 
     if args.run_docling:
         docling_start = time.perf_counter()
@@ -438,11 +502,6 @@ def main(argv: list[str] | None = None):
         )
 
         res = conv.convert(doc_path.as_posix())
-        if args.output == "markdown":
-            md = res.document.export_to_markdown()
-        elif args.output == "text" and not is_pdf:
-            # For office formats, Docling provides the text (OCR is PDF-only).
-            txt = res.document.export_to_markdown()
         docling_seconds = round(time.perf_counter() - docling_start, 3)
         print(json.dumps({"event": "docling_timing", "seconds": docling_seconds}), flush=True)
 
@@ -540,6 +599,7 @@ def main(argv: list[str] | None = None):
 
                 page_seq[pg] = seq + 1
                 image_id = f"img-p{pg:03d}-{seq:02d}"
+                figure_map[id(item)] = image_id
                 rel_crop = f"images/crops/p{pg:03d}-{seq:02d}.png"
                 crop_path = crops_dir / f"p{pg:03d}-{seq:02d}.png"
 
@@ -581,6 +641,18 @@ def main(argv: list[str] | None = None):
         elif args.image_capture and not is_pdf:
             print(json.dumps({"event": "image_capture_skipped", "reason": "non-pdf input"}), flush=True)
 
+        # ---- Assemble output (interleaved when figures were processed) ----
+        if figure_map:
+            if args.output == "markdown":
+                md = assemble_interleaved_output(res.document, figure_map, annotations, "markdown")
+            elif args.output == "text" and not is_pdf:
+                txt = assemble_interleaved_output(res.document, figure_map, annotations, "text")
+        else:
+            if args.output == "markdown":
+                md = res.document.export_to_markdown()
+            elif args.output == "text" and not is_pdf:
+                txt = res.document.export_to_markdown()
+
     else:
         print(json.dumps({"event": "docling_skipped"}), flush=True)
         if args.image_capture:
@@ -604,6 +676,16 @@ def main(argv: list[str] | None = None):
         print(json.dumps({"event": "ocr_skipped", "reason": "non-pdf input"}), flush=True)
     else:
         print(json.dumps({"event": "ocr_skipped"}), flush=True)
+
+    # Append image anchors to OCR text when figures were extracted (PDF + text mode)
+    if figure_map and args.output == "text" and is_pdf and txt:
+        anchor_lines = []
+        for image_id in sorted(figure_map.values()):
+            rel_crop = "images/crops/" + image_id.removeprefix("img-") + ".png"
+            caption = annotations.get(image_id, "[No caption available]")
+            anchor_lines.append(f"[IMAGE: {image_id} | {rel_crop}]\n  {caption}")
+        if anchor_lines:
+            txt = txt.rstrip() + "\n\n" + "\n\n".join(anchor_lines) + "\n"
 
     # ---- Write artifacts ----
     md_path = out_dir / (doc_path.stem + ".md")
