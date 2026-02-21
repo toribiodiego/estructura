@@ -99,26 +99,62 @@ def annotate_stub(image_id: str, page: int, seq: int) -> str:
     return f"[Placeholder: figure on page {page}, region {seq}]"
 
 
-def annotate_gemma(image_path: Path, image_id: str, model: str, api_key: str) -> str:
-    """Annotate a crop image via Google AI Studio (Gemma vision model).
+MIN_CROP_SIZE = 50
+MAX_CROP_SIDE = 1024
 
-    Loads the crop with PIL, sends it with ANNOTATION_PROMPT to the model,
-    and returns the caption text. Retries up to 3 times with exponential
-    backoff for transient errors (rate limit, server error, timeout). Falls
-    back to a placeholder caption on permanent failure.
+
+def preprocess_crop(image_path: Path, image_id: str):
+    """Load and preprocess a crop image for annotation.
+
+    Returns a PIL Image ready for annotation, or None if the crop is too
+    small (below MIN_CROP_SIZE on either dimension). Resizes crops whose
+    longest side exceeds MAX_CROP_SIDE to reduce API token usage. Logs
+    original and final dimensions for every crop.
     """
     from PIL import Image
 
+    if not image_path.exists():
+        logging.warning("Crop file missing for %s: %s", image_id, image_path)
+        return None
+
+    img = Image.open(image_path)
+    orig_w, orig_h = img.size
+
+    if orig_w < MIN_CROP_SIZE or orig_h < MIN_CROP_SIZE:
+        logging.warning(
+            "Crop %s too small (%dx%d, min %dx%d) -- skipping annotation",
+            image_id, orig_w, orig_h, MIN_CROP_SIZE, MIN_CROP_SIZE,
+        )
+        return None
+
+    longest = max(orig_w, orig_h)
+    if longest > MAX_CROP_SIDE:
+        scale = MAX_CROP_SIDE / longest
+        new_w = int(orig_w * scale)
+        new_h = int(orig_h * scale)
+        img = img.resize((new_w, new_h), Image.LANCZOS)
+        logging.info(
+            "Crop %s resized from %dx%d to %dx%d",
+            image_id, orig_w, orig_h, new_w, new_h,
+        )
+    else:
+        logging.info("Crop %s dimensions %dx%d (no resize needed)", image_id, orig_w, orig_h)
+
+    return img
+
+
+def annotate_gemma(img, image_id: str, model: str, api_key: str) -> str:
+    """Annotate a preprocessed crop image via Google AI Studio.
+
+    Accepts an already-loaded PIL Image (from preprocess_crop), sends it
+    with ANNOTATION_PROMPT to the model, and returns the caption text.
+    Retries up to 3 times with exponential backoff for transient errors.
+    Falls back to a placeholder caption on permanent failure.
+    """
     import google.generativeai as genai
 
     genai.configure(api_key=api_key)
     genai_model = genai.GenerativeModel(model)
-
-    if not image_path.exists():
-        logging.warning("Crop file missing for %s: %s", image_id, image_path)
-        return f"[Annotation failed: {image_id} -- crop file missing]"
-
-    img = Image.open(image_path)
 
     max_attempts = 3
     for attempt in range(1, max_attempts + 1):
@@ -170,13 +206,18 @@ def annotate_image(
 ) -> str:
     """Dispatch annotation to the appropriate backend based on mode.
 
-    Routes to annotate_stub() for offline/testing use, or annotate_gemma()
-    for real vision model annotation via Google AI Studio.
+    Preprocesses the crop (min-size filter, optional resize) before routing
+    to annotate_stub() for offline/testing or annotate_gemma() for real
+    vision model annotation via Google AI Studio.
     """
+    img = preprocess_crop(image_path, image_id)
+    if img is None:
+        return f"[Crop too small or missing: {image_id}]"
+
     if mode == "stub":
         return annotate_stub(image_id, page, seq)
     elif mode == "gemma":
-        return annotate_gemma(image_path, image_id, model, api_key)
+        return annotate_gemma(img, image_id, model, api_key)
     else:
         raise ValueError(f"Unknown annotation mode: {mode}")
 
