@@ -68,6 +68,35 @@ def main() -> int:
             )
         print(json.dumps({"event": "ocr_timing", "seconds": 0.1}))
 
+    # ---- Image capture simulation ----
+    page_images_count = 0
+    crops_count = 0
+    if args.image_capture and not args.no_docling:
+        pages_dir = out_dir / "images" / "pages"
+        pages_dir.mkdir(parents=True, exist_ok=True)
+        crops_dir = out_dir / "images" / "crops"
+        crops_dir.mkdir(parents=True, exist_ok=True)
+
+        # Create 2 dummy page images
+        for pg in (1, 2):
+            (pages_dir / f"page_{pg:03d}.png").write_bytes(b"fake-page-image")
+            page_images_count += 1
+        print(json.dumps({"event": "page_images_captured", "count": page_images_count}))
+
+        # Create 2 dummy crops and manifest
+        (crops_dir / "p001-01.png").write_bytes(b"fake-crop")
+        (crops_dir / "p002-01.png").write_bytes(b"fake-crop")
+        crops_count = 2
+        print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": 0}))
+
+        manifest_path = out_dir / "images" / "manifest.txt"
+        manifest_path.write_text(
+            "# id | page | bbox_left,bbox_top,bbox_right,bbox_bottom | crop_path\n"
+            "img-p001-01 | 1 | 72.0,100.0,300.0,250.0 | images/crops/p001-01.png\n"
+            "img-p002-01 | 2 | 50.0,80.0,400.0,350.0 | images/crops/p002-01.png\n",
+            encoding="utf-8",
+        )
+
     metrics_summary = {
         "event": "metrics_summary",
         "docling": {
@@ -89,6 +118,12 @@ def main() -> int:
             "max_images_per_page": args.max_images_per_page,
             "max_total_images": args.max_total_images,
             "cache_used": args.use_cache,
+        },
+        "image_capture": {
+            "enabled": args.image_capture and not args.no_docling,
+            "pages_saved": page_images_count,
+            "crops_extracted": crops_count,
+            "crop_failures": 0,
         },
     }
     print(json.dumps(metrics_summary))

@@ -91,6 +91,37 @@ class DoclingRunnerTest {
   }
 
   @Test
+  void ingestImageCaptureProducesArtifacts() throws Exception {
+    DoclingRunner runner = new DoclingRunner(TEST_SCRIPT);
+    Path input = Files.createTempFile("image_capture", ".pdf");
+    Files.writeString(input, "dummy");
+
+    DoclingRunnerOptions options = DoclingRunnerOptions.defaults().withImageCapture(true);
+
+    DoclingResult result = runner.ingest(input.toString(), tempDir, options);
+
+    assertTrue(result.doclingObjectCreated());
+    assertNotNull(result.markdownPath());
+
+    Path pagesDir = tempDir.resolve("images").resolve("pages");
+    assertTrue(Files.isDirectory(pagesDir), "Page images directory should exist");
+    assertTrue(Files.exists(pagesDir.resolve("page_001.png")), "Page 1 image should exist");
+    assertTrue(Files.exists(pagesDir.resolve("page_002.png")), "Page 2 image should exist");
+
+    Path cropsDir = tempDir.resolve("images").resolve("crops");
+    assertTrue(Files.isDirectory(cropsDir), "Crops directory should exist");
+    assertTrue(Files.exists(cropsDir.resolve("p001-01.png")), "Crop p001-01 should exist");
+    assertTrue(Files.exists(cropsDir.resolve("p002-01.png")), "Crop p002-01 should exist");
+
+    Path manifest = tempDir.resolve("images").resolve("manifest.txt");
+    assertTrue(Files.exists(manifest), "Manifest file should exist");
+    String manifestContent = Files.readString(manifest);
+    assertTrue(manifestContent.startsWith("# id | page"), "Manifest should have header");
+    assertTrue(manifestContent.contains("img-p001-01"), "Manifest should contain first image entry");
+    assertTrue(manifestContent.contains("img-p002-01"), "Manifest should contain second image entry");
+  }
+
+  @Test
   void ingestAllowsSkippingOcrStage() throws Exception {
     DoclingRunner runner = new DoclingRunner(TEST_SCRIPT);
     Path input = Files.createTempFile("docling_only", ".pdf");
