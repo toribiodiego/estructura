@@ -86,6 +86,11 @@ def require(pkgs):
         sys.exit(2)
 
 
+def annotate_stub(image_id: str, page: int, seq: int) -> str:
+    """Return a placeholder caption for offline/testing use."""
+    return f"[Placeholder: figure on page {page}, region {seq}]"
+
+
 def ocr_tesseract_pdf_to_text(
     pdf_path: Path,
     dpi: int = 120,
