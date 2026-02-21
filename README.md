@@ -28,7 +28,7 @@ docker compose build dev
 docker compose up -d dev
 
 # Verify Python dependencies
-docker compose exec dev python3 -c "import docling, PIL, google.generativeai; print('ok')"
+docker compose exec dev python3 -c "import docling, PIL, google.genai; print('ok')"
 ```
 
 For annotation mode, copy `.env.example` to `.env` and set your `GOOGLE_API_KEY`.
@@ -73,7 +73,7 @@ pip install -r requirements.txt
 ```
 
 This installs the core pipeline (`docling`, `pypdfium2`, `pytesseract`, `Pillow`)
-and the vision annotation client (`google-generativeai` for Google AI Studio / Gemma).
+and the vision annotation client (`google-genai` for Google AI Studio / Gemma).
 
 For annotation mode, you also need a `GOOGLE_API_KEY` environment variable with a
 valid Google AI Studio API key.

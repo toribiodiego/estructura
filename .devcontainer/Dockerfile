@@ -16,7 +16,7 @@ RUN python3 -m pip install --break-system-packages \
     "pypdfium2>=4.30.0" \
     "pytesseract>=0.3.10" \
     "Pillow" \
-    "google-generativeai"
+    "google-genai"
 
 # Warm Docling caches to avoid large downloads on first run
 RUN curl -L --retry 3 --output /tmp/docling_warmup.pdf \

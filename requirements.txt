@@ -5,4 +5,4 @@ pytesseract
 Pillow
 
 # Vision model annotation (Google AI Studio / Gemma)
-google-generativeai
+google-genai

@@ -151,16 +151,18 @@ def annotate_gemma(img, image_id: str, model: str, api_key: str) -> str:
     Retries up to 3 times with exponential backoff for transient errors.
     Falls back to a placeholder caption on permanent failure.
     """
-    import google.generativeai as genai
+    from google import genai
 
-    genai.configure(api_key=api_key)
-    genai_model = genai.GenerativeModel(model)
+    client = genai.Client(api_key=api_key)
 
     max_attempts = 3
     for attempt in range(1, max_attempts + 1):
         start = time.perf_counter()
         try:
-            response = genai_model.generate_content([ANNOTATION_PROMPT, img])
+            response = client.models.generate_content(
+                model=model,
+                contents=[ANNOTATION_PROMPT, img],
+            )
             elapsed = time.perf_counter() - start
             caption = response.text.strip()
             logging.info("Annotated %s in %.2fs (attempt %d)", image_id, elapsed, attempt)
