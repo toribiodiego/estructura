@@ -1,0 +1,8 @@
+# Core pipeline dependencies
+docling[pdf]
+pypdfium2
+pytesseract
+Pillow
+
+# Vision model annotation (Google AI Studio / Gemma)
+google-generativeai

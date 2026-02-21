@@ -22,6 +22,18 @@ from this POC map directly to KVision implementation tasks.
 - Maven 3.9+
 - Python 3.10+ with Docling and Tesseract installed (or use the dev container)
 
+Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+This installs the core pipeline (`docling`, `pypdfium2`, `pytesseract`, `Pillow`)
+and the vision annotation client (`google-generativeai` for Google AI Studio / Gemma).
+
+For annotation mode, you also need a `GOOGLE_API_KEY` environment variable with a
+valid Google AI Studio API key.
+
 <br><br>
 
 ## Build and Run
@@ -82,6 +94,10 @@ Fine-grained control beyond mode presets:
 | `doc.useCache` | boolean | `false` | Reuse cached Docling results |
 | `doc.verbose` | boolean | `false` | Verbose runner output |
 | `doc.maxPages` | integer | (none) | Limit pages to process |
+| `doc.imageCapture` | boolean | `false` | Enable page image capture and crop extraction |
+| `doc.maxImagePages` | integer | `50` | Max pages to capture images from |
+| `doc.maxImagesPerPage` | integer | `20` | Max image crops per page |
+| `doc.maxTotalImages` | integer | `200` | Max total image crops |
 | `doc.dpi` | integer | `120` | OCR resolution |
 
 <br><br>
@@ -102,6 +118,7 @@ The test suite uses a fake Python runner so no Docling installation is needed.
 ```
 estructura/
   README.md
+  requirements.txt                 # Python dependencies
   src/estructura-java/
     pom.xml
     src/
