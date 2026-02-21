@@ -4,6 +4,7 @@ import json
 import logging
 import mimetypes
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -661,9 +662,9 @@ def main(argv: list[str] | None = None):
                 txt = assemble_interleaved_output(res.document, figure_map, annotations, "text")
         else:
             if args.output == "markdown":
-                md = res.document.export_to_markdown()
+                md = re.sub(r"^<!-- image -->\n*", "", res.document.export_to_markdown(), flags=re.MULTILINE)
             elif args.output == "text" and not is_pdf:
-                txt = res.document.export_to_markdown()
+                txt = re.sub(r"^<!-- image -->\n*", "", res.document.export_to_markdown(), flags=re.MULTILINE)
 
     else:
         print(json.dumps({"event": "docling_skipped"}), flush=True)
