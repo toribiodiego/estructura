@@ -487,7 +487,7 @@ def main(argv: list[str] | None = None):
         from docling.document_converter import DocumentConverter, PdfFormatOption
 
         opts = PdfPipelineOptions()
-        opts.do_ocr = False  # we do OCR ourselves with Tesseract
+        opts.do_ocr = (args.output == "markdown")  # RapidOCR populates document model for Markdown; TXT uses Tesseract
         opts.do_table_structure = args.table_structure
         opts.generate_page_images = args.image_capture
         opts.generate_picture_images = args.image_capture
