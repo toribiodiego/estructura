@@ -91,6 +91,29 @@ def annotate_stub(image_id: str, page: int, seq: int) -> str:
     return f"[Placeholder: figure on page {page}, region {seq}]"
 
 
+def annotate_image(
+    image_path: Path,
+    image_id: str,
+    page: int,
+    seq: int,
+    mode: str,
+    model: str | None = None,
+    api_key: str | None = None,
+) -> str:
+    """Dispatch annotation to the appropriate backend based on mode.
+
+    Routes to annotate_stub() for offline/testing use, or annotate_gemma()
+    for real vision model annotation via Google AI Studio.
+    """
+    if mode == "stub":
+        return annotate_stub(image_id, page, seq)
+    elif mode == "gemma":
+        # annotate_gemma() will be implemented in Task 06.2
+        raise NotImplementedError("annotate_gemma not yet implemented")
+    else:
+        raise ValueError(f"Unknown annotation mode: {mode}")
+
+
 def ocr_tesseract_pdf_to_text(
     pdf_path: Path,
     dpi: int = 120,
@@ -277,6 +300,7 @@ def main(argv: list[str] | None = None):
     page_images_count = 0
     crops_count = 0
     crop_failures = 0
+    annotations: dict[str, str] = {}
 
     if args.run_docling:
         docling_start = time.perf_counter()
@@ -344,7 +368,7 @@ def main(argv: list[str] | None = None):
             crops_dir = out_dir / "images" / "crops"
             crops_dir.mkdir(parents=True, exist_ok=True)
             page_seq: dict[int, int] = {}  # page_no -> next sequence number
-            manifest_entries: list[tuple[str, int, str, str]] = []  # (id, page, bbox_str, rel_path)
+            manifest_entries: list[tuple[str, int, int, str, str]] = []  # (id, page, seq, bbox_str, rel_path)
             total_limit_hit = False
             per_page_limit_pages: set[int] = set()  # pages where per-page limit was hit
 
@@ -420,16 +444,31 @@ def main(argv: list[str] | None = None):
                     logging.warning("Crop failed for page %d seq %d: %s", pg, seq, exc)
 
                 # Record in manifest regardless of crop success (per output contract)
-                manifest_entries.append((image_id, pg, bbox_str, rel_crop))
+                manifest_entries.append((image_id, pg, seq, bbox_str, rel_crop))
 
             # ---- Write manifest ----
             manifest_path = out_dir / "images" / "manifest.txt"
             with manifest_path.open("w", encoding="utf-8") as mf:
                 mf.write("# id | page | bbox_left,bbox_top,bbox_right,bbox_bottom | crop_path\n")
-                for img_id, pg, bbox_s, rel_path in manifest_entries:
+                for img_id, pg, _seq, bbox_s, rel_path in manifest_entries:
                     mf.write(f"{img_id} | {pg} | {bbox_s} | {rel_path}\n")
 
             print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": crop_failures}), flush=True)
+
+            # ---- Annotate extracted images ----
+            if args.annotate is not None and manifest_entries:
+                for img_id, pg, img_seq, _bbox_s, rel_path in manifest_entries:
+                    crop_path = out_dir / rel_path
+                    caption = annotate_image(
+                        crop_path,
+                        img_id,
+                        pg,
+                        img_seq,
+                        mode=args.annotate,
+                        model=args.gemma_model,
+                        api_key=google_api_key,
+                    )
+                    annotations[img_id] = caption
 
         elif args.image_capture and not is_pdf:
             print(json.dumps({"event": "image_capture_skipped", "reason": "non-pdf input"}), flush=True)
