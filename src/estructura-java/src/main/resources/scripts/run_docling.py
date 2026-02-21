@@ -645,7 +645,104 @@ def main(argv: list[str] | None = None):
                         images_annotated += 1
 
         elif args.image_capture and not is_pdf:
-            print(json.dumps({"event": "image_capture_skipped", "reason": "non-pdf input"}), flush=True)
+            # ---- Non-PDF image extraction (PPTX/DOCX/XLSX) ----
+            # Docling's SimplePipeline populates PictureItem.image directly
+            # from embedded images. No page rendering needed.
+            from docling_core.types.doc.document import PictureItem
+
+            crops_dir = out_dir / "images" / "crops"
+            crops_dir.mkdir(parents=True, exist_ok=True)
+            page_seq: dict[int, int] = {}
+            manifest_entries: list[tuple[str, int, int, str, str]] = []
+            total_limit_hit = False
+            per_page_limit_pages: set[int] = set()
+
+            for item, _level in res.document.iterate_items():
+                if not isinstance(item, PictureItem):
+                    continue
+                if not item.prov:
+                    continue
+
+                prov = item.prov[0]
+                pg = prov.page_no
+
+                # Check total limit
+                if crops_count + crop_failures >= args.max_total_images:
+                    if not total_limit_hit:
+                        logging.warning(
+                            "Max total images limit reached (%d). Skipping remaining figures.",
+                            args.max_total_images,
+                        )
+                        total_limit_hit = True
+                    continue
+
+                # Check per-page limit
+                seq = page_seq.get(pg, 1)
+                if seq > args.max_images_per_page:
+                    if pg not in per_page_limit_pages:
+                        logging.warning(
+                            "Max images per page limit reached (%d) for page %d. Skipping.",
+                            args.max_images_per_page,
+                            pg,
+                        )
+                        per_page_limit_pages.add(pg)
+                    continue
+
+                if item.image is None:
+                    continue
+                try:
+                    crop_img = item.image.pil_image
+                except Exception:
+                    continue
+
+                bbox_str = f"{prov.bbox.l:.1f},{prov.bbox.t:.1f},{prov.bbox.r:.1f},{prov.bbox.b:.1f}"
+
+                page_seq[pg] = seq + 1
+                image_id = f"img-p{pg:03d}-{seq:02d}"
+                figure_map[id(item)] = image_id
+                rel_crop = f"images/crops/p{pg:03d}-{seq:02d}.png"
+                crop_path = crops_dir / f"p{pg:03d}-{seq:02d}.png"
+
+                try:
+                    crop_img.save(crop_path, "PNG")
+                    crops_count += 1
+                except Exception as exc:
+                    crop_failures += 1
+                    logging.warning("Crop failed for page %d seq %d: %s", pg, seq, exc)
+
+                manifest_entries.append((image_id, pg, seq, bbox_str, rel_crop))
+
+            # Write manifest
+            if manifest_entries:
+                manifest_path = out_dir / "images" / "manifest.txt"
+                with manifest_path.open("w", encoding="utf-8") as mf:
+                    mf.write("# id | page | bbox_left,bbox_top,bbox_right,bbox_bottom | crop_path\n")
+                    for img_id, pg, _seq, bbox_s, rel_path in manifest_entries:
+                        mf.write(f"{img_id} | {pg} | {bbox_s} | {rel_path}\n")
+
+            print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": crop_failures}), flush=True)
+
+            # Annotate extracted images
+            if args.annotate is not None and manifest_entries:
+                for img_id, pg, img_seq, _bbox_s, rel_path in manifest_entries:
+                    crop_path = out_dir / rel_path
+                    ann_start = time.perf_counter()
+                    caption = annotate_image(
+                        crop_path,
+                        img_id,
+                        pg,
+                        img_seq,
+                        mode=args.annotate,
+                        model=args.gemma_model,
+                        api_key=google_api_key,
+                    )
+                    ann_elapsed = time.perf_counter() - ann_start
+                    total_annotation_seconds += ann_elapsed
+                    annotations[img_id] = caption
+                    if caption.startswith("["):
+                        annotation_failures += 1
+                    else:
+                        images_annotated += 1
 
         # ---- Assemble output (interleaved when figures were processed) ----
         if figure_map:
@@ -724,7 +821,7 @@ def main(argv: list[str] | None = None):
             "cache_used": args.use_cache,
         },
         "image_capture": {
-            "enabled": args.image_capture and is_pdf,
+            "enabled": args.image_capture,
             "pages_saved": page_images_count,
             "crops_extracted": crops_count,
             "crop_failures": crop_failures,
@@ -762,8 +859,12 @@ def main(argv: list[str] | None = None):
             f", per_page={args.max_images_per_page}"
             f", total={args.max_total_images})"
         )
+    elif args.image_capture and crops_count > 0:
+        capture_msg = f"  Image capture: {crops_count} crops (embedded images)"
+        if crop_failures > 0:
+            capture_msg += f", {crop_failures} failures"
     elif args.image_capture:
-        capture_msg = "  Image capture: skipped (non-PDF input)"
+        capture_msg = "  Image capture: no images found"
     else:
         capture_msg = "  Image capture: disabled"
     if args.annotate is not None:
