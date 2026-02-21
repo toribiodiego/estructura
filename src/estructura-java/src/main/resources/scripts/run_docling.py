@@ -490,6 +490,8 @@ def main(argv: list[str] | None = None):
         opts.do_ocr = False  # we do OCR ourselves with Tesseract
         opts.do_table_structure = args.table_structure
         opts.generate_page_images = args.image_capture
+        opts.generate_picture_images = args.image_capture
+        opts.images_scale = 2.0
 
         # Docling handles DOCX/PPTX/XLSX natively; only PDF needs custom options.
         conv = DocumentConverter(format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=opts)})
@@ -534,9 +536,8 @@ def main(argv: list[str] | None = None):
                     captured_pages.add(page_no)
             print(json.dumps({"event": "page_images_captured", "count": page_images_count}), flush=True)
 
-            # ---- Crop extraction from figure bounding boxes ----
+            # ---- Crop extraction from PictureItem images ----
             from docling_core.types.doc.document import PictureItem
-            from PIL import Image as PILImage
 
             crops_dir = out_dir / "images" / "crops"
             crops_dir.mkdir(parents=True, exist_ok=True)
@@ -580,28 +581,21 @@ def main(argv: list[str] | None = None):
                         per_page_limit_pages.add(pg)
                     continue
 
+                # Use Docling's pre-cropped image (generate_picture_images=True)
+                if item.image is None:
+                    continue
+                try:
+                    crop_img = item.image.pil_image
+                except Exception:
+                    continue
+
+                # Build bbox string from provenance for manifest
                 page_data = res.document.pages.get(pg)
-                if page_data is None or page_data.image is None:
-                    continue
-
-                page_img = page_data.image.pil_image
-                page_size = page_data.size
-                img_w, img_h = page_img.size
-
-                # Convert bbox to top-left origin in document coordinates
-                bbox = prov.bbox.to_top_left_origin(page_size.height)
-                bbox_str = f"{bbox.l:.1f},{bbox.t:.1f},{bbox.r:.1f},{bbox.b:.1f}"
-
-                # Scale bbox from document coordinates to pixel coordinates
-                scale_x = img_w / page_size.width
-                scale_y = img_h / page_size.height
-                crop_l = max(0, bbox.l * scale_x)
-                crop_t = max(0, bbox.t * scale_y)
-                crop_r = min(img_w, bbox.r * scale_x)
-                crop_b = min(img_h, bbox.b * scale_y)
-
-                if crop_r <= crop_l or crop_b <= crop_t:
-                    continue
+                if page_data is not None:
+                    bbox = prov.bbox.to_top_left_origin(page_data.size.height)
+                    bbox_str = f"{bbox.l:.1f},{bbox.t:.1f},{bbox.r:.1f},{bbox.b:.1f}"
+                else:
+                    bbox_str = "0.0,0.0,0.0,0.0"
 
                 page_seq[pg] = seq + 1
                 image_id = f"img-p{pg:03d}-{seq:02d}"
@@ -610,8 +604,7 @@ def main(argv: list[str] | None = None):
                 crop_path = crops_dir / f"p{pg:03d}-{seq:02d}.png"
 
                 try:
-                    cropped = page_img.crop((crop_l, crop_t, crop_r, crop_b))
-                    cropped.save(crop_path, "PNG")
+                    crop_img.save(crop_path, "PNG")
                     crops_count += 1
                 except Exception as exc:
                     crop_failures += 1
