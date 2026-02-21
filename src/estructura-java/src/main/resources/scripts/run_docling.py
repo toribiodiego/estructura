@@ -494,9 +494,9 @@ def main(argv: list[str] | None = None):
         # Docling handles DOCX/PPTX/XLSX natively; only PDF needs custom options.
         conv = DocumentConverter(format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=opts)})
 
-        import docling as _dl
+        from importlib.metadata import version as _pkg_version
 
-        docling_version = getattr(_dl, "__version__", "unknown")
+        docling_version = _pkg_version("docling")
         print(
             json.dumps(
                 {
