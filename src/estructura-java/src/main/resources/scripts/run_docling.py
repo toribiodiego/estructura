@@ -257,7 +257,7 @@ def assemble_interleaved_output(
 
         elif isinstance(item, TableItem):
             try:
-                parts.append(item.export_to_markdown())
+                parts.append(item.export_to_markdown(doc=document))
             except Exception:
                 text = getattr(item, "text", "")
                 if text:
