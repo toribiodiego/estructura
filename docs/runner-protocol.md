@@ -205,22 +205,21 @@ comparison against self-hosted inference.
 
 ### `image_capture_skipped`
 
-Emitted when image capture was requested but cannot proceed.
+Emitted when image capture was requested but cannot proceed because Docling is
+disabled. Non-PDF formats no longer trigger this event -- they extract embedded
+images via `PictureItem.image` instead.
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `event` | string | Always `"image_capture_skipped"` |
-| `reason` | string | Why capture was skipped: `"non-pdf input"` or `"docling disabled"` |
+| `reason` | string | Why capture was skipped: `"docling disabled"` |
 
 ```json
-{"event": "image_capture_skipped", "reason": "non-pdf input"}
+{"event": "image_capture_skipped", "reason": "docling disabled"}
 ```
 
-This event appears in two scenarios:
-1. `--image-capture` with a non-PDF input (DOCX, PPTX, XLSX) -- Docling does
-   not generate page images for these formats.
-2. `--image-capture` with `--no-docling` -- crops require Docling's document
-   model, so image capture is skipped entirely.
+This event appears only when `--image-capture` is combined with `--no-docling` --
+crops require Docling's document model, so image capture is skipped entirely.
 
 **Java parser action:** Not currently consumed.
 
