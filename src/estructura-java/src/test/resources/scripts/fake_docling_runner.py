@@ -22,6 +22,8 @@ def main() -> int:
     parser.add_argument("--max-image-pages", type=int, default=50)
     parser.add_argument("--max-images-per-page", type=int, default=20)
     parser.add_argument("--max-total-images", type=int, default=200)
+    parser.add_argument("--annotate", nargs="?", const="stub", default=None, choices=["stub", "gemma"])
+    parser.add_argument("--gemma-model", default="gemma-3-27b-it")
     parser.add_argument("--output", choices=["markdown", "text"], default="markdown")
 
     args = parser.parse_args()

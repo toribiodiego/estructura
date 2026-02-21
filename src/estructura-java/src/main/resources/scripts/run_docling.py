@@ -195,6 +195,20 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         default=200,
         help="Max total image crops across all pages (default: 200)",
     )
+    parser.add_argument(
+        "--annotate",
+        nargs="?",
+        const="stub",
+        default=None,
+        choices=["stub", "gemma"],
+        help="Annotation mode: stub (placeholder captions) or gemma (Google AI Studio). "
+        "Implicitly enables --image-capture. Default when flag present: stub",
+    )
+    parser.add_argument(
+        "--gemma-model",
+        default="gemma-3-27b-it",
+        help="Gemma model ID for annotation (default: gemma-3-27b-it)",
+    )
     return parser.parse_args(argv)
 
 
@@ -202,6 +216,22 @@ def main(argv: list[str] | None = None):
     args = parse_args(sys.argv[1:] if argv is None else argv)
 
     logging.basicConfig(level=logging.INFO if args.verbose else logging.WARNING, format="%(message)s")
+
+    # Annotation implies image capture (crops are required for annotation)
+    if args.annotate is not None:
+        args.image_capture = True
+
+    # Validate API key for gemma mode
+    google_api_key = None
+    if args.annotate == "gemma":
+        google_api_key = os.environ.get("GOOGLE_API_KEY", "").strip()
+        if not google_api_key:
+            print(
+                "Error: --annotate gemma requires GOOGLE_API_KEY environment variable.\n"
+                "Get an API key at https://aistudio.google.com/apikey",
+                file=sys.stderr,
+            )
+            return 1
 
     src = args.src
     out_dir = Path(args.out_dir).resolve()
