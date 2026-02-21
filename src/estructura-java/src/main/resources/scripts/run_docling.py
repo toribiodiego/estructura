@@ -177,6 +177,24 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     )
     parser.add_argument("--no-image-capture", dest="image_capture", action="store_false")
     parser.set_defaults(image_capture=False)
+    parser.add_argument(
+        "--max-image-pages",
+        type=int,
+        default=50,
+        help="Max pages to capture images from (default: 50)",
+    )
+    parser.add_argument(
+        "--max-images-per-page",
+        type=int,
+        default=20,
+        help="Max image crops per page (default: 20)",
+    )
+    parser.add_argument(
+        "--max-total-images",
+        type=int,
+        default=200,
+        help="Max total image crops across all pages (default: 200)",
+    )
     return parser.parse_args(argv)
 
 
@@ -223,6 +241,7 @@ def main(argv: list[str] | None = None):
     docling_seconds = None
     page_images_count = 0
     crops_count = 0
+    crop_failures = 0
 
     if args.run_docling:
         docling_start = time.perf_counter()
@@ -264,12 +283,23 @@ def main(argv: list[str] | None = None):
         if args.image_capture and is_pdf:
             pages_dir = out_dir / "images" / "pages"
             pages_dir.mkdir(parents=True, exist_ok=True)
+            captured_pages: set[int] = set()
+            pages_limit_hit = False
             for page_no in sorted(res.document.pages.keys()):
+                if len(captured_pages) >= args.max_image_pages:
+                    if not pages_limit_hit:
+                        logging.warning(
+                            "Max image pages limit reached (%d). Skipping remaining pages.",
+                            args.max_image_pages,
+                        )
+                        pages_limit_hit = True
+                    break
                 page = res.document.pages[page_no]
                 if page.image is not None:
                     img_path = pages_dir / f"page_{page_no:03d}.png"
                     page.image.pil_image.save(img_path, "PNG")
                     page_images_count += 1
+                    captured_pages.add(page_no)
             print(json.dumps({"event": "page_images_captured", "count": page_images_count}), flush=True)
 
             # ---- Crop extraction from figure bounding boxes ----
@@ -280,6 +310,8 @@ def main(argv: list[str] | None = None):
             crops_dir.mkdir(parents=True, exist_ok=True)
             page_seq: dict[int, int] = {}  # page_no -> next sequence number
             manifest_entries: list[tuple[str, int, str, str]] = []  # (id, page, bbox_str, rel_path)
+            total_limit_hit = False
+            per_page_limit_pages: set[int] = set()  # pages where per-page limit was hit
 
             for item, _level in res.document.iterate_items():
                 if not isinstance(item, PictureItem):
@@ -289,6 +321,33 @@ def main(argv: list[str] | None = None):
 
                 prov = item.prov[0]
                 pg = prov.page_no
+
+                # Skip pages not captured (beyond max-image-pages limit)
+                if pg not in captured_pages:
+                    continue
+
+                # Check total limit
+                if crops_count + crop_failures >= args.max_total_images:
+                    if not total_limit_hit:
+                        logging.warning(
+                            "Max total images limit reached (%d). Skipping remaining figures.",
+                            args.max_total_images,
+                        )
+                        total_limit_hit = True
+                    continue
+
+                # Check per-page limit
+                seq = page_seq.get(pg, 1)
+                if seq > args.max_images_per_page:
+                    if pg not in per_page_limit_pages:
+                        logging.warning(
+                            "Max images per page limit reached (%d) for page %d. Skipping.",
+                            args.max_images_per_page,
+                            pg,
+                        )
+                        per_page_limit_pages.add(pg)
+                    continue
+
                 page_data = res.document.pages.get(pg)
                 if page_data is None or page_data.image is None:
                     continue
@@ -312,7 +371,6 @@ def main(argv: list[str] | None = None):
                 if crop_r <= crop_l or crop_b <= crop_t:
                     continue
 
-                seq = page_seq.get(pg, 1)
                 page_seq[pg] = seq + 1
                 image_id = f"img-p{pg:03d}-{seq:02d}"
                 rel_crop = f"images/crops/p{pg:03d}-{seq:02d}.png"
@@ -323,6 +381,7 @@ def main(argv: list[str] | None = None):
                     cropped.save(crop_path, "PNG")
                     crops_count += 1
                 except Exception as exc:
+                    crop_failures += 1
                     logging.warning("Crop failed for page %d seq %d: %s", pg, seq, exc)
 
                 # Record in manifest regardless of crop success (per output contract)
@@ -335,7 +394,7 @@ def main(argv: list[str] | None = None):
                 for img_id, pg, bbox_s, rel_path in manifest_entries:
                     mf.write(f"{img_id} | {pg} | {bbox_s} | {rel_path}\n")
 
-            print(json.dumps({"event": "crops_extracted", "count": crops_count}), flush=True)
+            print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": crop_failures}), flush=True)
 
         elif args.image_capture and not is_pdf:
             print(json.dumps({"event": "image_capture_skipped", "reason": "non-pdf input"}), flush=True)
@@ -389,12 +448,16 @@ def main(argv: list[str] | None = None):
             "table_structure": args.table_structure,
             "image_capture": args.image_capture,
             "max_pages": args.max_pages,
+            "max_image_pages": args.max_image_pages,
+            "max_images_per_page": args.max_images_per_page,
+            "max_total_images": args.max_total_images,
             "cache_used": args.use_cache,
         },
         "image_capture": {
             "enabled": args.image_capture and is_pdf,
             "pages_saved": page_images_count,
             "crops_extracted": crops_count,
+            "crop_failures": crop_failures,
         },
     }
     print(json.dumps(metrics_summary), flush=True)
@@ -410,6 +473,13 @@ def main(argv: list[str] | None = None):
     tables_msg = "  Tables: enabled" if args.table_structure else "  Tables: disabled"
     if args.image_capture and is_pdf:
         capture_msg = f"  Image capture: {page_images_count} pages, {crops_count} crops"
+        if crop_failures > 0:
+            capture_msg += f", {crop_failures} failures"
+        capture_msg += (
+            f" (limits: pages={args.max_image_pages}"
+            f", per_page={args.max_images_per_page}"
+            f", total={args.max_total_images})"
+        )
     elif args.image_capture:
         capture_msg = "  Image capture: skipped (non-PDF input)"
     else:

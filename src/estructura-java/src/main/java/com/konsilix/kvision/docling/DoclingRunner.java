@@ -186,6 +186,18 @@ public class DoclingRunner {
       command.add("--max-pages");
       command.add(Integer.toString(options.maxPages()));
     }
+    if (options.maxImagePages() != null) {
+      command.add("--max-image-pages");
+      command.add(Integer.toString(options.maxImagePages()));
+    }
+    if (options.maxImagesPerPage() != null) {
+      command.add("--max-images-per-page");
+      command.add(Integer.toString(options.maxImagesPerPage()));
+    }
+    if (options.maxTotalImages() != null) {
+      command.add("--max-total-images");
+      command.add(Integer.toString(options.maxTotalImages()));
+    }
     if (options.outputFormat() != null) {
       command.add("--output");
       command.add(options.outputFormat());
@@ -261,6 +273,9 @@ public class DoclingRunner {
         optionsNode.path("table_structure").asBoolean(false),
         optionsNode.path("image_annotations").asBoolean(false),
         toOptionalInt(optionsNode, "max_pages"),
+        toOptionalInt(optionsNode, "max_image_pages"),
+        toOptionalInt(optionsNode, "max_images_per_page"),
+        toOptionalInt(optionsNode, "max_total_images"),
         optionsNode.path("cache_used").asBoolean(false));
 
     return new DoclingMetrics(docling, ocr, opts);

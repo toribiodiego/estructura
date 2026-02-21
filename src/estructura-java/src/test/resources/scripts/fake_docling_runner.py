@@ -19,6 +19,9 @@ def main() -> int:
     parser.add_argument("--image-capture", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--max-pages", type=int, default=None)
+    parser.add_argument("--max-image-pages", type=int, default=50)
+    parser.add_argument("--max-images-per-page", type=int, default=20)
+    parser.add_argument("--max-total-images", type=int, default=200)
     parser.add_argument("--output", choices=["markdown", "text"], default="markdown")
 
     args = parser.parse_args()
@@ -82,6 +85,9 @@ def main() -> int:
             "image_annotations": args.image_annotations,
             "image_capture": args.image_capture,
             "max_pages": args.max_pages,
+            "max_image_pages": args.max_image_pages,
+            "max_images_per_page": args.max_images_per_page,
+            "max_total_images": args.max_total_images,
             "cache_used": args.use_cache,
         },
     }

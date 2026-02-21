@@ -109,6 +109,33 @@ public class DoclingCli {
       }
     }
 
+    String maxImagePagesProp = System.getProperty("doc.maxImagePages");
+    if (maxImagePagesProp != null && !maxImagePagesProp.isBlank()) {
+      try {
+        opts = opts.withMaxImagePages(Integer.parseInt(maxImagePagesProp));
+      } catch (NumberFormatException ignore) {
+        System.err.println("Ignoring invalid doc.maxImagePages value: " + maxImagePagesProp);
+      }
+    }
+
+    String maxImagesPerPageProp = System.getProperty("doc.maxImagesPerPage");
+    if (maxImagesPerPageProp != null && !maxImagesPerPageProp.isBlank()) {
+      try {
+        opts = opts.withMaxImagesPerPage(Integer.parseInt(maxImagesPerPageProp));
+      } catch (NumberFormatException ignore) {
+        System.err.println("Ignoring invalid doc.maxImagesPerPage value: " + maxImagesPerPageProp);
+      }
+    }
+
+    String maxTotalImagesProp = System.getProperty("doc.maxTotalImages");
+    if (maxTotalImagesProp != null && !maxTotalImagesProp.isBlank()) {
+      try {
+        opts = opts.withMaxTotalImages(Integer.parseInt(maxTotalImagesProp));
+      } catch (NumberFormatException ignore) {
+        System.err.println("Ignoring invalid doc.maxTotalImages value: " + maxTotalImagesProp);
+      }
+    }
+
     String dpiProp = System.getProperty("doc.dpi");
     if (dpiProp != null && !dpiProp.isBlank()) {
       try {

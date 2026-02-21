@@ -13,5 +13,12 @@ public record DoclingMetrics(
 
   public record OcrStage(boolean enabled, Double seconds, Integer pages, Integer dpi) {}
 
-  public record Options(boolean tableStructure, boolean imageAnnotations, Integer maxPages, boolean cacheUsed) {}
+  public record Options(
+      boolean tableStructure,
+      boolean imageAnnotations,
+      Integer maxPages,
+      Integer maxImagePages,
+      Integer maxImagesPerPage,
+      Integer maxTotalImages,
+      boolean cacheUsed) {}
 }
