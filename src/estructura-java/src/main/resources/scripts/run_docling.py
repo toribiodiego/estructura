@@ -639,10 +639,12 @@ def main(argv: list[str] | None = None):
                     ann_elapsed = time.perf_counter() - ann_start
                     total_annotation_seconds += ann_elapsed
                     annotations[img_id] = caption
-                    if caption.startswith("["):
+                    failed = caption.startswith("[")
+                    if failed:
                         annotation_failures += 1
                     else:
                         images_annotated += 1
+                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(ann_elapsed, 3), "failed": failed}), flush=True)
 
         elif args.image_capture and not is_pdf:
             # ---- Non-PDF image extraction (PPTX/DOCX/XLSX) ----
@@ -739,10 +741,12 @@ def main(argv: list[str] | None = None):
                     ann_elapsed = time.perf_counter() - ann_start
                     total_annotation_seconds += ann_elapsed
                     annotations[img_id] = caption
-                    if caption.startswith("["):
+                    failed = caption.startswith("[")
+                    if failed:
                         annotation_failures += 1
                     else:
                         images_annotated += 1
+                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(ann_elapsed, 3), "failed": failed}), flush=True)
 
         # ---- Assemble output (interleaved when figures were processed) ----
         if figure_map:

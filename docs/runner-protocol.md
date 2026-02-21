@@ -31,7 +31,12 @@ sequenceDiagram
             R->>J: page_images_captured
             R->>J: crops_extracted
         else --image-capture + non-PDF
-            R->>J: image_capture_skipped
+            R->>J: crops_extracted
+        end
+        opt --annotate + crops exist
+            loop Each annotated image
+                R->>J: annotation_timing
+            end
         end
     else Docling disabled
         R->>J: docling_skipped
@@ -170,6 +175,31 @@ listing all crops with their IDs, page numbers, bounding boxes, and file paths.
 
 **Java parser action:** Not currently consumed. The `image_capture` section of
 `metrics_summary` provides the same data in a structured form.
+
+<br><br>
+
+### `annotation_timing`
+
+Emitted once per image after annotation completes (or fails). Provides per-image
+wall-clock latency for performance profiling and cloud-vs-self-hosted comparison.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `event` | string | Always `"annotation_timing"` |
+| `image_id` | string | Stable image ID (e.g., `"img-p001-01"`) |
+| `seconds` | number | Wall-clock time for this annotation call |
+| `failed` | boolean | Whether the annotation failed (placeholder used) |
+
+```json
+{"event": "annotation_timing", "image_id": "img-p001-01", "seconds": 3.142, "failed": false}
+```
+
+Emitted for both PDF and non-PDF annotation paths. The `seconds` field measures
+end-to-end latency including network round-trip to Google AI Studio (Gemma mode)
+or local stub generation (stub mode).
+
+**Java parser action:** Not currently consumed. Use for latency monitoring and
+comparison against self-hosted inference.
 
 <br><br>
 
@@ -454,6 +484,7 @@ consumes and which are available for future use.
 | `docling_skipped` | No | Implicit (no `doclingCreated` when disabled) |
 | `page_images_captured` | No | Available in raw output |
 | `crops_extracted` | No | Available in raw output |
+| `annotation_timing` | No | Available for latency monitoring |
 | `image_capture_skipped` | No | Available in raw output |
 | `ocr_page_timing` | No | Available for progress tracking |
 | `ocr_timing` | No | Available in raw output |

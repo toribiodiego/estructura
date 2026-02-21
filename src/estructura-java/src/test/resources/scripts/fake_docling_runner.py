@@ -91,6 +91,10 @@ def main() -> int:
         crops_count = 2
         print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": 0}))
 
+        # Emit per-image annotation timing (stub latency)
+        print(json.dumps({"event": "annotation_timing", "image_id": "img-p001-01", "seconds": 0.01, "failed": False}))
+        print(json.dumps({"event": "annotation_timing", "image_id": "img-p002-01", "seconds": 0.01, "failed": False}))
+
         manifest_path = out_dir / "images" / "manifest.txt"
         manifest_path.write_text(
             "# id | page | bbox_left,bbox_top,bbox_right,bbox_bottom | crop_path\n"
