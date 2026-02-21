@@ -15,6 +15,14 @@ IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp", ".gif"}
 OFFICE_EXTS = {".docx", ".pptx", ".xlsx"}
 ALL_KNOWN_EXTS = PDF_EXTS | IMAGE_EXTS | OFFICE_EXTS
 
+ANNOTATION_PROMPT = (
+    "Describe this figure from a document. Focus on what information "
+    "it conveys (data trends, relationships, structure). Be concise "
+    "(1-3 sentences). If it is a chart, mention the type and key "
+    "findings. If it is a diagram, describe the components and "
+    "relationships."
+)
+
 
 def ensure_local_file(src: str, dst_dir: Path) -> Path:
     p = urlparse(src)
@@ -91,6 +99,66 @@ def annotate_stub(image_id: str, page: int, seq: int) -> str:
     return f"[Placeholder: figure on page {page}, region {seq}]"
 
 
+def annotate_gemma(image_path: Path, image_id: str, model: str, api_key: str) -> str:
+    """Annotate a crop image via Google AI Studio (Gemma vision model).
+
+    Loads the crop with PIL, sends it with ANNOTATION_PROMPT to the model,
+    and returns the caption text. Retries up to 3 times with exponential
+    backoff for transient errors (rate limit, server error, timeout). Falls
+    back to a placeholder caption on permanent failure.
+    """
+    from PIL import Image
+
+    import google.generativeai as genai
+
+    genai.configure(api_key=api_key)
+    genai_model = genai.GenerativeModel(model)
+
+    if not image_path.exists():
+        logging.warning("Crop file missing for %s: %s", image_id, image_path)
+        return f"[Annotation failed: {image_id} -- crop file missing]"
+
+    img = Image.open(image_path)
+
+    max_attempts = 3
+    for attempt in range(1, max_attempts + 1):
+        start = time.perf_counter()
+        try:
+            response = genai_model.generate_content([ANNOTATION_PROMPT, img])
+            elapsed = time.perf_counter() - start
+            caption = response.text.strip()
+            logging.info("Annotated %s in %.2fs (attempt %d)", image_id, elapsed, attempt)
+            return caption
+        except Exception as exc:
+            elapsed = time.perf_counter() - start
+            exc_str = str(exc).lower()
+            retryable = any(
+                kw in exc_str
+                for kw in (
+                    "429", "500", "503",
+                    "rate", "resource exhausted",
+                    "deadline", "timeout", "unavailable", "internal",
+                )
+            )
+            if retryable and attempt < max_attempts:
+                wait = 2 ** (attempt - 1)  # 1s, 2s
+                logging.warning(
+                    "Transient error annotating %s (attempt %d/%d, %.2fs): %s. "
+                    "Retrying in %ds...",
+                    image_id, attempt, max_attempts, elapsed, exc, wait,
+                )
+                time.sleep(wait)
+            else:
+                logging.warning(
+                    "Annotation failed for %s after %d attempt(s) (%.2fs): %s. "
+                    "Using placeholder.",
+                    image_id, attempt, elapsed, exc,
+                )
+                return f"[Annotation failed: {image_id}]"
+
+    return f"[Annotation failed: {image_id}]"
+
+
 def annotate_image(
     image_path: Path,
     image_id: str,
@@ -108,8 +176,7 @@ def annotate_image(
     if mode == "stub":
         return annotate_stub(image_id, page, seq)
     elif mode == "gemma":
-        # annotate_gemma() will be implemented in Task 06.2
-        raise NotImplementedError("annotate_gemma not yet implemented")
+        return annotate_gemma(image_path, image_id, model, api_key)
     else:
         raise ValueError(f"Unknown annotation mode: {mode}")
 
