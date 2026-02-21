@@ -473,6 +473,9 @@ def main(argv: list[str] | None = None):
     crop_failures = 0
     annotations: dict[str, str] = {}
     figure_map: dict[int, str] = {}  # id(PictureItem) -> image_id
+    images_annotated = 0
+    annotation_failures = 0
+    total_annotation_seconds = 0.0
 
     if args.run_docling:
         docling_start = time.perf_counter()
@@ -627,6 +630,7 @@ def main(argv: list[str] | None = None):
             if args.annotate is not None and manifest_entries:
                 for img_id, pg, img_seq, _bbox_s, rel_path in manifest_entries:
                     crop_path = out_dir / rel_path
+                    ann_start = time.perf_counter()
                     caption = annotate_image(
                         crop_path,
                         img_id,
@@ -636,7 +640,13 @@ def main(argv: list[str] | None = None):
                         model=args.gemma_model,
                         api_key=google_api_key,
                     )
+                    ann_elapsed = time.perf_counter() - ann_start
+                    total_annotation_seconds += ann_elapsed
                     annotations[img_id] = caption
+                    if caption.startswith("["):
+                        annotation_failures += 1
+                    else:
+                        images_annotated += 1
 
         elif args.image_capture and not is_pdf:
             print(json.dumps({"event": "image_capture_skipped", "reason": "non-pdf input"}), flush=True)
@@ -723,6 +733,18 @@ def main(argv: list[str] | None = None):
             "crops_extracted": crops_count,
             "crop_failures": crop_failures,
         },
+        "annotation": {
+            "enabled": args.annotate is not None,
+            "mode": args.annotate,
+            "images_annotated": images_annotated,
+            "annotation_failures": annotation_failures,
+            "total_annotation_seconds": round(total_annotation_seconds, 3),
+            "avg_annotation_seconds": (
+                round(total_annotation_seconds / (images_annotated + annotation_failures), 3)
+                if (images_annotated + annotation_failures) > 0
+                else None
+            ),
+        },
     }
     print(json.dumps(metrics_summary), flush=True)
 
@@ -748,6 +770,20 @@ def main(argv: list[str] | None = None):
         capture_msg = "  Image capture: skipped (non-PDF input)"
     else:
         capture_msg = "  Image capture: disabled"
+    if args.annotate is not None:
+        total_ann = images_annotated + annotation_failures
+        if total_ann > 0:
+            avg = total_annotation_seconds / total_ann
+            ann_msg = (
+                f"  Annotation: {images_annotated} annotated"
+                f", {annotation_failures} failures"
+                f", {total_annotation_seconds:.2f}s total"
+                f", {avg:.2f}s avg ({args.annotate} mode)"
+            )
+        else:
+            ann_msg = f"  Annotation: no images to annotate ({args.annotate} mode)"
+    else:
+        ann_msg = "  Annotation: disabled"
     cache_msg = f"  Cache reuse: {'yes' if args.use_cache else 'no'}"
     if args.max_pages:
         cache_msg += f" (max_pages={args.max_pages})"
@@ -755,6 +791,7 @@ def main(argv: list[str] | None = None):
     print(ocr_msg, flush=True)
     print(tables_msg, flush=True)
     print(capture_msg, flush=True)
+    print(ann_msg, flush=True)
     print(cache_msg, flush=True)
 
     print(
