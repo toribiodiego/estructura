@@ -363,4 +363,116 @@ the crop file does not exist on disk.
 | Caption style | `*caption text*` (italic) | Two-space indent |
 | No-caption placeholder | `*[No caption available]*` | `  [No caption available]` |
 | Failure marker | `*[IMAGE: id \| extraction failed]*` | `  [No caption available]` + failure in anchor |
+| Classification | `<!-- classification: ... -->` | `[CLASSIFICATION: ...]` |
 | File extension | `.md` | `.txt` |
+
+<br><br>
+
+## Classification Metadata
+
+When classification is enabled, the pipeline prepends a metadata block to
+the output file before any document content. The metadata block contains
+the document type predicted by the vision model and a confidence level.
+
+Classification runs on the first page image (`page_001.png`) using the
+structured JSON prompt. The model returns a JSON object with `type`,
+`confidence`, and `justification` fields. The pipeline extracts `type`
+and `confidence` into the metadata block and discards the justification.
+
+<br><br>
+
+### Markdown Format
+
+The metadata block uses an HTML comment on the first line of the file.
+HTML comments are invisible when rendered but accessible to parsers.
+
+**Syntax:**
+
+```markdown
+<!-- classification: {type} | confidence: {confidence} -->
+```
+
+**Example:**
+
+```markdown
+<!-- classification: report | confidence: high -->
+
+# GPT-4 System Card
+
+OpenAI
+March 2024
+...
+```
+
+**Parsing:** Extract with a regex like
+`<!--\s*classification:\s*(.+?)\s*\|\s*confidence:\s*(.+?)\s*-->`.
+
+<br><br>
+
+### TXT Format
+
+The metadata block uses a bracketed marker on the first line, consistent
+with the existing `[IMAGE: ...]` anchor syntax.
+
+**Syntax:**
+
+```text
+[CLASSIFICATION: {type} | confidence: {confidence}]
+```
+
+**Example:**
+
+```text
+[CLASSIFICATION: correspondence | confidence: high]
+
+UNITED STATES ENVIRONMENTAL PROTECTION AGENCY
+SAMPLE LETTER
+...
+```
+
+**Parsing:** Extract with a regex like
+`\[CLASSIFICATION:\s*(.+?)\s*\|\s*confidence:\s*(.+?)\]`.
+
+<br><br>
+
+### Classification Fields
+
+| Field | Values | Description |
+|-------|--------|-------------|
+| `type` | `report`, `academic paper`, `presentation`, `spreadsheet`, `correspondence`, `form`, `other` | Document category from the 7-type taxonomy |
+| `confidence` | `high`, `medium`, `low` | Model's self-assessed confidence in the classification |
+
+The category set matches the classification prompt. If KVision extends
+the taxonomy with domain-specific types (contract, invoice, filing),
+the `type` field reflects the extended set.
+
+<br><br>
+
+### Placement Rules
+
+1. **First line of the file.** The classification block always appears
+   on line 1, before any document content, headings, or image anchors.
+
+2. **One blank line separates metadata from content.** A single blank
+   line follows the classification block before the first document
+   element (heading, paragraph, or image anchor).
+
+3. **One block per file.** Each output file contains at most one
+   classification block. Re-running classification overwrites the
+   previous block.
+
+4. **Absent when classification is disabled.** If classification is not
+   enabled, the output starts directly with document content (no empty
+   comment or placeholder).
+
+<br><br>
+
+### Edge Cases
+
+| Scenario | Behavior |
+|----------|----------|
+| Classification disabled | No metadata block; output starts with content |
+| Classification fails (API error) | No metadata block; output starts with content |
+| Empty document | No metadata block; output is empty (zero bytes) |
+| Non-PDF format (no page image) | No metadata block; classification requires page renders |
+| Low-confidence classification | Block present with `confidence: low`; downstream decides whether to trust it |
