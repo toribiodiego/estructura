@@ -193,14 +193,15 @@ wall-clock latency for performance profiling and cloud-vs-self-hosted comparison
 | `image_id` | string | Stable image ID (e.g., `"img-p001-01"`) |
 | `seconds` | number | Wall-clock time for this annotation call |
 | `failed` | boolean | Whether the annotation failed (placeholder used) |
+| `cache_hit` | boolean | Whether the caption was served from annotation cache |
 
 ```json
-{"event": "annotation_timing", "image_id": "img-p001-01", "seconds": 3.142, "failed": false}
+{"event": "annotation_timing", "image_id": "img-p001-01", "seconds": 0.002, "failed": false, "cache_hit": true}
 ```
 
 Emitted for both PDF and non-PDF annotation paths. The `seconds` field measures
-end-to-end latency including network round-trip to Google AI Studio (Gemma mode)
-or local stub generation (stub mode).
+end-to-end latency including network round-trip to Google AI Studio (Gemma mode),
+local stub generation (stub mode), or cache lookup time when `cache_hit` is true.
 
 **Java parser action:** Not currently consumed. Use for latency monitoring and
 comparison against self-hosted inference.
@@ -379,6 +380,8 @@ nested objects for each pipeline stage.
 | `annotation_failures` | integer | Number of failed annotations (placeholder used) |
 | `total_annotation_seconds` | number | Total wall time for all annotations |
 | `avg_annotation_seconds` | number or null | Average per-image annotation time (null when no images) |
+| `cache_hits` | integer | Annotation cache hits (caption served from disk) |
+| `cache_misses` | integer | Annotation cache misses (API call required) |
 
 ```json
 {
@@ -414,7 +417,9 @@ nested objects for each pipeline stage.
     "images_annotated": 11,
     "annotation_failures": 1,
     "total_annotation_seconds": 24.312,
-    "avg_annotation_seconds": 2.026
+    "avg_annotation_seconds": 2.026,
+    "cache_hits": 0,
+    "cache_misses": 12
   }
 }
 ```

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import hashlib
 import json
 import logging
 import mimetypes
@@ -23,6 +24,41 @@ ANNOTATION_PROMPT = (
     "findings. If it is a diagram, describe the components and "
     "relationships."
 )
+
+
+def compute_cache_key(image_bytes: bytes, prompt: str, model: str) -> str:
+    """Build composite cache key from image content, prompt, and model."""
+    img_hash = hashlib.sha256(image_bytes).hexdigest()[:16]
+    prompt_hash = hashlib.sha256(prompt.encode()).hexdigest()[:8]
+    model_hash = hashlib.sha256(model.encode()).hexdigest()[:8]
+    return f"{img_hash}_{prompt_hash}_{model_hash}"
+
+
+def cache_lookup(cache_dir: Path, key: str) -> str | None:
+    """Return cached caption if present, else None."""
+    cache_file = cache_dir / f"{key}.json"
+    if cache_file.is_file():
+        try:
+            data = json.loads(cache_file.read_text(encoding="utf-8"))
+            return data.get("caption")
+        except (json.JSONDecodeError, OSError):
+            return None
+    return None
+
+
+def cache_store(cache_dir: Path, key: str, caption: str, model: str, prompt_hash: str) -> None:
+    """Write caption to cache file."""
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    cache_file = cache_dir / f"{key}.json"
+    cache_file.write_text(
+        json.dumps({
+            "caption": caption,
+            "model": model,
+            "prompt_hash": prompt_hash,
+            "timestamp": time.time(),
+        }),
+        encoding="utf-8",
+    )
 
 
 def ensure_local_file(src: str, dst_dir: Path) -> Path:
@@ -418,6 +454,18 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Export DoclingDocument structure as JSON alongside output",
     )
     parser.set_defaults(save_json=False)
+    parser.add_argument(
+        "--annotation-cache-dir",
+        default=None,
+        help="Directory for annotation cache (default: {out_dir}/.annotation-cache)",
+    )
+    parser.add_argument(
+        "--no-cache",
+        dest="use_annotation_cache",
+        action="store_false",
+        help="Disable annotation cache",
+    )
+    parser.set_defaults(use_annotation_cache=True)
     return parser.parse_args(argv)
 
 
@@ -486,6 +534,9 @@ def main(argv: list[str] | None = None):
     images_annotated = 0
     annotation_failures = 0
     total_annotation_seconds = 0.0
+    cache_hits = 0
+    cache_misses = 0
+    annotation_cache_dir = Path(args.annotation_cache_dir) if args.annotation_cache_dir else out_dir / ".annotation-cache"
 
     if args.run_docling:
         docling_start = time.perf_counter()
@@ -631,18 +682,38 @@ def main(argv: list[str] | None = None):
 
             # ---- Annotate extracted images ----
             if args.annotate is not None and manifest_entries:
+                prompt_hash = hashlib.sha256(ANNOTATION_PROMPT.encode()).hexdigest()[:8]
                 for img_id, pg, img_seq, _bbox_s, rel_path in manifest_entries:
                     crop_path = out_dir / rel_path
                     ann_start = time.perf_counter()
-                    caption = annotate_image(
-                        crop_path,
-                        img_id,
-                        pg,
-                        img_seq,
-                        mode=args.annotate,
-                        model=args.gemma_model,
-                        api_key=google_api_key,
-                    )
+
+                    # Check cache
+                    cached_caption = None
+                    if args.use_annotation_cache and crop_path.is_file():
+                        image_bytes = crop_path.read_bytes()
+                        cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
+                        cached_caption = cache_lookup(annotation_cache_dir, cache_key)
+
+                    if cached_caption is not None:
+                        caption = cached_caption
+                        cache_hits += 1
+                    else:
+                        caption = annotate_image(
+                            crop_path,
+                            img_id,
+                            pg,
+                            img_seq,
+                            mode=args.annotate,
+                            model=args.gemma_model,
+                            api_key=google_api_key,
+                        )
+                        cache_misses += 1
+                        # Store in cache (skip placeholder captions)
+                        if args.use_annotation_cache and not caption.startswith("[") and crop_path.is_file():
+                            image_bytes = crop_path.read_bytes()
+                            cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
+                            cache_store(annotation_cache_dir, cache_key, caption, args.gemma_model, prompt_hash)
+
                     ann_elapsed = time.perf_counter() - ann_start
                     total_annotation_seconds += ann_elapsed
                     annotations[img_id] = caption
@@ -651,7 +722,7 @@ def main(argv: list[str] | None = None):
                         annotation_failures += 1
                     else:
                         images_annotated += 1
-                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(ann_elapsed, 3), "failed": failed}), flush=True)
+                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(ann_elapsed, 3), "failed": failed, "cache_hit": cached_caption is not None}), flush=True)
 
         elif args.image_capture and not is_pdf:
             # ---- Non-PDF image extraction (PPTX/DOCX/XLSX) ----
@@ -733,18 +804,38 @@ def main(argv: list[str] | None = None):
 
             # Annotate extracted images
             if args.annotate is not None and manifest_entries:
+                prompt_hash = hashlib.sha256(ANNOTATION_PROMPT.encode()).hexdigest()[:8]
                 for img_id, pg, img_seq, _bbox_s, rel_path in manifest_entries:
                     crop_path = out_dir / rel_path
                     ann_start = time.perf_counter()
-                    caption = annotate_image(
-                        crop_path,
-                        img_id,
-                        pg,
-                        img_seq,
-                        mode=args.annotate,
-                        model=args.gemma_model,
-                        api_key=google_api_key,
-                    )
+
+                    # Check cache
+                    cached_caption = None
+                    if args.use_annotation_cache and crop_path.is_file():
+                        image_bytes = crop_path.read_bytes()
+                        cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
+                        cached_caption = cache_lookup(annotation_cache_dir, cache_key)
+
+                    if cached_caption is not None:
+                        caption = cached_caption
+                        cache_hits += 1
+                    else:
+                        caption = annotate_image(
+                            crop_path,
+                            img_id,
+                            pg,
+                            img_seq,
+                            mode=args.annotate,
+                            model=args.gemma_model,
+                            api_key=google_api_key,
+                        )
+                        cache_misses += 1
+                        # Store in cache (skip placeholder captions)
+                        if args.use_annotation_cache and not caption.startswith("[") and crop_path.is_file():
+                            image_bytes = crop_path.read_bytes()
+                            cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
+                            cache_store(annotation_cache_dir, cache_key, caption, args.gemma_model, prompt_hash)
+
                     ann_elapsed = time.perf_counter() - ann_start
                     total_annotation_seconds += ann_elapsed
                     annotations[img_id] = caption
@@ -753,7 +844,7 @@ def main(argv: list[str] | None = None):
                         annotation_failures += 1
                     else:
                         images_annotated += 1
-                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(ann_elapsed, 3), "failed": failed}), flush=True)
+                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(ann_elapsed, 3), "failed": failed, "cache_hit": cached_caption is not None}), flush=True)
 
         # ---- Assemble output (interleaved when figures were processed) ----
         if figure_map:
@@ -853,6 +944,8 @@ def main(argv: list[str] | None = None):
                 if (images_annotated + annotation_failures) > 0
                 else None
             ),
+            "cache_hits": cache_hits,
+            "cache_misses": cache_misses,
         },
     }
     print(json.dumps(metrics_summary), flush=True)
@@ -893,6 +986,8 @@ def main(argv: list[str] | None = None):
                 f", {total_annotation_seconds:.2f}s total"
                 f", {avg:.2f}s avg ({args.annotate} mode)"
             )
+            if cache_hits > 0 or cache_misses > 0:
+                ann_msg += f", cache {cache_hits}/{cache_hits + cache_misses} hits"
         else:
             ann_msg = f"  Annotation: no images to annotate ({args.annotate} mode)"
     else:
