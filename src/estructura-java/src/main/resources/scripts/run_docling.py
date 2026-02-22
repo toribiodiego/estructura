@@ -411,6 +411,13 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         default="gemma-3-27b-it",
         help="Gemma model ID for annotation (default: gemma-3-27b-it)",
     )
+    parser.add_argument(
+        "--save-json",
+        dest="save_json",
+        action="store_true",
+        help="Export DoclingDocument structure as JSON alongside output",
+    )
+    parser.set_defaults(save_json=False)
     return parser.parse_args(argv)
 
 
@@ -803,6 +810,11 @@ def main(argv: list[str] | None = None):
     if args.output == "text" and txt:
         txt_path.write_text(txt, encoding="utf-8")
 
+    if args.save_json and args.run_docling:
+        json_path = out_dir / (doc_path.stem + ".json")
+        json_path.write_text(json.dumps(res.document.export_to_dict(), default=str), encoding="utf-8")
+        print(json.dumps({"event": "json_exported", "path": str(json_path)}), flush=True)
+
     metrics_summary = {
         "event": "metrics_summary",
         "docling": {
@@ -902,6 +914,7 @@ def main(argv: list[str] | None = None):
                 "input": str(doc_path),
                 "markdown": str(md_path) if args.output == "markdown" and args.run_docling else None,
                 "text": str(txt_path) if args.output == "text" and txt else None,
+                "json": str(out_dir / (doc_path.stem + ".json")) if args.save_json and args.run_docling else None,
             }
         ),
         flush=True,

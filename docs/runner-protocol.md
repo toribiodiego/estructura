@@ -54,6 +54,10 @@ sequenceDiagram
         R->>J: ocr_skipped
     end
 
+    opt --save-json + Docling enabled
+        R->>J: json_exported
+    end
+
     R->>J: metrics_summary
     Note over R,J: Non-JSON "METRICS SUMMARY" lines
     R->>J: status (final)
@@ -293,6 +297,27 @@ Emitted when OCR does not run.
 
 <br><br>
 
+### `json_exported`
+
+Emitted when `--save-json` is passed and Docling conversion is enabled. The
+runner exports the full `DoclingDocument` structure as JSON via
+`export_to_dict()` and writes it alongside the Markdown/TXT output.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `event` | string | Always `"json_exported"` |
+| `path` | string | Absolute path to the exported JSON file |
+
+```json
+{"event": "json_exported", "path": "/tmp/out/report.json"}
+```
+
+**Java parser action:** Not currently consumed. Provides lossless structural
+metadata (bounding boxes, section hierarchy, table cells, figure positions) for
+KVision layout-enriched output development.
+
+<br><br>
+
 ### `metrics_summary`
 
 The comprehensive metrics event emitted near the end of every run. Contains
@@ -413,6 +438,7 @@ identified by the presence of a `status` field.
 | `input` | string | Absolute path to the (possibly cached) input file |
 | `markdown` | string or null | Absolute path to the Markdown output file, or null |
 | `text` | string or null | Absolute path to the TXT output file, or null |
+| `json` | string or null | Absolute path to the JSON export file, or null |
 
 Success example:
 
@@ -421,7 +447,8 @@ Success example:
   "status": "ok",
   "input": "/tmp/out/_cache/report.pdf",
   "markdown": "/tmp/out/report.md",
-  "text": null
+  "text": null,
+  "json": null
 }
 ```
 
@@ -433,8 +460,8 @@ crash):
 ```
 
 **Java parser action:** Primary event consumed by `parseResult()`. Validates
-`status == "ok"`, extracts `inputPath`, `markdownPath`, and `textPath` into
-the `DoclingResult` record.
+`status == "ok"`, extracts `inputPath`, `markdownPath`, `textPath`, and
+`jsonPath` into the `DoclingResult` record.
 
 <br><br>
 
