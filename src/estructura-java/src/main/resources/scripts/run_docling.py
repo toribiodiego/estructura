@@ -25,6 +25,12 @@ ANNOTATION_PROMPT = (
     "relationships."
 )
 
+PAGE_ANNOTATION_PROMPT = (
+    "Describe the content and structure of this document page. "
+    "Include key text, data, headings, and any visual elements. "
+    "Be concise (2-4 sentences)."
+)
+
 
 def compute_cache_key(image_bytes: bytes, prompt: str, model: str) -> str:
     """Build composite cache key from image content, prompt, and model."""
@@ -180,16 +186,18 @@ def preprocess_crop(image_path: Path, image_id: str):
     return img
 
 
-def annotate_gemma(img, image_id: str, model: str, api_key: str) -> str:
-    """Annotate a preprocessed crop image via Google AI Studio.
+def annotate_gemma(img, image_id: str, model: str, api_key: str, prompt_override: str | None = None) -> str:
+    """Annotate an image via Google AI Studio.
 
     Accepts an already-loaded PIL Image (from preprocess_crop), sends it
-    with ANNOTATION_PROMPT to the model, and returns the caption text.
-    Retries up to 3 times with exponential backoff for transient errors.
-    Falls back to a placeholder caption on permanent failure.
+    with ANNOTATION_PROMPT (or prompt_override for page-level annotation)
+    to the model, and returns the caption text. Retries up to 3 times
+    with exponential backoff for transient errors. Falls back to a
+    placeholder caption on permanent failure.
     """
     from google import genai
 
+    prompt = prompt_override or ANNOTATION_PROMPT
     client = genai.Client(api_key=api_key)
 
     max_attempts = 3
@@ -198,7 +206,7 @@ def annotate_gemma(img, image_id: str, model: str, api_key: str) -> str:
         try:
             response = client.models.generate_content(
                 model=model,
-                contents=[ANNOTATION_PROMPT, img],
+                contents=[prompt, img],
             )
             elapsed = time.perf_counter() - start
             caption = response.text.strip()
@@ -242,12 +250,14 @@ def annotate_image(
     mode: str,
     model: str | None = None,
     api_key: str | None = None,
+    prompt_override: str | None = None,
 ) -> str:
     """Dispatch annotation to the appropriate backend based on mode.
 
-    Preprocesses the crop (min-size filter, optional resize) before routing
+    Preprocesses the image (min-size filter, optional resize) before routing
     to annotate_stub() for offline/testing or annotate_gemma() for real
-    vision model annotation via Google AI Studio.
+    vision model annotation via Google AI Studio. Pass prompt_override for
+    page-level annotation with a different prompt.
     """
     img = preprocess_crop(image_path, image_id)
     if img is None:
@@ -256,7 +266,7 @@ def annotate_image(
     if mode == "stub":
         return annotate_stub(image_id, page, seq)
     elif mode == "gemma":
-        return annotate_gemma(img, image_id, model, api_key)
+        return annotate_gemma(img, image_id, model, api_key, prompt_override=prompt_override)
     else:
         raise ValueError(f"Unknown annotation mode: {mode}")
 
@@ -268,11 +278,14 @@ def _annotate_one(
     google_api_key: str | None,
     annotation_cache_dir: Path,
     rate_semaphore,
+    prompt_override: str | None = None,
 ) -> tuple[str, str, float, bool]:
     """Annotate a single image with cache check. Thread-safe.
 
     Returns (image_id, caption, elapsed_seconds, was_cache_hit).
+    Pass prompt_override for page-level annotation.
     """
+    prompt = prompt_override or ANNOTATION_PROMPT
     img_id, pg, img_seq, _bbox_s, rel_path = entry
     crop_path = out_dir / rel_path
     ann_start = time.perf_counter()
@@ -280,7 +293,7 @@ def _annotate_one(
     # Check cache first (no semaphore needed -- read-only disk I/O)
     if args.use_annotation_cache and crop_path.is_file():
         image_bytes = crop_path.read_bytes()
-        cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
+        cache_key = compute_cache_key(image_bytes, prompt, args.gemma_model)
         cached_caption = cache_lookup(annotation_cache_dir, cache_key)
         if cached_caption is not None:
             return img_id, cached_caption, time.perf_counter() - ann_start, True
@@ -292,6 +305,7 @@ def _annotate_one(
         caption = annotate_image(
             crop_path, img_id, pg, img_seq,
             mode=args.annotate, model=args.gemma_model, api_key=google_api_key,
+            prompt_override=prompt_override,
         )
     finally:
         if rate_semaphore is not None:
@@ -299,9 +313,9 @@ def _annotate_one(
 
     # Store in cache (skip placeholder captions)
     if args.use_annotation_cache and not caption.startswith("[") and crop_path.is_file():
-        prompt_hash = hashlib.sha256(ANNOTATION_PROMPT.encode()).hexdigest()[:8]
+        prompt_hash = hashlib.sha256(prompt.encode()).hexdigest()[:8]
         store_bytes = crop_path.read_bytes()
-        cache_key = compute_cache_key(store_bytes, ANNOTATION_PROMPT, args.gemma_model)
+        cache_key = compute_cache_key(store_bytes, prompt, args.gemma_model)
         cache_store(annotation_cache_dir, cache_key, caption, args.gemma_model, prompt_hash)
 
     return img_id, caption, time.perf_counter() - ann_start, False
@@ -314,17 +328,19 @@ def _annotate_batch(
     google_api_key: str | None,
     annotation_cache_dir: Path,
     rate_semaphore,
+    prompt_override: str | None = None,
 ) -> list[tuple[str, str, float, bool]]:
     """Annotate all images, optionally in parallel. Returns results in manifest order.
 
     Each result is (image_id, caption, elapsed_seconds, was_cache_hit).
+    Pass prompt_override for page-level annotation.
     """
     workers = max(1, args.annotation_workers)
 
     if workers == 1:
         # Sequential -- no thread overhead
         return [
-            _annotate_one(entry, out_dir, args, google_api_key, annotation_cache_dir, rate_semaphore)
+            _annotate_one(entry, out_dir, args, google_api_key, annotation_cache_dir, rate_semaphore, prompt_override)
             for entry in manifest_entries
         ]
 
@@ -335,7 +351,7 @@ def _annotate_batch(
         future_to_id = {
             pool.submit(
                 _annotate_one, entry, out_dir, args, google_api_key,
-                annotation_cache_dir, rate_semaphore,
+                annotation_cache_dir, rate_semaphore, prompt_override,
             ): entry[0]
             for entry in manifest_entries
         }
@@ -622,9 +638,12 @@ def main(argv: list[str] | None = None):
     crops_count = 0
     crop_failures = 0
     annotations: dict[str, str] = {}
+    page_annotations: dict[int, str] = {}
     figure_map: dict[int, str] = {}  # id(PictureItem) -> image_id
     images_annotated = 0
     annotation_failures = 0
+    pages_annotated = 0
+    page_annotation_failures = 0
     total_annotation_seconds = 0.0
     cache_hits = 0
     cache_misses = 0
@@ -795,6 +814,38 @@ def main(argv: list[str] | None = None):
                         images_annotated += 1
                     print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(elapsed, 3), "failed": failed, "cache_hit": was_cached}), flush=True)
 
+            # ---- Page-level annotation fallback (zero crops) ----
+            if args.annotate is not None and crops_count == 0 and page_images_count > 0:
+                pages_dir = out_dir / "images" / "pages"
+                page_entries = []
+                for page_no in sorted(captured_pages):
+                    page_path = pages_dir / f"page_{page_no:03d}.png"
+                    if page_path.is_file():
+                        page_id = f"page-{page_no:03d}"
+                        rel_path = f"images/pages/page_{page_no:03d}.png"
+                        page_entries.append((page_id, page_no, 0, "0.0,0.0,0.0,0.0", rel_path))
+
+                if page_entries:
+                    page_ann_results = _annotate_batch(
+                        page_entries, out_dir, args, google_api_key,
+                        annotation_cache_dir, rate_semaphore,
+                        prompt_override=PAGE_ANNOTATION_PROMPT,
+                    )
+                    for page_id, caption, elapsed, was_cached in page_ann_results:
+                        page_no = int(page_id.split("-")[1])
+                        total_annotation_seconds += elapsed
+                        page_annotations[page_no] = caption
+                        failed = caption.startswith("[")
+                        if was_cached:
+                            cache_hits += 1
+                        else:
+                            cache_misses += 1
+                        if failed:
+                            page_annotation_failures += 1
+                        else:
+                            pages_annotated += 1
+                        print(json.dumps({"event": "annotation_timing", "image_id": page_id, "seconds": round(elapsed, 3), "failed": failed, "cache_hit": was_cached, "page_annotation": True}), flush=True)
+
         elif args.image_capture and not is_pdf:
             # ---- Non-PDF image extraction (PPTX/DOCX/XLSX) ----
             # Docling's SimplePipeline populates PictureItem.image directly
@@ -905,6 +956,17 @@ def main(argv: list[str] | None = None):
             elif args.output == "text" and not is_pdf:
                 txt = re.sub(r"^<!-- image -->\n*", "", res.document.export_to_markdown(), flags=re.MULTILINE)
 
+        # Append page-level annotations to markdown output
+        if page_annotations and args.output == "markdown" and md:
+            page_blocks = []
+            for page_no in sorted(page_annotations):
+                caption = page_annotations[page_no]
+                page_blocks.append(
+                    f"<!-- page-description: page_{page_no:03d} -->\n"
+                    f"*{caption}*"
+                )
+            md = md.rstrip() + "\n\n" + "\n\n".join(page_blocks) + "\n"
+
     else:
         print(json.dumps({"event": "docling_skipped"}), flush=True)
         if args.image_capture:
@@ -938,6 +1000,13 @@ def main(argv: list[str] | None = None):
             anchor_lines.append(f"[IMAGE: {image_id} | {rel_crop}]\n  {caption}")
         if anchor_lines:
             txt = txt.rstrip() + "\n\n" + "\n\n".join(anchor_lines) + "\n"
+
+    # Append page-level annotations to text output
+    if page_annotations and args.output == "text" and txt:
+        page_lines = []
+        for page_no in sorted(page_annotations):
+            page_lines.append(f"[PAGE {page_no}] {page_annotations[page_no]}")
+        txt = txt.rstrip() + "\n\n" + "\n\n".join(page_lines) + "\n"
 
     # ---- Write artifacts ----
     md_path = out_dir / (doc_path.stem + ".md")
@@ -995,6 +1064,11 @@ def main(argv: list[str] | None = None):
             "cache_misses": cache_misses,
             "workers": args.annotation_workers,
         },
+        "page_annotation": {
+            "enabled": pages_annotated > 0 or page_annotation_failures > 0,
+            "pages_annotated": pages_annotated,
+            "page_annotation_failures": page_annotation_failures,
+        },
     }
     print(json.dumps(metrics_summary), flush=True)
 
@@ -1043,11 +1117,17 @@ def main(argv: list[str] | None = None):
     cache_msg = f"  Cache reuse: {'yes' if args.use_cache else 'no'}"
     if args.max_pages:
         cache_msg += f" (max_pages={args.max_pages})"
+    if pages_annotated > 0 or page_annotation_failures > 0:
+        page_ann_msg = f"  Page annotation: {pages_annotated} pages, {page_annotation_failures} failures (fallback: crops=0)"
+    else:
+        page_ann_msg = None
     print(docling_msg, flush=True)
     print(ocr_msg, flush=True)
     print(tables_msg, flush=True)
     print(capture_msg, flush=True)
     print(ann_msg, flush=True)
+    if page_ann_msg:
+        print(page_ann_msg, flush=True)
     print(cache_msg, flush=True)
 
     print(

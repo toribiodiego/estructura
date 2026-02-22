@@ -190,18 +190,24 @@ wall-clock latency for performance profiling and cloud-vs-self-hosted comparison
 | Field | Type | Description |
 |-------|------|-------------|
 | `event` | string | Always `"annotation_timing"` |
-| `image_id` | string | Stable image ID (e.g., `"img-p001-01"`) |
+| `image_id` | string | Stable image ID (e.g., `"img-p001-01"`) or page ID (`"page-001"`) |
 | `seconds` | number | Wall-clock time for this annotation call |
 | `failed` | boolean | Whether the annotation failed (placeholder used) |
 | `cache_hit` | boolean | Whether the caption was served from annotation cache |
+| `page_annotation` | boolean | Present and `true` for page-level fallback annotations |
 
 ```json
 {"event": "annotation_timing", "image_id": "img-p001-01", "seconds": 0.002, "failed": false, "cache_hit": true}
+{"event": "annotation_timing", "image_id": "page-001", "seconds": 3.1, "failed": false, "cache_hit": false, "page_annotation": true}
 ```
 
 Emitted for both PDF and non-PDF annotation paths. The `seconds` field measures
 end-to-end latency including network round-trip to Google AI Studio (Gemma mode),
 local stub generation (stub mode), or cache lookup time when `cache_hit` is true.
+
+Page-level annotation triggers automatically when `crops_count == 0` and page
+images exist. It uses `PAGE_ANNOTATION_PROMPT` instead of `ANNOTATION_PROMPT`
+and annotates captured page images rather than crops.
 
 **Java parser action:** Not currently consumed. Use for latency monitoring and
 comparison against self-hosted inference.
@@ -384,6 +390,14 @@ nested objects for each pipeline stage.
 | `cache_misses` | integer | Annotation cache misses (API call required) |
 | `workers` | integer | Number of parallel annotation workers (`--annotation-workers`) |
 
+#### `page_annotation` object
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `enabled` | boolean | Whether page-level annotation triggered (crops=0 fallback) |
+| `pages_annotated` | integer | Number of successfully annotated pages |
+| `page_annotation_failures` | integer | Number of failed page annotations |
+
 ```json
 {
   "event": "metrics_summary",
@@ -422,6 +436,11 @@ nested objects for each pipeline stage.
     "cache_hits": 0,
     "cache_misses": 12,
     "workers": 1
+  },
+  "page_annotation": {
+    "enabled": false,
+    "pages_annotated": 0,
+    "page_annotation_failures": 0
   }
 }
 ```
