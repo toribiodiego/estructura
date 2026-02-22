@@ -6,3 +6,6 @@ Pillow
 
 # Vision model annotation (Google AI Studio / Gemma)
 google-genai
+
+# Quality comparison framework
+rapidfuzz
