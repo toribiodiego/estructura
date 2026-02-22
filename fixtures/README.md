@@ -13,7 +13,7 @@ Run `scripts/download-fixtures.sh` to fetch them.
 ## Download
 
 ```bash
-# Full set (11 documents, ~50 MB)
+# Full set (13 documents, ~77 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (5 documents, ~5 MB)
@@ -21,7 +21,8 @@ Run `scripts/download-fixtures.sh` to fetch them.
 ```
 
 The `--quick` flag downloads only the baseline set for fast iteration.
-The full set adds 6 additional PDFs from the KVision test catalog.
+The full set adds 2 OCR/mixed-content PDFs and 6 additional PDFs from
+the KVision test catalog.
 
 <br><br>
 
@@ -36,6 +37,27 @@ The full set adds 6 additional PDFs from the KVision test catalog.
 | `medrxiv_llama4_benchmark.docx` | DOCX | n/a | 0 | text-only | 11 KB |
 | `policy_gradient_rl_lecture.pptx` | PPTX | ~30 | ~25 | multi-image | 1.9 MB |
 | `medrxiv_llm_imaging_eval.xlsx` | XLSX | n/a | 0 | tabular | 24 KB |
+
+### OCR and Mixed-Content Set
+
+| Filename | Format | Pages | Expected Images | Category | Size |
+|----------|--------|------:|----------------:|----------|-----:|
+| `xerox_mfp_scan_forestburg.pdf` | PDF | 5 | 0 (scanned) | scanned | 1.5 MB |
+| `archive_newspaper_1948.pdf` | PDF | 6 | 0 (mixed OCR) | mixed-content | 23 MB |
+
+These fixtures support Task 07.4 (OCR Strategy and Document Complexity
+Validation). The Xerox scan is a pure image-only PDF from a multifunction
+printer. The archive.org newspaper is a scanned 1948 newspaper with an
+embedded OCR text layer (67K extractable characters, 85+ font references),
+making it a mixed-content document where both text extraction and OCR
+produce results.
+
+**Gap:** An image-bearing DOCX with embedded figures is still needed to
+test non-PDF image extraction on DOCX format. The current `medrxiv`
+DOCX fixture is text-only (11 KB). Candidate sources: DOE OSTI technical
+reports, KVision Task 12.7 benchmark set.
+
+<br><br>
 
 ### Extended Set
 
@@ -113,6 +135,38 @@ will be determined during Task 05 (image capture) and recorded here.
   worksheets with numerical data, categories, and evaluation metrics.
 - **Why included:** Tests XLSX format support. Validates that tabular
   documents produce structured text output with no image anchors.
+
+### xerox_mfp_scan_forestburg.pdf
+
+- **Source:** https://files.gabbart.com/1605/scanned_from_a_xerox_multifunction_printer.pdf
+- **Format:** PDF, scanned image-only
+- **Category:** scanned
+- **SHA-256:** not available
+- **Content:** Scanned document from a Xerox multifunction printer at
+  Forestburg ISD. 5-page pure raster image with no embedded text layer
+  (0 extractable characters via pdftotext). Used in KVision's OCR
+  detection real-world validation test suite as a confirmed image-only
+  PDF.
+- **Why included:** Tests scanned document handling beyond the 3-page EPA
+  letter. Validates OCR behavior on a different scanner source and
+  confirms image-only detection heuristics. Critical for Task 07.4 OCR
+  strategy testing.
+
+### archive_newspaper_1948.pdf
+
+- **Source:** https://archive.org/download/cupl_003575/cupl_003575_access.pdf
+- **Format:** PDF, mixed-content (scanned with embedded OCR layer)
+- **Category:** mixed-content
+- **SHA-256:** not available
+- **Content:** Scanned historical newspaper from September 1, 1948
+  (Upland-Ontario, California -- archive.org CUPL 003575). 6-page
+  broadsheet with both scanned page images and an embedded OCR text
+  layer containing 138K extractable characters and 5,739 lines. The OCR
+  layer was added by archive.org's digitization pipeline.
+- **Why included:** Tests the mixed-content document scenario where both
+  text extraction and OCR produce results. Validates pipeline behavior
+  when a PDF has both a text layer and scanned content. Critical for
+  Task 07.4 mixed-content document handling.
 
 ### gpt4_system_card.pdf
 
@@ -196,7 +250,8 @@ will be determined during Task 05 (image capture) and recorded here.
 |----------|-------------|----------|
 | text-only | No embedded figures; output contains only text | `medrxiv_llama4_benchmark.docx` |
 | multi-image | Multiple figures across pages; tests anchor ordering | `gemini3_pro_model_card.pdf`, `policy_gradient_rl_lecture.pptx`, `gpt4_system_card.pdf`, `icml2019_importance_sampling.pdf`, `imf_economic_impacts_ai.pdf`, `anthropic_economic_index.pdf`, `gemini_multimodal_report.pdf`, `arxiv_2206_01062.pdf` |
-| scanned | Image-only PDF with no text layer; requires OCR | `epa_sample_letter.pdf` |
+| scanned | Image-only PDF with no text layer; requires OCR | `epa_sample_letter.pdf`, `xerox_mfp_scan_forestburg.pdf` |
+| mixed-content | Scanned pages with embedded OCR text layer | `archive_newspaper_1948.pdf` |
 | tabular | Spreadsheet data; no figures expected | `medrxiv_llm_imaging_eval.xlsx` |
 
 <br><br>
@@ -216,6 +271,8 @@ will be determined during Task 05 (image capture) and recorded here.
 | `anthropic_economic_index.pdf` | Minimal text between charts | Yes, ~30 anchors | Graphics-heavy |
 | `gemini_multimodal_report.pdf` | Long technical text | Yes, ~40 anchors | Largest fixture |
 | `arxiv_2206_01062.pdf` | Academic text | Yes, ~5 anchors | Medium academic paper |
+| `xerox_mfp_scan_forestburg.pdf` | OCR-extracted text | No | Pure image-only scan |
+| `archive_newspaper_1948.pdf` | OCR + text layer | No | Mixed scanned/OCR content |
 
 Image anchor counts are estimates. Exact values depend on Docling's figure
 detection and will be updated after Task 05 validates the image capture pipeline.

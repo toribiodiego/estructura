@@ -5,7 +5,7 @@ set -e
 # Documents are sourced from KVision's test infrastructure (public URLs).
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 11 documents
+#   ./scripts/download-fixtures.sh          # all 13 documents
 #   ./scripts/download-fixtures.sh --quick   # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -94,6 +94,24 @@ download "policy_gradient_rl_lecture.pptx" \
 download "medrxiv_llm_imaging_eval.xlsx" \
     "https://www.medrxiv.org/content/medrxiv/early/2025/10/29/2025.10.27.25338904/DC3/embed/media-3.xlsx?download=true" \
     ""
+
+# ---- OCR and mixed-content set (2 additional documents) ----
+echo ""
+echo "Downloading OCR and mixed-content fixtures..."
+echo ""
+
+download "xerox_mfp_scan_forestburg.pdf" \
+    "https://files.gabbart.com/1605/scanned_from_a_xerox_multifunction_printer.pdf" \
+    ""
+
+download "archive_newspaper_1948.pdf" \
+    "https://archive.org/download/cupl_003575/cupl_003575_access.pdf" \
+    ""
+
+# TODO: Add image-bearing DOCX when a suitable public URL is identified.
+# Current medrxiv DOCX is text-only (11 KB). Need a DOCX with embedded
+# figures/photos to test non-PDF image extraction. Candidates: DOE OSTI
+# technical reports, KVision Task 12.7 benchmark set.
 
 # ---- Extended set (6 additional documents) ----
 if [[ "$QUICK" == false ]]; then
