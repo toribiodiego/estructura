@@ -261,6 +261,92 @@ def annotate_image(
         raise ValueError(f"Unknown annotation mode: {mode}")
 
 
+def _annotate_one(
+    entry: tuple[str, int, int, str, str],
+    out_dir: Path,
+    args,
+    google_api_key: str | None,
+    annotation_cache_dir: Path,
+    rate_semaphore,
+) -> tuple[str, str, float, bool]:
+    """Annotate a single image with cache check. Thread-safe.
+
+    Returns (image_id, caption, elapsed_seconds, was_cache_hit).
+    """
+    img_id, pg, img_seq, _bbox_s, rel_path = entry
+    crop_path = out_dir / rel_path
+    ann_start = time.perf_counter()
+
+    # Check cache first (no semaphore needed -- read-only disk I/O)
+    if args.use_annotation_cache and crop_path.is_file():
+        image_bytes = crop_path.read_bytes()
+        cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
+        cached_caption = cache_lookup(annotation_cache_dir, cache_key)
+        if cached_caption is not None:
+            return img_id, cached_caption, time.perf_counter() - ann_start, True
+
+    # Cache miss -- call the API (acquire semaphore to rate-limit)
+    if rate_semaphore is not None:
+        rate_semaphore.acquire()
+    try:
+        caption = annotate_image(
+            crop_path, img_id, pg, img_seq,
+            mode=args.annotate, model=args.gemma_model, api_key=google_api_key,
+        )
+    finally:
+        if rate_semaphore is not None:
+            rate_semaphore.release()
+
+    # Store in cache (skip placeholder captions)
+    if args.use_annotation_cache and not caption.startswith("[") and crop_path.is_file():
+        prompt_hash = hashlib.sha256(ANNOTATION_PROMPT.encode()).hexdigest()[:8]
+        store_bytes = crop_path.read_bytes()
+        cache_key = compute_cache_key(store_bytes, ANNOTATION_PROMPT, args.gemma_model)
+        cache_store(annotation_cache_dir, cache_key, caption, args.gemma_model, prompt_hash)
+
+    return img_id, caption, time.perf_counter() - ann_start, False
+
+
+def _annotate_batch(
+    manifest_entries: list[tuple[str, int, int, str, str]],
+    out_dir: Path,
+    args,
+    google_api_key: str | None,
+    annotation_cache_dir: Path,
+    rate_semaphore,
+) -> list[tuple[str, str, float, bool]]:
+    """Annotate all images, optionally in parallel. Returns results in manifest order.
+
+    Each result is (image_id, caption, elapsed_seconds, was_cache_hit).
+    """
+    workers = max(1, args.annotation_workers)
+
+    if workers == 1:
+        # Sequential -- no thread overhead
+        return [
+            _annotate_one(entry, out_dir, args, google_api_key, annotation_cache_dir, rate_semaphore)
+            for entry in manifest_entries
+        ]
+
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    results_by_id: dict[str, tuple[str, str, float, bool]] = {}
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        future_to_id = {
+            pool.submit(
+                _annotate_one, entry, out_dir, args, google_api_key,
+                annotation_cache_dir, rate_semaphore,
+            ): entry[0]
+            for entry in manifest_entries
+        }
+        for future in as_completed(future_to_id):
+            img_id, caption, elapsed, was_cached = future.result()
+            results_by_id[img_id] = (img_id, caption, elapsed, was_cached)
+
+    # Return in manifest order to preserve Java integration contract
+    return [results_by_id[entry[0]] for entry in manifest_entries]
+
+
 def assemble_interleaved_output(
     document,
     figure_map: dict[int, str],
@@ -466,6 +552,12 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Disable annotation cache",
     )
     parser.set_defaults(use_annotation_cache=True)
+    parser.add_argument(
+        "--annotation-workers",
+        type=int,
+        default=1,
+        help="Number of parallel annotation workers (default: 1 = sequential)",
+    )
     return parser.parse_args(argv)
 
 
@@ -537,6 +629,9 @@ def main(argv: list[str] | None = None):
     cache_hits = 0
     cache_misses = 0
     annotation_cache_dir = Path(args.annotation_cache_dir) if args.annotation_cache_dir else out_dir / ".annotation-cache"
+    # Rate-limit semaphore: limits concurrent API calls when workers > 1
+    import threading
+    rate_semaphore = threading.Semaphore(args.annotation_workers) if args.annotation_workers > 1 else None
 
     if args.run_docling:
         docling_start = time.perf_counter()
@@ -682,47 +777,23 @@ def main(argv: list[str] | None = None):
 
             # ---- Annotate extracted images ----
             if args.annotate is not None and manifest_entries:
-                prompt_hash = hashlib.sha256(ANNOTATION_PROMPT.encode()).hexdigest()[:8]
-                for img_id, pg, img_seq, _bbox_s, rel_path in manifest_entries:
-                    crop_path = out_dir / rel_path
-                    ann_start = time.perf_counter()
-
-                    # Check cache
-                    cached_caption = None
-                    if args.use_annotation_cache and crop_path.is_file():
-                        image_bytes = crop_path.read_bytes()
-                        cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
-                        cached_caption = cache_lookup(annotation_cache_dir, cache_key)
-
-                    if cached_caption is not None:
-                        caption = cached_caption
-                        cache_hits += 1
-                    else:
-                        caption = annotate_image(
-                            crop_path,
-                            img_id,
-                            pg,
-                            img_seq,
-                            mode=args.annotate,
-                            model=args.gemma_model,
-                            api_key=google_api_key,
-                        )
-                        cache_misses += 1
-                        # Store in cache (skip placeholder captions)
-                        if args.use_annotation_cache and not caption.startswith("[") and crop_path.is_file():
-                            image_bytes = crop_path.read_bytes()
-                            cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
-                            cache_store(annotation_cache_dir, cache_key, caption, args.gemma_model, prompt_hash)
-
-                    ann_elapsed = time.perf_counter() - ann_start
-                    total_annotation_seconds += ann_elapsed
+                ann_results = _annotate_batch(
+                    manifest_entries, out_dir, args, google_api_key,
+                    annotation_cache_dir, rate_semaphore,
+                )
+                for img_id, caption, elapsed, was_cached in ann_results:
+                    total_annotation_seconds += elapsed
                     annotations[img_id] = caption
                     failed = caption.startswith("[")
+                    if was_cached:
+                        cache_hits += 1
+                    else:
+                        cache_misses += 1
                     if failed:
                         annotation_failures += 1
                     else:
                         images_annotated += 1
-                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(ann_elapsed, 3), "failed": failed, "cache_hit": cached_caption is not None}), flush=True)
+                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(elapsed, 3), "failed": failed, "cache_hit": was_cached}), flush=True)
 
         elif args.image_capture and not is_pdf:
             # ---- Non-PDF image extraction (PPTX/DOCX/XLSX) ----
@@ -804,47 +875,23 @@ def main(argv: list[str] | None = None):
 
             # Annotate extracted images
             if args.annotate is not None and manifest_entries:
-                prompt_hash = hashlib.sha256(ANNOTATION_PROMPT.encode()).hexdigest()[:8]
-                for img_id, pg, img_seq, _bbox_s, rel_path in manifest_entries:
-                    crop_path = out_dir / rel_path
-                    ann_start = time.perf_counter()
-
-                    # Check cache
-                    cached_caption = None
-                    if args.use_annotation_cache and crop_path.is_file():
-                        image_bytes = crop_path.read_bytes()
-                        cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
-                        cached_caption = cache_lookup(annotation_cache_dir, cache_key)
-
-                    if cached_caption is not None:
-                        caption = cached_caption
-                        cache_hits += 1
-                    else:
-                        caption = annotate_image(
-                            crop_path,
-                            img_id,
-                            pg,
-                            img_seq,
-                            mode=args.annotate,
-                            model=args.gemma_model,
-                            api_key=google_api_key,
-                        )
-                        cache_misses += 1
-                        # Store in cache (skip placeholder captions)
-                        if args.use_annotation_cache and not caption.startswith("[") and crop_path.is_file():
-                            image_bytes = crop_path.read_bytes()
-                            cache_key = compute_cache_key(image_bytes, ANNOTATION_PROMPT, args.gemma_model)
-                            cache_store(annotation_cache_dir, cache_key, caption, args.gemma_model, prompt_hash)
-
-                    ann_elapsed = time.perf_counter() - ann_start
-                    total_annotation_seconds += ann_elapsed
+                ann_results = _annotate_batch(
+                    manifest_entries, out_dir, args, google_api_key,
+                    annotation_cache_dir, rate_semaphore,
+                )
+                for img_id, caption, elapsed, was_cached in ann_results:
+                    total_annotation_seconds += elapsed
                     annotations[img_id] = caption
                     failed = caption.startswith("[")
+                    if was_cached:
+                        cache_hits += 1
+                    else:
+                        cache_misses += 1
                     if failed:
                         annotation_failures += 1
                     else:
                         images_annotated += 1
-                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(ann_elapsed, 3), "failed": failed, "cache_hit": cached_caption is not None}), flush=True)
+                    print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(elapsed, 3), "failed": failed, "cache_hit": was_cached}), flush=True)
 
         # ---- Assemble output (interleaved when figures were processed) ----
         if figure_map:
@@ -946,6 +993,7 @@ def main(argv: list[str] | None = None):
             ),
             "cache_hits": cache_hits,
             "cache_misses": cache_misses,
+            "workers": args.annotation_workers,
         },
     }
     print(json.dumps(metrics_summary), flush=True)

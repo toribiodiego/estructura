@@ -382,6 +382,7 @@ nested objects for each pipeline stage.
 | `avg_annotation_seconds` | number or null | Average per-image annotation time (null when no images) |
 | `cache_hits` | integer | Annotation cache hits (caption served from disk) |
 | `cache_misses` | integer | Annotation cache misses (API call required) |
+| `workers` | integer | Number of parallel annotation workers (`--annotation-workers`) |
 
 ```json
 {
@@ -419,7 +420,8 @@ nested objects for each pipeline stage.
     "total_annotation_seconds": 24.312,
     "avg_annotation_seconds": 2.026,
     "cache_hits": 0,
-    "cache_misses": 12
+    "cache_misses": 12,
+    "workers": 1
   }
 }
 ```
