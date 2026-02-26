@@ -54,6 +54,9 @@ sequenceDiagram
         R->>J: ocr_skipped
     end
 
+    opt --native-vlm + Docling enabled
+        R->>J: native_vlm_output
+    end
     opt --save-json + Docling enabled
         R->>J: json_exported
     end
@@ -304,6 +307,29 @@ Emitted when OCR does not run.
 
 <br><br>
 
+### `native_vlm_output`
+
+Emitted when `--native-vlm` is active and Docling conversion completes. The
+runner saves Docling's native `export_to_markdown()` output as a separate file
+(`<stem>_native.md`) for format comparison against the output contract.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `event` | string | Always `"native_vlm_output"` |
+| `path` | string | Absolute path to the native Markdown output file |
+
+```json
+{"event": "native_vlm_output", "path": "/tmp/out/report_native.md"}
+```
+
+The native output reflects Docling's built-in picture description format, which
+differs from the estructura output contract (see the format comparison section
+at the end of this document).
+
+**Java parser action:** Not currently consumed. Used for Task 17 evaluation.
+
+<br><br>
+
 ### `json_exported`
 
 Emitted when `--save-json` is passed and Docling conversion is enabled. The
@@ -336,6 +362,7 @@ nested objects for each pipeline stage.
 | `docling` | object | Docling stage metrics |
 | `ocr` | object | OCR stage metrics |
 | `options` | object | Configuration flags used for this run |
+| `native_vlm` | object | Native Docling VLM configuration (when `--native-vlm`) |
 | `image_capture` | object | Image capture and crop extraction metrics |
 | `annotation` | object | Annotation metrics |
 
@@ -366,6 +393,14 @@ nested objects for each pipeline stage.
 | `max_images_per_page` | integer | Max crops per page |
 | `max_total_images` | integer | Max total crops |
 | `cache_used` | boolean | Whether cache reuse was active |
+
+#### `native_vlm` object
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `enabled` | boolean | Whether native Docling VLM was active (`--native-vlm`) |
+| `url` | string or null | OpenAI-compatible API endpoint (null when disabled) |
+| `model` | string or null | Model name sent to the endpoint (null when disabled) |
 
 #### `image_capture` object
 
@@ -496,13 +531,14 @@ crash):
 Between `metrics_summary` and `status`, the runner emits a human-readable
 metrics block. These lines are not JSON and should be skipped by parsers.
 
-```
+```text
 METRICS SUMMARY
   Docling: 4.23s
   OCR: 8.55s (pages=9, dpi=120)
   Tables: disabled
   Image capture: 9 pages, 12 crops (limits: pages=50, per_page=20, total=200)
   Annotation: 11 annotated, 1 failures, 24.31s total, 2.03s avg (gemma mode)
+  Native VLM: disabled
   Cache reuse: no
 ```
 
@@ -537,6 +573,7 @@ consumes and which are available for future use.
 | `page_images_captured` | No | Available in raw output |
 | `crops_extracted` | No | Available in raw output |
 | `annotation_timing` | No | Available for latency monitoring |
+| `native_vlm_output` | No | Available for format comparison |
 | `image_capture_skipped` | No | Available in raw output |
 | `ocr_page_timing` | No | Available for progress tracking |
 | `ocr_timing` | No | Available in raw output |
@@ -551,3 +588,77 @@ To support the image-aware pipeline, the KVision port needs to:
 3. Optionally consume `page_images_captured` and `crops_extracted` for
    progress reporting.
 4. Pass `--annotate` and `--gemma-model` flags in `buildCommand()`.
+
+<br><br>
+
+## Native VLM Output Format vs Output Contract
+
+The `--native-vlm` flag enables Docling's built-in `do_picture_description`
+feature, which generates image descriptions during conversion rather than in a
+separate annotation pass. The native Docling markdown format differs from the
+estructura output contract (`docs/output-contract.md`) in several ways.
+
+<br><br>
+
+### Format comparison
+
+| Aspect | estructura output contract | Docling native format |
+|--------|---------------------------|----------------------|
+| **Image anchor** | `![img-p001-01](images/crops/p001-01.png)` | `<!-- image -->` (HTML comment) |
+| **Stable ID** | `img-p{page}-{seq}` (deterministic, page+sequence) | `#/pictures/N` (JSON pointer, zero-indexed) |
+| **Description placement** | Caption on line after anchor, in `*italic*` | Description on lines before `<!-- image -->`, plain text |
+| **File path reference** | Relative crop path in anchor syntax | No file path in markdown output |
+| **Manifest** | `images/manifest.txt` with bbox data | No manifest file |
+| **Image files** | Separate `images/pages/` and `images/crops/` dirs | Images stored internally on `PictureItem.image` |
+| **Description storage (JSON)** | Custom `annotations` dict keyed by image ID | `pictures[N].annotations[M]` with `kind: "description"` |
+
+<br><br>
+
+### Example: Docling native output (with `do_picture_description`)
+
+```markdown
+Here's a description of the figure:
+
+The figure displays the Google logo, featuring the word "Google"
+spelled out in a colorful, stylized font.
+
+<!-- image -->
+
+## Document Title
+```
+
+### Example: estructura output contract
+
+```markdown
+![img-p001-01](images/crops/p001-01.png)
+*The figure displays the Google logo, featuring the word "Google" spelled out in a colorful, stylized font.*
+
+## Document Title
+```
+
+<br><br>
+
+### Implications for KVision
+
+1. **Post-processing required.** Docling's native markdown output does not
+   conform to the output contract. KVision would need to post-process the
+   native output to insert stable IDs, file path references, and
+   contract-compliant anchor syntax.
+
+2. **Description quality is comparable.** The VLM-generated descriptions from
+   Docling's native pipeline are functionally equivalent to the custom Google AI
+   Studio annotation results. Both use the same underlying model and prompt.
+
+3. **Crop files still needed.** Even with native VLM, the pipeline must
+   separately save crop files and generate the manifest for downstream
+   consumers that need image files on disk.
+
+4. **Graceful degradation confirmed.** When the VLM API returns an error (429
+   rate limit, timeout, malformed response), Docling logs the error and
+   continues conversion. The picture appears as `<!-- image -->` without a
+   description. The conversion does not fail.
+
+5. **Area threshold filters small images.** Docling's
+   `picture_area_threshold` (default 0.05 = 5% of page area) skips VLM calls
+   for small images like logos. This is configurable via
+   `--native-vlm-area-threshold`.

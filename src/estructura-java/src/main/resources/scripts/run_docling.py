@@ -574,6 +574,46 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         default=1,
         help="Number of parallel annotation workers (default: 1 = sequential)",
     )
+    # Native Docling VLM picture description (Task 17 evaluation)
+    parser.add_argument(
+        "--native-vlm",
+        dest="native_vlm",
+        action="store_true",
+        help="Enable Docling's native picture description via external VLM API. "
+        "Implicitly enables --image-capture. Saves native Docling Markdown "
+        "as <stem>_native.md for format comparison against output contract.",
+    )
+    parser.set_defaults(native_vlm=False)
+    parser.add_argument(
+        "--native-vlm-url",
+        default="https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        help="OpenAI-compatible API endpoint for native VLM "
+        "(default: Google AI Studio)",
+    )
+    parser.add_argument(
+        "--native-vlm-model",
+        default="gemini-2.0-flash",
+        help="Model name for native VLM (default: gemini-2.0-flash)",
+    )
+    parser.add_argument(
+        "--native-vlm-prompt",
+        default=None,
+        help="Prompt for native VLM picture description "
+        "(default: uses annotation prompt)",
+    )
+    parser.add_argument(
+        "--native-vlm-timeout",
+        type=int,
+        default=90,
+        help="Timeout in seconds for native VLM API calls (default: 90)",
+    )
+    parser.add_argument(
+        "--native-vlm-area-threshold",
+        type=float,
+        default=None,
+        help="Min picture area as fraction of page area for VLM description "
+        "(default: Docling default ~0.05). Set lower to describe small images.",
+    )
     return parser.parse_args(argv)
 
 
@@ -597,6 +637,21 @@ def main(argv: list[str] | None = None):
                 file=sys.stderr,
             )
             return 1
+
+    # Native VLM implies image capture (Docling needs picture images to describe)
+    native_vlm_api_key = None
+    if args.native_vlm:
+        args.image_capture = True
+        if "googleapis.com" in args.native_vlm_url:
+            native_vlm_api_key = os.environ.get("GOOGLE_API_KEY", "").strip()
+            if not native_vlm_api_key:
+                print(
+                    "Error: --native-vlm with Google AI Studio requires "
+                    "GOOGLE_API_KEY environment variable.\n"
+                    "Get an API key at https://aistudio.google.com/apikey",
+                    file=sys.stderr,
+                )
+                return 1
 
     src = args.src
     out_dir = Path(args.out_dir).resolve()
@@ -665,6 +720,27 @@ def main(argv: list[str] | None = None):
         opts.generate_picture_images = args.image_capture
         opts.images_scale = 2.0
 
+        # Native Docling picture description via external VLM API
+        if args.native_vlm:
+            from docling.datamodel.pipeline_options import PictureDescriptionApiOptions
+
+            opts.do_picture_description = True
+            opts.enable_remote_services = True
+            native_prompt = args.native_vlm_prompt or ANNOTATION_PROMPT
+            api_headers = {}
+            if native_vlm_api_key:
+                api_headers["Authorization"] = f"Bearer {native_vlm_api_key}"
+            api_kwargs = {
+                "url": args.native_vlm_url,
+                "params": {"model": args.native_vlm_model},
+                "prompt": native_prompt,
+                "timeout": args.native_vlm_timeout,
+                "headers": api_headers,
+            }
+            if args.native_vlm_area_threshold is not None:
+                api_kwargs["picture_area_threshold"] = args.native_vlm_area_threshold
+            opts.picture_description_options = PictureDescriptionApiOptions(**api_kwargs)
+
         # Docling handles DOCX/PPTX/XLSX natively; only PDF needs custom options.
         conv = DocumentConverter(format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=opts)})
 
@@ -684,6 +760,16 @@ def main(argv: list[str] | None = None):
         res = conv.convert(doc_path.as_posix())
         docling_seconds = round(time.perf_counter() - docling_start, 3)
         print(json.dumps({"event": "docling_timing", "seconds": docling_seconds}), flush=True)
+
+        # Save native Docling Markdown when --native-vlm is active (for format comparison)
+        if args.native_vlm:
+            native_md = res.document.export_to_markdown()
+            native_path = out_dir / (doc_path.stem + "_native.md")
+            native_path.write_text(native_md, encoding="utf-8")
+            print(
+                json.dumps({"event": "native_vlm_output", "path": str(native_path)}),
+                flush=True,
+            )
 
         # ---- Page image capture (PDF only) ----
         if args.image_capture and is_pdf:
@@ -945,7 +1031,13 @@ def main(argv: list[str] | None = None):
                     print(json.dumps({"event": "annotation_timing", "image_id": img_id, "seconds": round(elapsed, 3), "failed": failed, "cache_hit": was_cached}), flush=True)
 
         # ---- Assemble output (interleaved when figures were processed) ----
-        if figure_map:
+        if args.native_vlm and args.annotate is None:
+            # Native Docling output preserves VLM-generated picture descriptions
+            if args.output == "markdown":
+                md = res.document.export_to_markdown()
+            elif args.output == "text" and not is_pdf:
+                txt = res.document.export_to_markdown()
+        elif figure_map:
             if args.output == "markdown":
                 md = assemble_interleaved_output(res.document, figure_map, annotations, "markdown")
             elif args.output == "text" and not is_pdf:
@@ -1043,6 +1135,11 @@ def main(argv: list[str] | None = None):
             "max_total_images": args.max_total_images,
             "cache_used": args.use_cache,
         },
+        "native_vlm": {
+            "enabled": args.native_vlm,
+            "url": args.native_vlm_url if args.native_vlm else None,
+            "model": args.native_vlm_model if args.native_vlm else None,
+        },
         "image_capture": {
             "enabled": args.image_capture,
             "pages_saved": page_images_count,
@@ -1114,6 +1211,10 @@ def main(argv: list[str] | None = None):
             ann_msg = f"  Annotation: no images to annotate ({args.annotate} mode)"
     else:
         ann_msg = "  Annotation: disabled"
+    if args.native_vlm:
+        native_vlm_msg = f"  Native VLM: enabled (model={args.native_vlm_model}, url={args.native_vlm_url})"
+    else:
+        native_vlm_msg = "  Native VLM: disabled"
     cache_msg = f"  Cache reuse: {'yes' if args.use_cache else 'no'}"
     if args.max_pages:
         cache_msg += f" (max_pages={args.max_pages})"
@@ -1126,6 +1227,7 @@ def main(argv: list[str] | None = None):
     print(tables_msg, flush=True)
     print(capture_msg, flush=True)
     print(ann_msg, flush=True)
+    print(native_vlm_msg, flush=True)
     if page_ann_msg:
         print(page_ann_msg, flush=True)
     print(cache_msg, flush=True)
