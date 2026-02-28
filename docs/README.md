@@ -25,6 +25,7 @@ docs/
     sample-textonly.md                  example Markdown output without images
     sample-textonly.txt                 example TXT output without images
   standards/
+    commit-messages.md                 prefix table, worked examples, common mistakes
     documentation.md                   voice, formatting, visual aids, file naming conventions
     engineering.md                     evidence-based decisions, repo hygiene, focused changes
     pdf-image-inspection.md            two-layer verification methodology for PDF image cataloging
@@ -60,6 +61,7 @@ docs/
 
 | File | Purpose |
 |------|---------|
+| `standards/commit-messages.md` | Commit message conventions: prefix table with estructura-specific examples, worked examples (feat, fix, docs, build), common mistakes (vague subjects, mixing concerns, HOW vs WHY). |
 | `standards/documentation.md` | Documentation standards adapted from konsillix: active voice, `<br><br>` spacing, language-tagged code blocks, inline backtick rules, Mermaid diagram format, kebab-case filenames. |
 | `standards/engineering.md` | Lean engineering standards for the POC: evidence-based decisions, repository hygiene, focused changes. Skips production-readiness rules that apply to KVision. |
 | `standards/pdf-image-inspection.md` | Two-layer verification methodology (pypdfium2 structural scan + visual page rendering) for cataloging images in PDF fixtures. |

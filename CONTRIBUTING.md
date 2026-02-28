@@ -139,6 +139,9 @@ and explain WHY in the body.
 <wrap lines at 72 characters>
 ```
 
+See [Commit Messages Guide](./docs/standards/commit-messages.md) for worked
+examples and common mistakes to avoid.
+
 <br><br>
 
 ## Questions or Issues?
