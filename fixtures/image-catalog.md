@@ -4,7 +4,7 @@ Master catalog of all images, figures, charts, and diagrams across the
 evaluation fixture set. Produced by manual inspection of each document
 followed by pipeline extraction comparison.
 
-**Status:** In progress
+**Status:** Cataloging complete (all 12 fixtures inspected)
 **Last updated:** 2026-02-27
 
 
@@ -18,12 +18,12 @@ followed by pipeline extraction comparison.
 | 03 | 03_imf_economic_impacts_ai.pdf | PDF | 69 | text-heavy | Yes |
 | 04 | 04_anthropic_economic_index.pdf | PDF | 47 | vector-heavy | Yes |
 | 05 | 05_gemini_multimodal_report.pdf | PDF | 90 | multi-image | Yes |
-| 06 | 06_arxiv_2206_01062.pdf | PDF | ~15 | multi-image | No |
-| 07 | 07_epa_sample_letter.pdf | PDF | 1 | scanned | No |
-| 08 | 08_xerox_mfp_scan_forestburg.pdf | PDF | 5 | scanned | No |
-| 09 | 09_archive_newspaper_1948.pdf | PDF | 6 | mixed-content | No |
-| 10 | 10_medrxiv_llama4_benchmark.docx | DOCX | n/a | text-only | No |
-| 11 | 11_policy_gradient_rl_lecture.pptx | PPTX | ~30 | multi-image | No |
+| 06 | 06_arxiv_2206_01062.pdf | PDF | 9 | multi-image | Yes |
+| 07 | 07_epa_sample_letter.pdf | PDF | 3 | scanned | Yes |
+| 08 | 08_xerox_mfp_scan_forestburg.pdf | PDF | 5 | scanned | Yes |
+| 09 | 09_archive_newspaper_1948.pdf | PDF | 6 | mixed-content | Yes |
+| 10 | 10_medrxiv_llama4_benchmark.docx | DOCX | n/a | text-only | Yes |
+| 11 | 11_policy_gradient_rl_lecture.pptx | PPTX | 80 | multi-image | Yes |
 
 **Other files** (moved to `fixtures/other/`, not part of evaluation):
 - `medrxiv_llm_imaging_eval.xlsx` -- tabular data, no images
@@ -52,7 +52,25 @@ as documents are cataloged.
 
 | Gap | Description | Status |
 |-----|-------------|--------|
-| TBD | Populated after cataloging | -- |
+| Infographics | Only Doc 01 (GPT-4) and Doc 04 (Anthropic) have infographic-style figures; limited variety | Open |
+| Photos (non-scanned) | Only Doc 05 has natural photos (cooking, plants, dogs, NYC); small set | Open |
+| Diagrams | Only Docs 02, 05 have structured diagrams; flow/architecture diagrams underrepresented | Open |
+| chart-simple raster | Docs 02 and 05 have raster charts; Docs 01 and 04 charts are all vector | Covered |
+| Algorithm pseudocode | Doc 11 has 10 algorithm screenshots; single content type in entire PPTX | Covered |
+| Equations as images | Doc 11 has 4 rendered equations; unique content type | Covered |
+| Scanned documents | Docs 07-09 cover letter, form, and newspaper; good variety | Covered |
+
+### Corpus Summary
+
+| Category | Docs | Content images | Decorative | Vector figures | Tables |
+|----------|------|---------------|------------|----------------|--------|
+| multi-image | 02, 05, 06, 11 | 74 | 24 | 12 | 24 |
+| vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
+| text-heavy | 00, 03 | 1 | 4 | 0 | 4 |
+| scanned | 07, 08 | 8 | 0 | 0 | 0 |
+| mixed-content | 09 | 6 | 0 | 0 | 0 |
+| text-only | 10 | 0 | 0 | 0 | 4 |
+| **Total** | **12** | **90** | **30** | **46** | **35** |
 
 
 ---
@@ -512,7 +530,92 @@ FORM objects that the 1-level scan does not reach.
 
 ## Doc 06: arxiv_2206_01062.pdf
 
-*Pending inspection*
+**Format:** PDF, 9 pages
+**Category:** multi-image
+**Source:** arXiv 2206.01062 -- "DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis"
+
+### Embedded Images
+
+Verified via pypdfium2 PDF object inspection. All pages also checked for
+nested images inside Form XObjects -- every IMAGE object has a nested
+duplicate inside a FORM on the same page.
+
+| # | Page | Content Type | Pixel Size | Description | Notes |
+|---|------|-------------|------------|-------------|-------|
+| 1 | 1 | screenshot | 271x459 | Figure 1 thumbnail 1: Example document page with colored bounding boxes showing layout categories (text, title, list, table, figure) | Small thumbnail on title page; 28x47 pts |
+| 2 | 1 | decorative | 20x20 | Small icon element on title page | Tiny decorative square |
+| 3 | 1 | screenshot | 20x20 | Small icon element on title page | Duplicate size of #2 |
+| 4 | 1 | screenshot | 140x189 | Figure 1 thumbnail 2: Example annotated document page | Title page thumbnail; 30x40 pts |
+| 5 | 1 | screenshot | 140x189 | Figure 1 thumbnail 3: Example annotated document page | Title page thumbnail; duplicate dimensions of #4 |
+| 6 | 1 | screenshot | 170x166 | Figure 1 thumbnail 4: Example annotated document page with different layout | Title page thumbnail; 37x36 pts |
+| 7 | 4 | screenshot | 1120x1512 | Figure 3: Annotation user interface -- screenshot of the CCS annotation tool showing PDF page with bounding boxes and label palette | Large screenshot; 623x841 pts (nearly full page) |
+| 8 | 4 | screenshot | 486x1528 | Annotated PDF pages column -- series of annotated document examples showing different layout categories | 266x837 pts; appears alongside Table 1 |
+| 9 | 5 | screenshot | 1025x1025 | Figure 4 example 1: Document page showing plausible annotation alternatives | Part of 2x4 grid of examples |
+| 10 | 5 | screenshot | 1025x1025 | Figure 4 example 2: Document page with alternative annotations | 2x4 grid |
+| 11 | 5 | screenshot | 1025x1025 | Figure 4 example 3: Document page with alternative annotations | 2x4 grid |
+| 12 | 5 | screenshot | 1025x1025 | Figure 4 example 4: Document page with alternative annotations | 2x4 grid |
+| 13 | 5 | screenshot | 1025x1025 | Figure 4 example 5: Document page with alternative annotations | 2x4 grid |
+| 14 | 5 | screenshot | 1025x1025 | Figure 4 example 6: Document page with alternative annotations | 2x4 grid |
+| 15 | 5 | screenshot | 1025x1025 | Figure 4 example 7: Document page with alternative annotations | 2x4 grid |
+| 16 | 5 | screenshot | 1025x1025 | Figure 4 example 8: Document page with alternative annotations | 2x4 grid |
+| 17 | 5 | decorative | 434x26 | Thin separator bar between Figure 4 rows | 8 identical bars interspersed with the 8 content images |
+| 18-23 | 5 | decorative | 434x26 | Additional thin separator bars (x6) | Same as #17 |
+| 24 | 5 | decorative | 434x26 | Final separator bar | Same as #17 |
+| 25 | 9 | screenshot | 1025x1025 | Figure 6 example 1: Layout prediction on document page with colored bounding boxes | Part of 2x3 grid showing model predictions |
+| 26 | 9 | screenshot | 1025x1025 | Figure 6 example 2: Layout prediction on document page | 2x3 grid |
+| 27 | 9 | screenshot | 1025x1025 | Figure 6 example 3: Layout prediction on document page | 2x3 grid |
+| 28 | 9 | screenshot | 1025x1025 | Figure 6 example 4: Layout prediction on document page | 2x3 grid |
+| 29 | 9 | screenshot | 1025x1025 | Figure 6 example 5: Layout prediction on document page | 2x3 grid |
+| 30 | 9 | screenshot | 1025x1025 | Figure 6 example 6: Layout prediction on document page | 2x3 grid |
+
+**Total embedded images:** 30 (22 screenshot, 8 decorative)
+**Pages with image objects:** 1, 4, 5, 9
+**Pages with no image objects:** 2, 3, 6, 7, 8
+
+Note: Each IMAGE object on every page also has an identical nested copy
+inside a FORM XObject (6 nested on page 1, 2 nested on page 4, 16 nested
+on page 5, 6 nested on page 9).
+
+### Vector Figures (PATH + TEXT + FORM, no raster image objects)
+
+| # | Page | Content Type | Label | Description | Object Counts |
+|---|------|-------------|-------|-------------|---------------|
+| 1 | 3 | chart-simple | Figure 2 | DocLayNet page distribution by document category -- pie chart showing Financial Reports, Manuals, Scientific Articles, Laws & Regulations, Patents, Government Tenders proportions | 1 FORM, 8 PATH |
+| 2 | 6 | chart-complex | Figure 5 | Prediction performance (mAP) comparison across models and label sets -- line chart with multiple series | 19 FORM, 133 PATH |
+
+**Total vector figures:** 2 (1 chart-simple, 1 chart-complex)
+
+### Tables (native text)
+
+| # | Page | Rows | Cols | Description | Notes |
+|---|------|------|------|-------------|-------|
+| 1 | 4 | ~12 | 6 | Table 1: DocLayNet dataset overview -- label frequencies per document category (Financial Reports, Manuals, etc.) with totals | Shares page with Figure 3 (raster); 82 PATH for borders |
+| 2 | 6 | ~8 | 5 | Table 2: Prediction performance (mAP) across models -- Faster R-CNN, Mask R-CNN, YOLO v5 on different label sets | Shares page with Figure 5 (vector); 133 PATH includes both table borders and chart |
+| 3 | 7 | ~8 | 5 | Table 3: Effect of pre-training data -- model performance with different pre-training datasets | 103 PATH for borders |
+| 4 | 7 | ~6 | 5 | Table 4: Effect of image resolution -- model performance at different DPI settings | Shares page with Table 3 |
+| 5 | 8 | ~8 | 6 | Table 5: Cross-dataset prediction performance -- models trained on DocLayNet vs PubLayNet vs DocBank evaluated across datasets | 68 PATH for borders |
+
+**Total native tables:** 5
+
+### Summary
+
+Estimated count in fixtures/README.md was ~5. Actual count is 30 embedded
+raster images across 6 labeled figures (Figures 1, 3, 4, 6) and decorative
+elements, plus 2 vector-drawn figures (Figures 2 and 5) and 5 native text
+tables (Tables 1-5). The document is image-heavy relative to its 9 pages:
+Figure 4 alone contributes 16 IMAGE objects (8 content + 8 decorative
+separator bars), and Figure 6 contributes 6. All content images are
+screenshots of annotated document pages (1025x1025 px each) used to
+illustrate layout analysis results. The thin separator bars (434x26 px)
+on page 5 are decorative and should be filtered during extraction.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
 
 
 ---
@@ -520,7 +623,54 @@ FORM objects that the 1-level scan does not reach.
 
 ## Doc 07: epa_sample_letter.pdf
 
-*Pending inspection*
+**Format:** PDF, 3 pages
+**Category:** scanned
+**Source:** US EPA Office of Ground Water and Drinking Water -- sample letter
+to state drinking water administrators about Lead and Copper Rule compliance
+
+### Embedded Images
+
+Verified via pypdfium2 PDF object inspection. No Form XObjects found.
+
+| # | Page | Content Type | Pixel Size | Description | Notes |
+|---|------|-------------|------------|-------------|-------|
+| 1 | 1 | other | 1275x1650 | Full-page scan: EPA letterhead with agency name, "SAMPLE LETTER" header, date, salutation, and body text about Safe Drinking Water Act compliance | Full page (612x792 pts); page also has 1 TEXT object |
+| 2 | 2 | other | 1275x1650 | Full-page scan: continuation of letter body with numbered action items and bulleted policy goals | Full page (612x792 pts); no TEXT objects |
+| 3 | 3 | other | 1275x1650 | Full-page scan: closing paragraph, signature block (Joel Beauvais, Deputy Assistant Administrator), "Enclosure" note | Full page (612x792 pts); no TEXT objects; mostly white space |
+
+**Total embedded images:** 3 (all full-page scans)
+**Pages with image objects:** 1, 2, 3
+**Pages with no image objects:** (none)
+
+### Vector Figures
+
+No vector figures. No PATH, FORM, or SHADING objects on any page.
+
+**Total vector figures:** 0
+
+### Tables (native text)
+
+No tables. The document is a plain typed letter with no tabular data.
+
+**Total native tables:** 0
+
+### Summary
+
+Listed as 1 page in the fixture index -- actual page count is 3. This is a
+classic scanned document: each page consists of a single full-page raster
+image (1275x1650 px at ~150 DPI) with no native text, vector, or structured
+content. Page 1 has one TEXT object (possibly from partial OCR) but pages 2-3
+are pure image. The content is a government letter with no charts, figures,
+or data tables -- only typed prose. Useful as a scanned-document test case
+for OCR quality evaluation but provides no image annotation targets.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
 
 
 ---
@@ -528,7 +678,62 @@ FORM objects that the 1-level scan does not reach.
 
 ## Doc 08: xerox_mfp_scan_forestburg.pdf
 
-*Pending inspection*
+**Format:** PDF, 5 pages
+**Category:** scanned
+**Source:** Forestburg ISD (Texas) -- scanned employment application package
+from a Xerox multifunction printer
+
+### Embedded Images
+
+Verified via pypdfium2 PDF object inspection. No Form XObjects, no TEXT,
+no PATH objects on any page -- pure image-only scans.
+
+| # | Page | Content Type | Pixel Size | Description | Notes |
+|---|------|-------------|------------|-------------|-------|
+| 1 | 1 | other | 2208x1728 | Full-page scan: Personal information form -- Forestburg ISD letterhead with longhorn logo, fields for name, address, phone, employment eligibility | Landscape orientation (795x622 pts); form with blank fields and check boxes |
+| 2 | 2 | other | 2208x1728 | Full-page scan: Employment history -- criminal history question, driver's license, 3 repeated employment blocks (company, address, supervisor, dates, reason for leaving) | Structured repeating form layout |
+| 3 | 3 | other | 2208x1728 | Full-page scan: References and education -- 3-column references table, education table (school, course, years, degree), military service section | Contains table structures within the scan |
+| 4 | 4 | other | 2208x1728 | Full-page scan: DPS Computerized Criminal History (CCH) Verification (Agent Copy) -- legal text about background check process, signature fields | Dense text with form fields at bottom |
+| 5 | 5 | other | 2208x1728 | Full-page scan: Criminal History Record Information Addendum -- personal info fields (name, SSN, DOB, sex, ethnicity), signature/date line | Shorter form; mostly white space in lower half |
+
+**Total embedded images:** 5 (all full-page scans)
+**Pages with image objects:** 1, 2, 3, 4, 5
+**Pages with no image objects:** (none)
+
+### Vector Figures
+
+No vector figures. Zero PATH, FORM, TEXT, or SHADING objects on any page.
+
+**Total vector figures:** 0
+
+### Tables (native text)
+
+No native tables. All tabular structures (employment history blocks,
+references table, education table) exist only within the scanned images
+and are not extractable as structured data without OCR.
+
+**Total native tables:** 0
+
+### Summary
+
+This is a 5-page scanned employment application from a Xerox MFP scanner.
+Every page is a single full-page raster image (2208x1728 px, landscape
+at ~200 DPI) with absolutely no native text or vector content. The scans
+contain structured form layouts with labeled fields, check boxes, and
+tabular sections (employment history, references, education) that exist
+only as pixels. Useful as a scanned-form test case: tests OCR accuracy on
+form field labels and whether the pipeline can recognize table-like
+structures within scanned images. The Forestburg ISD longhorn logo on
+page 1 is a small graphic element within the scan. No annotation targets
+for image description -- the content is purely textual forms.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
 
 
 ---
@@ -536,7 +741,80 @@ FORM objects that the 1-level scan does not reach.
 
 ## Doc 09: archive_newspaper_1948.pdf
 
-*Pending inspection*
+**Format:** PDF, 6 pages
+**Category:** mixed-content
+**Source:** Daily News-Herald, Upland-Ontario, California, Wednesday
+September 1, 1948 (Internet Archive digitized newspaper)
+
+### Embedded Images
+
+Verified via pypdfium2 PDF object inspection. Each page has a single
+high-resolution scanned image PLUS an OCR text overlay (600-1300 TEXT
+objects per page). No Form XObjects or PATH objects.
+
+| # | Page | Content Type | Pixel Size | Description | Notes |
+|---|------|-------------|------------|-------------|-------|
+| 1 | 1 | other | 5508x6845 | Full-page scan: Front page -- masthead "Daily News-Herald", headlines ("COAST SHIP TIEUP LOOMS", "China Bars Foreign Planes", "Espionage Rings"), 2 news photos (men at legal proceeding, group photo), multi-column news layout | 1322x1643 pts; ~300 DPI; OCR overlay: 819 TEXT objects |
+| 2 | 2 | other | 5484x6832 | Full-page scan: Society/ads page -- "CLUBS..SOCIETY" section, large Safeway grocery ad with prices and illustrations, Weber's ad, marriage licenses column | 1316x1640 pts; ad illustrations embedded in scan |
+| 3 | 3 | other | 5484x6832 | Full-page scan: News/services page -- "German Court Releases Nazi Minister Schacht", portrait photo, "Service Information" business directory, Van Heusen shirt ad with illustration | 1316x1640 pts; 936 TEXT objects |
+| 4 | 4 | other | 5485x6823 | Full-page scan: Editorial/comics page -- editorials, Berlin march photo, crossword puzzle, 2 comic strips ("Betty and Bob", another strip), community service notice | 1316x1638 pts; 885 TEXT objects |
+| 5 | 5 | other | 5485x6823 | Full-page scan: Sports/ads page -- "Rotarians 'Rush' Football Season", woman's portrait (phone numbers ad), theater listings (Granada, Park, California, Valley Drive-In), local business ads | 1316x1638 pts; 697 TEXT objects |
+| 6 | 6 | other | 5484x6817 | Full-page scan: Classified ads page -- "CLASSIFIED" banner, dense multi-column listings (for sale, services, real estate, wanted), small ad illustrations | 1316x1636 pts; 1349 TEXT objects (highest) |
+
+**Total embedded images:** 6 (all full-page scans with embedded photos/illustrations)
+**Pages with image objects:** 1, 2, 3, 4, 5, 6
+**Pages with no image objects:** (none)
+
+### Visual content within scans
+
+The following photos and illustrations exist within the full-page scan
+images but are NOT separate image objects in the PDF structure:
+
+- Page 1: 2 news photos (legal proceeding, group photo at event)
+- Page 2: Safeway ad illustrations (grocery items), Weber's logo
+- Page 3: Portrait photo (man in suit), Van Heusen shirt illustration
+- Page 4: Berlin soldiers marching photo, 2 comic strips with panels
+- Page 5: Woman's portrait (large, phone numbers ad), theater ad graphics
+- Page 6: Small classified ad illustrations, decorative typography
+
+These cannot be individually extracted without region detection within
+the full-page scans.
+
+### Vector Figures
+
+No vector figures. Zero PATH or FORM objects on any page.
+
+**Total vector figures:** 0
+
+### Tables (native text)
+
+No native tables. All tabular content (classified ad columns, sports
+scores, grocery price lists) exists only within the scanned images.
+
+**Total native tables:** 0
+
+### Summary
+
+This is a 6-page digitized 1948 newspaper at high resolution (~5500x6800
+px per page, ~300 DPI). Each page consists of a single full-page raster
+scan with an OCR text overlay (600-1349 TEXT objects per page). The
+newspaper contains rich visual content -- news photos, advertisement
+illustrations, comic strips, crossword puzzle, decorative typography --
+but all of it exists within the full-page scan images as pixel data. There
+are no separate embedded image objects for individual photos or ads.
+Category set to "mixed-content" because the document combines scanned
+images with OCR text, and the visual content within the scans includes
+both text and photographs. Useful as a test case for: (1) OCR quality on
+aged newspaper print, (2) multi-column layout detection, (3) whether the
+pipeline can identify photo regions within full-page scans.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
 
 
 ---
@@ -544,7 +822,53 @@ FORM objects that the 1-level scan does not reach.
 
 ## Doc 10: medrxiv_llama4_benchmark.docx
 
-*Pending inspection*
+**Format:** DOCX, ~216 paragraphs
+**Category:** text-only
+**Source:** medRxiv -- supplementary material for LLM medical benchmark
+evaluation (specialty mapping, accuracy comparisons, prompting effects)
+
+### Embedded Images
+
+Inspected via DOCX ZIP archive. No media/ directory, no image files, no
+drawing elements, no blip references in document.xml.
+
+**Total embedded images:** 0
+
+### Vector Figures
+
+Not applicable (DOCX format). No drawing elements in document.xml.
+
+**Total vector figures:** 0
+
+### Tables
+
+Inspected via document.xml table element parsing.
+
+| # | Rows | Cols | Description | Notes |
+|---|------|------|-------------|-------|
+| 1 | 25 | 2 | Table 1A: Specialty mapping to Surgical and Non-surgical domains -- maps medical specialties (Rheumatology, Nephrology, etc.) to domain categories | Simple 2-column lookup table |
+| 2 | 25 | 2 | Table 2: T-test p-values comparing MCQ accuracy between medical vs surgical specialties per model | Statistical results table |
+| 3 | 40 | ~5 | Table 3: Effect of prompting for selected LLMs -- base, base + few-shot, instruct, instruct + few-shot accuracy per model (GPT-4o, Llama variants, etc.) | Largest table; multi-condition comparison |
+| 4 | 4 | 5 | Supplementary table -- additional statistical data | Small summary table |
+
+**Total tables:** 4
+
+### Summary
+
+This is a pure text/table supplementary materials document with zero
+images of any kind. The DOCX ZIP archive contains only document.xml,
+styles, fonts, and theme -- no media/ folder. The 4 tables contain
+medical specialty mappings and LLM benchmark accuracy comparisons.
+Category set to "text-only" as there are no annotation targets. Useful
+only for testing table extraction quality on DOCX format.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
 
 
 ---
@@ -552,4 +876,80 @@ FORM objects that the 1-level scan does not reach.
 
 ## Doc 11: policy_gradient_rl_lecture.pptx
 
-*Pending inspection*
+**Format:** PPTX, 80 slides
+**Category:** multi-image
+**Source:** Reinforcement learning lecture slides covering TD learning,
+Q-learning, SARSA, policy gradients, actor-critic, DQN, and A3C
+
+### Embedded Images
+
+Inspected via PPTX ZIP archive media/ directory. 26 PNG files found,
+mapped to slides via relationship files.
+
+**Algorithm pseudocode boxes (screenshots from textbooks/papers):**
+
+| # | Slide | Content Type | Pixel Size | Description | Notes |
+|---|-------|-------------|------------|-------------|-------|
+| 1 | 36 | screenshot | 784x307 | Tabular TD(0) for estimating v_pi -- pseudocode with initialize V(s), episode loop, TD update rule | image11.png; Sutton & Barto style |
+| 2 | 39 | screenshot | 744x301 | Sarsa: An on-policy TD control algorithm -- pseudocode with Q(S,A) update, epsilon-greedy action selection | image13.png |
+| 3 | 41 | screenshot | 767x277 | Q-learning: An off-policy TD control algorithm -- pseudocode with max_a Q(S',a) update | image15.png |
+| 4 | 48 | screenshot | 699x356 | DQN loss function and gradient from Mnih et al. -- mathematical text with equations (2) and (3) for Q-network training | image16.png; excerpt from Nature paper |
+| 5 | 49 | screenshot | 717x362 | Algorithm 1: Deep Q-learning with Experience Replay -- full pseudocode with replay memory, minibatch sampling | image17.png; Mnih et al. |
+| 6 | 60 | screenshot | 753x265 | REINFORCE: A Monte-Carlo Policy-Gradient Method (episodic) -- pseudocode with G_t return calculation and theta update | image20.png; Sutton & Barto |
+| 7 | 63 | screenshot | 753x477 | One-step Actor-Critic (episodic) -- pseudocode with policy weights theta, value weights w, TD error delta | image22.png; Sutton & Barto |
+| 8 | 72 | screenshot | 470x441 | Algorithm 1: Asynchronous one-step Q-learning -- pseudocode for actor-learner thread with target network updates | image23.png; Mnih et al. A3C paper |
+| 9 | 76 | screenshot | 797x578 | Algorithm S2: Asynchronous n-step Q-learning -- pseudocode for actor-learner thread with n-step returns | image24.png; A3C supplementary |
+| 10 | 79 | screenshot | 803x482 | Algorithm S3: Asynchronous advantage actor-critic -- pseudocode with policy gradient and value function updates | image26.png; A3C supplementary |
+
+**Mathematical equations (rendered as images):**
+
+| # | Slide | Content Type | Pixel Size | Description | Notes |
+|---|-------|-------------|------------|-------------|-------|
+| 11 | 55 | equation | 246x70 | Softmax policy parameterization: pi(a|s,theta) = exp(h(s,a,theta)) / sum_b exp(h(s,b,theta)) | image18.png |
+| 12 | 58 | equation | 336x72 | REINFORCE update rule: theta_{t+1} = theta_t + alpha * gamma^t * G_t * grad log pi(A_t|S_t,theta) | image19.png |
+| 13 | 62 | equation | 567x131 | Actor-critic update with baseline: theta_{t+1} = theta_t + alpha * (G^(1) - v_hat) * grad log pi / pi | image21.png; two-line equation |
+| 14 | 78 | equation | 941x78 | Generalized advantage estimate: sum gamma^i r_{t+i} + gamma^k V(s_{t+k}) - V(s_t) | image25.png |
+
+**Decorative elements (white/blank separator bars):**
+
+| # | Slides | Content Type | Pixel Size | Description | Notes |
+|---|--------|-------------|------------|-------------|-------|
+| 15-26 | 21-34 | decorative | various (83-244 px height, 782-2369 px width) | White/blank horizontal bars used as slide separators or spacers | 12 images: image1-10, image12, image14; all appear blank white |
+
+**Total embedded images:** 26 (10 algorithm pseudocode, 4 equations, 12 decorative)
+**Slides with images:** 24 of 80 slides
+**Slides without images:** 56 slides (text, bullet points, mathematical notation in native PPTX format)
+
+### Vector Figures
+
+Not applicable (PPTX format). No chart files in the archive.
+
+**Total vector figures:** 0
+
+### Tables
+
+No tables found in the PPTX content.
+
+**Total tables:** 0
+
+### Summary
+
+Estimated count in fixtures/README.md was ~25. Actual count is 26 media
+files across 80 slides, but only 14 contain meaningful content (10
+algorithm pseudocode boxes + 4 mathematical equations). The remaining 12
+are blank white separator bars. All content images are screenshots from
+RL textbooks (Sutton & Barto) and papers (Mnih et al. DQN, A3C) showing
+algorithm pseudocode with mathematical notation. No charts, diagrams, or
+photographs. The 56 slides without images contain native PPTX text with
+bullet points, equations, and lecture content. This document tests: (1)
+annotation of algorithm pseudocode images, (2) filtering of blank
+decorative images, (3) PPTX format handling. Category confirmed as
+"multi-image" due to 14 content images.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
