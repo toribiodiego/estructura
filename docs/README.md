@@ -37,6 +37,7 @@ docs/
     documentation.md                   voice, formatting, visual aids, file naming conventions
     engineering.md                     evidence-based decisions, repo hygiene, focused changes
     pdf-image-inspection.md            two-layer verification methodology for PDF image cataloging
+    office-document-inspection.md      two-layer verification methodology for DOCX/PPTX/XLSX cataloging
 ```
 
 <br><br>
@@ -83,6 +84,7 @@ docs/
 | `standards/documentation.md` | Documentation standards adapted from konsillix: active voice, `<br><br>` spacing, language-tagged code blocks, inline backtick rules, Mermaid diagram format, kebab-case filenames. |
 | `standards/engineering.md` | Lean engineering standards for the POC: evidence-based decisions, repository hygiene, focused changes. Skips production-readiness rules that apply to KVision. |
 | `standards/pdf-image-inspection.md` | Two-layer verification methodology (pypdfium2 structural scan + visual page rendering) for cataloging images in PDF fixtures. |
+| `standards/office-document-inspection.md` | Two-layer verification methodology (ZIP structure scan + visual rendering) for cataloging images and charts in DOCX, PPTX, and XLSX fixtures. |
 
 <br><br>
 
