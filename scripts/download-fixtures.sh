@@ -6,7 +6,7 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 12 documents
+#   ./scripts/download-fixtures.sh          # all 20 documents
 #   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -168,6 +168,14 @@ if [[ "$QUICK" == false ]]; then
 
     download "text-heavy" "17_arxiv_fractional_brownian_sde.pdf" \
         "https://arxiv.org/pdf/2306.08324.pdf" \
+        ""
+
+    download "multi-image" "18_ibm_microservices_redbook.pdf" \
+        "https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf" \
+        ""
+
+    download "multi-image" "19_cris_electronic_screens_2023.docx" \
+        "https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recovery%20Impact%20Statement%20-%20Electronic%20Screens%20-%202023.docx" \
         ""
 fi
 

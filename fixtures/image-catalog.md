@@ -30,6 +30,8 @@ followed by pipeline extraction comparison.
 | 15 | 15_timetable.jpg | JPG | 1 | table-image | Yes |
 | 16 | 16_cambridge_mitoball_biology.docx | DOCX | n/a | multi-image | Yes |
 | 17 | 17_arxiv_fractional_brownian_sde.pdf | PDF | 24 | text-heavy | Yes |
+| 18 | 18_ibm_microservices_redbook.pdf | PDF | 170 | multi-image | Yes |
+| 19 | 19_cris_electronic_screens_2023.docx | DOCX | n/a | multi-image | Yes |
 
 **Other files** (moved to `fixtures/other/`, not part of evaluation):
 - `medrxiv_llm_imaging_eval.xlsx` -- tabular data, no images
@@ -60,7 +62,7 @@ as documents are cataloged.
 |-----|-------------|--------|
 | Infographics | Only Doc 01 (GPT-4) and Doc 04 (Anthropic) have infographic-style figures; limited variety | Open |
 | Photos (non-scanned) | Doc 05 has consumer photos; Doc 16 adds scientific microscopy | Improved |
-| Diagrams | Only Docs 02, 05 have structured diagrams; flow/architecture diagrams underrepresented | Open |
+| Diagrams | Docs 02, 05 have structured diagrams; Doc 18 adds ~27 architecture diagrams (component, sequence, deployment, topology) | Covered |
 | Equations as images | Doc 11 has 4 rendered equations; Doc 17 adds 63 native LaTeX equations across 24 pages | Covered |
 | DOCX with images | Doc 16 adds 8 scientific figures in DOCX format | Covered |
 | chart-simple raster | Docs 02 and 05 have raster charts; Docs 01 and 04 charts are all vector | Covered |
@@ -72,14 +74,14 @@ as documents are cataloged.
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16 | 83 | 28 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19 | 121 | 31 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **18** | **102** | **34** | **46** | **35** |
+| **Total** | **20** | **140** | **37** | **46** | **35** |
 
 
 ---
@@ -1172,6 +1174,174 @@ in born-digital PDFs, (2) annotate formal mathematical notation with correct
 symbol identification, (3) handle multi-line aligned derivations and nested
 expressions. The equation styles are diverse: display equations, inline math,
 multi-line proofs, theorem/definition environments.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
+
+
+## Doc 18: ibm_microservices_redbook.pdf
+
+**Format:** PDF, 170 pages (7.0 MB)
+**Category:** multi-image
+**Source:** IBM Redbooks -- "Microservices: From Theory to Practice" (SG24-8275-00, April 2016)
+
+### Embedded Images
+
+Total raster images: 206 across 72 pages (many are composited icon elements
+within complex architecture diagrams). 91 named figures spanning architecture
+diagrams, UI screenshots, process diagrams, and code listings.
+
+#### Architecture and System Diagrams (~27 figures)
+
+| Figure | Description | Content Type |
+|--------|-------------|-------------|
+| 1-1 | Sample application using microservices | diagram |
+| 1-2 | Monolithic multi-tiered architecture | diagram |
+| 1-3 | Microservices architecture with multiple languages and data stores | diagram |
+| 2-1 | "Old" style of service design | diagram |
+| 2-2 | Application redesigned with microservices approach | diagram |
+| 2-3 | Circuit breaker sequence diagram | diagram |
+| 2-4 | Bulkhead pattern: separate thread pools to isolate failure | diagram |
+| 2-5 | RESTful API calls between client and services | diagram |
+| 2-6 | Fronting microservices with an API Gateway | diagram |
+| 2-8 | REST architecture with intermediary caches | diagram |
+| 2-9 | Common use cases for messaging | diagram |
+| 2-10 | Event notification for stock price | diagram |
+| 3-4 | Decentralized data store for microservices | diagram |
+| 3-5 | Microservices transformation | diagram |
+| 4-5 | Cloud integration flow | diagram |
+| 5-2 | North Star Architecture for DevOps Services | diagram |
+| 5-3 | High-level Bluemix console architecture (pre-microservice) | diagram |
+| 5-6 | Bluemix console microservice transformation end-goal | diagram |
+| 5-8 | IBM Watson Developer Cloud platform architecture (multi-layer) | diagram |
+| 5-9 | IBM IaaS++ architecture (multi-zone with availability regions) | diagram |
+| 5-11 | Service register and discovery | diagram |
+| 5-12 | Onboarding a Watson service to cloud environment | diagram |
+| 6-2 | CloudTrader components overview | diagram |
+| 6-4 | CloudTrader with externalized Quote microservice | diagram |
+| 8-1 | Acme Air monolithic architecture | diagram |
+| 8-12 | Acme Air microservices architecture | diagram |
+| 4-16 | Communication between applications in Bluemix | diagram |
+
+#### Process and Framework Diagrams (~8 figures)
+
+| Figure | Description | Content Type |
+|--------|-------------|-------------|
+| 2-7 | Hills Playback timeline | infographic |
+| 3-1 | DevOps approach: continuous delivery | infographic |
+| 3-2 | Common challenges with traditional software delivery | infographic |
+| 3-3 | IBM DevOps framework to continuous delivery | infographic |
+| 4-2 | Applications on Bluemix (deployment flow) | diagram |
+| 4-3 | Bluemix deployment models (local, dedicated, public) | diagram |
+| 4-8 | Application lifecycle management of microservices | infographic |
+| 4-12 | Multi-region DevOps delivery pipeline | diagram |
+
+#### UI Screenshots (~20 figures)
+
+Figures 4-1, 4-6, 4-7, 4-9, 4-10, 4-11, 4-13, 4-14, 4-15, 4-17,
+5-1, 5-5, 5-10, 6-1, 6-5, 7-1, 7-2, 7-3, 8-2 through 8-11, 8-13
+through 8-18.
+
+Content: Bluemix dashboard views, service catalogs, deployment
+consoles, monitoring dashboards, Hystrix dashboard, code editors.
+All are raster screenshots of web UIs.
+
+### Image Summary
+
+| Content Type | Count | Notes |
+|-------------|-------|-------|
+| diagram | ~27 | Architecture, component, sequence, deployment, topology |
+| infographic | ~5 | DevOps frameworks, timelines, process flows |
+| screenshot | ~20 | Bluemix/Watson dashboard UIs, deployment consoles |
+| decorative | 0 | No decorative images |
+| Total content images | ~52 | Counted from 91 named figures minus inline text refs |
+
+Annotation targets: Architecture diagrams (27) and process diagrams (5)
+are the primary annotation targets. UI screenshots (20) are secondary.
+
+### Summary
+
+IBM Redbooks technical guide covering microservices architecture patterns,
+DevOps practices, and IBM Bluemix deployment. The document's primary value
+for our evaluation is its ~27 architecture diagrams spanning component
+diagrams (microservices decomposition), sequence diagrams (circuit breaker),
+deployment diagrams (Bluemix regions, scaling), topology diagrams (Watson
+platform layers, IaaS zones), and pattern diagrams (API gateway, bulkhead,
+messaging). Diagrams range from simple box-and-arrow (2-3 components) to
+complex multi-layer architectures (Watson Developer Cloud with 4 layers and
+12+ components; IaaS++ with availability zones, regions, and service mesh).
+This directly addresses the "Diagrams" gap -- no complex architecture/UML
+diagrams existed in the corpus before this fixture.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
+
+
+## Doc 19: cris_electronic_screens_2023.docx
+
+**Format:** DOCX (1.3 MB)
+**Category:** multi-image
+**Source:** Australian Government Office of Impact Analysis -- CRIS Electronic
+Screens 2023 (Equipment Energy Efficiency / E3 program)
+
+### Embedded Images
+
+Total media files: 18 (11 content images + 3 decorative + 3 spacers + 1 icon)
+
+| Image | Description | Content Type | Difficulty |
+|-------|-------------|-------------|------------|
+| image1 | E3 program cover page with appliance icons | decorative | -- |
+| image2 | Small icon/label (5K PNG) | decorative | -- |
+| image3 | Spacer (134 bytes) | spacer | -- |
+| image4 | Spacer (134 bytes) | spacer | -- |
+| image5 | Pie chart: equipment type market share (5 segments with %) | chart-simple | Easy |
+| image6 | Photo: airport departure hall with electronic display screens | photo | Medium |
+| image7 | Photo: Changi Airport digital signage kiosk | photo | Easy |
+| image8 | Stacked area chart: EU energy use on-mode 1990-2030 (3 series) | chart-simple | Easy |
+| image9 | Scatter/strip chart: energy ratings data (small, dense) | chart-complex | Medium |
+| image10 | Multi-line chart: on-mode power vs screen area, 9 regulatory lines | chart-complex | Medium |
+| image11 | Multi-line chart: max ON-mode power vs screen area, 11 lines with annotations | chart-complex | Hard |
+| image12 | Bar chart: star rating distribution histogram (12 bars) | chart-simple | Easy |
+| image13 | Energy rating label: Super Efficiency (199 kWh) | infographic | Easy |
+| image14 | Energy rating label: Standard (485 kWh) | infographic | Easy |
+| image15 | Spacer (140 bytes) | spacer | -- |
+| image16 | Spacer (141 bytes) | spacer | -- |
+| image17 | Small divider (767 bytes) | decorative | -- |
+| image18 | E3 back cover page (logo) | decorative | -- |
+
+### Image Summary
+
+| Content Type | Count | Notes |
+|-------------|-------|-------|
+| chart-simple | 3 | Pie, stacked area, bar histogram |
+| chart-complex | 3 | Scatter/strip, 2 multi-line regulatory comparisons |
+| photo | 2 | Airport electronic display scenes |
+| infographic | 2 | Australian energy rating labels |
+| decorative | 4 | Cover pages, icon, divider |
+| spacer | 3 | Sub-200-byte transparent PNGs |
+| Total content images | 10 | |
+
+### Summary
+
+Australian government regulatory impact assessment on electronic display
+energy efficiency standards. This fixture is critical for filling the DOCX
+format gap: it provides the first raster charts in DOCX format (3 simple +
+3 complex), the first easy/medium-difficulty DOCX images (previously DOCX
+had only 8 hard-difficulty photos from Doc 16), and expands DOCX content
+type coverage from 1 type (photo) to 4 types (chart-simple, chart-complex,
+photo, infographic). All charts are pasted as raster PNG/JPEG images rather
+than EMF vector metafiles, making them proper extraction targets for the
+pipeline.
 
 ### Pipeline Extraction
 

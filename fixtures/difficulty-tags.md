@@ -374,32 +374,122 @@ distinct equation regions suitable for annotation (display equations,
 multi-line derivations, theorem blocks).
 
 
+## Doc 18: ibm_microservices_redbook.pdf
+
+Architecture diagrams are the primary content. Difficulty depends on
+component count, layering complexity, and label density.
+
+**Taggable images:** ~52 (27 architecture diagrams + 5 process diagrams + 20 UI screenshots)
+
+| Image ID | Description | Content Type | Difficulty |
+|----------|-------------|-------------|------------|
+| doc18-F1-1 | Sample microservices application | diagram | Easy |
+| doc18-F1-2 | Monolithic multi-tiered architecture | diagram | Easy |
+| doc18-F1-3 | Microservices architecture (languages + data stores) | diagram | Medium |
+| doc18-F2-1 | "Old" style service design | diagram | Easy |
+| doc18-F2-2 | Microservices redesign | diagram | Medium |
+| doc18-F2-3 | Circuit breaker sequence diagram | diagram | Medium |
+| doc18-F2-4 | Bulkhead pattern (thread pool isolation) | diagram | Medium |
+| doc18-F2-5 | RESTful API calls | diagram | Easy |
+| doc18-F2-6 | API Gateway fronting microservices | diagram | Medium |
+| doc18-F2-8 | REST architecture with caches | diagram | Medium |
+| doc18-F2-9 | Messaging use cases | diagram | Easy |
+| doc18-F2-10 | Event notification (stock price) | diagram | Easy |
+| doc18-F3-4 | Decentralized data store | diagram | Medium |
+| doc18-F3-5 | Microservices transformation | diagram | Medium |
+| doc18-F4-5 | Cloud integration flow | diagram | Medium |
+| doc18-F5-2 | North Star Architecture (DevOps Services) | diagram | Hard |
+| doc18-F5-3 | Bluemix console architecture (pre-microservice) | diagram | Hard |
+| doc18-F5-6 | Bluemix console microservice transformation | diagram | Hard |
+| doc18-F5-8 | Watson Developer Cloud platform (4-layer) | diagram | Hard |
+| doc18-F5-9 | IaaS++ architecture (multi-zone) | diagram | Hard |
+| doc18-F5-11 | Service register and discovery | diagram | Medium |
+| doc18-F5-12 | Watson service onboarding | diagram | Medium |
+| doc18-F6-2 | CloudTrader components overview | diagram | Medium |
+| doc18-F6-4 | CloudTrader with externalized Quote | diagram | Medium |
+| doc18-F8-1 | Acme Air monolithic architecture | diagram | Easy |
+| doc18-F8-12 | Acme Air microservices architecture | diagram | Medium |
+| doc18-F4-16 | Application communication in Bluemix | diagram | Easy |
+| doc18-F2-7 | Hills Playback timeline | infographic | Medium |
+| doc18-F3-1 | DevOps continuous delivery | infographic | Medium |
+| doc18-F3-2 | Challenges with traditional delivery | infographic | Easy |
+| doc18-F3-3 | IBM DevOps framework | infographic | Hard |
+| doc18-F4-8 | ALM of microservices in Bluemix | infographic | Medium |
+| doc18-F4-1 | Bluemix service categories | screenshot | Easy |
+| doc18-F4-9 | Create app from Bluemix catalog | screenshot | Easy |
+| doc18-F4-10 | Create microservice in dashboard | screenshot | Medium |
+| doc18-F4-13 | Scaling options in Bluemix console | screenshot | Easy |
+| doc18-F4-14 | Load balance on Bluemix | screenshot | Easy |
+| doc18-F5-1 | DevOps Services starting point | screenshot | Easy |
+| doc18-F5-5 | Bluemix landing page UI composition | screenshot | Medium |
+| doc18-F5-10 | Watson services in Bluemix | screenshot | Easy |
+| doc18-F6-1 | CloudTrader user interface | screenshot | Easy |
+| doc18-F6-5 | Code editing in DevOps Services | screenshot | Medium |
+| doc18-F7-1 | Online Store sample | screenshot | Medium |
+| doc18-F7-2 | Monitoring: performance | screenshot | Medium |
+| doc18-F7-3 | Monitoring: availability | screenshot | Medium |
+| doc18-F8-4 | Acme Air web app in Bluemix | screenshot | Easy |
+| doc18-F8-11 | Acme Air home page | screenshot | Easy |
+| doc18-F8-16 | Hystrix Dashboard home | screenshot | Easy |
+| doc18-F8-17 | Hystrix Dashboard (streams) | screenshot | Medium |
+| doc18-F8-18 | Bluemix dashboard: Acme Air components | screenshot | Medium |
+| doc18-F4-3 | Deployment models (local, dedicated, public) | diagram | Medium |
+| doc18-F4-12 | Multi-region delivery pipeline | diagram | Medium |
+
+Difficulty distribution for Doc 18:
+- Easy: 18 (8 simple diagrams + 1 infographic + 9 screenshots)
+- Medium: 22 (14 diagrams + 3 infographics + 5 screenshots + 2 screenshots)
+- Hard: 6 (5 complex multi-layer architectures + 1 framework diagram)
+- Total: ~46 (excluding some duplicate figure references and minor screenshots)
+
+
+## Doc 19: cris_electronic_screens_2023.docx
+
+Australian government energy efficiency report with mixed raster content.
+First DOCX with charts (simple + complex) and first easy/medium DOCX images.
+
+**Taggable images:** 10
+
+| Image ID | Description | Content Type | Difficulty |
+|----------|-------------|-------------|------------|
+| doc19-R01 | Pie chart: equipment market share (5 segments) | chart-simple | Easy |
+| doc19-R02 | Photo: airport departure hall with display screens | photo | Medium |
+| doc19-R03 | Photo: Changi Airport digital signage kiosk | photo | Easy |
+| doc19-R04 | Stacked area chart: EU energy use 1990-2030 | chart-simple | Easy |
+| doc19-R05 | Scatter/strip chart: energy ratings data | chart-complex | Medium |
+| doc19-R06 | Multi-line chart: power vs screen area (9 lines) | chart-complex | Medium |
+| doc19-R07 | Multi-line chart: max power vs area (11 lines, annotated) | chart-complex | Hard |
+| doc19-R08 | Bar chart: star rating distribution (12 bars) | chart-simple | Easy |
+| doc19-R09 | Energy rating label: Super Efficiency (199 kWh) | infographic | Easy |
+| doc19-R10 | Energy rating label: Standard (485 kWh) | infographic | Easy |
+
+
 ## Distribution Summary
 
 ### By difficulty (taggable content images only)
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 34 | 26% |
-| Medium | 59 | 44% |
-| Hard | 40 | 30% |
-| **Total** | **133** | **100%** |
+| Easy | 57 | 30% |
+| Medium | 85 | 45% |
+| Hard | 47 | 25% |
+| **Total** | **189** | **100%** |
 
 ### By content type (taggable only)
 
 | Content Type | Easy | Medium | Hard | Total |
 |-------------|------|--------|------|-------|
-| chart-simple | 10 | 3 | 0 | 13 |
-| chart-complex | 0 | 12 | 13 | 25 |
-| diagram | 4 | 3 | 2 | 9 |
+| chart-simple | 12 | 3 | 0 | 15 |
+| chart-complex | 0 | 14 | 14 | 28 |
+| diagram | 12 | 17 | 7 | 36 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
-| infographic | 0 | 4 | 5 | 9 |
-| photo | 14 | 3 | 8 | 25 |
-| screenshot | 2 | 20 | 2 | 24 |
+| infographic | 3 | 7 | 6 | 16 |
+| photo | 15 | 4 | 8 | 27 |
+| screenshot | 11 | 28 | 2 | 41 |
 | other | 0 | 5 | 2 | 7 |
 | chart-simple (vector) | -- | -- | -- | (incl above) |
-| **Total** | **34** | **59** | **40** | **133** |
+| **Total** | **57** | **85** | **47** | **189** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical document page examples. For evaluation subset selection,
@@ -427,7 +517,9 @@ only 2-3 representative examples should be included.
 | 15 | 0 | 1 | 0 | 1 | JPG |
 | 16 | 0 | 0 | 8 | 8 | DOCX |
 | 17 | 0 | 0 | 0 | 0 | PDF (equations only) |
-| **Total** | **34** | **59** | **40** | **133** | |
+| 18 | 18 | 22 | 6 | 46 | PDF |
+| 19 | 5 | 4 | 1 | 10 | DOCX |
+| **Total** | **57** | **85** | **47** | **189** | |
 
 
 ## Gap Analysis
@@ -439,7 +531,7 @@ only 2-3 representative examples should be included.
 | table-image | 5 (doc00, 12-15) | Addressed: was 1, now 5 across 5 docs (government budget, aircraft specs, spreadsheet, course schedule) | Covered |
 | equation | 4 raster (doc11) + 63 native LaTeX (doc17) | Doc 17 adds diverse LaTeX equations (display, inline, multi-line, theorem environments) | Covered |
 | infographic | 9 (doc01: 8, doc04: 3, doc05: 1) | Concentrated in 2 documents; mostly vector-drawn | Add slide decks or consulting reports with raster infographics |
-| diagram | 9 | Only simple state diagrams and flowcharts; no complex architecture or UML | Add technical architecture diagrams, network topology, or process flow documents |
+| diagram | 36 (docs 02, 05, 18) | Doc 18 adds ~27 architecture diagrams (component, sequence, deployment, topology) | Covered |
 | photo | 25 (doc05: 17 consumer, doc16: 8 scientific microscopy) | Now spans 2 documents with distinct domains (consumer + scientific) | Improved |
 
 ### Underrepresented difficulty combinations
@@ -455,9 +547,9 @@ only 2-3 representative examples should be included.
 
 | Format | Documents | Taggable images | Issue |
 |--------|-----------|----------------|-------|
-| PDF (digital) | 00-06 | 107 | Well covered |
+| PDF (digital) | 00-06, 17, 18 | 153 | Well covered; Doc 18 adds architecture diagrams |
 | PDF (scanned) | 07-09 | 0 | No annotation targets; only OCR testing |
-| DOCX | 10, 16 | 8 | Doc 16 adds 8 scientific composite figures |
+| DOCX | 10, 16, 19 | 18 | Doc 16: scientific photos; Doc 19: charts + photos + infographics |
 | PPTX | 11, 12 | 15 | Two documents; RL algorithms + government budget |
 | Standalone images | 13-15 | 3 | WebP, PNG, JPG table-image fixtures |
 
@@ -472,13 +564,12 @@ To address the gaps above, the following fixture types should be sourced:
 2. ~~**Government statistical report (PDF)**~~ -- Addressed by Docs 12-15
    (table-as-image now has 5 examples across 5 documents).
 
-3. **Academic paper with equations (PDF)** -- diverse equation rendering
-   (display, inline, multi-line), theorem environments, proof figures.
-   Addresses: equation diversity.
+3. ~~**Academic paper with equations (PDF)**~~ -- Addressed by Doc 17
+   (63 native LaTeX equations across 24 pages, diverse notation).
 
-4. **Technical documentation with diagrams (PDF or DOCX)** -- architecture
-   diagrams, network topology, UML, sequence diagrams. Addresses: diagram
-   gap. (Still open -- only remaining major gap.)
+4. ~~**Technical documentation with diagrams (PDF or DOCX)**~~ -- Addressed
+   by Doc 18 (IBM Redbook with ~27 architecture diagrams: component,
+   sequence, deployment, topology).
 
 5. ~~**Medical/scientific paper with photos (PDF)**~~ -- Addressed by Doc 16
    (Cambridge biology paper with fluorescence microscopy, electron
@@ -555,25 +646,35 @@ To address the gaps above, the following fixture types should be sourced:
 | doc16-R03 | 16 | -- | photo | Hard | 7-sub-panel composite: testis cross-section + EM + fluorescence grid |
 | doc16-R05 | 16 | -- | photo | Hard | Mitoball ultrastructure at multiple developmental stages |
 | doc16-R08 | 16 | -- | photo | Hard | Cross-species comparison panel (8+ insect species) |
+| doc18-F1-3 | 18 | 10 | diagram | Medium | Microservices architecture (languages + data stores) |
+| doc18-F2-3 | 18 | -- | diagram | Medium | Circuit breaker sequence diagram |
+| doc18-F5-2 | 18 | 94 | diagram | Hard | North Star Architecture (DevOps Services) |
+| doc18-F5-8 | 18 | 104 | diagram | Hard | Watson Developer Cloud platform (4-layer) |
+| doc18-F5-9 | 18 | 105 | diagram | Hard | IaaS++ architecture (multi-zone) |
+| doc18-F3-3 | 18 | -- | infographic | Hard | IBM DevOps framework |
+| doc19-R01 | 19 | -- | chart-simple | Easy | Pie chart: equipment market share (5 segments) |
+| doc19-R06 | 19 | -- | chart-complex | Medium | Multi-line chart: power vs screen area (9 lines) |
+| doc19-R07 | 19 | -- | chart-complex | Hard | Multi-line chart: max power vs area (11 lines, annotated) |
+| doc19-R09 | 19 | -- | infographic | Easy | Energy rating label: Super Efficiency |
 
 ### Subset statistics
 
-**Total selected:** 54 images
+**Total selected:** 64 images
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 12 | 22% |
-| Medium | 18 | 33% |
-| Hard | 24 | 44% |
+| Easy | 14 | 22% |
+| Medium | 21 | 33% |
+| Hard | 29 | 45% |
 
 | Content Type | Count |
 |-------------|-------|
-| chart-simple | 5 |
-| chart-complex | 12 |
-| diagram | 6 |
+| chart-simple | 6 |
+| chart-complex | 14 |
+| diagram | 11 |
 | table-image | 5 |
 | equation | 2 |
-| infographic | 5 |
+| infographic | 7 |
 | photo | 9 |
 | screenshot | 8 |
 | other | 2 |
@@ -592,7 +693,9 @@ To address the gaps above, the following fixture types should be sourced:
 | Doc 14 | 1 |
 | Doc 15 | 1 |
 | Doc 16 | 4 |
-| **Docs represented** | **12 of 18** |
+| Doc 18 | 6 |
+| Doc 19 | 4 |
+| **Docs represented** | **14 of 20** |
 
 The subset over-represents hard images (44% vs 30% in corpus) as intended.
 Medium and hard together comprise 78% of the subset. All content types

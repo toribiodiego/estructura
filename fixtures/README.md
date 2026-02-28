@@ -36,7 +36,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (18 fixtures, ~82 MB)
+# Full set (20 fixtures, ~90 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -61,6 +61,8 @@ the KVision test catalog.
 | 11 | `11_policy_gradient_rl_lecture.pptx` | PPTX | 80 | 14 content, 12 decorative | 1.9 MB |
 | 12 | `12_minnstate_fy2025_budget.pptx` | PPTX | 17 | 1 table-image, 3 decorative | 351 KB |
 | 16 | `16_cambridge_mitoball_biology.docx` | DOCX | n/a | 8 scientific composites, 1 decorative | 6.8 MB |
+| 18 | `18_ibm_microservices_redbook.pdf` | PDF | 170 | ~27 architecture diagrams, ~20 screenshots, ~5 infographics | 7.0 MB |
+| 19 | `19_cris_electronic_screens_2023.docx` | DOCX | n/a | 3 chart-simple, 3 chart-complex, 2 photos, 2 infographics | 1.3 MB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -107,13 +109,13 @@ From image-catalog.md (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16 | 83 | 28 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19 | 121 | 31 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **18** | **102** | **34** | **46** | **35** |
+| **Total** | **20** | **140** | **37** | **46** | **35** |
 
 See `difficulty-tags.md` for per-image difficulty ratings and the
 selected 54-image evaluation subset.
@@ -128,10 +130,10 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 |-----|-------|----------------|
 | ~~table-as-image~~ | ~~Only 1 example~~ | Addressed: 5 examples across 5 docs (Docs 00, 12-15) |
 | ~~equation diversity~~ | ~~4 from one source~~ | Addressed: Doc 17 adds 63 native LaTeX equations |
-| infographics | 9 total, concentrated in 2 docs | Add consulting slides or data-rich reports |
-| diagrams | 9 total, no complex architecture/UML | Add technical documentation with architecture diagrams |
-| ~~photo variety~~ | ~~All from one doc~~ | Improved: Doc 16 adds 8 scientific microscopy composites |
-| ~~DOCX with images~~ | ~~Text-only~~ | Addressed: Doc 16 has 8 scientific figures in DOCX |
+| infographics | 16 total, concentrated in 3 docs | Low priority; partially improved by Docs 18, 19 |
+| ~~diagrams~~ | ~~9 total, no complex architecture/UML~~ | Addressed: Doc 18 adds ~27 architecture diagrams |
+| ~~photo variety~~ | ~~All from one doc~~ | Improved: Docs 16, 19 add scientific + environmental photos |
+| ~~DOCX with images~~ | ~~Text-only~~ | Addressed: Doc 16 (photos), Doc 19 (charts + photos + infographics) |
 
 <br><br>
 
@@ -270,6 +272,30 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
   15 theorems, 9 lemmas, 6 definitions, 7 proofs. Zero embedded images.
   Tests equation region detection in born-digital PDFs and annotation
   of formal mathematical notation.
+
+### 18_ibm_microservices_redbook.pdf
+
+- **Source:** IBM Redbooks SG24-8275-00 (Microservices from Theory to Practice)
+- **Format:** PDF, 170 pages (7.0 MB)
+- **Category:** multi-image
+- **Content:** IBM Redbook on microservices architecture patterns. 206 raster
+  images across 72 pages containing ~27 architecture diagrams (component,
+  sequence, deployment, topology), ~8 process/framework diagrams, ~20 UI
+  screenshots (IBM Bluemix console), and ~5 infographics. Addresses the
+  architecture/system diagrams gap with diverse diagram types spanning
+  easy-to-hard difficulty.
+
+### 19_cris_electronic_screens_2023.docx
+
+- **Source:** Australian Government OIA, E3 Program (CRIS for Electronic Screens 2023)
+- **Format:** DOCX (1.3 MB)
+- **Category:** multi-image
+- **Content:** Cost Recovery Impact Statement for electronic screen energy
+  labelling. 18 media files, all raster PNG/JPEG: 3 simple charts (pie,
+  stacked area, bar), 3 complex charts (scatter, multi-line), 2 photos
+  (airport scenes), 2 infographics (energy rating labels), 4 decorative
+  logos, 3 spacers. First DOCX with mixed raster chart content; addresses
+  the DOCX format gap for annotation evaluation.
 
 ### 12_minnstate_fy2025_budget.pptx
 
