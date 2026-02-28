@@ -16,5 +16,13 @@ services:
     command: sleep infinity
     working_dir: /workspace
 
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "11434:11434"
+
 volumes:
   maven-repo:
+  ollama-models:

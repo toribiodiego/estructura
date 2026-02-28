@@ -55,7 +55,7 @@ produce results.
 **Gap:** An image-bearing DOCX with embedded figures is still needed to
 test non-PDF image extraction on DOCX format. The current `medrxiv`
 DOCX fixture is text-only (11 KB). Candidate sources: DOE OSTI technical
-reports, KVision Task 12.7 benchmark set.
+reports, KVision test document collection.
 
 <br><br>
 

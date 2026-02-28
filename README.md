@@ -159,7 +159,7 @@ The test suite uses a fake Python runner so no Docling installation is needed.
 
 ## Project Structure
 
-```
+```text
 estructura/
   README.md
   requirements.txt                 # Python dependencies
