@@ -16,6 +16,8 @@ __pycache__/
 
 # Project
 fixtures/downloaded/
+fixtures/eval-subset/**/*.png
+fixtures/eval-subset/**/*.jpg
 
 # Secrets
 .env

@@ -39,13 +39,13 @@ For annotation mode, copy `.env.example` to `.env` and set your `GOOGLE_API_KEY`
 # Run the Python pipeline directly
 docker compose exec dev python3 \
     src/estructura-java/src/main/resources/scripts/run_docling.py \
-    fixtures/downloaded/gemini3_pro_model_card.pdf \
+    fixtures/downloaded/text-heavy/00_gemini3_pro_model_card.pdf \
     out/test --image-capture --progress
 
 # Run with annotation mode (requires GOOGLE_API_KEY in .env)
 docker compose exec dev python3 \
     src/estructura-java/src/main/resources/scripts/run_docling.py \
-    fixtures/downloaded/gemini3_pro_model_card.pdf \
+    fixtures/downloaded/text-heavy/00_gemini3_pro_model_card.pdf \
     out/test --image-capture --annotate --progress
 
 # Run Java tests

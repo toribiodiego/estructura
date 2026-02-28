@@ -42,7 +42,7 @@ catches content that might otherwise be missed:
 docker compose exec dev python3 -c "
 import pypdfium2 as pdfium
 
-pdf = pdfium.PdfDocument('fixtures/downloaded/<filename>.pdf')
+pdf = pdfium.PdfDocument('fixtures/downloaded/<category>/<filename>.pdf')
 
 for i in range(len(pdf)):
     page = pdf[i]
@@ -124,7 +124,7 @@ import pypdfium2.raw as raw
 
 TYPE_NAMES = {1: 'TEXT', 2: 'PATH', 3: 'IMAGE', 4: 'SHADING', 5: 'FORM'}
 
-pdf = pdfium.PdfDocument('fixtures/downloaded/<filename>.pdf')
+pdf = pdfium.PdfDocument('fixtures/downloaded/<category>/<filename>.pdf')
 print(f'Document: <filename>.pdf')
 print(f'Pages: {len(pdf)}')
 print()
