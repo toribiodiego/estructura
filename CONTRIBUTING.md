@@ -31,7 +31,7 @@ estructura/
 - `docs/output-contract.md` -- output format contract (image anchors, stable
   IDs, manifest)
 - `docs/runner-protocol.md` -- protocol between Java CLI and Python runner
-- `fixtures/image-catalog.md` -- master catalog of all images across the
+- `docs/image-catalog.md` -- master catalog of all images across the
   evaluation fixture set
 
 <br><br>

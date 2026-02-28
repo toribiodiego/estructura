@@ -82,7 +82,7 @@ Supported tags: `bash`, `python`, `java`, `json`, `yaml`, `text`, `markdown`,
 
 - Class names: `DoclingCli`, `DoclingRunner`, `DocumentConverter`
 - Method names: `convert()`, `annotate_images()`
-- File paths: `docs/output-contract.md`, `fixtures/image-catalog.md`
+- File paths: `docs/output-contract.md`, `docs/image-catalog.md`
 - Environment variables: `GOOGLE_API_KEY`, `DOCKER_BUILDKIT`
 - CLI flags and commands: `--image-capture`, `docker compose exec dev bash`
 - Literal values: `true`, `null`, `SHA256`, `0`, `"markdown"`
