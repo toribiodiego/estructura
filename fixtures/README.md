@@ -15,9 +15,9 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11, 12 -- documents with raster images
+    multi-image/           02, 05, 06, 11, 12, 16 -- documents with raster images
     vector-heavy/          01, 04 -- figures drawn with vector graphics
-    text-heavy/            00, 03 -- mostly prose, few or no images
+    text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
     text-only/             10 -- no images at all
     table-image/           13, 14, 15 -- standalone table-as-image files
@@ -36,7 +36,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (16 fixtures, ~75 MB)
+# Full set (18 fixtures, ~82 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -60,6 +60,7 @@ the KVision test catalog.
 | 06 | `06_arxiv_2206_01062.pdf` | PDF | 9 | 22 raster, 2 vector | ~1 MB |
 | 11 | `11_policy_gradient_rl_lecture.pptx` | PPTX | 80 | 14 content, 12 decorative | 1.9 MB |
 | 12 | `12_minnstate_fy2025_budget.pptx` | PPTX | 17 | 1 table-image, 3 decorative | 351 KB |
+| 16 | `16_cambridge_mitoball_biology.docx` | DOCX | n/a | 8 scientific composites, 1 decorative | 6.8 MB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -74,6 +75,7 @@ the KVision test catalog.
 |----|----------|--------|------:|-------:|-----:|
 | 00 | `00_gemini3_pro_model_card.pdf` | PDF | 9 | 1 table-image, 2 decorative | 849 KB |
 | 03 | `03_imf_economic_impacts_ai.pdf` | PDF | 69 | 2 decorative covers | 1.3 MB |
+| 17 | `17_arxiv_fractional_brownian_sde.pdf` | PDF | 24 | 0 (63 native LaTeX equations) | 248 KB |
 
 ### scanned (image-only or OCR'd full-page scans)
 
@@ -105,16 +107,16 @@ From image-catalog.md (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12 | 75 | 27 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16 | 83 | 28 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
-| text-heavy | 00, 03 | 1 | 4 | 0 | 4 |
+| text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **16** | **94** | **33** | **46** | **35** |
+| **Total** | **18** | **102** | **34** | **46** | **35** |
 
 See `difficulty-tags.md` for per-image difficulty ratings and the
-selected 50-image evaluation subset.
+selected 54-image evaluation subset.
 
 <br><br>
 
@@ -124,12 +126,12 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 | Gap | Issue | Recommendation |
 |-----|-------|----------------|
-| ~~table-as-image~~ | ~~Only 1 example~~ | Addressed: now 5 examples across 5 docs (Docs 00, 12-15) |
-| equation diversity | 4 equations, all from one source | Add paper with diverse LaTeX/handwritten equations |
+| ~~table-as-image~~ | ~~Only 1 example~~ | Addressed: 5 examples across 5 docs (Docs 00, 12-15) |
+| ~~equation diversity~~ | ~~4 from one source~~ | Addressed: Doc 17 adds 63 native LaTeX equations |
 | infographics | 9 total, concentrated in 2 docs | Add consulting slides or data-rich reports |
 | diagrams | 9 total, no complex architecture/UML | Add technical documentation with architecture diagrams |
-| photo variety | 17 photos, all from one document | Add scientific paper with domain-specific photos |
-| DOCX with images | Current DOCX is text-only | Add DOCX with embedded figures |
+| ~~photo variety~~ | ~~All from one doc~~ | Improved: Doc 16 adds 8 scientific microscopy composites |
+| ~~DOCX with images~~ | ~~Text-only~~ | Addressed: Doc 16 has 8 scientific figures in DOCX |
 
 <br><br>
 
@@ -244,6 +246,30 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 - **Content:** RL lecture slides. 10 algorithm pseudocode screenshots,
   4 rendered equations, 12 blank decorative bars. 56 of 80 slides are
   text-only.
+
+### 16_cambridge_mitoball_biology.docx
+
+- **Source:** Cambridge University Repository (bitstream a5e95699-d0d4-49e1-a471-e7dc381cdbac)
+- **Format:** DOCX (6.8 MB)
+- **Category:** multi-image
+- **Content:** Cell biology research paper on mitochondrial dynamics during
+  insect spermatogenesis. 8 high-resolution scientific composite figures
+  (JPEG, 666 KB - 1.1 MB each) containing fluorescence microscopy,
+  electron micrographs, bar charts, diagrams, and time-lapse sequences.
+  All figures are multi-panel composites (A-I sub-panels). First DOCX
+  with content images in the corpus; also addresses photo variety and
+  hard-difficulty photo gaps.
+
+### 17_arxiv_fractional_brownian_sde.pdf
+
+- **Source:** https://arxiv.org/pdf/2306.08324.pdf
+- **Format:** PDF, 24 pages (248 KB)
+- **Category:** text-heavy (equation-dense)
+- **Content:** Pure mathematics paper on stochastic differential equations
+  driven by fractional Brownian motion. 63 numbered LaTeX equations,
+  15 theorems, 9 lemmas, 6 definitions, 7 proofs. Zero embedded images.
+  Tests equation region detection in born-digital PDFs and annotation
+  of formal mathematical notation.
 
 ### 12_minnstate_fy2025_budget.pptx
 

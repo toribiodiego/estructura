@@ -4,7 +4,7 @@ Master catalog of all images, figures, charts, and diagrams across the
 evaluation fixture set. Produced by manual inspection of each document
 followed by pipeline extraction comparison.
 
-**Status:** Cataloging complete (all 16 fixtures inspected)
+**Status:** Cataloging complete (all 18 fixtures inspected)
 **Last updated:** 2026-02-27
 
 
@@ -28,6 +28,8 @@ followed by pipeline extraction comparison.
 | 13 | 13_artpro_table.webp | WebP | 1 | table-image | Yes |
 | 14 | 14_simple_table.png | PNG | 1 | table-image | Yes |
 | 15 | 15_timetable.jpg | JPG | 1 | table-image | Yes |
+| 16 | 16_cambridge_mitoball_biology.docx | DOCX | n/a | multi-image | Yes |
+| 17 | 17_arxiv_fractional_brownian_sde.pdf | PDF | 24 | text-heavy | Yes |
 
 **Other files** (moved to `fixtures/other/`, not part of evaluation):
 - `medrxiv_llm_imaging_eval.xlsx` -- tabular data, no images
@@ -57,10 +59,10 @@ as documents are cataloged.
 | Gap | Description | Status |
 |-----|-------------|--------|
 | Infographics | Only Doc 01 (GPT-4) and Doc 04 (Anthropic) have infographic-style figures; limited variety | Open |
-| Photos (non-scanned) | Only Doc 05 has natural photos (cooking, plants, dogs, NYC); small set | Open |
+| Photos (non-scanned) | Doc 05 has consumer photos; Doc 16 adds scientific microscopy | Improved |
 | Diagrams | Only Docs 02, 05 have structured diagrams; flow/architecture diagrams underrepresented | Open |
-| Equations as images | Doc 11 has 4 rendered equations; all from one source | Open |
-| DOCX with images | Current DOCX (Doc 10) is text-only | Open |
+| Equations as images | Doc 11 has 4 rendered equations; Doc 17 adds 63 native LaTeX equations across 24 pages | Covered |
+| DOCX with images | Doc 16 adds 8 scientific figures in DOCX format | Covered |
 | chart-simple raster | Docs 02 and 05 have raster charts; Docs 01 and 04 charts are all vector | Covered |
 | Algorithm pseudocode | Doc 11 has 10 algorithm screenshots; single content type in entire PPTX | Covered |
 | Scanned documents | Docs 07-09 cover letter, form, and newspaper; good variety | Covered |
@@ -70,14 +72,14 @@ as documents are cataloged.
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12 | 75 | 27 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16 | 83 | 28 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
-| text-heavy | 00, 03 | 1 | 4 | 0 | 4 |
+| text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **16** | **94** | **33** | **46** | **35** |
+| **Total** | **18** | **102** | **34** | **46** | **35** |
 
 
 ---
@@ -1066,6 +1068,110 @@ Sourced from KVIS-174 test fixtures.
 
 **Total images:** 1
 **Annotation target:** Full image is the annotation target.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
+
+
+## Doc 16: cambridge_mitoball_biology.docx
+
+**Format:** DOCX (6.8 MB)
+**Category:** multi-image
+**Source:** Cambridge University Repository -- Drosophila spermatogenesis
+biology paper. Sourced from Cambridge institutional repository.
+
+### Embedded Images
+
+Inspected via DOCX ZIP archive media/ directory. 9 files found (8 JPEG,
+1 TIFF).
+
+| # | Content Type | File Size | Description | Notes |
+|---|-------------|-----------|-------------|-------|
+| 1 | decorative | 11 KB | TIFF logo/icon | image1.tiff; likely journal or institution branding |
+| 2 | photo | 788 KB | Figure 1: Multi-panel composite (A-I). (A) Spermatogenesis diagram with cell stages, (B) fluorescence microscopy of testis cross-section (ATP5A, green/magenta), (C) mito-YFP close-up, (D) bar chart of mitoball diameter by stage, (E) 4-panel electron micrograph series, (F) mitochondrial velocity dot plot, (G) time-lapse series (6 frames, Dendra green/magenta), (H) dsDNA puncta bar chart with statistics, (I) 5-panel fluorescence (DAPI/YFP/EdU/Merge/Zoom) | Complex composite; 9 sub-panels mixing diagram, microscopy, charts, EM |
+| 3 | photo | 960 KB | Figure 2: Multi-panel composite (A-G). (A) Full testis cross-section with zoom insets, (B) electron micrographs (Mitoball, Nebenkern), (C) fluorescence with dashed boundary, (D) mito-YFP close-up, (E) mtSSB-RFP/dsDNA 3-channel, (F) 3-row x 4-column fluorescence grid (Mitotic/Mitoball/Nebenkern x DAPI/YFP/EdU/Merge), (G) PolG1 dual stain | Complex composite; EM + fluorescence + multi-channel grids |
+| 4 | photo | 744 KB | Figure 3: Multi-panel with genetic knockdowns. Fluorescence panels showing control vs mutant (mfn RNAi, Drp1 KD) across multiple staining channels | Genetic perturbation experiments |
+| 5 | photo | 1.1 MB | Figure 4: Large multi-panel composite. Multiple fluorescence and EM panels showing mitoball ultrastructure at different developmental stages | Largest figure; detailed ultrastructure |
+| 6 | photo | 666 KB | Figure 5: Cross-species fluorescence comparison panels with annotations, scale bars, and labeled species names | Multi-species comparative data |
+| 7 | photo | 764 KB | Figure S1 (supplementary): Additional fluorescence panels with control/experimental comparisons | Supplementary data |
+| 8 | photo | 1.0 MB | Figure S2: Extended cross-species comparison (A) 6 Drosophila species + 2 other insects, each with overview + zoom, (B) Drosophila bocqueti and Anopheles coluzzii, (C) Schistoserca gregaria and Teleogryllus/Blaberus | Large comparative panel across 8+ insect species |
+| 9 | photo | 804 KB | Figure S3: Additional experimental panels (Phalloidin, Pav-GFP, ATP5A staining + alpha-spectrin control vs hts mutant comparison) | Cytoskeletal markers |
+
+**Total embedded images:** 9 (1 decorative TIFF, 8 scientific composite figures)
+**Content diversity:** fluorescence microscopy, electron micrographs, diagrams, bar charts with statistics, time-lapse series, cross-species comparisons
+**Unique value:** First DOCX with content images; all figures are complex multi-panel composites requiring domain knowledge to annotate
+
+### Summary
+
+Cell biology paper on mitochondrial dynamics during insect spermatogenesis.
+Each of the 8 scientific figures is a complex multi-panel composite containing
+a mix of fluorescence microscopy (DAPI/YFP/RFP channels in blue/green/magenta),
+electron micrographs (grayscale TEM), diagrams, bar charts with statistical
+annotations, and time-lapse sequences. Figures span multiple insect species
+(Drosophila, mosquito, cricket, cockroach, locust). This is the first DOCX
+with meaningful image content and simultaneously addresses the photo variety
+gap with domain-specific scientific imagery. All figures are hard difficulty
+due to multi-panel structure, domain-specific labels, and the need to
+understand biological context.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
+
+
+## Doc 17: arxiv_fractional_brownian_sde.pdf
+
+**Format:** PDF, 24 pages (248 KB)
+**Category:** text-heavy (equation-dense)
+**Source:** arXiv 2306.08324 -- "Stochastic differential equations driven
+by fractional Brownian motion" by Dordevic and Oksendal (2024).
+
+### Embedded Images
+
+No embedded raster images. All mathematical content is native LaTeX.
+
+**Total embedded images:** 0
+
+### Equation Content
+
+All equations are LaTeX-rendered (native PDF text/vector, not raster images).
+The pipeline must crop equation regions from rendered pages to produce
+annotation targets.
+
+| Category | Count | Examples |
+|----------|-------|---------|
+| Numbered display equations | 63 | (2.14), (2.15), (3.27), (4.1)-(4.3) |
+| Theorem environments | 15 | Theorem 2.1 (Bochner-Minlos), Theorem 2.10, Theorem 4.1 |
+| Lemma environments | 9 | Lemma 2.11, Lemma 3.4 |
+| Definition environments | 6 | Definition 2.7 (fractional Brownian motion), Definition 2.9 (WIS integral) |
+| Proof blocks | 7 | Multi-page proofs with QED squares |
+| Corollary | 1 | |
+
+**Symbol diversity:** Integrals (Lebesgue, Ito, WIS), expectations E[],
+stochastic differentials (dX_t, dB^H), Schwartz space S(R), Wick products,
+L^p norms, supremum bounds, Greek letters, summations, fractions, multi-line
+aligned derivations (up to 6-line inequality chains).
+
+### Summary
+
+Pure mathematics paper on stochastic differential equations. Contains no
+embedded images but is extremely equation-dense (63 numbered equations in
+24 pages, ~2.6 per page). Equations are rendered natively in LaTeX, providing
+a completely different annotation challenge from Doc 11's screenshot-based
+equations. This tests whether the pipeline can: (1) identify equation regions
+in born-digital PDFs, (2) annotate formal mathematical notation with correct
+symbol identification, (3) handle multi-line aligned derivations and nested
+expressions. The equation styles are diverse: display equations, inline math,
+multi-line proofs, theorem/definition environments.
 
 ### Pipeline Extraction
 

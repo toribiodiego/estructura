@@ -161,6 +161,14 @@ if [[ "$QUICK" == false ]]; then
     download "table-image" "15_timetable.jpg" \
         "https://courses.washington.edu/fish340/Images/timetable.jpg" \
         ""
+
+    download "multi-image" "16_cambridge_mitoball_biology.docx" \
+        "https://www.repository.cam.ac.uk/bitstreams/a5e95699-d0d4-49e1-a471-e7dc381cdbac/download" \
+        ""
+
+    download "text-heavy" "17_arxiv_fractional_brownian_sde.pdf" \
+        "https://arxiv.org/pdf/2306.08324.pdf" \
+        ""
 fi
 
 echo ""

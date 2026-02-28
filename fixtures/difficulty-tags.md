@@ -344,16 +344,46 @@ No images in this document.
 **Taggable images:** 1 (1 medium)
 
 
+## Doc 16: cambridge_mitoball_biology.docx
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc16-R01 | decorative | -- | TIFF logo/icon (11 KB) | Yes: decorative branding |
+| doc16-R02 | photo | Hard | Figure 1: 9-sub-panel composite (A-I) -- spermatogenesis diagram, fluorescence microscopy, EM series, bar charts, time-lapse, multi-channel staining | -- |
+| doc16-R03 | photo | Hard | Figure 2: 7-sub-panel composite (A-G) -- testis cross-section, electron micrographs, 3x4 fluorescence grid, PolG1 dual stain | -- |
+| doc16-R04 | photo | Hard | Figure 3: Genetic knockdown panels -- control vs mfn RNAi vs Drp1 KD across multiple fluorescence channels | -- |
+| doc16-R05 | photo | Hard | Figure 4: Mitoball ultrastructure -- fluorescence and EM at multiple developmental stages | -- |
+| doc16-R06 | photo | Hard | Figure 5: Cross-species fluorescence comparison with annotations and scale bars | -- |
+| doc16-R07 | photo | Hard | Figure S1: Supplementary control/experimental fluorescence panels | -- |
+| doc16-R08 | photo | Hard | Figure S2: Extended cross-species panel -- 8+ insect species (Drosophila, mosquito, cricket, cockroach, locust) | -- |
+| doc16-R09 | photo | Hard | Figure S3: Cytoskeletal markers (Phalloidin, Pav-GFP, ATP5A, alpha-spectrin) control vs hts mutant | -- |
+
+**Taggable images:** 8 (8 hard)
+
+
+## Doc 17: arxiv_fractional_brownian_sde.pdf
+
+No embedded raster images. All 63 equations are native LaTeX. Equation
+regions must be identified and cropped from rendered pages by the pipeline.
+
+**Taggable images:** 0 (equations are native LaTeX, not raster)
+
+Note: If the pipeline extracts equation crops from page renders, each would
+be medium-to-hard difficulty depending on complexity. Estimated 15-20
+distinct equation regions suitable for annotation (display equations,
+multi-line derivations, theorem blocks).
+
+
 ## Distribution Summary
 
 ### By difficulty (taggable content images only)
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 34 | 27% |
-| Medium | 59 | 47% |
-| Hard | 32 | 26% |
-| **Total** | **125** | **100%** |
+| Easy | 34 | 26% |
+| Medium | 59 | 44% |
+| Hard | 40 | 30% |
+| **Total** | **133** | **100%** |
 
 ### By content type (taggable only)
 
@@ -365,11 +395,11 @@ No images in this document.
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
 | infographic | 0 | 4 | 5 | 9 |
-| photo | 14 | 3 | 0 | 17 |
+| photo | 14 | 3 | 8 | 25 |
 | screenshot | 2 | 20 | 2 | 24 |
 | other | 0 | 5 | 2 | 7 |
 | chart-simple (vector) | -- | -- | -- | (incl above) |
-| **Total** | **34** | **59** | **32** | **125** |
+| **Total** | **34** | **59** | **40** | **133** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical document page examples. For evaluation subset selection,
@@ -395,7 +425,9 @@ only 2-3 representative examples should be included.
 | 13 | 1 | 0 | 0 | 1 | WebP |
 | 14 | 1 | 0 | 0 | 1 | PNG |
 | 15 | 0 | 1 | 0 | 1 | JPG |
-| **Total** | **34** | **59** | **32** | **125** | |
+| 16 | 0 | 0 | 8 | 8 | DOCX |
+| 17 | 0 | 0 | 0 | 0 | PDF (equations only) |
+| **Total** | **34** | **59** | **40** | **133** | |
 
 
 ## Gap Analysis
@@ -405,17 +437,17 @@ only 2-3 representative examples should be included.
 | Gap | Current count | Issue | Recommendation |
 |-----|--------------|-------|----------------|
 | table-image | 5 (doc00, 12-15) | Addressed: was 1, now 5 across 5 docs (government budget, aircraft specs, spreadsheet, course schedule) | Covered |
-| equation | 4 (all in doc11) | All equations from one source (RL lecture), all rendered similarly | Add document with diverse equation styles (LaTeX-rendered, handwritten, inline vs display) |
+| equation | 4 raster (doc11) + 63 native LaTeX (doc17) | Doc 17 adds diverse LaTeX equations (display, inline, multi-line, theorem environments) | Covered |
 | infographic | 9 (doc01: 8, doc04: 3, doc05: 1) | Concentrated in 2 documents; mostly vector-drawn | Add slide decks or consulting reports with raster infographics |
 | diagram | 9 | Only simple state diagrams and flowcharts; no complex architecture or UML | Add technical architecture diagrams, network topology, or process flow documents |
-| photo | 17 (all in doc05) | All photos from a single document (Gemini report) | Add document with diverse photo types (medical imaging, satellite, product photos) |
+| photo | 25 (doc05: 17 consumer, doc16: 8 scientific microscopy) | Now spans 2 documents with distinct domains (consumer + scientific) | Improved |
 
 ### Underrepresented difficulty combinations
 
 | Combination | Count | Issue |
 |-------------|-------|-------|
 | chart-simple + hard | 0 | No hard simple charts (expected -- simple charts are inherently easy/medium) |
-| photo + hard | 0 | No hard photos (complex scenes, medical, satellite) |
+| photo + hard | 8 | Addressed by Doc 16 (scientific microscopy composites) |
 | diagram + hard | 2 | Only 2 hard diagrams (doc05-V03, doc05-V06) |
 | table-image + hard | 0 | No complex table-as-image examples (but 5 easy/medium now available) |
 
@@ -425,7 +457,7 @@ only 2-3 representative examples should be included.
 |--------|-----------|----------------|-------|
 | PDF (digital) | 00-06 | 107 | Well covered |
 | PDF (scanned) | 07-09 | 0 | No annotation targets; only OCR testing |
-| DOCX | 10 | 0 | No images at all; need DOCX with images |
+| DOCX | 10, 16 | 8 | Doc 16 adds 8 scientific composite figures |
 | PPTX | 11, 12 | 15 | Two documents; RL algorithms + government budget |
 | Standalone images | 13-15 | 3 | WebP, PNG, JPG table-image fixtures |
 
@@ -446,11 +478,11 @@ To address the gaps above, the following fixture types should be sourced:
 
 4. **Technical documentation with diagrams (PDF or DOCX)** -- architecture
    diagrams, network topology, UML, sequence diagrams. Addresses: diagram
-   gap, DOCX format coverage if DOCX.
+   gap. (Still open -- only remaining major gap.)
 
-5. **Medical/scientific paper with photos (PDF)** -- medical imaging,
-   microscopy, satellite imagery, or other domain-specific photos.
-   Addresses: photo diversity, hard photo gap.
+5. ~~**Medical/scientific paper with photos (PDF)**~~ -- Addressed by Doc 16
+   (Cambridge biology paper with fluorescence microscopy, electron
+   micrographs, cross-species comparisons; 8 hard-difficulty composites).
 
 
 ## Evaluation Subset Selection
@@ -519,16 +551,20 @@ To address the gaps above, the following fixture types should be sourced:
 | doc13-R01 | 13 | 1 | table-image | Easy | Aircraft wing specification table (6 models, 7 columns) |
 | doc14-R01 | 14 | 1 | table-image | Easy | Spreadsheet cell/format/formula table |
 | doc15-R01 | 15 | 1 | table-image | Medium | Color-coded course timetable (SWORD Deadlines) |
+| doc16-R02 | 16 | -- | photo | Hard | 9-sub-panel composite: spermatogenesis diagram + microscopy + charts |
+| doc16-R03 | 16 | -- | photo | Hard | 7-sub-panel composite: testis cross-section + EM + fluorescence grid |
+| doc16-R05 | 16 | -- | photo | Hard | Mitoball ultrastructure at multiple developmental stages |
+| doc16-R08 | 16 | -- | photo | Hard | Cross-species comparison panel (8+ insect species) |
 
 ### Subset statistics
 
-**Total selected:** 50 images
+**Total selected:** 54 images
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 12 | 24% |
-| Medium | 18 | 36% |
-| Hard | 20 | 40% |
+| Easy | 12 | 22% |
+| Medium | 18 | 33% |
+| Hard | 24 | 44% |
 
 | Content Type | Count |
 |-------------|-------|
@@ -538,7 +574,7 @@ To address the gaps above, the following fixture types should be sourced:
 | table-image | 5 |
 | equation | 2 |
 | infographic | 5 |
-| photo | 5 |
+| photo | 9 |
 | screenshot | 8 |
 | other | 2 |
 
@@ -555,10 +591,12 @@ To address the gaps above, the following fixture types should be sourced:
 | Doc 13 | 1 |
 | Doc 14 | 1 |
 | Doc 15 | 1 |
-| **Docs represented** | **11 of 16** |
+| Doc 16 | 4 |
+| **Docs represented** | **12 of 18** |
 
-The subset over-represents hard images (40% vs 26% in corpus) as intended.
-Medium and hard together comprise 76% of the subset. All content types
-are represented with at least 2 examples. The table-as-image gap is now
-addressed with 5 examples across 5 documents. Equation diversity remains
-a gap (all from one source).
+The subset over-represents hard images (44% vs 30% in corpus) as intended.
+Medium and hard together comprise 78% of the subset. All content types
+are represented with at least 2 examples. Doc 16 adds hard scientific
+microscopy composites, filling the photo+hard gap. Doc 17 equations are
+not in the subset (native LaTeX, not raster) but will test equation region
+detection during pipeline evaluation.
