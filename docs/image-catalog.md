@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 22
+**Documents cataloged:** 23
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -609,18 +609,62 @@ logo (decorative).
 
 <br><br>
 
+## Doc 22 -- 22_nasa_global_warming.html
+
+HTML, 351 KB, multi-image
+Source: https://science.nasa.gov/earth/climate-change/global-warming/
+
+20 content images inline within `<figure>` tags. ~35 navigation thumbnails
+for unrelated articles in header/sidebar. All images are remote-hosted
+(NASA CDN URLs, not embedded). No captions in `<figcaption>` elements.
+
+### Charts
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc22-R01 | chart-complex | Medium | GISS temperature anomaly: global surface temperature 1880-present, baseline comparison | -- |
+| doc22-R02 | chart-complex | Medium | Greenhouse gas concentrations 1750-2008: dual-axis CO2 + methane trends | -- |
+| doc22-R03 | chart-complex | Hard | EPICA 800,000-year temperature + CO2 reconstruction from ice cores | -- |
+| doc22-R04 | chart-complex | Medium | Proxy-based temperature reconstruction: 1000-year history, multiple proxy series | -- |
+| doc22-R05 | chart-complex | Hard | Anthropogenic vs natural climate contribution: multi-factor attribution comparison | -- |
+| doc22-R06 | chart-simple | Easy | ACRIM total solar irradiance: daily + monthly measurements since 1979 | -- |
+| doc22-R07 | chart-complex | Medium | MSU troposphere/stratosphere temperature trends 1978-2010 | -- |
+| doc22-R08 | chart-complex | Medium | IPCC future warming scenarios: multiple emission pathways | -- |
+| doc22-R09 | chart-simple | Easy | Ocean carbon cycle diagram | -- |
+| doc22-R10 | chart-complex | Medium | IPCC precipitation change projections: global map | -- |
+| doc22-R11 | chart-simple | Easy | Sea level rise: multi-dataset composite trend | -- |
+
+### Photos
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc22-R12 | photo | Easy | ISS022-E-6674: Earth from space, thin atmosphere layer visible | -- |
+| doc22-R13 | photo | Easy | Glacial ice core cross-section | -- |
+| doc22-R14 | photo | Medium | Climate monitoring equipment: ground station and satellite composite | -- |
+| doc22-R15 | photo | Medium | Solar corona comparison: solar maximum vs minimum (side-by-side) | -- |
+| doc22-R16 | photo | Easy | Athabasca Glacier retreat | -- |
+| doc22-R17 | photo | Easy | ISS STS-131 Earth observation | -- |
+| doc22-R18 | photo | Medium | GOES East hurricane satellite image | -- |
+| doc22-R19 | photo | Easy | Lake Powell bathtub ring: drought impact | -- |
+| doc22-R20 | photo | Easy | Massachusetts nor'easter 2007: coastal storm impact | -- |
+| -- | decorative | -- | ~35 navigation thumbnails + 4 footer/sidebar images | Yes: navigation/branding |
+
+**Taggable:** 20 (8 easy, 8 medium, 2 hard)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21 | 130 | 32 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21, 22 | 150 | 71 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **22** | **149** | **38** | **46** | **35** |
+| **Total** | **23** | **169** | **77** | **46** | **35** |
 
 <br><br>
 
@@ -637,6 +681,7 @@ logo (decorative).
 | Algorithm pseudocode | Covered | Doc 11 has 10 algorithm screenshots |
 | Scanned documents | Covered | Docs 07-09 cover letter, form, newspaper |
 | XLSX with charts | Covered | Docs 20, 21 provide XML-defined chart objects (bar, pie) |
+| HTML with images | Covered | Doc 22 provides 20 inline images (charts + photos) from NASA |
 | Infographics | Open | 16 total concentrated in 3 docs; add slide decks or consulting reports |
 
 <br><br>
@@ -647,25 +692,25 @@ logo (decorative).
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 64 | 32% |
-| Medium | 87 | 44% |
-| Hard | 47 | 24% |
-| **Total** | **198** | **100%** |
+| Easy | 72 | 33% |
+| Medium | 95 | 44% |
+| Hard | 49 | 23% |
+| **Total** | **218** | **100%** |
 
 ### By content type (taggable only)
 
 | Content Type | Easy | Medium | Hard | Total |
 |-------------|------|--------|------|-------|
-| chart-simple | 19 | 3 | 0 | 22 |
-| chart-complex | 0 | 16 | 14 | 30 |
+| chart-simple | 22 | 3 | 0 | 25 |
+| chart-complex | 0 | 21 | 16 | 37 |
 | diagram | 12 | 17 | 7 | 36 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
 | infographic | 3 | 7 | 6 | 16 |
-| photo | 15 | 4 | 8 | 27 |
+| photo | 21 | 7 | 8 | 36 |
 | screenshot | 11 | 28 | 2 | 41 |
 | other | 0 | 5 | 2 | 7 |
-| **Total** | **64** | **87** | **47** | **198** |
+| **Total** | **72** | **95** | **49** | **218** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.

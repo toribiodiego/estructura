@@ -6,7 +6,7 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 22 documents
+#   ./scripts/download-fixtures.sh          # all 23 documents
 #   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -196,6 +196,10 @@ if [[ "$QUICK" == false ]]; then
 
     download "multi-image" "21_praxie_project_portfolio.xlsx" \
         "https://praxie.com/wp-content/uploads/2021/08/Project-Portfolio-Management-Template.xlsx" \
+        ""
+
+    download "multi-image" "22_nasa_global_warming.html" \
+        "https://science.nasa.gov/earth/climate-change/global-warming/" \
         ""
 fi
 

@@ -15,7 +15,7 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11, 12, 16, 20, 21 -- documents with images or chart objects
+    multi-image/           02, 05, 06, 11, 12, 16, 20, 21, 22 -- documents with images or chart objects
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (22 fixtures, ~90 MB)
+# Full set (23 fixtures, ~90 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -64,6 +64,7 @@ the KVision test catalog.
 | 19 | `19_cris_electronic_screens_2023.docx` | DOCX | n/a | 3 chart-simple, 3 chart-complex, 2 photos, 2 infographics | 1.3 MB |
 | 20 | `20_illinois_workforce_dashboard.xlsx` | XLSX | 3 sheets | 5 chart objects (3 bar, 2 pie; duplicated across 2 sheets) | 99 KB |
 | 21 | `21_praxie_project_portfolio.xlsx` | XLSX | 1 sheet | 4 chart objects (all bar), 1 decorative logo | 58 KB |
+| 22 | `22_nasa_global_warming.html` | HTML | -- | 11 charts, 9 photos, ~35 navigation thumbnails | 351 KB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -110,13 +111,13 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21 | 130 | 32 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21, 22 | 150 | 71 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **22** | **149** | **38** | **46** | **35** |
+| **Total** | **23** | **169** | **77** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.
@@ -319,6 +320,19 @@ additional fixtures:
   charts summarizing projects by Priority, Status, Risk, and Budget. 1
   decorative Praxie logo (8.5 KB JPEG). Charts are simple aggregation
   summaries with 2-3 categories each.
+
+### 22_nasa_global_warming.html
+
+- **Source:** https://science.nasa.gov/earth/climate-change/global-warming/
+- **Format:** HTML (351 KB)
+- **Category:** multi-image
+- **Content:** NASA science article on global warming evidence and impacts.
+  20 content images in `<figure>` elements: 11 charts (temperature anomaly,
+  greenhouse gas trends, EPICA reconstruction, IPCC scenarios, sea level
+  rise, etc.) and 9 photos (Earth from space, ice cores, glaciers, storms,
+  satellite imagery). ~35 navigation thumbnails for unrelated articles in
+  header/sidebar that the pipeline must filter. Images are remote-hosted
+  (NASA CDN URLs, not embedded). First HTML fixture in the corpus.
 
 ### 12_minnstate_fy2025_budget.pptx
 
