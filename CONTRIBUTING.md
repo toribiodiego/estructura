@@ -102,7 +102,9 @@ from KVision's documentation standards. Key rules:
 - No vague qualifiers ("very", "really", "quite", "fairly", "easily")
 
 See [Documentation Standards](./docs/standards/documentation.md) for the full
-reference with examples and visual aid conventions.
+reference with examples and visual aid conventions, and
+[Engineering Standards](./docs/standards/engineering.md) for evidence-based
+decisions and repository hygiene.
 
 <br><br>
 
