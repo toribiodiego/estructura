@@ -81,7 +81,8 @@ images).
 
 | Format | Easy | Medium | Hard | Total |
 |--------|------|--------|------|-------|
-| PDF | 2 | 4 | 5 | 11 |
+| PDF (digital) | 2 | 2 | 4 | 8 |
+| PDF (scanned) | 0 | 2 | 1 | 3 |
 | DOCX | 1 | 2 | 0 | 3 |
 | PPTX | 1 | 1 | 0 | 2 |
 | Standalone image | 3 | 0 | 0 | 3 |
@@ -90,7 +91,8 @@ images).
 | **Total** | **7** | **7** | **5** | **19** |
 
 **Documents per cell:**
-- PDF -- Easy: 00, 03 | Medium: 02, 06, 07, 08 | Hard: 01, 04, 05, 09, 17
+- PDF (digital) -- Easy: 00, 03 | Medium: 02, 06 | Hard: 01, 04, 05, 17
+- PDF (scanned) -- Medium: 07, 08 | Hard: 09
 - DOCX -- Easy: 10 | Medium: 16, 19
 - PPTX -- Easy: 12 | Medium: 11
 - Standalone -- Easy: 13, 14, 15
