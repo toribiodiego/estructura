@@ -15,7 +15,7 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11, 12, 16 -- documents with raster images
+    multi-image/           02, 05, 06, 11, 12, 16, 20, 21 -- documents with images or chart objects
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
@@ -25,7 +25,7 @@ fixtures/
     easy/                  easy-difficulty crops (populated after pipeline extraction)
     medium/                medium-difficulty crops
     hard/                  hard-difficulty crops
-  other/                   files not part of the evaluation (XLSX, etc.)
+  other/                   files not part of the evaluation
   ../docs/image-catalog.md               master catalog (images, difficulty, eval subset, gaps)
   ../docs/standards/pdf-image-inspection.md  methodology for PDF structural inspection
 ```
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (20 fixtures, ~90 MB)
+# Full set (22 fixtures, ~90 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -62,6 +62,8 @@ the KVision test catalog.
 | 16 | `16_cambridge_mitoball_biology.docx` | DOCX | n/a | 8 scientific composites, 1 decorative | 6.8 MB |
 | 18 | `18_ibm_microservices_redbook.pdf` | PDF | 170 | ~27 architecture diagrams, ~20 screenshots, ~5 infographics | 7.0 MB |
 | 19 | `19_cris_electronic_screens_2023.docx` | DOCX | n/a | 3 chart-simple, 3 chart-complex, 2 photos, 2 infographics | 1.3 MB |
+| 20 | `20_illinois_workforce_dashboard.xlsx` | XLSX | 3 sheets | 5 chart objects (3 bar, 2 pie; duplicated across 2 sheets) | 99 KB |
+| 21 | `21_praxie_project_portfolio.xlsx` | XLSX | 1 sheet | 4 chart objects (all bar), 1 decorative logo | 58 KB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -108,13 +110,13 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19 | 121 | 31 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21 | 130 | 32 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **20** | **140** | **37** | **46** | **35** |
+| **Total** | **22** | **149** | **38** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.
@@ -296,6 +298,27 @@ additional fixtures:
   (airport scenes), 2 infographics (energy rating labels), 4 decorative
   logos, 3 spacers. First DOCX with mixed raster chart content; addresses
   the DOCX format gap for annotation evaluation.
+
+### 20_illinois_workforce_dashboard.xlsx
+
+- **Source:** https://www.illinoisworknet.com/WIOA/Resources/Documents/6.%20Dashboard%20for%20the%20Local%20Workforce%20Board%20-%20TEMPLATE.xlsx
+- **Format:** XLSX, 3 worksheets (99 KB)
+- **Category:** multi-image
+- **Content:** WIOA workforce board dashboard template from Illinois WorkNet.
+  5 unique XML-defined chart objects (3 grouped bar charts, 1 pie chart,
+  1 training bar chart) duplicated across Sheets 2 and 3 (10 chart objects
+  total). No raster images. Charts cover budget obligations, grant allocation,
+  direct training expenditures, and youth workforce learning metrics.
+
+### 21_praxie_project_portfolio.xlsx
+
+- **Source:** https://praxie.com/wp-content/uploads/2021/08/Project-Portfolio-Management-Template.xlsx
+- **Format:** XLSX, 1 worksheet (58 KB)
+- **Category:** multi-image
+- **Content:** Project portfolio management template. 4 single-series bar
+  charts summarizing projects by Priority, Status, Risk, and Budget. 1
+  decorative Praxie logo (8.5 KB JPEG). Charts are simple aggregation
+  summaries with 2-3 categories each.
 
 ### 12_minnstate_fy2025_budget.pptx
 

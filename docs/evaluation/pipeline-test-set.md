@@ -64,6 +64,8 @@ images).
 | 17 | `17_arxiv_fractional_brownian_sde.pdf` | PDF | 24 | 0 | Hard | 63 native LaTeX equations; pipeline must detect and crop equation regions from rendered pages |
 | 18 | `18_ibm_microservices_redbook.pdf` | PDF | 170 | 46 | Hard | 170 pages; ~52 taggable figures; diagrams, screenshots, infographics; largest document in corpus |
 | 19 | `19_cris_electronic_screens_2023.docx` | DOCX | -- | 10 | Medium | 10 mixed images (charts, photos, infographics); 8 decorative elements to filter |
+| 20 | `20_illinois_workforce_dashboard.xlsx` | XLSX | 3 | 5 | Medium | 5 XML-defined chart objects (bar, pie); duplicated across 2 sheets; no raster images |
+| 21 | `21_praxie_project_portfolio.xlsx` | XLSX | 1 | 4 | Easy | 4 simple bar chart objects; 1 decorative logo to filter |
 
 **Notes:**
 - "Images" column counts taggable content images (decorative excluded). Compare
@@ -86,9 +88,9 @@ images).
 | DOCX | 1 | 2 | 0 | 3 |
 | PPTX | 1 | 1 | 0 | 2 |
 | Standalone image | 3 | 0 | 0 | 3 |
-| XLSX | 0 | 0 | 0 | 0 |
+| XLSX | 1 | 1 | 0 | 2 |
 | HTML | 0 | 0 | 0 | 0 |
-| **Total** | **7** | **7** | **5** | **19** |
+| **Total** | **8** | **8** | **5** | **21** |
 
 **Documents per cell:**
 - PDF (digital) -- Easy: 00, 03 | Medium: 02, 06 | Hard: 01, 04, 05, 17
@@ -96,9 +98,10 @@ images).
 - DOCX -- Easy: 10 | Medium: 16, 19
 - PPTX -- Easy: 12 | Medium: 11
 - Standalone -- Easy: 13, 14, 15
+- XLSX -- Easy: 21 | Medium: 20
 
-Note: The XLSX file in `fixtures/other/` is excluded from the active evaluation
-set. Total is 19 active documents (20 including the excluded XLSX).
+Note: The XLSX file in `fixtures/other/` (medrxiv supplementary data) is
+excluded from the active evaluation set.
 
 ### By extraction challenge type
 
@@ -112,7 +115,7 @@ set. Total is 19 active documents (20 including the excluded XLSX).
 | Large file size (25+ MB) | 05 | 1 |
 | Large page count (100+) | 18 | 1 |
 | Multi-sub-panel composites | 16 | 1 |
-| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19 | 8 |
+| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21 | 10 |
 
 <br><br>
 
@@ -122,7 +125,7 @@ set. Total is 19 active documents (20 including the excluded XLSX).
 |---------------|-----|--------|----------|
 | DOCX | No hard-difficulty documents; only 2 files with images | Cannot assess extraction reliability on complex DOCX layouts | High |
 | PPTX | Only 2 files (1 meaningful); limited layout variety | Cannot evaluate PPTX pipeline reliability | High |
-| XLSX | Zero evaluation coverage | Pipeline untested on spreadsheets with embedded charts | Medium |
+| ~~XLSX~~ | ~~Zero evaluation coverage~~ | Addressed: Docs 20, 21 provide XML-defined chart objects (bar, pie) across easy/medium difficulty | -- |
 | HTML | Zero files | Pipeline untested on web content | Medium |
 | Scanned + images | 3 scanned PDFs but all are text-only pages | Tests OCR routing but not image extraction from scans | Medium |
 | Standalone (hard) | All 3 standalone images are easy/medium | No test of complex single-image extraction | Low |

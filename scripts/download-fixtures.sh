@@ -6,7 +6,7 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 20 documents
+#   ./scripts/download-fixtures.sh          # all 22 documents
 #   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -188,6 +188,14 @@ if [[ "$QUICK" == false ]]; then
 
     download "multi-image" "19_cris_electronic_screens_2023.docx" \
         "https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recovery%20Impact%20Statement%20-%20Electronic%20Screens%20-%202023.docx" \
+        ""
+
+    download "multi-image" "20_illinois_workforce_dashboard.xlsx" \
+        "https://www.illinoisworknet.com/WIOA/Resources/Documents/6.%20Dashboard%20for%20the%20Local%20Workforce%20Board%20-%20TEMPLATE.xlsx" \
+        ""
+
+    download "multi-image" "21_praxie_project_portfolio.xlsx" \
+        "https://praxie.com/wp-content/uploads/2021/08/Project-Portfolio-Management-Template.xlsx" \
         ""
 fi
 

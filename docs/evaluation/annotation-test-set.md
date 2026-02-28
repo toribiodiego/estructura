@@ -163,7 +163,7 @@ and hard together comprise 78% of the subset.
 |------|-----|--------|----------|
 | Equations | Only 2 images in subset (both from PPTX Doc 11) | Insufficient coverage of equation annotation quality | High |
 | Table-image | 4 images; 3 are standalone, 1 from PPTX | No embedded table-images from PDF or DOCX in subset | Medium |
-| XLSX source | 0 images | Annotation quality on spreadsheet-embedded charts untested | Medium |
+| XLSX source | 0 images (Docs 20, 21 added to corpus; eval subset selection pending) | Annotation quality on spreadsheet-embedded charts untested | Medium |
 | HTML source | 0 images | Annotation quality on web-captured images untested | Medium |
 | Standalone hard | 0 hard images from standalone formats | All standalone images are easy; no challenging single-image annotation test | Low |
 | Other content type | Only 1 image (`doc05-R20`, internet meme) | Minimal coverage of non-standard image types | Low |

@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 20
+**Documents cataloged:** 22
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -24,6 +24,7 @@ Image IDs use the pattern `doc{NN}-{R|V|S}{seq}`:
 | `R` | Raster (embedded bitmap image) |
 | `V` | Vector (PATH/FORM/TEXT-drawn figure) |
 | `S` | Scanned (full-page scan) |
+| `C` | Chart object (XML-defined, rendered by application) |
 
 Example: `doc05-R11` = Doc 05, raster image #11.
 
@@ -566,18 +567,60 @@ Source: https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recov
 
 <br><br>
 
+## Doc 20 -- 20_illinois_workforce_dashboard.xlsx
+
+XLSX, 99 KB, multi-image
+Source: https://www.illinoisworknet.com/WIOA/Resources/Documents/6.%20Dashboard%20for%20the%20Local%20Workforce%20Board%20-%20TEMPLATE.xlsx
+
+Chart objects are XML-defined (not raster). 5 unique charts on Sheet 2,
+duplicated on Sheet 3 (charts 6-10 mirror charts 1-5). Only unique charts
+are cataloged.
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc20-C01 | chart-complex | Medium | Grouped bar: Obligations, Accrual & Expense Breakdown (12 series, 4 categories: Required/Adult/DW/Youth) | -- |
+| doc20-C02 | chart-complex | Medium | Grouped bar: Obligations (5 series, 3 categories: Adult/DW/Youth) | -- |
+| doc20-C03 | chart-simple | Easy | Pie: Total WIOA Formula Grant Budget (5 segments: Admin/Youth In School/Out of School/Adult/DW) | -- |
+| doc20-C04 | chart-simple | Easy | Grouped bar: Direct Training (4 series, 3 categories: Adult/DW/Combined) | -- |
+| doc20-C05 | chart-simple | Easy | Grouped bar: Youth Work Based Learning (4 series, 1 category) | -- |
+| -- | -- | -- | Charts 6-10 duplicate charts 1-5 on Sheet 3 | Yes: duplicates |
+
+**Taggable:** 5 (3 easy, 2 medium)
+
+<br><br>
+
+## Doc 21 -- 21_praxie_project_portfolio.xlsx
+
+XLSX, 58 KB, multi-image
+Source: https://praxie.com/wp-content/uploads/2021/08/Project-Portfolio-Management-Template.xlsx
+
+4 single-series bar charts summarizing project portfolio metrics. 1 raster
+logo (decorative).
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc21-C01 | chart-simple | Easy | Bar: Priority distribution (3 bars: Low/Medium/High) | -- |
+| doc21-C02 | chart-simple | Easy | Bar: Status distribution (3 bars: Completed/In Progress/Not Started) | -- |
+| doc21-C03 | chart-simple | Easy | Bar: Risk distribution (3 bars: Low/Medium/High Risk) | -- |
+| doc21-C04 | chart-simple | Easy | Bar: Budget summary (2 bars: Budget vs Actual Expenditure) | -- |
+| -- | decorative | -- | Praxie logo (8.5 KB JPEG) | Yes: decorative logo |
+
+**Taggable:** 4 (4 easy)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19 | 121 | 31 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21 | 130 | 32 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **20** | **140** | **37** | **46** | **35** |
+| **Total** | **22** | **149** | **38** | **46** | **35** |
 
 <br><br>
 
@@ -593,6 +636,7 @@ Source: https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recov
 | Chart-simple raster | Covered | Docs 02, 05 have raster charts |
 | Algorithm pseudocode | Covered | Doc 11 has 10 algorithm screenshots |
 | Scanned documents | Covered | Docs 07-09 cover letter, form, newspaper |
+| XLSX with charts | Covered | Docs 20, 21 provide XML-defined chart objects (bar, pie) |
 | Infographics | Open | 16 total concentrated in 3 docs; add slide decks or consulting reports |
 
 <br><br>
@@ -603,17 +647,17 @@ Source: https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recov
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 57 | 30% |
-| Medium | 85 | 45% |
-| Hard | 47 | 25% |
-| **Total** | **189** | **100%** |
+| Easy | 64 | 32% |
+| Medium | 87 | 44% |
+| Hard | 47 | 24% |
+| **Total** | **198** | **100%** |
 
 ### By content type (taggable only)
 
 | Content Type | Easy | Medium | Hard | Total |
 |-------------|------|--------|------|-------|
-| chart-simple | 12 | 3 | 0 | 15 |
-| chart-complex | 0 | 14 | 14 | 28 |
+| chart-simple | 19 | 3 | 0 | 22 |
+| chart-complex | 0 | 16 | 14 | 30 |
 | diagram | 12 | 17 | 7 | 36 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
@@ -621,7 +665,7 @@ Source: https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recov
 | photo | 15 | 4 | 8 | 27 |
 | screenshot | 11 | 28 | 2 | 41 |
 | other | 0 | 5 | 2 | 7 |
-| **Total** | **57** | **85** | **47** | **189** |
+| **Total** | **64** | **87** | **47** | **198** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.
