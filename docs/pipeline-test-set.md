@@ -81,13 +81,19 @@ images).
 
 | Format | Easy | Medium | Hard | Total |
 |--------|------|--------|------|-------|
-| PDF | 2 (00, 03) | 4 (02, 06, 07, 08) | 5 (01, 04, 05, 09, 17) | 11 |
-| DOCX | 1 (10) | 2 (16, 19) | 0 | 3 |
-| PPTX | 1 (12) | 1 (11) | 0 | 2 |
-| Standalone image | 3 (13, 14, 15) | 0 | 0 | 3 |
+| PDF | 2 | 4 | 5 | 11 |
+| DOCX | 1 | 2 | 0 | 3 |
+| PPTX | 1 | 1 | 0 | 2 |
+| Standalone image | 3 | 0 | 0 | 3 |
 | XLSX | 0 | 0 | 0 | 0 |
 | HTML | 0 | 0 | 0 | 0 |
 | **Total** | **7** | **7** | **5** | **19** |
+
+**Documents per cell:**
+- PDF -- Easy: 00, 03 | Medium: 02, 06, 07, 08 | Hard: 01, 04, 05, 09, 17
+- DOCX -- Easy: 10 | Medium: 16, 19
+- PPTX -- Easy: 12 | Medium: 11
+- Standalone -- Easy: 13, 14, 15
 
 Note: The XLSX file in `fixtures/other/` is excluded from the active evaluation
 set. Total is 19 active documents (20 including the excluded XLSX).
