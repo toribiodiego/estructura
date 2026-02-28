@@ -92,70 +92,17 @@ python3 src/estructura-java/src/main/resources/scripts/run_docling.py \
 ## Documentation Standards
 
 All files under `docs/` and `fixtures/` follow consistent conventions adapted
-from KVision's documentation standards.
-
-### Voice and formatting
+from KVision's documentation standards. Key rules:
 
 - Active voice, imperative mood for instructions
-- H1 for title, H2 for sections, H3 for subsections
+- Language-tagged code blocks (`bash`, `python`, `java`, `json` -- never bare)
+- Backticks for all technical references (class names, file paths, commands)
 - `<br><br>` spacing between major sections (no horizontal rules `---`)
+- Lowercase-hyphen (kebab-case) filenames
 - No vague qualifiers ("very", "really", "quite", "fairly", "easily")
 
-### Code blocks
-
-Use language-tagged fenced code blocks. Never use bare (untagged) blocks.
-
-Supported tags: `bash`, `java`, `python`, `json`, `yaml`, `text`, `markdown`,
-`mermaid`.
-
-### Inline code
-
-Use backticks for all technical references:
-
-- Class names: `DoclingCli`, `DoclingRunner`
-- File paths: `docs/output-contract.md`, `fixtures/image-catalog.md`
-- Property names: `GOOGLE_API_KEY`, `--image-capture`
-- Commands: `docker compose exec dev bash`, `mvn test`
-- Literal values: `true`, `null`, `SHA256`
-
-### Tables
-
-Use markdown tables for structured comparisons. Backtick all property names,
-values, and code references within table cells.
-
-### Visual aids
-
-Use Mermaid diagrams for architecture, flows, and state transitions:
-
-````text
-<div align="center">
-
-```mermaid
-%%{init: {'theme':'dark'}}%%
-graph LR
-    A[Input] --> B[Processing]
-```
-
-<p><em>Figure N -- Caption text</em></p>
-</div>
-````
-
-### File naming
-
-All documentation and fixture filenames use **lowercase-hyphen** (kebab-case):
-
-```text
-Good:  output-contract.md, runner-protocol.md, image-catalog.md
-Bad:   OutputContract.md, runner_protocol.md, ImageCatalog.md
-```
-
-### Cross-references
-
-Use relative markdown links with descriptive text:
-
-```markdown
-See [Output Contract](./docs/output-contract.md) for image anchor format.
-```
+See [Documentation Standards](./docs/standards/documentation.md) for the full
+reference with examples and visual aid conventions.
 
 <br><br>
 
