@@ -6,7 +6,7 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 28 documents
+#   ./scripts/download-fixtures.sh          # all 29 documents
 #   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -220,6 +220,10 @@ if [[ "$QUICK" == false ]]; then
 
     download "multi-image" "27_era_annual_report_2023.pptx" \
         "https://www.era-online.org/wp-content/uploads/2026/01/Slides-summarizing-AR2023_website.pptx" \
+        ""
+
+    download "multi-image" "28_eurostat_climate_driving_forces_2022.xlsx" \
+        "https://ec.europa.eu/eurostat/statistics-explained/images/1/18/Climate_change_driving_forces_2022_figures_and_tables.xlsx" \
         ""
 fi
 

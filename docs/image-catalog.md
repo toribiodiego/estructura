@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 28
+**Documents cataloged:** 29
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -849,18 +849,79 @@ or time periods. Visual inspection during pass 2 will refine classifications.
 
 <br><br>
 
+## Doc 28 -- 28_eurostat_climate_driving_forces_2022.xlsx
+
+XLSX, 765 KB, multi-image
+Source: https://ec.europa.eu/eurostat/statistics-explained/images/1/18/Climate_change_driving_forces_2022_figures_and_tables.xlsx
+
+29 XML-defined chart objects across 24 figure sheets (Fig1-Fig23 plus
+"Fig19 old"). 20 data sheets provide the underlying data. 2 raster media
+files (logos/banners). 6 chart types: line, bar, area, pie, scatter,
+pie-of-pie, plus 3 combo charts (area+line, area+bar+line). Several figure
+sheets contain 2-3 charts each (Fig1: 2, Fig2: 3, Fig16: 2, Fig17: 2).
+
+| ID | Sheet | Content Type | Difficulty | Description | Skip? |
+|----|-------|-------------|------------|-------------|-------|
+| doc28-C01 | Fig1 | chart-complex | Medium | Line: GHG emissions index 1990=100, 4 series (1990-2020) | -- |
+| doc28-C02 | Fig1 | chart-simple | Easy | Line: GHG tonnes per capita | -- |
+| doc28-C03 | Fig2 | chart-complex | Medium | Bar: GHG emissions by country, absolute change 1990-2020, 1 series | -- |
+| doc28-C04 | Fig2 | chart-simple | Easy | Bar: GHG emissions by country (supplementary view) | -- |
+| doc28-C05 | Fig2 | chart-simple | Easy | Bar: GHG emissions by country (supplementary view) | -- |
+| doc28-C06 | Fig3 | chart-complex | Medium | Line: GHG vs GDP decoupling, 4 series (1990-2020) | -- |
+| doc28-C07 | Fig4 | chart-complex | Medium | Pie-of-pie: GHG by source sector, EU 2020 | -- |
+| doc28-C08 | Fig5 | chart-complex | Hard | Combo (area+bar+line): GHG by sector, change from 1990, 4 series | -- |
+| doc28-C09 | Fig6 | chart-complex | Medium | Line: GHG from fuel combustion excl. transport, 3 series | -- |
+| doc28-C10 | Fig7 | chart-complex | Medium | Bar: Electricity/heat by fuel, 1990 vs 2020, 6 series | -- |
+| doc28-C11 | Fig8 | chart-complex | Medium | Stacked area: Electricity/heat from renewables, 7 series | -- |
+| doc28-C12 | Fig9 | chart-simple | Easy | Line: Manufacturing/construction volume index, 2 series | -- |
+| doc28-C13 | Fig10 | chart-complex | Medium | Bar: Industry energy consumption by fuel, 1990 vs 2020, 7 series | -- |
+| doc28-C14 | Fig11 | chart-complex | Medium | Bar: Household energy consumption by fuel, 1990 vs 2020, 6 series | -- |
+| doc28-C15 | Fig12 | chart-complex | Medium | Stacked bar: Transport GHG emissions, 1990-2020, 7 series | -- |
+| doc28-C16 | Fig13 | chart-simple | Easy | Line: Transport activity index 1995=100, 2 series | -- |
+| doc28-C17 | Fig14 | chart-simple | Easy | Bar: Agriculture GHG, 1990 vs 2020, 2 series | -- |
+| doc28-C18 | Fig15 | chart-simple | Easy | Line: Livestock, EU, 2001-2021, 2 series (million head) | -- |
+| doc28-C19 | Fig16 | chart-simple | Easy | Line: Manure nitrogen production, EU-27, 2 series | -- |
+| doc28-C20 | Fig16 | chart-simple | Easy | Line: Manure nitrogen production, EU, 2 series | -- |
+| doc28-C21 | Fig17 | chart-complex | Medium | Bar: Waste management GHG, 1990-2020, 3 series | -- |
+| doc28-C22 | Fig17 | chart-complex | Hard | Scatter: Waste-related metric (1 series) | -- |
+| doc28-C23 | Fig18 | chart-complex | Medium | Line: Municipal waste treatment, EU, 1995-2020, 3 series | -- |
+| doc28-C24 | Fig19 | chart-complex | Hard | Combo (area+line): LULUCF GHG, 7 series (6 area + 1 line) | -- |
+| doc28-C25 | Fig19 old | chart-complex | Medium | Combo (area+line): LULUCF with/without, 2 series | -- |
+| doc28-C26 | Fig20 | chart-simple | Easy | Bar: Forest area, EU, 1990-2020, 2 series (million hectares) | -- |
+| doc28-C27 | Fig21 | chart-simple | Easy | Pie: GHG by economic activity, air emissions accounts, 1 series | -- |
+| doc28-C28 | Fig22 | chart-complex | Medium | Bar: GHG production vs consumption perspective, 4 series | -- |
+| doc28-C29 | Fig23 | chart-simple | Easy | Pie: GHG by gas type in CO2-equivalents, EU, 1 series | -- |
+
+Decorative (skip):
+
+| ID | Location | Description | Skip? |
+|----|----------|-------------|-------|
+| doc28-D01 | xl/media/image1.png | Banner/logo (825x121) | Yes: decorative |
+| doc28-D02 | xl/media/image2.png | Banner/logo (404x116) | Yes: decorative |
+
+Note: Chart classifications are based on XML chart type elements and series
+counts. Charts with 1-2 series in simple types (line, bar, pie) are
+chart-simple/Easy. Charts with 3+ series, combo types, stacked areas, or
+scatter plots are chart-complex/Medium or Hard. The 3 combo charts (C08,
+C24, C25) mix area+line or area+bar+line types. Visual inspection during
+pass 2 will refine difficulty ratings.
+
+**Taggable:** 29 (12 easy, 14 medium, 3 hard)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-27 | 240 | 90 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-28 | 269 | 92 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **28** | **259** | **96** | **46** | **35** |
+| **Total** | **29** | **288** | **98** | **46** | **35** |
 
 <br><br>
 
@@ -876,7 +937,7 @@ or time periods. Visual inspection during pass 2 will refine classifications.
 | Chart-simple raster | Covered | Docs 02, 05 have raster charts |
 | Algorithm pseudocode | Covered | Doc 11 has 10 algorithm screenshots |
 | Scanned documents | Covered | Docs 07-09 cover letter, form, newspaper |
-| XLSX with charts | Covered | Docs 20, 21 provide XML-defined chart objects (bar, pie) |
+| XLSX with charts | Covered | Docs 20 (5 charts, medium), 21 (4 charts, easy), 28 (29 charts, hard) span easy/medium/hard |
 | HTML with images | Covered | Doc 22 provides 20 inline images (charts + photos) from NASA |
 | Infographics | Open | 16 total concentrated in 3 docs; add slide decks or consulting reports |
 
@@ -888,17 +949,17 @@ or time periods. Visual inspection during pass 2 will refine classifications.
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 105 | 34% |
-| Medium | 150 | 49% |
-| Hard | 49 | 16% |
-| **Total** | **308** | **100%** |
+| Easy | 117 | 35% |
+| Medium | 164 | 49% |
+| Hard | 52 | 15% |
+| **Total** | **337** | **100%** |
 
 ### By content type (taggable only)
 
 | Content Type | Easy | Medium | Hard | Total |
 |-------------|------|--------|------|-------|
-| chart-simple | 37 | 3 | 0 | 40 |
-| chart-complex | 1 | 40 | 16 | 57 |
+| chart-simple | 49 | 3 | 0 | 52 |
+| chart-complex | 1 | 54 | 19 | 74 |
 | diagram | 23 | 43 | 7 | 73 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
@@ -906,7 +967,7 @@ or time periods. Visual inspection during pass 2 will refine classifications.
 | photo | 21 | 7 | 8 | 36 |
 | screenshot | 15 | 38 | 2 | 55 |
 | other | 2 | 5 | 2 | 9 |
-| **Total** | **105** | **150** | **49** | **308** |
+| **Total** | **117** | **164** | **52** | **337** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.
@@ -944,7 +1005,8 @@ dedicated test set files:
 | 19 | 5 | 4 | 1 | 10 | DOCX |
 | 26 | 4 | 18 | 0 | 22 | PPTX |
 | 27 | 18 | 24 | 0 | 42 | PPTX |
-| **Total** | **79** | **127** | **47** | **253** | |
+| 28 | 12 | 14 | 3 | 29 | XLSX |
+| **Total** | **91** | **141** | **50** | **282** | |
 
 <br><br>
 

@@ -15,7 +15,7 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11, 12, 16, 20-27 -- documents with images or chart objects
+    multi-image/           02, 05, 06, 11, 12, 16, 20-28 -- documents with images or chart objects
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (28 fixtures, ~90 MB)
+# Full set (29 fixtures, ~90 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -70,6 +70,7 @@ the KVision test catalog.
 | 25 | `25_va_tiu_clinical_manual.docx` | DOCX | n/a | 14 screenshots, 5 decorative icons | 1.8 MB |
 | 26 | `26_concordia_coen6501_digital_logic.pptx` | PPTX | 62 | 22 circuit diagrams (15 raster, 8 WMF) | 1.5 MB |
 | 27 | `27_era_annual_report_2023.pptx` | PPTX | 32 | 42 images (maps, charts, paired comparisons), 4 decorative | 1.9 MB |
+| 28 | `28_eurostat_climate_driving_forces_2022.xlsx` | XLSX | 49 sheets | 29 chart objects (line, bar, area, pie, scatter, combo), 2 decorative | 765 KB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -116,13 +117,13 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-27 | 240 | 90 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-28 | 269 | 92 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **28** | **259** | **96** | **46** | **35** |
+| **Total** | **29** | **288** | **98** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.

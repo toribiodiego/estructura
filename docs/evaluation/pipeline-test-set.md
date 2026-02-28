@@ -72,6 +72,7 @@ images).
 | 25 | `25_va_tiu_clinical_manual.docx` | DOCX | -- | 14 | Hard | 14 content screenshots + 5 decorative icons; mixed sizes; clinical software UI |
 | 26 | `26_concordia_coen6501_digital_logic.pptx` | PPTX | 62 | 22 | Medium | 22 circuit diagrams (15 raster + 8 WMF); dense slide 13 (7 images); no decorative filtering; mixed sizes |
 | 27 | `27_era_annual_report_2023.pptx` | PPTX | 32 | 42 | Hard | 42 content images (maps, charts, paired comparisons); 4 decorative in slide layouts; near-duplicate halves (bilingual); 31 of 32 slides have images |
+| 28 | `28_eurostat_climate_driving_forces_2022.xlsx` | XLSX | 49 | 29 | Hard | 29 XML-defined charts across 24 figure sheets; 6 chart types (line, bar, area, pie, scatter, combo); 2 decorative logos; 20 backing data sheets |
 
 **Notes:**
 - "Images" column counts taggable content images (decorative excluded). Compare
@@ -94,9 +95,9 @@ images).
 | DOCX | 1 | 2 | 1 | 4 |
 | PPTX | 1 | 2 | 1 | 4 |
 | Standalone image | 3 | 0 | 0 | 3 |
-| XLSX | 1 | 1 | 0 | 2 |
+| XLSX | 1 | 1 | 1 | 3 |
 | HTML | 1 | 1 | 1 | 3 |
-| **Total** | **9** | **10** | **8** | **27** |
+| **Total** | **9** | **10** | **9** | **28** |
 
 **Documents per cell:**
 - PDF (digital) -- Easy: 00, 03 | Medium: 02, 06 | Hard: 01, 04, 05, 17
@@ -104,7 +105,7 @@ images).
 - DOCX -- Easy: 10 | Medium: 16, 19 | Hard: 25
 - PPTX -- Easy: 12 | Medium: 11, 26 | Hard: 27
 - Standalone -- Easy: 13, 14, 15
-- XLSX -- Easy: 21 | Medium: 20
+- XLSX -- Easy: 21 | Medium: 20 | Hard: 28
 - HTML -- Easy: 23 | Medium: 24 | Hard: 22
 
 Note: The XLSX file in `fixtures/other/` (medrxiv supplementary data) is
@@ -115,14 +116,14 @@ excluded from the active evaluation set.
 | Challenge | Documents | Count |
 |-----------|-----------|-------|
 | Vector figure extraction | 01, 04, 05 | 3 |
-| High image density (20+) | 04, 05, 06, 18, 22, 26, 27 | 7 |
-| Decorative filtering | 00, 03, 05, 06, 11, 12, 19, 22, 24, 25, 27 | 11 |
+| High image density (20+) | 04, 05, 06, 18, 22, 26, 27, 28 | 8 |
+| Decorative filtering | 00, 03, 05, 06, 11, 12, 19, 22, 24, 25, 27, 28 | 12 |
 | Scanned pages | 07, 08, 09 | 3 |
 | Equation region detection | 17 | 1 |
 | Large file size (25+ MB) | 05 | 1 |
 | Large page count (100+) | 18 | 1 |
 | Multi-sub-panel composites | 16 | 1 |
-| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 26, 27 | 16 |
+| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28 | 17 |
 
 <br><br>
 
@@ -132,7 +133,7 @@ excluded from the active evaluation set.
 |---------------|-----|--------|----------|
 | ~~DOCX~~ | ~~No hard-difficulty documents~~ | Addressed: Doc 25 (VA clinical manual, 19 images, hard) fills DOCX hard gap | -- |
 | ~~PPTX~~ | ~~No hard difficulty~~ | Addressed: Doc 27 (ERA annual report, 42 images, hard) fills PPTX hard gap. 4 decorative elements in slide layouts. Docs 11, 26 cover medium. | -- |
-| ~~XLSX~~ | ~~Zero evaluation coverage~~ | Addressed: Docs 20, 21 provide XML-defined chart objects (bar, pie) across easy/medium difficulty | -- |
+| ~~XLSX~~ | ~~Zero evaluation coverage~~ | Addressed: Docs 20 (medium), 21 (easy), 28 (hard) provide XML-defined chart objects across all difficulty levels. Doc 28 adds 29 charts with 6 types including combos. | -- |
 | ~~HTML~~ | ~~Zero files~~ | Addressed: Docs 22 (hard), 23 (easy), 24 (medium) cover all difficulty levels | -- |
 | Scanned + images | 3 scanned PDFs but all are text-only pages | Tests OCR routing but not image extraction from scans | Medium |
 | Standalone (hard) | All 3 standalone images are easy/medium | No test of complex single-image extraction | Low |
