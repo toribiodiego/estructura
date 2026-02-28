@@ -69,6 +69,7 @@ images).
 | 22 | `22_nasa_global_warming.html` | HTML | -- | 20 | Hard | 20 content images in `<figure>` tags; ~35 navigation thumbnails to filter; remote-hosted images (NASA CDN) |
 | 23 | `23_nvie_git_branching_model.html` | HTML | -- | 6 | Easy | 6 inline diagrams; 2 decorative to filter; relative image paths; clean layout |
 | 24 | `24_fowler_microservices.html` | HTML | -- | 6 | Medium | 6 architecture diagrams; 8 decorative elements to filter; relative image paths |
+| 25 | `25_va_tiu_clinical_manual.docx` | DOCX | -- | 14 | Hard | 14 content screenshots + 5 decorative icons; mixed sizes; clinical software UI |
 
 **Notes:**
 - "Images" column counts taggable content images (decorative excluded). Compare
@@ -88,17 +89,17 @@ images).
 |--------|------|--------|------|-------|
 | PDF (digital) | 2 | 2 | 4 | 8 |
 | PDF (scanned) | 0 | 2 | 1 | 3 |
-| DOCX | 1 | 2 | 0 | 3 |
+| DOCX | 1 | 2 | 1 | 4 |
 | PPTX | 1 | 1 | 0 | 2 |
 | Standalone image | 3 | 0 | 0 | 3 |
 | XLSX | 1 | 1 | 0 | 2 |
 | HTML | 1 | 1 | 1 | 3 |
-| **Total** | **9** | **9** | **6** | **24** |
+| **Total** | **9** | **9** | **7** | **25** |
 
 **Documents per cell:**
 - PDF (digital) -- Easy: 00, 03 | Medium: 02, 06 | Hard: 01, 04, 05, 17
 - PDF (scanned) -- Medium: 07, 08 | Hard: 09
-- DOCX -- Easy: 10 | Medium: 16, 19
+- DOCX -- Easy: 10 | Medium: 16, 19 | Hard: 25
 - PPTX -- Easy: 12 | Medium: 11
 - Standalone -- Easy: 13, 14, 15
 - XLSX -- Easy: 21 | Medium: 20
@@ -113,13 +114,13 @@ excluded from the active evaluation set.
 |-----------|-----------|-------|
 | Vector figure extraction | 01, 04, 05 | 3 |
 | High image density (20+) | 04, 05, 06, 18, 22 | 5 |
-| Decorative filtering | 00, 03, 05, 06, 11, 12, 19, 22, 24 | 9 |
+| Decorative filtering | 00, 03, 05, 06, 11, 12, 19, 22, 24, 25 | 10 |
 | Scanned pages | 07, 08, 09 | 3 |
 | Equation region detection | 17 | 1 |
 | Large file size (25+ MB) | 05 | 1 |
 | Large page count (100+) | 18 | 1 |
 | Multi-sub-panel composites | 16 | 1 |
-| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24 | 13 |
+| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 | 14 |
 
 <br><br>
 
@@ -127,7 +128,7 @@ excluded from the active evaluation set.
 
 | Format / Area | Gap | Impact | Priority |
 |---------------|-----|--------|----------|
-| DOCX | No hard-difficulty documents; only 2 files with images | Cannot assess extraction reliability on complex DOCX layouts | High |
+| ~~DOCX~~ | ~~No hard-difficulty documents~~ | Addressed: Doc 25 (VA clinical manual, 19 images, hard) fills DOCX hard gap | -- |
 | PPTX | Only 2 files (1 meaningful); limited layout variety | Cannot evaluate PPTX pipeline reliability | High |
 | ~~XLSX~~ | ~~Zero evaluation coverage~~ | Addressed: Docs 20, 21 provide XML-defined chart objects (bar, pie) across easy/medium difficulty | -- |
 | ~~HTML~~ | ~~Zero files~~ | Addressed: Docs 22 (hard), 23 (easy), 24 (medium) cover all difficulty levels | -- |

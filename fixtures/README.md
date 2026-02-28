@@ -15,7 +15,7 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11, 12, 16, 20-24 -- documents with images or chart objects
+    multi-image/           02, 05, 06, 11, 12, 16, 20-25 -- documents with images or chart objects
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (25 fixtures, ~90 MB)
+# Full set (26 fixtures, ~90 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -67,6 +67,7 @@ the KVision test catalog.
 | 22 | `22_nasa_global_warming.html` | HTML | -- | 11 charts, 9 photos, ~35 navigation thumbnails | 351 KB |
 | 23 | `23_nvie_git_branching_model.html` | HTML | -- | 6 git flow diagrams, 2 decorative | 31 KB |
 | 24 | `24_fowler_microservices.html` | HTML | -- | 6 architecture diagrams, 8 decorative | 84 KB |
+| 25 | `25_va_tiu_clinical_manual.docx` | DOCX | n/a | 14 screenshots, 5 decorative icons | 1.8 MB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -113,13 +114,13 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-24 | 162 | 81 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-25 | 176 | 86 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **25** | **181** | **87** | **46** | **35** |
+| **Total** | **26** | **195** | **92** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.
@@ -357,6 +358,17 @@ additional fixtures:
   Conway's Law mapping, team organization, decentralized data, deployment
   pipeline, and infrastructure comparison. 8 decorative elements (site logo,
   author photos, book cover, thumbnails, footer branding).
+
+### 25_va_tiu_clinical_manual.docx
+
+- **Source:** https://www.va.gov/vdl/documents/Clinical/CPRS-Text_Integration_Utility_(TIU)/tiutm.docx
+- **Format:** DOCX (1.8 MB)
+- **Category:** multi-image
+- **Content:** VA CPRS Text Integration Utility technical manual. 19 raster
+  images: 14 content screenshots of the clinical software interface (dialog
+  boxes, data entry forms, record displays, toolbar captures) and 5 small
+  decorative icons/buttons. First hard-difficulty DOCX in the corpus; high
+  image count with mixed sizes requiring decorative filtering.
 
 ### 12_minnstate_fy2025_budget.pptx
 

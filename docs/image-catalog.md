@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 25
+**Documents cataloged:** 26
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -697,18 +697,49 @@ logo, author photos, book cover, thumbnails, footer branding).
 
 <br><br>
 
+## Doc 25 -- 25_va_tiu_clinical_manual.docx
+
+DOCX, 1.8 MB, multi-image
+Source: https://www.va.gov/vdl/documents/Clinical/CPRS-Text_Integration_Utility_(TIU)/tiutm.docx
+
+19 raster images from a VA clinical software manual (CPRS Text Integration
+Utility). Mix of full-window screenshots, dialog boxes, toolbar captures,
+and small icons. Images range from 2.8 KB icons to 270 KB full screenshots.
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc25-R01 | screenshot | Medium | Application window: main CPRS interface (500x500) | -- |
+| doc25-R02 | screenshot | Medium | Application window: clinical record view (912x651) | -- |
+| doc25-R05 | screenshot | Easy | Dialog or form view (710x501) | -- |
+| doc25-R06 | screenshot | Medium | UI panel: clinical data entry (772x421) | -- |
+| doc25-R07 | screenshot | Medium | UI panel: form layout (912x586) | -- |
+| doc25-R08 | screenshot | Medium | UI panel: record display (1055x742) | -- |
+| doc25-R09 | screenshot | Medium | UI panel: data view (986x724) | -- |
+| doc25-R10 | screenshot | Medium | Wide panel: clinical workflow (1280x560) | -- |
+| doc25-R11 | screenshot | Medium | Dialog: configuration or settings (880x594) | -- |
+| doc25-R12 | screenshot | Medium | Dialog: data entry form (992x760) | -- |
+| doc25-R13 | screenshot | Easy | Small dialog: option panel (752x383) | -- |
+| doc25-R14 | screenshot | Easy | Small dialog: selection panel (800x408) | -- |
+| doc25-R18 | screenshot | Easy | Toolbar or menu capture (529x166) | -- |
+| doc25-R19 | screenshot | Medium | Full form: clinical documentation (686x851) | -- |
+| -- | decorative | -- | 5 small icons/buttons (<10 KB each): image3, image4, image15, image16, image17 | Yes: UI icons |
+
+**Taggable:** 14 (4 easy, 10 medium)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21, 22, 23, 24 | 162 | 81 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-25 | 176 | 86 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **25** | **181** | **87** | **46** | **35** |
+| **Total** | **26** | **195** | **92** | **46** | **35** |
 
 <br><br>
 
@@ -720,7 +751,7 @@ logo, author photos, book cover, thumbnails, footer branding).
 | Equations | Covered | 4 raster (Doc 11) + 63 native LaTeX (Doc 17) |
 | Diagrams | Covered | 36 total; Doc 18 adds ~27 architecture diagrams |
 | Photos (non-scanned) | Improved | Docs 05, 16, 19 span consumer, scientific, and environmental |
-| DOCX with images | Covered | Docs 16, 19 provide scientific photos + charts |
+| DOCX with images | Covered | Docs 16, 19 (medium), Doc 25 (hard) span scientific, regulatory, and clinical |
 | Chart-simple raster | Covered | Docs 02, 05 have raster charts |
 | Algorithm pseudocode | Covered | Doc 11 has 10 algorithm screenshots |
 | Scanned documents | Covered | Docs 07-09 cover letter, form, newspaper |
@@ -736,10 +767,10 @@ logo, author photos, book cover, thumbnails, footer branding).
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 79 | 33% |
-| Medium | 100 | 42% |
-| Hard | 49 | 21% |
-| **Total** | **230** | **100%** |
+| Easy | 83 | 34% |
+| Medium | 110 | 45% |
+| Hard | 49 | 20% |
+| **Total** | **244** | **100%** |
 
 ### By content type (taggable only)
 
@@ -752,9 +783,9 @@ logo, author photos, book cover, thumbnails, footer branding).
 | equation | 2 | 2 | 0 | 4 |
 | infographic | 3 | 7 | 6 | 16 |
 | photo | 21 | 7 | 8 | 36 |
-| screenshot | 11 | 28 | 2 | 41 |
+| screenshot | 15 | 38 | 2 | 55 |
 | other | 0 | 5 | 2 | 7 |
-| **Total** | **79** | **100** | **49** | **230** |
+| **Total** | **83** | **110** | **49** | **244** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.
