@@ -251,7 +251,7 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 ### 16_cambridge_mitoball_biology.docx
 
-- **Source:** Cambridge University Repository (bitstream a5e95699-d0d4-49e1-a471-e7dc381cdbac)
+- **Source:** https://www.repository.cam.ac.uk/bitstreams/a5e95699-d0d4-49e1-a471-e7dc381cdbac/download
 - **Format:** DOCX (6.8 MB)
 - **Category:** multi-image
 - **Content:** Cell biology research paper on mitochondrial dynamics during
@@ -275,7 +275,7 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 ### 18_ibm_microservices_redbook.pdf
 
-- **Source:** IBM Redbooks SG24-8275-00 (Microservices from Theory to Practice)
+- **Source:** https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf
 - **Format:** PDF, 170 pages (7.0 MB)
 - **Category:** multi-image
 - **Content:** IBM Redbook on microservices architecture patterns. 206 raster
@@ -287,7 +287,7 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 ### 19_cris_electronic_screens_2023.docx
 
-- **Source:** Australian Government OIA, E3 Program (CRIS for Electronic Screens 2023)
+- **Source:** https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recovery%20Impact%20Statement%20-%20Electronic%20Screens%20-%202023.docx
 - **Format:** DOCX (1.3 MB)
 - **Category:** multi-image
 - **Content:** Cost Recovery Impact Statement for electronic screen energy
@@ -299,7 +299,7 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 ### 12_minnstate_fy2025_budget.pptx
 
-- **Source:** Minnesota State FY2025 Operating Budget (sourced from KVIS-173)
+- **Source:** https://www.minnstate.edu/system/finance/budget/docs/fy2025-operating-budget-second-reading-june-2024-final.pptx
 - **Format:** PPTX, 17 slides
 - **Category:** multi-image
 - **Content:** Government budget presentation. 1 financial data table
@@ -308,7 +308,7 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 ### 13_artpro_table.webp
 
-- **Source:** ArtPro product catalog (sourced from KVIS-174)
+- **Source:** https://standupsurfshop.com.au/wp-content/uploads/2023/09/ARTPRO-Table.webp
 - **Format:** WebP (standalone image)
 - **Category:** table-image
 - **Content:** Aircraft wing specification table with 6 wing models and
@@ -317,7 +317,7 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 ### 14_simple_table.png
 
-- **Source:** image-table-ocr GitHub repository (sourced from KVIS-174)
+- **Source:** https://raw.githubusercontent.com/eihli/image-table-ocr/master/resources/test_data/simple.png
 - **Format:** PNG (standalone image)
 - **Category:** table-image
 - **Content:** Simple spreadsheet cell/format/formula reference table.
@@ -325,7 +325,7 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 ### 15_timetable.jpg
 
-- **Source:** University of Washington FISH 340 (sourced from KVIS-174)
+- **Source:** https://courses.washington.edu/fish340/Images/timetable.jpg
 - **Format:** JPG (standalone image)
 - **Category:** table-image
 - **Content:** Color-coded university course timetable ("SWORD Deadlines").

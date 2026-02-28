@@ -24,6 +24,7 @@ mkdir -p "$DEST/text-heavy"
 mkdir -p "$DEST/scanned"
 mkdir -p "$DEST/text-only"
 mkdir -p "$DEST/table-image"
+mkdir -p "$REPO_ROOT/fixtures/other"
 
 TOTAL=0
 FAILED=0
@@ -101,7 +102,18 @@ download "multi-image" "11_policy_gradient_rl_lecture.pptx" \
     "https://www.cs.princeton.edu/courses/archive/spring17/cos598F/lectures/RL.pptx" \
     ""
 
-# XLSX moved to fixtures/other/ (tabular data, not part of evaluation)
+# Non-evaluation fixtures (fixtures/other/)
+OTHER_DIR="$REPO_ROOT/fixtures/other"
+
+if [[ ! -f "$OTHER_DIR/medrxiv_llm_imaging_eval.xlsx" ]]; then
+    echo "  [get]  other/medrxiv_llm_imaging_eval.xlsx"
+    curl -fSL --retry 2 --retry-delay 3 \
+        -o "$OTHER_DIR/medrxiv_llm_imaging_eval.xlsx" \
+        "https://www.medrxiv.org/content/medrxiv/early/2025/10/07/2025.10.05.25337350/DC1/embed/media-2.xlsx?download=true" \
+        || echo "  [FAIL] other/medrxiv_llm_imaging_eval.xlsx -- download failed"
+else
+    echo "  [skip] other/medrxiv_llm_imaging_eval.xlsx (already exists)"
+fi
 
 # ---- OCR and mixed-content set (3 additional documents) ----
 echo ""

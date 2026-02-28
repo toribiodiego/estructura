@@ -16,6 +16,7 @@ __pycache__/
 
 # Project
 fixtures/downloaded/
+fixtures/other/
 fixtures/eval-subset/**/*.png
 fixtures/eval-subset/**/*.jpg
 

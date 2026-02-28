@@ -92,6 +92,7 @@ as documents are cataloged.
 **Format:** PDF, 9 pages
 **Category:** text-heavy (recategorized from multi-image)
 **Source:** Google DeepMind Gemini 3 Pro model card
+**URL:** https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf
 
 ### Embedded Images
 
@@ -141,6 +142,7 @@ objects with pypdfium2: pages 2-4 and 6-9 contain zero image objects.
 **Format:** PDF, 60 pages
 **Category:** vector-heavy
 **Source:** OpenAI GPT-4 System Card
+**URL:** https://cdn.openai.com/papers/gpt-4-system-card.pdf
 
 ### Embedded Images
 
@@ -214,6 +216,7 @@ heavily on how Docling classifies vector content vs raster content.
 **Format:** PDF, 19 pages
 **Category:** multi-image
 **Source:** ICML 2019 -- "Importance Sampling Policy Evaluation with an Estimated Behavior Policy"
+**URL:** https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/ICML2019-Hanna.pdf
 
 ### Embedded Images
 
@@ -288,6 +291,7 @@ equation formatting only (no visual figures).
 **Format:** PDF, 69 pages
 **Category:** text-heavy
 **Source:** IMF Working Paper WP/24/65 -- "The Economic Impacts and the Regulation of AI: A Review of the Academic Literature and Policy Actions"
+**URL:** https://www.imf.org/-/media/Files/Publications/WP/2024/English/wpiea2024065-print-pdf.ashx
 
 ### Embedded Images
 
@@ -348,6 +352,7 @@ Category recategorized from "multi-image" to "text-heavy".
 **Format:** PDF, 47 pages
 **Category:** vector-heavy
 **Source:** Anthropic -- "The Anthropic Economic Index report: Uneven geographic and enterprise AI adoption" (September 2025)
+**URL:** https://assets.anthropic.com/m/218c82b858610fac/original/Economic-Index.pdf
 
 ### Embedded Images
 
@@ -435,6 +440,7 @@ entirely on how it handles vector-drawn content. Category set to
 **Format:** PDF, 90 pages
 **Category:** multi-image
 **Source:** Google DeepMind -- "Gemini: A Family of Highly Capable Multimodal Models"
+**URL:** https://arxiv.org/pdf/2312.11805v5.pdf
 
 ### Embedded Images
 
@@ -544,6 +550,7 @@ FORM objects that the 1-level scan does not reach.
 **Format:** PDF, 9 pages
 **Category:** multi-image
 **Source:** arXiv 2206.01062 -- "DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis"
+**URL:** https://arxiv.org/pdf/2206.01062.pdf
 
 ### Embedded Images
 
@@ -637,6 +644,7 @@ on page 5 are decorative and should be filtered during extraction.
 **Format:** PDF, 3 pages
 **Category:** scanned
 **Source:** US EPA Office of Ground Water and Drinking Water -- sample letter
+**URL:** https://19january2021snapshot.epa.gov/sites/static/files/2016-02/documents/epa_sample_letter_sent_to_commissioners_dated_february_29_2015.pdf
 to state drinking water administrators about Lead and Copper Rule compliance
 
 ### Embedded Images
@@ -692,6 +700,7 @@ for OCR quality evaluation but provides no image annotation targets.
 **Format:** PDF, 5 pages
 **Category:** scanned
 **Source:** Forestburg ISD (Texas) -- scanned employment application package
+**URL:** https://files.gabbart.com/1605/scanned_from_a_xerox_multifunction_printer.pdf
 from a Xerox multifunction printer
 
 ### Embedded Images
@@ -755,6 +764,7 @@ for image description -- the content is purely textual forms.
 **Format:** PDF, 6 pages
 **Category:** mixed-content
 **Source:** Daily News-Herald, Upland-Ontario, California, Wednesday
+**URL:** https://archive.org/download/cupl_003575/cupl_003575_access.pdf
 September 1, 1948 (Internet Archive digitized newspaper)
 
 ### Embedded Images
@@ -836,6 +846,7 @@ pipeline can identify photo regions within full-page scans.
 **Format:** DOCX, ~216 paragraphs
 **Category:** text-only
 **Source:** medRxiv -- supplementary material for LLM medical benchmark
+**URL:** https://www.medrxiv.org/content/medrxiv/early/2025/10/07/2025.10.05.25337350/DC1/embed/media-1.docx?download=true
 evaluation (specialty mapping, accuracy comparisons, prompting effects)
 
 ### Embedded Images
@@ -891,6 +902,7 @@ only for testing table extraction quality on DOCX format.
 **Category:** multi-image
 **Source:** Reinforcement learning lecture slides covering TD learning,
 Q-learning, SARSA, policy gradients, actor-critic, DQN, and A3C
+**URL:** https://www.cs.princeton.edu/courses/archive/spring17/cos598F/lectures/RL.pptx
 
 ### Embedded Images
 
@@ -971,7 +983,7 @@ decorative images, (3) PPTX format handling. Category confirmed as
 **Format:** PPTX, 17 slides
 **Category:** multi-image
 **Source:** Minnesota State FY2025 Operating Budget, Second Reading (June 2024).
-Sourced from KVIS-173 test fixtures.
+**URL:** https://www.minnstate.edu/system/finance/budget/docs/fy2025-operating-budget-second-reading-june-2024-final.pptx
 
 ### Embedded Images
 
@@ -1010,7 +1022,7 @@ are decorative and should be skipped.
 **Format:** WebP (standalone image)
 **Category:** table-image
 **Source:** Aircraft wing specification table from ArtPro product catalog.
-Sourced from KVIS-174 test fixtures.
+**URL:** https://standupsurfshop.com.au/wp-content/uploads/2023/09/ARTPRO-Table.webp
 
 ### Image Content
 
@@ -1035,7 +1047,7 @@ Sourced from KVIS-174 test fixtures.
 **Format:** PNG (standalone image)
 **Category:** table-image
 **Source:** Spreadsheet cell/format/formula reference table.
-Sourced from KVIS-174 test fixtures (originally from image-table-ocr GitHub repo).
+**URL:** https://raw.githubusercontent.com/eihli/image-table-ocr/master/resources/test_data/simple.png
 
 ### Image Content
 
@@ -1060,7 +1072,7 @@ Sourced from KVIS-174 test fixtures (originally from image-table-ocr GitHub repo
 **Format:** JPG (standalone image)
 **Category:** table-image
 **Source:** University of Washington SWORD Deadlines course timetable.
-Sourced from KVIS-174 test fixtures.
+**URL:** https://courses.washington.edu/fish340/Images/timetable.jpg
 
 ### Image Content
 
@@ -1085,7 +1097,8 @@ Sourced from KVIS-174 test fixtures.
 **Format:** DOCX (6.8 MB)
 **Category:** multi-image
 **Source:** Cambridge University Repository -- Drosophila spermatogenesis
-biology paper. Sourced from Cambridge institutional repository.
+biology paper.
+**URL:** https://www.repository.cam.ac.uk/bitstreams/a5e95699-d0d4-49e1-a471-e7dc381cdbac/download
 
 ### Embedded Images
 
@@ -1136,6 +1149,7 @@ understand biological context.
 **Category:** text-heavy (equation-dense)
 **Source:** arXiv 2306.08324 -- "Stochastic differential equations driven
 by fractional Brownian motion" by Dordevic and Oksendal (2024).
+**URL:** https://arxiv.org/pdf/2306.08324.pdf
 
 ### Embedded Images
 
@@ -1189,6 +1203,7 @@ multi-line proofs, theorem/definition environments.
 **Format:** PDF, 170 pages (7.0 MB)
 **Category:** multi-image
 **Source:** IBM Redbooks -- "Microservices: From Theory to Practice" (SG24-8275-00, April 2016)
+**URL:** https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf
 
 ### Embedded Images
 
@@ -1293,6 +1308,7 @@ diagrams existed in the corpus before this fixture.
 **Category:** multi-image
 **Source:** Australian Government Office of Impact Analysis -- CRIS Electronic
 Screens 2023 (Equipment Energy Efficiency / E3 program)
+**URL:** https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recovery%20Impact%20Statement%20-%20Electronic%20Screens%20-%202023.docx
 
 ### Embedded Images
 
