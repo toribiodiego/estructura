@@ -15,7 +15,7 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11, 12, 16, 20-26 -- documents with images or chart objects
+    multi-image/           02, 05, 06, 11, 12, 16, 20-27 -- documents with images or chart objects
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (27 fixtures, ~90 MB)
+# Full set (28 fixtures, ~90 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -69,6 +69,7 @@ the KVision test catalog.
 | 24 | `24_fowler_microservices.html` | HTML | -- | 6 architecture diagrams, 8 decorative | 84 KB |
 | 25 | `25_va_tiu_clinical_manual.docx` | DOCX | n/a | 14 screenshots, 5 decorative icons | 1.8 MB |
 | 26 | `26_concordia_coen6501_digital_logic.pptx` | PPTX | 62 | 22 circuit diagrams (15 raster, 8 WMF) | 1.5 MB |
+| 27 | `27_era_annual_report_2023.pptx` | PPTX | 32 | 42 images (maps, charts, paired comparisons), 4 decorative | 1.9 MB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -115,13 +116,13 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-26 | 198 | 86 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-27 | 240 | 90 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **27** | **217** | **92** | **46** | **35** |
+| **Total** | **28** | **259** | **96** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.
@@ -370,6 +371,19 @@ additional fixtures:
   boxes, data entry forms, record displays, toolbar captures) and 5 small
   decorative icons/buttons. First hard-difficulty DOCX in the corpus; high
   image count with mixed sizes requiring decorative filtering.
+
+### 27_era_annual_report_2023.pptx
+
+- **Source:** https://www.era-online.org/wp-content/uploads/2026/01/Slides-summarizing-AR2023_website.pptx
+- **Format:** PPTX, 32 slides (1.9 MB)
+- **Category:** multi-image
+- **Content:** European Union Agency for Railways (ERA) 2023 annual report
+  summary. 42 content images across 31 of 32 slides: European rail network
+  maps, horizontal bar/timeline charts, and paired comparison panels. 4
+  decorative ERA branding images in slide layouts. Document structure mirrors
+  across two halves (slides 2-13 and 14-28), suggesting bilingual or
+  year-over-year presentation with near-duplicate charts. First
+  hard-difficulty PPTX in the corpus.
 
 ### 26_concordia_coen6501_digital_logic.pptx
 

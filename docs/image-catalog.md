@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 27
+**Documents cataloged:** 28
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -773,18 +773,94 @@ equations or small circuit symbols not captured by the slide-level scan.
 
 <br><br>
 
+## Doc 27 -- 27_era_annual_report_2023.pptx
+
+PPTX, 32 slides, 1.9 MB, multi-image
+Source: https://www.era-online.org/wp-content/uploads/2026/01/Slides-summarizing-AR2023_website.pptx
+
+European Union Agency for Railways (ERA) 2023 annual report summary.
+42 media files (41 PNG + 1 JPEG), 42 content image references across 31 of
+32 slides. 4 decorative branding images in slide layouts. Document appears
+to present the same data in two halves (slides 2-13 and 14-28 mirror layout
+patterns), suggesting bilingual or year-over-year structure. Content includes
+European rail network maps, horizontal bar/timeline charts, and paired
+comparison panels.
+
+| ID | Slide | Content Type | Dimensions | Difficulty | Description | Skip? |
+|----|-------|-------------|------------|------------|-------------|-------|
+| doc27-R01 | 2 | diagram | 1010x824 | Medium | European rail map (descr: "kaart, atlas, tekst") | -- |
+| doc27-R02 | 3 | diagram | 1105x902 | Medium | European rail map (variant) | -- |
+| doc27-R03 | 4 | chart-complex | 879x697 | Medium | Paired panel (left), medium format | -- |
+| doc27-R04 | 4 | chart-complex | 802x875 | Medium | Paired panel (right), tall format | -- |
+| doc27-R05 | 5 | chart-complex | 791x881 | Medium | Paired panel (left), tall format | -- |
+| doc27-R06 | 5 | chart-complex | 792x945 | Medium | Paired panel (right), tall format | -- |
+| doc27-R07 | 6 | chart-complex | 848x876 | Medium | Paired panel (left), tall format | -- |
+| doc27-R08 | 6 | chart-complex | 848x502 | Easy | Paired panel (right), short format | -- |
+| doc27-R09 | 7 | chart-simple | 1576x611 | Easy | Wide horizontal chart | -- |
+| doc27-R10 | 8 | chart-simple | 1576x611 | Easy | Wide horizontal chart | -- |
+| doc27-R11 | 9 | chart-simple | 1778x619 | Easy | Wide horizontal chart | -- |
+| doc27-R12 | 10 | chart-simple | 1913x619 | Easy | Wide horizontal chart | -- |
+| doc27-R13 | 11 | chart-simple | 1916x522 | Easy | Wide horizontal chart | -- |
+| doc27-R14 | 12 | chart-simple | 1546x656 | Easy | Wide horizontal chart | -- |
+| doc27-R15 | 13 | chart-simple | 1795x520 | Easy | Wide horizontal chart | -- |
+| doc27-R16 | 14 | diagram | 1106x902 | Medium | European rail map (second half variant) | -- |
+| doc27-R17 | 15 | chart-complex | 874x836 | Medium | Paired panel (left) | -- |
+| doc27-R18 | 15 | chart-complex | 881x859 | Medium | Paired panel (right) | -- |
+| doc27-R19 | 16 | chart-complex | 772x1170 | Medium | Paired panel (left), portrait format | -- |
+| doc27-R20 | 16 | chart-complex | 848x851 | Medium | Paired panel (right) | -- |
+| doc27-R21 | 17 | chart-complex | 829x626 | Medium | Paired panel (left) | -- |
+| doc27-R22 | 17 | chart-complex | 1010x824 | Medium | Paired panel (right) | -- |
+| doc27-R23 | 18 | chart-simple | 1576x611 | Easy | Wide horizontal chart (mirrors slide 7) | -- |
+| doc27-R24 | 19 | chart-simple | 1576x611 | Easy | Wide horizontal chart (mirrors slide 8) | -- |
+| doc27-R25 | 20 | chart-simple | 1778x619 | Easy | Wide horizontal chart (mirrors slide 9) | -- |
+| doc27-R26 | 21 | chart-simple | 1968x518 | Easy | Wide horizontal chart | -- |
+| doc27-R27 | 22 | chart-simple | 1546x611 | Easy | Wide horizontal chart (mirrors slide 12) | -- |
+| doc27-R28 | 23 | chart-simple | 1899x454 | Easy | Wide horizontal chart | -- |
+| doc27-R29 | 24 | chart-complex | 926x865 | Medium | Paired panel (left) | -- |
+| doc27-R30 | 24 | chart-complex | 868x762 | Medium | Paired panel (right) | -- |
+| doc27-R31 | 25 | chart-complex | 910x863 | Medium | Paired panel (left) | -- |
+| doc27-R32 | 25 | chart-complex | 867x827 | Medium | Paired panel (right) | -- |
+| doc27-R33 | 26 | chart-complex | 1029x863 | Medium | Paired panel (left) | -- |
+| doc27-R34 | 26 | chart-complex | 914x837 | Medium | Paired panel (right) | -- |
+| doc27-R35 | 27 | chart-simple | 1546x613 | Easy | Wide horizontal chart | -- |
+| doc27-R36 | 28 | chart-simple | 1867x496 | Easy | Wide horizontal chart | -- |
+| doc27-R37 | 29 | other | 497x484 | Easy | Small element (JPEG, 2.3x2.2 in) | -- |
+| doc27-R38 | 29 | chart-complex | 689x774 | Medium | Medium panel | -- |
+| doc27-R39 | 30 | other | 497x484 | Easy | Small element (reused, 2.3x2.2 in) | -- |
+| doc27-R40 | 30 | chart-complex | 709x773 | Medium | Medium panel | -- |
+| doc27-R41 | 31 | infographic | 945x712 | Medium | Summary overview | -- |
+| doc27-R42 | 32 | infographic | 1329x743 | Medium | Summary overview (wide) | -- |
+
+Decorative (skip):
+
+| ID | Location | Description | Skip? |
+|----|----------|-------------|-------|
+| doc27-D01 | slideLayout1 | ERA branding banner (4.9x2.3 in) | Yes: decorative |
+| doc27-D02 | slideLayout2 | ERA logo (2.7x1.3 in) | Yes: decorative |
+| doc27-D03 | slideLayout3 | ERA logo (2.7x1.3 in) | Yes: decorative |
+| doc27-D04 | slideLayout4 | ERA logo (2.7x1.3 in) | Yes: decorative |
+
+Note: Content types are preliminary, based on structural metadata (dimensions,
+slide position, layout patterns). The document's two-half structure (slides
+2-13 mirroring 14-28) suggests near-duplicate charts in different languages
+or time periods. Visual inspection during pass 2 will refine classifications.
+
+**Taggable:** 42 (18 easy, 24 medium)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-26 | 198 | 86 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-27 | 240 | 90 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **27** | **217** | **92** | **46** | **35** |
+| **Total** | **28** | **259** | **96** | **46** | **35** |
 
 <br><br>
 
@@ -812,25 +888,25 @@ equations or small circuit symbols not captured by the slide-level scan.
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 87 | 33% |
-| Medium | 128 | 48% |
-| Hard | 49 | 18% |
-| **Total** | **266** | **100%** |
+| Easy | 105 | 34% |
+| Medium | 150 | 49% |
+| Hard | 49 | 16% |
+| **Total** | **308** | **100%** |
 
 ### By content type (taggable only)
 
 | Content Type | Easy | Medium | Hard | Total |
 |-------------|------|--------|------|-------|
-| chart-simple | 22 | 3 | 0 | 25 |
-| chart-complex | 0 | 21 | 16 | 37 |
-| diagram | 23 | 40 | 7 | 70 |
+| chart-simple | 37 | 3 | 0 | 40 |
+| chart-complex | 1 | 40 | 16 | 57 |
+| diagram | 23 | 43 | 7 | 73 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
-| infographic | 3 | 7 | 6 | 16 |
+| infographic | 3 | 9 | 6 | 18 |
 | photo | 21 | 7 | 8 | 36 |
 | screenshot | 15 | 38 | 2 | 55 |
-| other | 0 | 5 | 2 | 7 |
-| **Total** | **87** | **128** | **49** | **266** |
+| other | 2 | 5 | 2 | 9 |
+| **Total** | **105** | **150** | **49** | **308** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.
@@ -867,7 +943,8 @@ dedicated test set files:
 | 18 | 18 | 22 | 6 | 46 | PDF |
 | 19 | 5 | 4 | 1 | 10 | DOCX |
 | 26 | 4 | 18 | 0 | 22 | PPTX |
-| **Total** | **61** | **103** | **47** | **211** | |
+| 27 | 18 | 24 | 0 | 42 | PPTX |
+| **Total** | **79** | **127** | **47** | **253** | |
 
 <br><br>
 
