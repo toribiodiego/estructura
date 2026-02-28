@@ -67,6 +67,8 @@ images).
 | 20 | `20_illinois_workforce_dashboard.xlsx` | XLSX | 3 | 5 | Medium | 5 XML-defined chart objects (bar, pie); duplicated across 2 sheets; no raster images |
 | 21 | `21_praxie_project_portfolio.xlsx` | XLSX | 1 | 4 | Easy | 4 simple bar chart objects; 1 decorative logo to filter |
 | 22 | `22_nasa_global_warming.html` | HTML | -- | 20 | Hard | 20 content images in `<figure>` tags; ~35 navigation thumbnails to filter; remote-hosted images (NASA CDN) |
+| 23 | `23_nvie_git_branching_model.html` | HTML | -- | 6 | Easy | 6 inline diagrams; 2 decorative to filter; relative image paths; clean layout |
+| 24 | `24_fowler_microservices.html` | HTML | -- | 6 | Medium | 6 architecture diagrams; 8 decorative elements to filter; relative image paths |
 
 **Notes:**
 - "Images" column counts taggable content images (decorative excluded). Compare
@@ -90,8 +92,8 @@ images).
 | PPTX | 1 | 1 | 0 | 2 |
 | Standalone image | 3 | 0 | 0 | 3 |
 | XLSX | 1 | 1 | 0 | 2 |
-| HTML | 0 | 0 | 1 | 1 |
-| **Total** | **8** | **8** | **6** | **22** |
+| HTML | 1 | 1 | 1 | 3 |
+| **Total** | **9** | **9** | **6** | **24** |
 
 **Documents per cell:**
 - PDF (digital) -- Easy: 00, 03 | Medium: 02, 06 | Hard: 01, 04, 05, 17
@@ -100,7 +102,7 @@ images).
 - PPTX -- Easy: 12 | Medium: 11
 - Standalone -- Easy: 13, 14, 15
 - XLSX -- Easy: 21 | Medium: 20
-- HTML -- Hard: 22
+- HTML -- Easy: 23 | Medium: 24 | Hard: 22
 
 Note: The XLSX file in `fixtures/other/` (medrxiv supplementary data) is
 excluded from the active evaluation set.
@@ -111,13 +113,13 @@ excluded from the active evaluation set.
 |-----------|-----------|-------|
 | Vector figure extraction | 01, 04, 05 | 3 |
 | High image density (20+) | 04, 05, 06, 18, 22 | 5 |
-| Decorative filtering | 00, 03, 05, 06, 11, 12, 19, 22 | 8 |
+| Decorative filtering | 00, 03, 05, 06, 11, 12, 19, 22, 24 | 9 |
 | Scanned pages | 07, 08, 09 | 3 |
 | Equation region detection | 17 | 1 |
 | Large file size (25+ MB) | 05 | 1 |
 | Large page count (100+) | 18 | 1 |
 | Multi-sub-panel composites | 16 | 1 |
-| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22 | 11 |
+| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24 | 13 |
 
 <br><br>
 
@@ -128,7 +130,7 @@ excluded from the active evaluation set.
 | DOCX | No hard-difficulty documents; only 2 files with images | Cannot assess extraction reliability on complex DOCX layouts | High |
 | PPTX | Only 2 files (1 meaningful); limited layout variety | Cannot evaluate PPTX pipeline reliability | High |
 | ~~XLSX~~ | ~~Zero evaluation coverage~~ | Addressed: Docs 20, 21 provide XML-defined chart objects (bar, pie) across easy/medium difficulty | -- |
-| ~~HTML~~ | ~~Zero files~~ | Addressed: Doc 22 (NASA global warming, 20 content images + ~35 navigation to filter) | -- |
+| ~~HTML~~ | ~~Zero files~~ | Addressed: Docs 22 (hard), 23 (easy), 24 (medium) cover all difficulty levels | -- |
 | Scanned + images | 3 scanned PDFs but all are text-only pages | Tests OCR routing but not image extraction from scans | Medium |
 | Standalone (hard) | All 3 standalone images are easy/medium | No test of complex single-image extraction | Low |
 

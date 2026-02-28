@@ -15,7 +15,7 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11, 12, 16, 20, 21, 22 -- documents with images or chart objects
+    multi-image/           02, 05, 06, 11, 12, 16, 20-24 -- documents with images or chart objects
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (23 fixtures, ~90 MB)
+# Full set (25 fixtures, ~90 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -65,6 +65,8 @@ the KVision test catalog.
 | 20 | `20_illinois_workforce_dashboard.xlsx` | XLSX | 3 sheets | 5 chart objects (3 bar, 2 pie; duplicated across 2 sheets) | 99 KB |
 | 21 | `21_praxie_project_portfolio.xlsx` | XLSX | 1 sheet | 4 chart objects (all bar), 1 decorative logo | 58 KB |
 | 22 | `22_nasa_global_warming.html` | HTML | -- | 11 charts, 9 photos, ~35 navigation thumbnails | 351 KB |
+| 23 | `23_nvie_git_branching_model.html` | HTML | -- | 6 git flow diagrams, 2 decorative | 31 KB |
+| 24 | `24_fowler_microservices.html` | HTML | -- | 6 architecture diagrams, 8 decorative | 84 KB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -111,13 +113,13 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21, 22 | 150 | 71 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-24 | 162 | 81 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **23** | **169** | **77** | **46** | **35** |
+| **Total** | **25** | **181** | **87** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.
@@ -333,6 +335,28 @@ additional fixtures:
   satellite imagery). ~35 navigation thumbnails for unrelated articles in
   header/sidebar that the pipeline must filter. Images are remote-hosted
   (NASA CDN URLs, not embedded). First HTML fixture in the corpus.
+
+### 23_nvie_git_branching_model.html
+
+- **Source:** https://nvie.com/posts/a-successful-git-branching-model/
+- **Format:** HTML (31 KB)
+- **Category:** multi-image
+- **Content:** Vincent Driessen's git-flow branching model blog post. 6 inline
+  diagrams showing the complete branching strategy: overall model, centralized
+  vs decentralized repos, main branches, feature branches, merge strategies,
+  and hotfix workflow. 2 decorative elements (author avatar, PDF icon). Clean
+  layout with minimal navigation noise.
+
+### 24_fowler_microservices.html
+
+- **Source:** https://martinfowler.com/articles/microservices.html
+- **Format:** HTML (84 KB)
+- **Category:** multi-image
+- **Content:** Martin Fowler and James Lewis article defining microservice
+  architecture. 6 technical diagrams: monolith vs microservices comparison,
+  Conway's Law mapping, team organization, decentralized data, deployment
+  pipeline, and infrastructure comparison. 8 decorative elements (site logo,
+  author photos, book cover, thumbnails, footer branding).
 
 ### 12_minnstate_fy2025_budget.pptx
 

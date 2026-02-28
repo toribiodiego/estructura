@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 23
+**Documents cataloged:** 25
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -653,18 +653,62 @@ for unrelated articles in header/sidebar. All images are remote-hosted
 
 <br><br>
 
+## Doc 23 -- 23_nvie_git_branching_model.html
+
+HTML, 31 KB, multi-image
+Source: https://nvie.com/posts/a-successful-git-branching-model/
+
+6 git flow diagrams inline as `<img>` tags with relative paths. Clean
+layout with minimal decorative content (1 author avatar, 1 PDF icon).
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc23-R01 | diagram | Medium | Complete git-flow branching model: feature, release, hotfix branches with merge topology | -- |
+| doc23-R02 | diagram | Easy | Centralized/decentralized repository setup: origin + developer nodes | -- |
+| doc23-R03 | diagram | Easy | Main branches: master and develop parallel tracks | -- |
+| doc23-R04 | diagram | Easy | Feature branch create-and-merge workflow | -- |
+| doc23-R05 | diagram | Easy | Merge comparison: fast-forward vs no-ff commit graph | -- |
+| doc23-R06 | diagram | Easy | Hotfix branch: emergency release workflow | -- |
+| -- | decorative | -- | Author avatar + PDF download icon | Yes: decorative |
+
+**Taggable:** 6 (5 easy, 1 medium)
+
+<br><br>
+
+## Doc 24 -- 24_fowler_microservices.html
+
+HTML, 84 KB, multi-image
+Source: https://martinfowler.com/articles/microservices.html
+
+6 architecture and organization diagrams. 8 decorative elements (site
+logo, author photos, book cover, thumbnails, footer branding).
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc24-R01 | diagram | Medium | Monolith vs microservices: side-by-side architecture comparison | -- |
+| doc24-R02 | diagram | Medium | Conway's Law: org structure mapped to system architecture | -- |
+| doc24-R03 | diagram | Easy | Functional staff organization: cross-functional team boundaries | -- |
+| doc24-R04 | diagram | Medium | Decentralized data management: per-service database pattern | -- |
+| doc24-R05 | diagram | Easy | Basic deployment pipeline: build-test-deploy flow | -- |
+| doc24-R06 | diagram | Medium | Micro-deployment: monolith vs microservices infrastructure comparison | -- |
+| -- | decorative | -- | Site logo, 2 author photos, book cover, 2 thumbnails, footer logo | Yes: decorative/branding |
+
+**Taggable:** 6 (2 easy, 4 medium)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21, 22 | 150 | 71 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20, 21, 22, 23, 24 | 162 | 81 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **23** | **169** | **77** | **46** | **35** |
+| **Total** | **25** | **181** | **87** | **46** | **35** |
 
 <br><br>
 
@@ -692,10 +736,10 @@ for unrelated articles in header/sidebar. All images are remote-hosted
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 72 | 33% |
-| Medium | 95 | 44% |
-| Hard | 49 | 23% |
-| **Total** | **218** | **100%** |
+| Easy | 79 | 33% |
+| Medium | 100 | 42% |
+| Hard | 49 | 21% |
+| **Total** | **230** | **100%** |
 
 ### By content type (taggable only)
 
@@ -703,14 +747,14 @@ for unrelated articles in header/sidebar. All images are remote-hosted
 |-------------|------|--------|------|-------|
 | chart-simple | 22 | 3 | 0 | 25 |
 | chart-complex | 0 | 21 | 16 | 37 |
-| diagram | 12 | 17 | 7 | 36 |
+| diagram | 19 | 22 | 7 | 48 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
 | infographic | 3 | 7 | 6 | 16 |
 | photo | 21 | 7 | 8 | 36 |
 | screenshot | 11 | 28 | 2 | 41 |
 | other | 0 | 5 | 2 | 7 |
-| **Total** | **72** | **95** | **49** | **218** |
+| **Total** | **79** | **100** | **49** | **230** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.

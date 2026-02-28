@@ -6,7 +6,7 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 23 documents
+#   ./scripts/download-fixtures.sh          # all 25 documents
 #   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -200,6 +200,14 @@ if [[ "$QUICK" == false ]]; then
 
     download "multi-image" "22_nasa_global_warming.html" \
         "https://science.nasa.gov/earth/climate-change/global-warming/" \
+        ""
+
+    download "multi-image" "23_nvie_git_branching_model.html" \
+        "https://nvie.com/posts/a-successful-git-branching-model/" \
+        ""
+
+    download "multi-image" "24_fowler_microservices.html" \
+        "https://martinfowler.com/articles/microservices.html" \
         ""
 fi
 
