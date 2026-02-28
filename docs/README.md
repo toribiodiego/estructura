@@ -26,6 +26,7 @@ docs/
     pipeline-test-set.md               document-level test index for e2e pipeline extraction
     annotation-test-set.md             image-level test index for annotation quality evaluation
     image-analysis/                    per-document ground truth files (populated during pass 2)
+      doc00.md ... doc19.md            14 files, one per eval-subset document
   samples/
     sample-multiimage.md               example Markdown output with image anchors
     sample-multiimage.txt              example TXT output with image anchors
