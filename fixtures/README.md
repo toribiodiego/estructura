@@ -26,8 +26,7 @@ fixtures/
     medium/                medium-difficulty crops
     hard/                  hard-difficulty crops
   other/                   files not part of the evaluation (XLSX, etc.)
-  image-catalog.md         master catalog of all images, figures, tables per document
-  difficulty-tags.md       difficulty ratings, eval subset selection, gap analysis
+  image-catalog.md         master catalog: images, difficulty ratings, eval subset, gap analysis
   pdf-image-inspection-guide.md   methodology for PDF structural inspection
 ```
 
@@ -117,14 +116,14 @@ From image-catalog.md (cataloging complete):
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
 | **Total** | **20** | **140** | **37** | **46** | **35** |
 
-See `difficulty-tags.md` for per-image difficulty ratings and the
-selected 54-image evaluation subset.
+See `image-catalog.md` for per-image difficulty ratings and the
+selected 64-image evaluation subset.
 
 <br><br>
 
 ## Known Gaps
 
-From difficulty-tags.md gap analysis. These need additional fixtures:
+From image-catalog.md gap analysis. These need additional fixtures:
 
 | Gap | Issue | Recommendation |
 |-----|-------|----------------|
