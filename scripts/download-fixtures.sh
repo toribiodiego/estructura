@@ -6,7 +6,7 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 26 documents
+#   ./scripts/download-fixtures.sh          # all 27 documents
 #   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -212,6 +212,10 @@ if [[ "$QUICK" == false ]]; then
 
     download "multi-image" "25_va_tiu_clinical_manual.docx" \
         "https://www.va.gov/vdl/documents/Clinical/CPRS-Text_Integration_Utility_(TIU)/tiutm.docx" \
+        ""
+
+    download "multi-image" "26_concordia_coen6501_digital_logic.pptx" \
+        "https://users.encs.concordia.ca/~asim/COEN_6501/Lecture_Notes/Lecture_1_Slides.pptx" \
         ""
 fi
 

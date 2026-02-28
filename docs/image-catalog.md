@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 26
+**Documents cataloged:** 27
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -728,18 +728,63 @@ and small icons. Images range from 2.8 KB icons to 270 KB full screenshots.
 
 <br><br>
 
+## Doc 26 -- 26_concordia_coen6501_digital_logic.pptx
+
+PPTX, 62 slides, 1.5 MB, multi-image
+Source: https://users.encs.concordia.ca/~asim/COEN_6501/Lecture_Notes/Lecture_1_Slides.pptx
+
+Computer engineering lecture on digital logic design (Concordia University
+COEN 6501). 23 media files (15 PNG/JPEG raster + 8 WMF vector metafiles),
+22 image references across 15 of 62 slides. Slide 13 is dense (7 circuit
+diagrams). Remaining content slides have full-slide-sized schematics and
+logic diagrams. No decorative elements in slide masters.
+
+| ID | Slide | Content Type | Size | Difficulty | Description | Skip? |
+|----|-------|-------------|------|------------|-------------|-------|
+| doc26-R01 | 13 | diagram | 2.2x1.1 in | Medium | Full adder circuit schematic | -- |
+| doc26-R02 | 13 | diagram | 2.5x1.0 in | Medium | Ripple-carry adder layout | -- |
+| doc26-R03 | 13 | diagram | 2.4x1.6 in | Medium | Half adder schematic | -- |
+| doc26-R04 | 13 | diagram | 2.3x1.2 in | Medium | Circuit design scenario | -- |
+| doc26-R05 | 13 | diagram | 1.3x2.0 in | Easy | Logic gate layout (scenario_2b) | -- |
+| doc26-R06 | 13 | diagram | 1.9x1.7 in | Easy | Inverter circuit (inv1) | -- |
+| doc26-R07 | 13 | diagram | 2.8x1.1 in | Easy | Inverter circuit (inv2) | -- |
+| doc26-R08 | 19 | diagram | 8.5x6.2 in | Medium | Full-slide digital logic diagram | -- |
+| doc26-R09 | 21 | diagram | 8.5x4.3 in | Medium | Full-slide circuit schematic | -- |
+| doc26-R10 | 23 | diagram | 8.5x6.6 in | Medium | Full-slide digital design diagram | -- |
+| doc26-R11 | 24 | diagram | 8.5x7.4 in | Medium | Full-slide logic diagram | -- |
+| doc26-R12 | 27 | diagram | 7.8x7.1 in | Medium | Full-slide circuit diagram | -- |
+| doc26-R13 | 30 | diagram | 10.0x4.6 in | Medium | Wide-format circuit schematic | -- |
+| doc26-R14 | 33 | diagram | 8.2x6.1 in | Medium | Full-slide digital design | -- |
+| doc26-R15 | 34 | diagram | 8.9x6.4 in | Medium | Full-slide circuit layout | -- |
+| doc26-R16 | 35 | diagram | 9.8x6.3 in | Medium | Full-slide digital schematic | -- |
+| doc26-R17 | 36 | diagram | 6.5x4.1 in | Medium | Circuit comparison (left panel) | -- |
+| doc26-R18 | 36 | diagram | 6.5x4.2 in | Medium | Circuit comparison (right panel) | -- |
+| doc26-R19 | 58 | diagram | 8.5x7.8 in | Medium | Full-slide logic design | -- |
+| doc26-R20 | 59 | diagram | 8.5x9.0 in | Medium | Full-slide circuit schematic | -- |
+| doc26-R21 | 60 | diagram | 8.5x4.5 in | Medium | Full-slide digital design | -- |
+| doc26-R22 | 61 | diagram | 2.1x4.5 in | Easy | Narrow circuit detail | -- |
+
+Note: Descriptions are based on structural metadata (`descr` attributes and
+slide positions). Detailed content-type classification pending visual
+inspection during pass 2. 8 WMF vector metafiles in ppt/media/ may contain
+equations or small circuit symbols not captured by the slide-level scan.
+
+**Taggable:** 22 (4 easy, 18 medium)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-25 | 176 | 86 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-26 | 198 | 86 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **26** | **195** | **92** | **46** | **35** |
+| **Total** | **27** | **217** | **92** | **46** | **35** |
 
 <br><br>
 
@@ -767,10 +812,10 @@ and small icons. Images range from 2.8 KB icons to 270 KB full screenshots.
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 83 | 34% |
-| Medium | 110 | 45% |
-| Hard | 49 | 20% |
-| **Total** | **244** | **100%** |
+| Easy | 87 | 33% |
+| Medium | 128 | 48% |
+| Hard | 49 | 18% |
+| **Total** | **266** | **100%** |
 
 ### By content type (taggable only)
 
@@ -778,14 +823,14 @@ and small icons. Images range from 2.8 KB icons to 270 KB full screenshots.
 |-------------|------|--------|------|-------|
 | chart-simple | 22 | 3 | 0 | 25 |
 | chart-complex | 0 | 21 | 16 | 37 |
-| diagram | 19 | 22 | 7 | 48 |
+| diagram | 23 | 40 | 7 | 70 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
 | infographic | 3 | 7 | 6 | 16 |
 | photo | 21 | 7 | 8 | 36 |
 | screenshot | 15 | 38 | 2 | 55 |
 | other | 0 | 5 | 2 | 7 |
-| **Total** | **83** | **110** | **49** | **244** |
+| **Total** | **87** | **128** | **49** | **266** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.
@@ -821,7 +866,8 @@ dedicated test set files:
 | 17 | 0 | 0 | 0 | 0 | PDF (equations) |
 | 18 | 18 | 22 | 6 | 46 | PDF |
 | 19 | 5 | 4 | 1 | 10 | DOCX |
-| **Total** | **57** | **85** | **47** | **189** | |
+| 26 | 4 | 18 | 0 | 22 | PPTX |
+| **Total** | **61** | **103** | **47** | **211** | |
 
 <br><br>
 

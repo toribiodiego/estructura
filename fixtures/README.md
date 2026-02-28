@@ -15,7 +15,7 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11, 12, 16, 20-25 -- documents with images or chart objects
+    multi-image/           02, 05, 06, 11, 12, 16, 20-26 -- documents with images or chart objects
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (26 fixtures, ~90 MB)
+# Full set (27 fixtures, ~90 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -68,6 +68,7 @@ the KVision test catalog.
 | 23 | `23_nvie_git_branching_model.html` | HTML | -- | 6 git flow diagrams, 2 decorative | 31 KB |
 | 24 | `24_fowler_microservices.html` | HTML | -- | 6 architecture diagrams, 8 decorative | 84 KB |
 | 25 | `25_va_tiu_clinical_manual.docx` | DOCX | n/a | 14 screenshots, 5 decorative icons | 1.8 MB |
+| 26 | `26_concordia_coen6501_digital_logic.pptx` | PPTX | 62 | 22 circuit diagrams (15 raster, 8 WMF) | 1.5 MB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -114,13 +115,13 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-25 | 176 | 86 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-26 | 198 | 86 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **26** | **195** | **92** | **46** | **35** |
+| **Total** | **27** | **217** | **92** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.
@@ -369,6 +370,18 @@ additional fixtures:
   boxes, data entry forms, record displays, toolbar captures) and 5 small
   decorative icons/buttons. First hard-difficulty DOCX in the corpus; high
   image count with mixed sizes requiring decorative filtering.
+
+### 26_concordia_coen6501_digital_logic.pptx
+
+- **Source:** https://users.encs.concordia.ca/~asim/COEN_6501/Lecture_Notes/Lecture_1_Slides.pptx
+- **Format:** PPTX, 62 slides (1.5 MB)
+- **Category:** multi-image
+- **Content:** Concordia University digital logic design lecture (COEN 6501).
+  22 circuit diagrams across 15 slides: full adders, ripple-carry adders,
+  half adders, inverters, and assorted logic schematics. 15 raster (PNG/JPEG)
+  plus 8 WMF vector metafiles. Slide 13 has 7 images (densest slide). No
+  decorative elements in slide masters. Second medium-difficulty PPTX with
+  different content type (engineering diagrams vs RL algorithms in Doc 11).
 
 ### 12_minnstate_fy2025_budget.pptx
 
