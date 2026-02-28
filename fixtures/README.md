@@ -20,7 +20,7 @@ fixtures/
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
     text-only/             10 -- no images at all
-    table-image/           13, 14, 15 -- standalone table-as-image files
+    table-image/           13, 14, 15, 29 -- standalone image files
   eval-subset/
     easy/                  easy-difficulty crops (populated after pipeline extraction)
     medium/                medium-difficulty crops
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (29 fixtures, ~90 MB)
+# Full set (30 fixtures, ~105 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -95,13 +95,14 @@ the KVision test catalog.
 | 08 | `08_xerox_mfp_scan_forestburg.pdf` | PDF | 5 | 5 full-page scans | 1.5 MB |
 | 09 | `09_archive_newspaper_1948.pdf` | PDF | 6 | 6 high-res OCR'd scans | 23 MB |
 
-### table-image (standalone table screenshots)
+### table-image (standalone images)
 
 | ID | Filename | Format | Pages | Images | Size |
 |----|----------|--------|------:|-------:|-----:|
 | 13 | `13_artpro_table.webp` | WebP | 1 | 1 table | 43 KB |
 | 14 | `14_simple_table.png` | PNG | 1 | 1 table | 35 KB |
 | 15 | `15_timetable.jpg` | JPG | 1 | 1 table | 34 KB |
+| 29 | `29_nasa_helio_fleet_dec2025.jpg` | JPG | 1 | 1 diagram (10800x7186) | 14 MB |
 
 ### text-only (no images)
 
@@ -122,8 +123,8 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
-| table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **29** | **288** | **98** | **46** | **35** |
+| table-image | 13, 14, 15, 29 | 4 | 0 | 0 | 0 |
+| **Total** | **30** | **289** | **98** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.

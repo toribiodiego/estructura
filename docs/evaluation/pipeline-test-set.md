@@ -73,6 +73,7 @@ images).
 | 26 | `26_concordia_coen6501_digital_logic.pptx` | PPTX | 62 | 22 | Medium | 22 circuit diagrams (15 raster + 8 WMF); dense slide 13 (7 images); no decorative filtering; mixed sizes |
 | 27 | `27_era_annual_report_2023.pptx` | PPTX | 32 | 42 | Hard | 42 content images (maps, charts, paired comparisons); 4 decorative in slide layouts; near-duplicate halves (bilingual); 31 of 32 slides have images |
 | 28 | `28_eurostat_climate_driving_forces_2022.xlsx` | XLSX | 49 | 29 | Hard | 29 XML-defined charts across 24 figure sheets; 6 chart types (line, bar, area, pie, scatter, combo); 2 decorative logos; 20 backing data sheets |
+| 29 | `29_nasa_helio_fleet_dec2025.jpg` | JPG | 1 | 1 | Medium | Standalone high-res image (10800x7186, 14 MB); tests large raster handling and memory management |
 
 **Notes:**
 - "Images" column counts taggable content images (decorative excluded). Compare
@@ -94,17 +95,17 @@ images).
 | PDF (scanned) | 0 | 2 | 1 | 3 |
 | DOCX | 1 | 2 | 1 | 4 |
 | PPTX | 1 | 2 | 1 | 4 |
-| Standalone image | 3 | 0 | 0 | 3 |
+| Standalone image | 3 | 1 | 0 | 4 |
 | XLSX | 1 | 1 | 1 | 3 |
 | HTML | 1 | 1 | 1 | 3 |
-| **Total** | **9** | **10** | **9** | **28** |
+| **Total** | **9** | **11** | **9** | **29** |
 
 **Documents per cell:**
 - PDF (digital) -- Easy: 00, 03 | Medium: 02, 06 | Hard: 01, 04, 05, 17
 - PDF (scanned) -- Medium: 07, 08 | Hard: 09
 - DOCX -- Easy: 10 | Medium: 16, 19 | Hard: 25
 - PPTX -- Easy: 12 | Medium: 11, 26 | Hard: 27
-- Standalone -- Easy: 13, 14, 15
+- Standalone -- Easy: 13, 14, 15 | Medium: 29
 - XLSX -- Easy: 21 | Medium: 20 | Hard: 28
 - HTML -- Easy: 23 | Medium: 24 | Hard: 22
 
@@ -123,7 +124,8 @@ excluded from the active evaluation set.
 | Large file size (25+ MB) | 05 | 1 |
 | Large page count (100+) | 18 | 1 |
 | Multi-sub-panel composites | 16 | 1 |
-| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28 | 17 |
+| High-resolution standalone (10K+ px) | 29 | 1 |
+| Non-PDF format | 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 | 18 |
 
 <br><br>
 
@@ -136,7 +138,7 @@ excluded from the active evaluation set.
 | ~~XLSX~~ | ~~Zero evaluation coverage~~ | Addressed: Docs 20 (medium), 21 (easy), 28 (hard) provide XML-defined chart objects across all difficulty levels. Doc 28 adds 29 charts with 6 types including combos. | -- |
 | ~~HTML~~ | ~~Zero files~~ | Addressed: Docs 22 (hard), 23 (easy), 24 (medium) cover all difficulty levels | -- |
 | Scanned + images | 3 scanned PDFs but all are text-only pages | Tests OCR routing but not image extraction from scans | Medium |
-| Standalone (hard) | All 3 standalone images are easy/medium | No test of complex single-image extraction | Low |
+| Standalone (hard) | 3 easy + 1 medium standalone images; no hard | No test of complex single-image extraction (SVG, multi-page TIFF) | Low |
 
 <br><br>
 

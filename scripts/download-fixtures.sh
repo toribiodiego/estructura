@@ -6,7 +6,7 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 29 documents
+#   ./scripts/download-fixtures.sh          # all 30 documents
 #   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -172,6 +172,10 @@ if [[ "$QUICK" == false ]]; then
 
     download "table-image" "15_timetable.jpg" \
         "https://courses.washington.edu/fish340/Images/timetable.jpg" \
+        ""
+
+    download "table-image" "29_nasa_helio_fleet_dec2025.jpg" \
+        "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014718/Helio_Fleet_All_Active_Missions_TEXTDEC25.jpg" \
         ""
 
     download "multi-image" "16_cambridge_mitoball_biology.docx" \

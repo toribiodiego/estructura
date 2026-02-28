@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 29
+**Documents cataloged:** 30
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -910,6 +910,26 @@ pass 2 will refine difficulty ratings.
 
 <br><br>
 
+## Doc 29 -- 29_nasa_helio_fleet_dec2025.jpg
+
+JPG, 14 MB, standalone image
+Source: https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014718/Helio_Fleet_All_Active_Missions_TEXTDEC25.jpg
+
+High-resolution standalone image (10800x7186 px). NASA Heliophysics Fleet
+diagram showing all active solar and space science missions as of December
+2025. Labeled spacecraft icons positioned around the Sun and planets with
+orbit paths, mission names, and agency logos. Tests pipeline handling of
+large raster files (14 MB, 77 megapixels) requiring memory management and
+potential downscaling.
+
+| ID | Content Type | Size | Difficulty | Description | Skip? |
+|----|-------------|------|------------|-------------|-------|
+| doc29-R01 | diagram | 10800x7186 | Medium | NASA heliophysics fleet: all active missions with labeled spacecraft, orbits, and planetary positions | -- |
+
+**Taggable:** 1 (1 medium)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
@@ -920,8 +940,8 @@ pass 2 will refine difficulty ratings.
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
-| table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
-| **Total** | **29** | **288** | **98** | **46** | **35** |
+| table-image | 13, 14, 15, 29 | 4 | 0 | 0 | 0 |
+| **Total** | **30** | **289** | **98** | **46** | **35** |
 
 <br><br>
 
@@ -950,9 +970,9 @@ pass 2 will refine difficulty ratings.
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
 | Easy | 117 | 35% |
-| Medium | 164 | 49% |
+| Medium | 165 | 49% |
 | Hard | 52 | 15% |
-| **Total** | **337** | **100%** |
+| **Total** | **338** | **100%** |
 
 ### By content type (taggable only)
 
@@ -960,14 +980,14 @@ pass 2 will refine difficulty ratings.
 |-------------|------|--------|------|-------|
 | chart-simple | 49 | 3 | 0 | 52 |
 | chart-complex | 1 | 54 | 19 | 74 |
-| diagram | 23 | 43 | 7 | 73 |
+| diagram | 23 | 44 | 7 | 74 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
 | infographic | 3 | 9 | 6 | 18 |
 | photo | 21 | 7 | 8 | 36 |
 | screenshot | 15 | 38 | 2 | 55 |
 | other | 2 | 5 | 2 | 9 |
-| **Total** | **117** | **164** | **52** | **337** |
+| **Total** | **117** | **165** | **52** | **338** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.
@@ -1006,7 +1026,8 @@ dedicated test set files:
 | 26 | 4 | 18 | 0 | 22 | PPTX |
 | 27 | 18 | 24 | 0 | 42 | PPTX |
 | 28 | 12 | 14 | 3 | 29 | XLSX |
-| **Total** | **91** | **141** | **50** | **282** | |
+| 29 | 0 | 1 | 0 | 1 | JPG |
+| **Total** | **91** | **142** | **50** | **283** | |
 
 <br><br>
 
