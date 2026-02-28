@@ -23,6 +23,7 @@ mkdir -p "$DEST/vector-heavy"
 mkdir -p "$DEST/text-heavy"
 mkdir -p "$DEST/scanned"
 mkdir -p "$DEST/text-only"
+mkdir -p "$DEST/table-image"
 
 TOTAL=0
 FAILED=0
@@ -144,6 +145,22 @@ if [[ "$QUICK" == false ]]; then
     download "multi-image" "06_arxiv_2206_01062.pdf" \
         "https://arxiv.org/pdf/2206.01062.pdf" \
         ""
+
+    download "multi-image" "12_minnstate_fy2025_budget.pptx" \
+        "https://www.minnstate.edu/system/finance/budget/docs/fy2025-operating-budget-second-reading-june-2024-final.pptx" \
+        ""
+
+    download "table-image" "13_artpro_table.webp" \
+        "https://standupsurfshop.com.au/wp-content/uploads/2023/09/ARTPRO-Table.webp" \
+        ""
+
+    download "table-image" "14_simple_table.png" \
+        "https://raw.githubusercontent.com/eihli/image-table-ocr/master/resources/test_data/simple.png" \
+        ""
+
+    download "table-image" "15_timetable.jpg" \
+        "https://courses.washington.edu/fish340/Images/timetable.jpg" \
+        ""
 fi
 
 echo ""
@@ -151,7 +168,7 @@ echo "---"
 echo "Downloaded to: $DEST"
 echo ""
 echo "Directory layout:"
-for dir in multi-image vector-heavy text-heavy scanned text-only; do
+for dir in multi-image vector-heavy text-heavy scanned text-only table-image; do
     count=$(find "$DEST/$dir" -maxdepth 1 -type f 2>/dev/null | wc -l | tr -d ' ')
     echo "  $dir/ ($count files)"
 done

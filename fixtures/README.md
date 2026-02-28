@@ -15,11 +15,12 @@ are gitignored. Run `scripts/download-fixtures.sh` to fetch them.
 ```text
 fixtures/
   downloaded/
-    multi-image/           02, 05, 06, 11 -- documents with raster images
+    multi-image/           02, 05, 06, 11, 12 -- documents with raster images
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03 -- mostly prose, few or no images
     scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
     text-only/             10 -- no images at all
+    table-image/           13, 14, 15 -- standalone table-as-image files
   eval-subset/
     easy/                  easy-difficulty crops (populated after pipeline extraction)
     medium/                medium-difficulty crops
@@ -35,7 +36,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (12 documents, ~75 MB)
+# Full set (16 fixtures, ~75 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -58,6 +59,7 @@ the KVision test catalog.
 | 05 | `05_gemini_multimodal_report.pdf` | PDF | 90 | 28 raster, 8 vector | 26 MB |
 | 06 | `06_arxiv_2206_01062.pdf` | PDF | 9 | 22 raster, 2 vector | ~1 MB |
 | 11 | `11_policy_gradient_rl_lecture.pptx` | PPTX | 80 | 14 content, 12 decorative | 1.9 MB |
+| 12 | `12_minnstate_fy2025_budget.pptx` | PPTX | 17 | 1 table-image, 3 decorative | 351 KB |
 
 ### vector-heavy (figures drawn with PATH/FORM/TEXT, no raster)
 
@@ -81,6 +83,14 @@ the KVision test catalog.
 | 08 | `08_xerox_mfp_scan_forestburg.pdf` | PDF | 5 | 5 full-page scans | 1.5 MB |
 | 09 | `09_archive_newspaper_1948.pdf` | PDF | 6 | 6 high-res OCR'd scans | 23 MB |
 
+### table-image (standalone table screenshots)
+
+| ID | Filename | Format | Pages | Images | Size |
+|----|----------|--------|------:|-------:|-----:|
+| 13 | `13_artpro_table.webp` | WebP | 1 | 1 table | 43 KB |
+| 14 | `14_simple_table.png` | PNG | 1 | 1 table | 35 KB |
+| 15 | `15_timetable.jpg` | JPG | 1 | 1 table | 34 KB |
+
 ### text-only (no images)
 
 | ID | Filename | Format | Pages | Images | Size |
@@ -95,15 +105,16 @@ From image-catalog.md (cataloging complete):
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11 | 74 | 24 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12 | 75 | 27 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
-| **Total** | **12** | **90** | **30** | **46** | **35** |
+| table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
+| **Total** | **16** | **94** | **33** | **46** | **35** |
 
 See `difficulty-tags.md` for per-image difficulty ratings and the
-selected 46-image evaluation subset.
+selected 50-image evaluation subset.
 
 <br><br>
 
@@ -113,7 +124,7 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 
 | Gap | Issue | Recommendation |
 |-----|-------|----------------|
-| table-as-image | Only 1 example in corpus | Add financial/government report with table screenshots |
+| ~~table-as-image~~ | ~~Only 1 example~~ | Addressed: now 5 examples across 5 docs (Docs 00, 12-15) |
 | equation diversity | 4 equations, all from one source | Add paper with diverse LaTeX/handwritten equations |
 | infographics | 9 total, concentrated in 2 docs | Add consulting slides or data-rich reports |
 | diagrams | 9 total, no complex architecture/UML | Add technical documentation with architecture diagrams |
@@ -233,6 +244,41 @@ From difficulty-tags.md gap analysis. These need additional fixtures:
 - **Content:** RL lecture slides. 10 algorithm pseudocode screenshots,
   4 rendered equations, 12 blank decorative bars. 56 of 80 slides are
   text-only.
+
+### 12_minnstate_fy2025_budget.pptx
+
+- **Source:** Minnesota State FY2025 Operating Budget (sourced from KVIS-173)
+- **Format:** PPTX, 17 slides
+- **Category:** multi-image
+- **Content:** Government budget presentation. 1 financial data table
+  rendered as a raster image (North Star Promise Program awards), 3
+  decorative Minnesota State logos. Addresses table-as-image gap.
+
+### 13_artpro_table.webp
+
+- **Source:** ArtPro product catalog (sourced from KVIS-174)
+- **Format:** WebP (standalone image)
+- **Category:** table-image
+- **Content:** Aircraft wing specification table with 6 wing models and
+  7 numeric columns. Clean tabular layout with alternating row shading
+  and mixed metric/imperial units.
+
+### 14_simple_table.png
+
+- **Source:** image-table-ocr GitHub repository (sourced from KVIS-174)
+- **Format:** PNG (standalone image)
+- **Category:** table-image
+- **Content:** Simple spreadsheet cell/format/formula reference table.
+  3 columns (Cell, Format, Formula), 5 rows. Clean OCR-friendly layout.
+
+### 15_timetable.jpg
+
+- **Source:** University of Washington FISH 340 (sourced from KVIS-174)
+- **Format:** JPG (standalone image)
+- **Category:** table-image
+- **Content:** Color-coded university course timetable ("SWORD Deadlines").
+  9-week schedule with 4 assignment types, staggered submission pattern.
+  Tests annotation of color-coded tabular layouts.
 
 <br><br>
 

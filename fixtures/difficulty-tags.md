@@ -305,16 +305,55 @@ No images in this document.
 **Taggable images:** 14 (2 easy, 7 medium, 5 hard)
 
 
+## Doc 12: minnstate_fy2025_budget.pptx
+
+| ID | Slide | Content Type | Difficulty | Description | Skip? |
+|----|-------|-------------|------------|-------------|-------|
+| doc12-R01 | -- | decorative | -- | Minnesota State logo (small header) | Yes: decorative logo |
+| doc12-R02 | -- | decorative | -- | Minnesota State "M" banner (large) | Yes: decorative logo |
+| doc12-R03 | -- | table-image | Medium | Table 9: North Star Promise Program Projected Awards, FY2025. 4 institution rows with student count, average award, total awards ($23.2M total) | -- |
+| doc12-R04 | -- | decorative | -- | Minnesota State full logo (large) | Yes: decorative logo |
+
+**Taggable images:** 1 (1 medium)
+
+
+## Doc 13: artpro_table.webp
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc13-R01 | table-image | Easy | Aircraft wing specification table: 6 wing models, 7 numeric columns (wingspan, chord, area, volume, aspect ratio), alternating row shading | -- |
+
+**Taggable images:** 1 (1 easy)
+
+
+## Doc 14: simple_table.png
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc14-R01 | table-image | Easy | Simple 3-column table (Cell, Format, Formula) with 5 rows, clean gridlines, spreadsheet formulas | -- |
+
+**Taggable images:** 1 (1 easy)
+
+
+## Doc 15: timetable.jpg
+
+| ID | Content Type | Difficulty | Description | Skip? |
+|----|-------------|------------|-------------|-------|
+| doc15-R01 | table-image | Medium | SWORD Deadlines: 9-week course schedule with 4 assignment types, color-coded cells showing staggered submission pattern | -- |
+
+**Taggable images:** 1 (1 medium)
+
+
 ## Distribution Summary
 
 ### By difficulty (taggable content images only)
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 32 | 26% |
-| Medium | 57 | 47% |
+| Easy | 34 | 27% |
+| Medium | 59 | 47% |
 | Hard | 32 | 26% |
-| **Total** | **121** | **100%** |
+| **Total** | **125** | **100%** |
 
 ### By content type (taggable only)
 
@@ -323,14 +362,14 @@ No images in this document.
 | chart-simple | 10 | 3 | 0 | 13 |
 | chart-complex | 0 | 12 | 13 | 25 |
 | diagram | 4 | 3 | 2 | 9 |
-| table-image | 0 | 1 | 0 | 1 |
+| table-image | 2 | 3 | 0 | 5 |
 | equation | 2 | 2 | 0 | 4 |
 | infographic | 0 | 4 | 5 | 9 |
 | photo | 14 | 3 | 0 | 17 |
 | screenshot | 2 | 20 | 2 | 24 |
 | other | 0 | 5 | 2 | 7 |
 | chart-simple (vector) | -- | -- | -- | (incl above) |
-| **Total** | **32** | **57** | **32** | **121** |
+| **Total** | **34** | **59** | **32** | **125** |
 
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical document page examples. For evaluation subset selection,
@@ -352,7 +391,11 @@ only 2-3 representative examples should be included.
 | 09 | 0 | 0 | 0 | 0 | PDF (scanned) |
 | 10 | 0 | 0 | 0 | 0 | DOCX |
 | 11 | 2 | 7 | 5 | 14 | PPTX |
-| **Total** | **32** | **57** | **32** | **121** | |
+| 12 | 0 | 1 | 0 | 1 | PPTX |
+| 13 | 1 | 0 | 0 | 1 | WebP |
+| 14 | 1 | 0 | 0 | 1 | PNG |
+| 15 | 0 | 1 | 0 | 1 | JPG |
+| **Total** | **34** | **59** | **32** | **125** | |
 
 
 ## Gap Analysis
@@ -361,7 +404,7 @@ only 2-3 representative examples should be included.
 
 | Gap | Current count | Issue | Recommendation |
 |-----|--------------|-------|----------------|
-| table-image | 1 (doc00-R03) | Only 1 table rendered as image across entire corpus | Add 2-3 documents with table-as-image content (financial reports, government data) |
+| table-image | 5 (doc00, 12-15) | Addressed: was 1, now 5 across 5 docs (government budget, aircraft specs, spreadsheet, course schedule) | Covered |
 | equation | 4 (all in doc11) | All equations from one source (RL lecture), all rendered similarly | Add document with diverse equation styles (LaTeX-rendered, handwritten, inline vs display) |
 | infographic | 9 (doc01: 8, doc04: 3, doc05: 1) | Concentrated in 2 documents; mostly vector-drawn | Add slide decks or consulting reports with raster infographics |
 | diagram | 9 | Only simple state diagrams and flowcharts; no complex architecture or UML | Add technical architecture diagrams, network topology, or process flow documents |
@@ -374,7 +417,7 @@ only 2-3 representative examples should be included.
 | chart-simple + hard | 0 | No hard simple charts (expected -- simple charts are inherently easy/medium) |
 | photo + hard | 0 | No hard photos (complex scenes, medical, satellite) |
 | diagram + hard | 2 | Only 2 hard diagrams (doc05-V03, doc05-V06) |
-| table-image + hard | 0 | No complex table-as-image examples |
+| table-image + hard | 0 | No complex table-as-image examples (but 5 easy/medium now available) |
 
 ### Format coverage
 
@@ -383,7 +426,8 @@ only 2-3 representative examples should be included.
 | PDF (digital) | 00-06 | 107 | Well covered |
 | PDF (scanned) | 07-09 | 0 | No annotation targets; only OCR testing |
 | DOCX | 10 | 0 | No images at all; need DOCX with images |
-| PPTX | 11 | 14 | Single document; homogeneous content (all RL algorithms) |
+| PPTX | 11, 12 | 15 | Two documents; RL algorithms + government budget |
+| Standalone images | 13-15 | 3 | WebP, PNG, JPG table-image fixtures |
 
 ### Recommended additional fixtures
 
@@ -393,9 +437,8 @@ To address the gaps above, the following fixture types should be sourced:
    visualizations, photos, mixed content types. Addresses: infographic
    gap, photo diversity, PPTX format coverage.
 
-2. **Government statistical report (PDF)** -- tables rendered as images,
-   charts with dense data, multiple content types on single pages.
-   Addresses: table-image gap, chart diversity.
+2. ~~**Government statistical report (PDF)**~~ -- Addressed by Docs 12-15
+   (table-as-image now has 5 examples across 5 documents).
 
 3. **Academic paper with equations (PDF)** -- diverse equation rendering
    (display, inline, multi-line), theorem environments, proof figures.
@@ -472,23 +515,27 @@ To address the gaps above, the following fixture types should be sourced:
 | doc11-R10 | 11 | 79 | screenshot | Hard | A3C actor-critic pseudocode |
 | doc11-R11 | 11 | 55 | equation | Easy | Softmax policy parameterization |
 | doc11-R13 | 11 | 62 | equation | Medium | Actor-critic update with baseline |
+| doc12-R03 | 12 | -- | table-image | Medium | North Star Promise Program financial table |
+| doc13-R01 | 13 | 1 | table-image | Easy | Aircraft wing specification table (6 models, 7 columns) |
+| doc14-R01 | 14 | 1 | table-image | Easy | Spreadsheet cell/format/formula table |
+| doc15-R01 | 15 | 1 | table-image | Medium | Color-coded course timetable (SWORD Deadlines) |
 
 ### Subset statistics
 
-**Total selected:** 46 images
+**Total selected:** 50 images
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 10 | 22% |
-| Medium | 16 | 35% |
-| Hard | 20 | 43% |
+| Easy | 12 | 24% |
+| Medium | 18 | 36% |
+| Hard | 20 | 40% |
 
 | Content Type | Count |
 |-------------|-------|
 | chart-simple | 5 |
 | chart-complex | 12 |
 | diagram | 6 |
-| table-image | 1 |
+| table-image | 5 |
 | equation | 2 |
 | infographic | 5 |
 | photo | 5 |
@@ -504,9 +551,14 @@ To address the gaps above, the following fixture types should be sourced:
 | Doc 05 | 12 |
 | Doc 06 | 4 |
 | Doc 11 | 6 |
-| **Docs represented** | **7 of 12** |
+| Doc 12 | 1 |
+| Doc 13 | 1 |
+| Doc 14 | 1 |
+| Doc 15 | 1 |
+| **Docs represented** | **11 of 16** |
 
-The subset over-represents hard images (43% vs 26% in corpus) as intended.
-Medium and hard together comprise 78% of the subset. All content types
-are represented with at least 1 example; table-image and equation are
-underrepresented due to corpus gaps (see Gap Analysis above).
+The subset over-represents hard images (40% vs 26% in corpus) as intended.
+Medium and hard together comprise 76% of the subset. All content types
+are represented with at least 2 examples. The table-as-image gap is now
+addressed with 5 examples across 5 documents. Equation diversity remains
+a gap (all from one source).

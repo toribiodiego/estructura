@@ -4,7 +4,7 @@ Master catalog of all images, figures, charts, and diagrams across the
 evaluation fixture set. Produced by manual inspection of each document
 followed by pipeline extraction comparison.
 
-**Status:** Cataloging complete (all 12 fixtures inspected)
+**Status:** Cataloging complete (all 16 fixtures inspected)
 **Last updated:** 2026-02-27
 
 
@@ -24,6 +24,10 @@ followed by pipeline extraction comparison.
 | 09 | 09_archive_newspaper_1948.pdf | PDF | 6 | mixed-content | Yes |
 | 10 | 10_medrxiv_llama4_benchmark.docx | DOCX | n/a | text-only | Yes |
 | 11 | 11_policy_gradient_rl_lecture.pptx | PPTX | 80 | multi-image | Yes |
+| 12 | 12_minnstate_fy2025_budget.pptx | PPTX | 17 | multi-image | Yes |
+| 13 | 13_artpro_table.webp | WebP | 1 | table-image | Yes |
+| 14 | 14_simple_table.png | PNG | 1 | table-image | Yes |
+| 15 | 15_timetable.jpg | JPG | 1 | table-image | Yes |
 
 **Other files** (moved to `fixtures/other/`, not part of evaluation):
 - `medrxiv_llm_imaging_eval.xlsx` -- tabular data, no images
@@ -55,22 +59,25 @@ as documents are cataloged.
 | Infographics | Only Doc 01 (GPT-4) and Doc 04 (Anthropic) have infographic-style figures; limited variety | Open |
 | Photos (non-scanned) | Only Doc 05 has natural photos (cooking, plants, dogs, NYC); small set | Open |
 | Diagrams | Only Docs 02, 05 have structured diagrams; flow/architecture diagrams underrepresented | Open |
+| Equations as images | Doc 11 has 4 rendered equations; all from one source | Open |
+| DOCX with images | Current DOCX (Doc 10) is text-only | Open |
 | chart-simple raster | Docs 02 and 05 have raster charts; Docs 01 and 04 charts are all vector | Covered |
 | Algorithm pseudocode | Doc 11 has 10 algorithm screenshots; single content type in entire PPTX | Covered |
-| Equations as images | Doc 11 has 4 rendered equations; unique content type | Covered |
 | Scanned documents | Docs 07-09 cover letter, form, and newspaper; good variety | Covered |
+| Table-as-image | Docs 12-15 add 4 table-image examples (was 1); now 5 total across 4 docs | Covered |
 
 ### Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
 |----------|------|---------------|------------|----------------|--------|
-| multi-image | 02, 05, 06, 11 | 74 | 24 | 12 | 24 |
+| multi-image | 02, 05, 06, 11, 12 | 75 | 27 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03 | 1 | 4 | 0 | 4 |
 | scanned | 07, 08 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
-| **Total** | **12** | **90** | **30** | **46** | **35** |
+| table-image | 13, 14, 15 | 3 | 0 | 0 | 0 |
+| **Total** | **16** | **94** | **33** | **46** | **35** |
 
 
 ---
@@ -945,6 +952,120 @@ bullet points, equations, and lecture content. This document tests: (1)
 annotation of algorithm pseudocode images, (2) filtering of blank
 decorative images, (3) PPTX format handling. Category confirmed as
 "multi-image" due to 14 content images.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
+
+
+## Doc 12: minnstate_fy2025_budget.pptx
+
+**Format:** PPTX, 17 slides
+**Category:** multi-image
+**Source:** Minnesota State FY2025 Operating Budget, Second Reading (June 2024).
+Sourced from KVIS-173 test fixtures.
+
+### Embedded Images
+
+Inspected via PPTX ZIP archive media/ directory. 4 PNG files found.
+
+| # | Content Type | Pixel Size | Description | Notes |
+|---|-------------|------------|-------------|-------|
+| 1 | decorative | ~300x100 | Minnesota State logo with text (small header) | image1.png |
+| 2 | decorative | ~475x800 | Minnesota State "M" banner logo (large) | image2.png |
+| 3 | table-image | ~1024x540 | Table 9: North Star Promise Program Projected Awards, FY2025. 4 institution rows (MN State Colleges, Universities, U of M, Tribal) with projected student count, average award, total awards | image3.png; financial data table rendered as image |
+| 4 | decorative | ~1440x760 | Minnesota State full logo with text (large) | image4.png |
+
+**Total embedded images:** 4 (1 table-image, 3 decorative logos)
+**Slides with images:** ~4 of 17
+**Slides without images:** ~13 slides (text, bullet points, budget line items)
+
+### Summary
+
+Government budget presentation with mostly text-based slides. The primary
+evaluation target is Table 9 (North Star Promise Program), which is a
+financial data table rendered as a raster image rather than native PPTX
+table. This directly addresses the table-as-image gap. The 3 logo images
+are decorative and should be skipped.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
+
+
+## Doc 13: artpro_table.webp
+
+**Format:** WebP (standalone image)
+**Category:** table-image
+**Source:** Aircraft wing specification table from ArtPro product catalog.
+Sourced from KVIS-174 test fixtures.
+
+### Image Content
+
+| # | Content Type | Description | Notes |
+|---|-------------|-------------|-------|
+| 1 | table-image | Aircraft wing specification table: 6 models (1401, 1201, 1121, 1051, 1001, 951) with 7 columns (wingspan, chord, mean average chord, actual area, projected area, volume, aspect ratio). Alternating row shading, bold header. Units in mm/in and cm2/in2. | Clean tabular layout with mixed metric/imperial units |
+
+**Total images:** 1
+**Annotation target:** Full image is the annotation target.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
+
+
+## Doc 14: simple_table.png
+
+**Format:** PNG (standalone image)
+**Category:** table-image
+**Source:** Spreadsheet cell/format/formula reference table.
+Sourced from KVIS-174 test fixtures (originally from image-table-ocr GitHub repo).
+
+### Image Content
+
+| # | Content Type | Description | Notes |
+|---|-------------|-------------|-------|
+| 1 | table-image | Simple 3-column table (Cell, Format, Formula) with 5 rows (B4-F4). Shows cell formats (Percentage, General, Accounting, Currency) and formulas (=PMT(B4/12,C4,D4), =E4*C4). White background with black gridlines. | Clean OCR-friendly table with formulas |
+
+**Total images:** 1
+**Annotation target:** Full image is the annotation target.
+
+### Pipeline Extraction
+
+*Pending extraction*
+
+### Coverage Comparison
+
+*Pending comparison*
+
+
+## Doc 15: timetable.jpg
+
+**Format:** JPG (standalone image)
+**Category:** table-image
+**Source:** University of Washington SWORD Deadlines course timetable.
+Sourced from KVIS-174 test fixtures.
+
+### Image Content
+
+| # | Content Type | Description | Notes |
+|---|-------------|-------------|-------|
+| 1 | table-image | Course assignment schedule: "SWORD Deadlines" header, 9 weeks (3-11), 4 assignment types (draft, review, feedback + final). Color-coded cells: pink (draft), blue (review), green (feedback), red (final). Staggered submission pattern across weeks. | Color-coded schedule requiring understanding of temporal relationships |
+
+**Total images:** 1
+**Annotation target:** Full image is the annotation target.
 
 ### Pipeline Extraction
 
