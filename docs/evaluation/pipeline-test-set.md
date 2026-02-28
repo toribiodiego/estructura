@@ -74,6 +74,7 @@ images).
 | 27 | `27_era_annual_report_2023.pptx` | PPTX | 32 | 42 | Hard | 42 content images (maps, charts, paired comparisons); 4 decorative in slide layouts; near-duplicate halves (bilingual); 31 of 32 slides have images |
 | 28 | `28_eurostat_climate_driving_forces_2022.xlsx` | XLSX | 49 | 29 | Hard | 29 XML-defined charts across 24 figure sheets; 6 chart types (line, bar, area, pie, scatter, combo); 2 decorative logos; 20 backing data sheets |
 | 29 | `29_nasa_helio_fleet_dec2025.jpg` | JPG | 1 | 1 | Medium | Standalone high-res image (10800x7186, 14 MB); tests large raster handling and memory management |
+| 30 | `30_nrc_correspondence_2024.pdf` | PDF | 2 | 0 | Easy | 2-page scanned NRC letter; 1 color + 1 bitonal page; no OCR layer; clean single-column layout |
 
 **Notes:**
 - "Images" column counts taggable content images (decorative excluded). Compare
@@ -92,17 +93,17 @@ images).
 | Format | Easy | Medium | Hard | Total |
 |--------|------|--------|------|-------|
 | PDF (digital) | 2 | 2 | 4 | 8 |
-| PDF (scanned) | 0 | 2 | 1 | 3 |
+| PDF (scanned) | 1 | 2 | 1 | 4 |
 | DOCX | 1 | 2 | 1 | 4 |
 | PPTX | 1 | 2 | 1 | 4 |
 | Standalone image | 3 | 1 | 0 | 4 |
 | XLSX | 1 | 1 | 1 | 3 |
 | HTML | 1 | 1 | 1 | 3 |
-| **Total** | **9** | **11** | **9** | **29** |
+| **Total** | **10** | **11** | **9** | **30** |
 
 **Documents per cell:**
 - PDF (digital) -- Easy: 00, 03 | Medium: 02, 06 | Hard: 01, 04, 05, 17
-- PDF (scanned) -- Medium: 07, 08 | Hard: 09
+- PDF (scanned) -- Easy: 30 | Medium: 07, 08 | Hard: 09
 - DOCX -- Easy: 10 | Medium: 16, 19 | Hard: 25
 - PPTX -- Easy: 12 | Medium: 11, 26 | Hard: 27
 - Standalone -- Easy: 13, 14, 15 | Medium: 29
@@ -119,7 +120,7 @@ excluded from the active evaluation set.
 | Vector figure extraction | 01, 04, 05 | 3 |
 | High image density (20+) | 04, 05, 06, 18, 22, 26, 27, 28 | 8 |
 | Decorative filtering | 00, 03, 05, 06, 11, 12, 19, 22, 24, 25, 27, 28 | 12 |
-| Scanned pages | 07, 08, 09 | 3 |
+| Scanned pages | 07, 08, 09, 30 | 4 |
 | Equation region detection | 17 | 1 |
 | Large file size (25+ MB) | 05 | 1 |
 | Large page count (100+) | 18 | 1 |

@@ -10,7 +10,7 @@ selection.
 > annotation evaluation) |
 > [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
-**Documents cataloged:** 30
+**Documents cataloged:** 31
 **Last updated:** 2026-02-28
 
 <br><br>
@@ -930,6 +930,27 @@ potential downscaling.
 
 <br><br>
 
+## Doc 30 -- 30_nrc_correspondence_2024.pdf
+
+PDF (scanned), 548 KB, scanned
+Source: https://www.nrc.gov/docs/ML2425/ML24253A016.pdf
+
+2-page scanned NRC (Nuclear Regulatory Commission) correspondence. Page 1
+is a landscape color scan (1104x850, RGB, FlateDecode). Page 2 is a
+portrait bitonal scan stored as JBIG2-compressed segments (1394x1198 main
+region + 5 smaller text segments). No fonts, no OCR text layer, no
+embedded photographs or illustrations. Clean modern scan of single-column
+regulatory correspondence.
+
+| ID | Page | Content Type | Size | Difficulty | Description | Skip? |
+|----|------|-------------|------|------------|-------------|-------|
+| doc30-S01 | 1 | decorative | 1104x850 | -- | Full-page color scan (landscape, cover/envelope) | Yes: scanned page |
+| doc30-S02 | 2 | decorative | 1394x1198 | -- | Full-page bitonal scan (portrait, correspondence text) | Yes: scanned page |
+
+**Taggable:** 0 (scanned text-only pages, no separable content images)
+
+<br><br>
+
 ## Corpus Summary
 
 | Category | Docs | Content images | Decorative | Vector figures | Tables |
@@ -937,11 +958,11 @@ potential downscaling.
 | multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-28 | 269 | 92 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
-| scanned | 07, 08 | 8 | 0 | 0 | 0 |
+| scanned | 07, 08, 30 | 8 | 0 | 0 | 0 |
 | mixed-content | 09 | 6 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15, 29 | 4 | 0 | 0 | 0 |
-| **Total** | **30** | **289** | **98** | **46** | **35** |
+| **Total** | **31** | **289** | **98** | **46** | **35** |
 
 <br><br>
 
@@ -1027,6 +1048,7 @@ dedicated test set files:
 | 27 | 18 | 24 | 0 | 42 | PPTX |
 | 28 | 12 | 14 | 3 | 29 | XLSX |
 | 29 | 0 | 1 | 0 | 1 | JPG |
+| 30 | 0 | 0 | 0 | 0 | PDF (scanned) |
 | **Total** | **91** | **142** | **50** | **283** | |
 
 <br><br>

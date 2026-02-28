@@ -18,7 +18,7 @@ fixtures/
     multi-image/           02, 05, 06, 11, 12, 16, 20-28 -- documents with images or chart objects
     vector-heavy/          01, 04 -- figures drawn with vector graphics
     text-heavy/            00, 03, 17 -- mostly prose, few or no images
-    scanned/               07, 08, 09 -- scanned documents (image-only or OCR'd)
+    scanned/               07, 08, 09, 30 -- scanned documents (image-only or OCR'd)
     text-only/             10 -- no images at all
     table-image/           13, 14, 15, 29 -- standalone image files
   eval-subset/
@@ -35,7 +35,7 @@ fixtures/
 ## Download
 
 ```bash
-# Full set (30 fixtures, ~105 MB)
+# Full set (31 fixtures, ~105 MB)
 ./scripts/download-fixtures.sh
 
 # Baseline only (4 documents, ~5 MB)
@@ -94,6 +94,7 @@ the KVision test catalog.
 | 07 | `07_epa_sample_letter.pdf` | PDF | 3 | 3 full-page scans | 1.93 MB |
 | 08 | `08_xerox_mfp_scan_forestburg.pdf` | PDF | 5 | 5 full-page scans | 1.5 MB |
 | 09 | `09_archive_newspaper_1948.pdf` | PDF | 6 | 6 high-res OCR'd scans | 23 MB |
+| 30 | `30_nrc_correspondence_2024.pdf` | PDF | 2 | 1 color + 1 bitonal scan, no OCR | 548 KB |
 
 ### table-image (standalone images)
 
@@ -121,10 +122,10 @@ From [image catalog](../docs/image-catalog.md) (cataloging complete):
 | multi-image | 02, 05, 06, 11, 12, 16, 18, 19, 20-28 | 269 | 92 | 12 | 24 |
 | vector-heavy | 01, 04 | 1 | 2 | 34 | 3 |
 | text-heavy | 00, 03, 17 | 1 | 4 | 0 | 4 |
-| scanned | 07, 08, 09 | 8 | 0 | 0 | 0 |
+| scanned | 07, 08, 09, 30 | 8 | 0 | 0 | 0 |
 | text-only | 10 | 0 | 0 | 0 | 4 |
 | table-image | 13, 14, 15, 29 | 4 | 0 | 0 | 0 |
-| **Total** | **30** | **289** | **98** | **46** | **35** |
+| **Total** | **31** | **289** | **98** | **46** | **35** |
 
 See [image catalog](../docs/image-catalog.md) for per-image difficulty
 ratings and the selected 64-image evaluation subset.

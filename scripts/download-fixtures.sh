@@ -6,7 +6,7 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 30 documents
+#   ./scripts/download-fixtures.sh          # all 31 documents
 #   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -126,6 +126,10 @@ download "scanned" "08_xerox_mfp_scan_forestburg.pdf" \
 
 download "scanned" "09_archive_newspaper_1948.pdf" \
     "https://archive.org/download/cupl_003575/cupl_003575_access.pdf" \
+    ""
+
+download "scanned" "30_nrc_correspondence_2024.pdf" \
+    "https://www.nrc.gov/docs/ML2425/ML24253A016.pdf" \
     ""
 
 # ---- Extended set (6 additional documents) ----
