@@ -136,13 +136,13 @@ Backtick all property names, values, and code references within table cells.
 Use relative markdown links with descriptive text:
 
 ```text
-See [Output Contract](./output-contract.md) for image anchor format.
+See [Output Contract](../output-contract.md) for image anchor format.
 ```
 
 For longer docs, include a quick-links blockquote near the top:
 
 ```text
-> **Quick links:** [Output Contract](./output-contract.md) · [Runner Protocol](./runner-protocol.md)
+> **Quick links:** [Output Contract](../output-contract.md) · [Runner Protocol](../runner-protocol.md)
 ```
 
 Separate links with ` . ` (center dot, `·`). Bold the current page's link
