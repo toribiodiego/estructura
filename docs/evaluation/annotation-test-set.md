@@ -2,12 +2,12 @@
 
 Image-level test index for annotation quality evaluation. Each row represents
 one image from the 64-image evaluation subset selected in the
-[Image Catalog](./image-catalog.md). Difficulty is classified by how
+[Image Catalog](../image-catalog.md). Difficulty is classified by how
 challenging it is for a vision model to **accurately and completely describe**
 the image content -- independent of how hard the image is to extract from
 its source document.
 
-> **Related:** [Image Catalog](./image-catalog.md) (master reference) |
+> **Related:** [Image Catalog](../image-catalog.md) (master reference) |
 > [Pipeline Test Set](./pipeline-test-set.md) (document-level extraction
 > testing)
 

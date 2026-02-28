@@ -6,7 +6,7 @@ classified by how challenging it is for the pipeline to **find, isolate, and
 crop every image** in the document -- independent of how hard those images are
 to annotate.
 
-> **Related:** [Image Catalog](./image-catalog.md) (master reference) |
+> **Related:** [Image Catalog](../image-catalog.md) (master reference) |
 > [Annotation Test Set](./annotation-test-set.md) (image-level annotation
 > evaluation)
 
@@ -170,4 +170,4 @@ For each document, check:
 3. **Boundaries:** spot-check crop files for correct bounding (no clipping,
    minimal excess whitespace)
 4. **Format:** output structure matches the
-   [Output Contract](./output-contract.md)
+   [Output Contract](../output-contract.md)

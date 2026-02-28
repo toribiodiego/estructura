@@ -7,8 +7,7 @@ outputs, and project standards.
 > **Quick links:** [Output Contract](./output-contract.md) ·
 > [Runner Protocol](./runner-protocol.md) ·
 > [Image Catalog](./image-catalog.md) ·
-> [Pipeline Test Set](./pipeline-test-set.md) ·
-> [Annotation Test Set](./annotation-test-set.md) ·
+> [Evaluation](./evaluation/README.md) ·
 > [Documentation Standards](./standards/documentation.md)
 
 <br><br>
@@ -21,8 +20,12 @@ docs/
   output-contract.md                   image anchor format, stable IDs, manifest schema
   runner-protocol.md                   JSON event protocol between Java CLI and Python runner
   image-catalog.md                     master catalog of images across all evaluation fixtures
-  pipeline-test-set.md                 document-level test index for e2e pipeline extraction
-  annotation-test-set.md               image-level test index for annotation quality evaluation
+  evaluation/
+    README.md                          evaluation methodology overview and file relationships
+    analysis-template.md               per-image ground truth template with rubric dimension mapping
+    pipeline-test-set.md               document-level test index for e2e pipeline extraction
+    annotation-test-set.md             image-level test index for annotation quality evaluation
+    image-analysis/                    per-document ground truth files (populated during pass 2)
   samples/
     sample-multiimage.md               example Markdown output with image anchors
     sample-multiimage.txt              example TXT output with image anchors
@@ -51,8 +54,16 @@ docs/
 | File | Purpose |
 |------|---------|
 | `image-catalog.md` | Master catalog of all images, figures, charts, and diagrams across 20 evaluation fixtures. Includes content type classification, difficulty ratings, evaluation subset selection (64 images), and distribution summaries. |
-| `pipeline-test-set.md` | Document-level test index for end-to-end pipeline extraction testing. One row per document with extraction difficulty rating, coverage matrix by format, and gap analysis for missing format coverage. |
-| `annotation-test-set.md` | Image-level test index for annotation quality evaluation. Lists the 64-image evaluation subset with annotation difficulty, matrices by content type and source format, and gap analysis for underrepresented image categories. |
+
+### Evaluation
+
+| File | Purpose |
+|------|---------|
+| `evaluation/README.md` | Evaluation methodology overview: two-pass approach (scoring calibration then ground truth recording), file relationships, scoring dimensions. |
+| `evaluation/analysis-template.md` | Strict template for per-image ground truth with content-type-specific visual inventory formats. Every section maps to a rubric scoring dimension. |
+| `evaluation/pipeline-test-set.md` | Document-level test index for end-to-end pipeline extraction testing. One row per document with extraction difficulty rating, coverage matrix by format, and gap analysis for missing format coverage. |
+| `evaluation/annotation-test-set.md` | Image-level test index for annotation quality evaluation. Lists the 64-image evaluation subset with annotation difficulty, matrices by content type and source format, and gap analysis for underrepresented image categories. |
+| `evaluation/image-analysis/` | Per-document ground truth files (one per document with eval subset images). Populated during the second evaluation pass using the analysis template. |
 
 ### Samples
 

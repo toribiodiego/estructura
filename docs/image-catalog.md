@@ -4,9 +4,11 @@ Master catalog of all images, figures, charts, and diagrams across the
 evaluation fixture set. Includes difficulty ratings and evaluation subset
 selection.
 
-> **Related:** [Pipeline Test Set](./pipeline-test-set.md) (document-level
-> extraction testing) | [Annotation Test Set](./annotation-test-set.md)
-> (image-level annotation evaluation)
+> **Related:** [Pipeline Test Set](./evaluation/pipeline-test-set.md)
+> (document-level extraction testing) |
+> [Annotation Test Set](./evaluation/annotation-test-set.md) (image-level
+> annotation evaluation) |
+> [Image Analysis](./evaluation/image-analysis/) (per-image ground truth)
 
 **Documents cataloged:** 20
 **Last updated:** 2026-02-28
@@ -626,10 +628,10 @@ near-identical. For evaluation, only 2-3 representative examples are included.
 
 Format-level coverage matrices and gap analysis are maintained in the
 dedicated test set files:
-- [Pipeline Test Set](./pipeline-test-set.md) -- document-level format
-  coverage matrix and extraction gaps
-- [Annotation Test Set](./annotation-test-set.md) -- image-level format
-  coverage matrix and annotation gaps
+- [Pipeline Test Set](./evaluation/pipeline-test-set.md) -- document-level
+  format coverage matrix and extraction gaps
+- [Annotation Test Set](./evaluation/annotation-test-set.md) -- image-level
+  format coverage matrix and annotation gaps
 
 ### By document
 
@@ -768,4 +770,4 @@ example. Doc 17 equations are not in the subset (native LaTeX, not raster)
 but test equation region detection during pipeline evaluation.
 
 For detailed breakdowns by content type, source format, and coverage gaps,
-see the [Annotation Test Set](./annotation-test-set.md).
+see the [Annotation Test Set](./evaluation/annotation-test-set.md).
