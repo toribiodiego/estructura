@@ -4,6 +4,10 @@ Master catalog of all images, figures, charts, and diagrams across the
 evaluation fixture set. Includes difficulty ratings and evaluation subset
 selection.
 
+> **Related:** [Pipeline Test Set](./pipeline-test-set.md) (document-level
+> extraction testing) | [Annotation Test Set](./annotation-test-set.md)
+> (image-level annotation evaluation)
+
 **Documents cataloged:** 20
 **Last updated:** 2026-02-28
 
@@ -620,52 +624,12 @@ Source: https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recov
 Note: Doc 06 contributes 20 medium-difficulty screenshots that are mostly
 near-identical. For evaluation, only 2-3 representative examples are included.
 
-### By format -- document count
-
-Each file is classified once by the difficulty of its hardest image. A file
-with easy and hard images is counted as "hard" because the pipeline must handle
-its hardest content. See [Difficulty Criteria](#difficulty-criteria) for level
-definitions.
-
-| Format | Easy | Medium | Hard | No images | Total |
-|--------|------|--------|------|-----------|-------|
-| PDF | 0 | 2 (00, 06) | 5 (01, 02, 04, 05, 18) | 5 (03, 07-09, 17) | 12 |
-| DOCX | 0 | 0 | 2 (16, 19) | 1 (10) | 3 |
-| PPTX | 0 | 1 (12) | 1 (11) | 0 | 2 |
-| XLSX | 0 | 0 | 0 | 1 | 1 |
-| Standalone image | 2 (13, 14) | 1 (15) | 0 | 0 | 3 |
-| **Total** | **2** | **4** | **8** | **7** | **21** |
-
-7 files have zero taggable images: 3 scanned PDFs (07-09, text-only pages),
-1 equation-dense PDF (17, native LaTeX), 1 text-heavy PDF (03), 1 text-only
-DOCX (10), and 1 XLSX (in `other/`, excluded from evaluation).
-
-### By format -- image count
-
-Each image is counted once at its assigned difficulty level.
-
-| Format | Easy | Medium | Hard | Total | % of corpus |
-|--------|------|--------|------|-------|-------------|
-| PDF | 50 | 73 | 30 | 153 | 81% |
-| DOCX | 5 | 4 | 9 | 18 | 10% |
-| PPTX | 2 | 8 | 5 | 15 | 8% |
-| XLSX | 0 | 0 | 0 | 0 | 0% |
-| Standalone image | 2 | 1 | 0 | 3 | 2% |
-| **Total** | **59** | **86** | **44** | **189** | **100%** |
-
-Concentration risk: Doc 18 alone contributes 46 images (24% of the corpus).
-DOCX and PPTX combined provide 33 images across 4 files.
-
-### Coverage gaps
-
-| Format | Gap | Impact |
-|--------|-----|--------|
-| DOCX | 2 files with images; all 9 hard images from 1 doc (16) | Cannot tell if issues are format-specific or doc-specific |
-| PPTX | 1 meaningful file; Doc 12 contributes 1 image | Cannot evaluate PPTX pipeline reliability |
-| XLSX | Zero evaluation coverage | Pipeline untested on spreadsheets |
-| PDF (scanned) | 3 files but 0 taggable images (text-only pages) | Tests OCR only, not image annotation |
-| HTML | Zero files | Pipeline untested on web content |
-| Standalone image | No hard-difficulty examples | Annotation on challenging single images untested |
+Format-level coverage matrices and gap analysis are maintained in the
+dedicated test set files:
+- [Pipeline Test Set](./pipeline-test-set.md) -- document-level format
+  coverage matrix and extraction gaps
+- [Annotation Test Set](./annotation-test-set.md) -- image-level format
+  coverage matrix and annotation gaps
 
 ### By document
 
@@ -783,22 +747,25 @@ DOCX and PPTX combined provide 33 images across 4 files.
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
 | Easy | 14 | 22% |
-| Medium | 21 | 33% |
-| Hard | 29 | 45% |
+| Medium | 20 | 31% |
+| Hard | 30 | 47% |
 
 | Content Type | Count |
 |-------------|-------|
 | chart-simple | 6 |
 | chart-complex | 14 |
-| diagram | 11 |
+| diagram | 10 |
 | table-image | 5 |
 | equation | 2 |
-| infographic | 7 |
+| infographic | 8 |
 | photo | 9 |
-| screenshot | 8 |
-| other | 2 |
+| screenshot | 9 |
+| other | 1 |
 
-The subset over-represents hard images (45% vs 25% in corpus) as intended.
-Medium and hard together comprise 78%. All content types have at least 2
-examples. Doc 17 equations are not in the subset (native LaTeX, not raster)
+The subset over-represents hard images (47% vs 25% in corpus) as intended.
+Medium and hard together comprise 78%. All content types have at least 1
+example. Doc 17 equations are not in the subset (native LaTeX, not raster)
 but test equation region detection during pipeline evaluation.
+
+For detailed breakdowns by content type, source format, and coverage gaps,
+see the [Annotation Test Set](./annotation-test-set.md).
