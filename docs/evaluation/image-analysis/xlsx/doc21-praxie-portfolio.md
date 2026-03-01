@@ -9,5 +9,22 @@
 single-series bar charts summarizing project priority distribution, status,
 risk levels, and budget vs actual expenditure.
 
-*To be completed during pass 2. See
-[analysis template](../../analysis-template.md) for section structure.*
+**Eval subset:** 2 of 4 content images
+
+<br><br>
+
+## doc21-C01 -- Bar: Priority distribution
+
+**Content type:** chart-simple
+**Annotation difficulty:** Easy
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc21-C04 -- Bar: Budget vs Actual Expenditure
+
+**Content type:** chart-simple
+**Annotation difficulty:** Easy
+
+*Ground truth pending.*

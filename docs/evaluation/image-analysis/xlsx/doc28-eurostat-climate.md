@@ -11,5 +11,64 @@ workbook with 29 XML-defined charts across 24 figure sheets. 6 chart types
 energy consumption, transport, agriculture, and waste indicators for EU
 member states.
 
-*To be completed during pass 2. See
-[analysis template](../../analysis-template.md) for section structure.*
+**Eval subset:** 6 of 29 content charts
+
+<br><br>
+
+## doc28-C01 -- Line: GHG emissions index 1990=100, 4 series
+
+**Sheet:** Fig1
+**Content type:** chart-complex
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc28-C07 -- Pie-of-pie: GHG by source sector, EU 2020
+
+**Sheet:** Fig4
+**Content type:** chart-complex
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc28-C08 -- Combo (area+bar+line): GHG by sector, 4 series
+
+**Sheet:** Fig5
+**Content type:** chart-complex
+**Annotation difficulty:** Hard
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc28-C11 -- Stacked area: Electricity/heat from renewables, 7 series
+
+**Sheet:** Fig8
+**Content type:** chart-complex
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc28-C24 -- Combo (area+line): LULUCF GHG, 7 series
+
+**Sheet:** Fig19
+**Content type:** chart-complex
+**Annotation difficulty:** Hard
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc28-C29 -- Pie: GHG by gas type in CO2-equivalents, EU
+
+**Sheet:** Fig23
+**Content type:** chart-simple
+**Annotation difficulty:** Easy
+
+*Ground truth pending.*

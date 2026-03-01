@@ -10,5 +10,64 @@ report summary with 42 content images (maps, charts, paired comparisons)
 across 31 of 32 slides. Near-duplicate halves suggest bilingual structure.
 4 decorative branding images in slide layouts.
 
-*To be completed during pass 2. See
-[analysis template](../../analysis-template.md) for section structure.*
+**Eval subset:** 6 of 42 content images
+
+<br><br>
+
+## doc27-R01 -- European rail map
+
+**Slide:** 2
+**Content type:** diagram
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc27-R03 -- Paired panel (left), medium format
+
+**Slide:** 4
+**Content type:** chart-complex
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc27-R09 -- Wide horizontal chart
+
+**Slide:** 7
+**Content type:** chart-simple
+**Annotation difficulty:** Easy
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc27-R38 -- Medium panel
+
+**Slide:** 29
+**Content type:** chart-complex
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc27-R41 -- Summary overview
+
+**Slide:** 31
+**Content type:** infographic
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*
+
+<br><br>
+
+## doc27-R42 -- Summary overview (wide)
+
+**Slide:** 32
+**Content type:** infographic
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*

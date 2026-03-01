@@ -10,5 +10,13 @@ showing all active solar and space science missions as of December 2025.
 Labeled spacecraft icons positioned around the Sun and planets with orbit
 paths, mission names, and agency logos.
 
-*To be completed during pass 2. See
-[analysis template](../../analysis-template.md) for section structure.*
+**Eval subset:** 1 of 1 content images
+
+<br><br>
+
+## doc29-R01 -- NASA heliophysics fleet: all active missions
+
+**Content type:** diagram
+**Annotation difficulty:** Medium
+
+*Ground truth pending.*
