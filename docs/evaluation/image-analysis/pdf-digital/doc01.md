@@ -4,7 +4,7 @@
 **Format:** PDF
 **Source:** https://cdn.openai.com/papers/gpt-4-system-card.pdf
 **Category:** vector-heavy
-**Eval subset images:** 6
+**Images:** 13
 **Document context:** OpenAI GPT-4 system card covering safety evaluations,
 red-teaming, harmful content mitigation, bias analysis, and deployment
 safeguards for the GPT-4 model.
@@ -19,7 +19,7 @@ safeguards for the GPT-4 model.
 **Dimensions:** 1448x1317 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -31,7 +31,7 @@ safeguards for the GPT-4 model.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -43,7 +43,7 @@ safeguards for the GPT-4 model.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -55,7 +55,7 @@ safeguards for the GPT-4 model.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -67,7 +67,7 @@ safeguards for the GPT-4 model.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -79,4 +79,4 @@ safeguards for the GPT-4 model.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

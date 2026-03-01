@@ -4,7 +4,7 @@
 **Format:** PPTX
 **Source:** https://www.cs.princeton.edu/courses/archive/spring17/cos598F/lectures/RL.pptx
 **Category:** multi-image
-**Eval subset images:** 6
+**Images:** 14
 **Document context:** Princeton COS 598F lecture slides on reinforcement learning
 covering value-based methods (TD, Sarsa, Q-learning, DQN), policy gradient
 methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
@@ -19,7 +19,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 **Dimensions:** 784x307 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -31,7 +31,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 **Dimensions:** 699x356 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -43,7 +43,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 **Dimensions:** 717x362 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -55,7 +55,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 **Dimensions:** 803x482 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -67,7 +67,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 **Dimensions:** 246x70 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -79,4 +79,4 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 **Dimensions:** 567x131 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

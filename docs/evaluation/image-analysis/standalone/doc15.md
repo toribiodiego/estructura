@@ -4,7 +4,7 @@
 **Format:** JPG
 **Source:** https://courses.washington.edu/fish340/Images/timetable.jpg
 **Category:** table-image
-**Eval subset images:** 1
+**Images:** 1
 **Document context:** Standalone image of a SWORD class assignment timetable
 with color-coded cells indicating different assignment types across a 9-week
 schedule.
@@ -19,4 +19,4 @@ schedule.
 **Dimensions:** (full image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

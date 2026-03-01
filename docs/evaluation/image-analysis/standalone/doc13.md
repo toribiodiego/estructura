@@ -4,7 +4,7 @@
 **Format:** WebP
 **Source:** https://standupsurfshop.com.au/wp-content/uploads/2023/09/ARTPRO-Table.webp
 **Category:** table-image
-**Eval subset images:** 1
+**Images:** 1
 **Document context:** Standalone product specification table for ArtPro aircraft
 wing models listing dimensions, weight, and performance characteristics across
 6 models.
@@ -19,4 +19,4 @@ wing models listing dimensions, weight, and performance characteristics across
 **Dimensions:** (full image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

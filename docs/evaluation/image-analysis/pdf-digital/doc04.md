@@ -4,7 +4,7 @@
 **Format:** PDF
 **Source:** https://assets.anthropic.com/m/218c82b858610fac/original/Economic-Index.pdf
 **Category:** vector-heavy
-**Eval subset images:** 9
+**Images:** 22
 **Document context:** Anthropic Economic Index report analyzing global AI usage
 patterns, geographic distribution, occupation-level adoption, and economic
 implications based on Claude usage data.
@@ -19,7 +19,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -31,7 +31,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -43,7 +43,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -55,7 +55,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -67,7 +67,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -79,7 +79,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -91,7 +91,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -103,7 +103,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -115,4 +115,4 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

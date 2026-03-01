@@ -4,7 +4,7 @@
 **Format:** PNG
 **Source:** https://raw.githubusercontent.com/eihli/image-table-ocr/master/resources/test_data/simple.png
 **Category:** table-image
-**Eval subset images:** 1
+**Images:** 1
 **Document context:** Standalone image of a simple spreadsheet table used as a
 test fixture for table OCR systems. Contains cell references, format
 descriptions, and formulas.
@@ -19,4 +19,4 @@ descriptions, and formulas.
 **Dimensions:** (full image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

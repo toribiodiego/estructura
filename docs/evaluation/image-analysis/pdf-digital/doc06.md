@@ -4,7 +4,7 @@
 **Format:** PDF
 **Source:** https://arxiv.org/pdf/2206.01062.pdf
 **Category:** multi-image
-**Eval subset images:** 4
+**Images:** 22
 **Document context:** DocLayNet paper introducing a large-scale document layout
 analysis dataset with 80K+ annotated pages across 6 document categories.
 Covers annotation methodology, dataset statistics, and layout prediction
@@ -20,7 +20,7 @@ benchmarks.
 **Dimensions:** 1120x1512 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -32,7 +32,7 @@ benchmarks.
 **Dimensions:** 1025x1025 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -44,7 +44,7 @@ benchmarks.
 **Dimensions:** 1025x1025 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -56,4 +56,4 @@ benchmarks.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

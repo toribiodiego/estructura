@@ -4,7 +4,7 @@
 **Format:** DOCX
 **Source:** https://www.repository.cam.ac.uk/bitstreams/a5e95699-d0d4-49e1-a471-e7dc381cdbac/download
 **Category:** multi-image
-**Eval subset images:** 4
+**Images:** 8
 **Document context:** Cambridge biology research paper on mitochondrial dynamics
 during spermatogenesis. Figures are multi-sub-panel composites combining
 fluorescence microscopy, electron microscopy, bar charts, and time-lapse
@@ -20,7 +20,7 @@ sequences.
 **Dimensions:** (embedded DOCX image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -32,7 +32,7 @@ sequences.
 **Dimensions:** (embedded DOCX image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -44,7 +44,7 @@ sequences.
 **Dimensions:** (embedded DOCX image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -56,4 +56,4 @@ sequences.
 **Dimensions:** (embedded DOCX image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

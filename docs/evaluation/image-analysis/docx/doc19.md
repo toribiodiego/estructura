@@ -4,7 +4,7 @@
 **Format:** DOCX
 **Source:** https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recovery%20Impact%20Statement%20-%20Electronic%20Screens%20-%202023.docx
 **Category:** multi-image
-**Eval subset images:** 4
+**Images:** 10
 **Document context:** Australian Cost Recovery Impact Statement for electronic
 screen energy rating regulations. Covers market analysis, energy consumption
 trends, star rating methodology, and cost-benefit projections for display
@@ -20,7 +20,7 @@ equipment.
 **Dimensions:** (embedded DOCX image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -32,7 +32,7 @@ equipment.
 **Dimensions:** (embedded DOCX image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -44,7 +44,7 @@ equipment.
 **Dimensions:** (embedded DOCX image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -56,4 +56,4 @@ equipment.
 **Dimensions:** (embedded DOCX image)
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

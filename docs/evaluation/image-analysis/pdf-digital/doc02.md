@@ -4,7 +4,7 @@
 **Format:** PDF
 **Source:** https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/ICML2019-Hanna.pdf
 **Category:** multi-image
-**Eval subset images:** 6
+**Images:** 18
 **Document context:** ICML 2019 paper on importance sampling for off-policy
 evaluation in reinforcement learning. Compares estimation methods (WIS, PDIS,
 AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
@@ -19,7 +19,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 **Dimensions:** 1350x1200 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -31,7 +31,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 **Dimensions:** 1800x1600 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -43,7 +43,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 **Dimensions:** 1350x1200 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -55,7 +55,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 **Dimensions:** 386x252 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -67,7 +67,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 **Dimensions:** 1350x1200 pixels
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -79,4 +79,4 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*

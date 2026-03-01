@@ -4,7 +4,7 @@
 **Format:** PDF
 **Source:** https://www.redbooks.ibm.com/redbooks/pdfs/sg248275.pdf
 **Category:** multi-image
-**Eval subset images:** 6
+**Images:** 46
 **Document context:** IBM Redbook on microservices architecture covering design
 patterns, DevOps practices, Bluemix platform implementation, and case studies
 (CloudTrader, Online Store, Acme Air). Architecture diagrams and platform
@@ -20,7 +20,7 @@ screenshots throughout.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -32,7 +32,7 @@ screenshots throughout.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -44,7 +44,7 @@ screenshots throughout.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -56,7 +56,7 @@ screenshots throughout.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -68,7 +68,7 @@ screenshots throughout.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
 
 <br><br>
 
@@ -80,4 +80,4 @@ screenshots throughout.
 **Dimensions:** vector
 
 *To be completed during pass 2. See
-[analysis template](../analysis-template.md) for section structure.*
+[analysis template](../../analysis-template.md) for section structure.*
