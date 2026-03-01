@@ -124,7 +124,7 @@ not on the source document's extraction difficulty.
 | `doc24-R01` | 24 | HTML | diagram | Medium | Monolith vs microservices architecture comparison |
 | `doc24-R02` | 24 | HTML | diagram | Medium | Conway's Law: org structure mapped to system architecture |
 | `doc24-R06` | 24 | HTML | diagram | Medium | Micro-deployment: monolith vs microservices infrastructure |
-| `doc25-R01` | 25 | DOCX | screenshot | Medium | Application window: main CPRS interface |
+| `doc25-R08` | 25 | DOCX | screenshot | Medium | UI panel: record display |
 | `doc25-R02` | 25 | DOCX | screenshot | Medium | Application window: clinical record view |
 | `doc25-R07` | 25 | DOCX | screenshot | Medium | UI panel: form layout |
 | `doc25-R19` | 25 | DOCX | screenshot | Medium | Full form: clinical documentation |

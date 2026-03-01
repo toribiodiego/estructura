@@ -4,17 +4,17 @@
 **Format:** DOCX
 **Source:** https://www.va.gov/vdl/documents/Clinical/CPRS-Text_Integration_Utility_(TIU)/tiutm.docx
 **Category:** multi-image
-**Images:** 14
+**Images:** 13
 **Document context:** VA CPRS Text Integration Utility (TIU) clinical
-software manual with 14 content screenshots showing application windows,
-dialog boxes, toolbar captures, and clinical data entry forms. 5 decorative
-icons to filter.
+software manual with 13 content screenshots showing application windows,
+dialog boxes, toolbar captures, and clinical data entry forms. 6 decorative
+images (5 small icons + 1 VA seal/emblem) to filter.
 
-**Eval subset:** 4 of 14 content images
+**Eval subset:** 4 of 13 content images
 
 <br><br>
 
-## doc25-R01 -- Application window: main CPRS interface
+## doc25-R08 -- UI panel: record display
 
 **Content type:** screenshot
 **Annotation difficulty:** Medium

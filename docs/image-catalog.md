@@ -708,7 +708,7 @@ and small icons. Images range from 2.8 KB icons to 270 KB full screenshots.
 
 | ID | Content Type | Difficulty | Description | Skip? |
 |----|-------------|------------|-------------|-------|
-| doc25-R01 | screenshot | Medium | Application window: main CPRS interface (500x500) | -- |
+| doc25-R01 | decorative | -- | VA Department seal/emblem (500x500) | Yes: logo/emblem |
 | doc25-R02 | screenshot | Medium | Application window: clinical record view (912x651) | -- |
 | doc25-R05 | screenshot | Easy | Dialog or form view (710x501) | -- |
 | doc25-R06 | screenshot | Medium | UI panel: clinical data entry (772x421) | -- |
@@ -724,7 +724,7 @@ and small icons. Images range from 2.8 KB icons to 270 KB full screenshots.
 | doc25-R19 | screenshot | Medium | Full form: clinical documentation (686x851) | -- |
 | -- | decorative | -- | 5 small icons/buttons (<10 KB each): image3, image4, image15, image16, image17 | Yes: UI icons |
 
-**Taggable:** 14 (4 easy, 10 medium)
+**Taggable:** 13 (4 easy, 9 medium)
 
 <br><br>
 
@@ -1151,7 +1151,7 @@ dedicated test set files:
 | doc24-R01 | 24 | -- | diagram | Medium | Monolith vs microservices architecture comparison |
 | doc24-R02 | 24 | -- | diagram | Medium | Conway's Law: org structure mapped to system architecture |
 | doc24-R06 | 24 | -- | diagram | Medium | Micro-deployment: monolith vs microservices infrastructure |
-| doc25-R01 | 25 | -- | screenshot | Medium | Application window: main CPRS interface |
+| doc25-R08 | 25 | -- | screenshot | Medium | UI panel: record display |
 | doc25-R02 | 25 | -- | screenshot | Medium | Application window: clinical record view |
 | doc25-R07 | 25 | -- | screenshot | Medium | UI panel: form layout |
 | doc25-R19 | 25 | -- | screenshot | Medium | Full form: clinical documentation |
