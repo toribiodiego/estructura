@@ -1909,32 +1909,44 @@ the extracted crop.
 
 ### Visual Inventory [-> Completeness]
 
-- **Content type description:** "Daily Struggle" or "Running Away Balloon"
-  internet meme format
-- **Visual elements:**
-  - Cartoon stick figure person reaching toward a floating object
-  - Yellow circle/balloon labeled "Game at 300 FPS"
-  - Pink circle labeled "75 hz Monitor" pulling the figure back
-  - The meme format conveys being tempted by something unattainable or
-    impractical
-- **Text visible:**
-  - "Game at 300 FPS" on the yellow balloon
-  - "75 hz Monitor" on the pink circle
-- **Composition:** Meme image shown in a Prompt box with "Can you explain this
-  meme?" The Model Response explains the humor: playing a game at 300 FPS is
-  pointless with a 75Hz monitor since the monitor can only display 75 frames
-  per second, making the higher framerate useless.
+- **Meme format:** "Running Away Balloon" (also called "Daily Struggle")
+  internet meme -- two-panel vertical layout
+- **Top panel:**
+  - A white stick figure character (round head, simple face with open smile,
+    wide outstretched arms) reaching eagerly toward a large yellow
+    circle/balloon
+  - The yellow balloon has bold black text: "Game at 300 FPS"
+  - Background: muted blue-gray gradient
+- **Bottom panel:**
+  - The same stick figure is being grabbed/pulled back from behind by a pink
+    blob-shaped figure
+  - The pink figure has bold black text: "75 hz Monitor"
+  - A smaller yellow balloon is visible in the top-right corner with text
+    "Game at" / "FPS" (the same balloon, now farther away as the figure is
+    pulled back)
+  - The stick figure is still reaching toward the yellow balloon but
+    restrained
+  - Background: same muted blue-gray gradient
+- **Layout:** Two panels stacked vertically with a black divider/border between
+  them
+- **Art style:** Simple line-drawing cartoon with flat colors (white figure,
+  yellow balloon, pink antagonist, blue-gray background)
+- **Text visible in the image:**
+  - "Game at 300 FPS" (yellow balloon, both panels)
+  - "75 hz Monitor" (pink figure, bottom panel)
 
 ### Verifiable Facts [-> Accuracy]
 
-- FACT: The meme is in the "Running Away Balloon" or "Daily Struggle" format
-- FACT: The yellow balloon/circle is labeled "Game at 300 FPS"
-- FACT: The pink circle is labeled "75 hz Monitor"
-- FACT: The stick figure is reaching toward the balloon
-- FACT: The prompt asks "Can you explain this meme?"
-- FACT: The model explains that 300 FPS is wasted on a 75Hz monitor
-- FACT: The model's explanation centers on the monitor's inability to display more than 75 frames per second
-- FACT: The meme uses a cartoon/stick figure art style
+- FACT: The meme has two panels stacked vertically
+- FACT: The meme is in the "Running Away Balloon" / "Daily Struggle" format
+- FACT: The yellow balloon is labeled "Game at 300 FPS"
+- FACT: The pink figure is labeled "75 hz Monitor"
+- FACT: The stick figure reaches toward the balloon in both panels
+- FACT: In the bottom panel, the pink figure pulls the stick figure back
+- FACT: The smaller yellow balloon appears in the bottom panel's top-right,
+  now farther away
+- FACT: The meme uses a cartoon/stick figure art style with flat colors
+- FACT: The text reads "75 hz" (lowercase "hz"), not "75 Hz"
 
 ### Hallucination Risks [-> Accuracy]
 
@@ -1951,23 +1963,31 @@ the extracted crop.
 
 ### Detail Inventory [-> Specificity]
 
-- "Running Away Balloon" meme format with cartoon stick figure
-- Yellow balloon/circle: "Game at 300 FPS"
-- Pink circle: "75 hz Monitor"
-- The figure reaches toward the high-FPS balloon while held back by the
-  low-Hz-monitor circle
+- "Running Away Balloon" meme format, two vertical panels
+- Yellow balloon: "Game at 300 FPS" (large in top panel, small/distant in
+  bottom panel)
+- Pink blob figure: "75 hz Monitor" (appears only in bottom panel, grabbing
+  the stick figure from behind)
+- Top panel: stick figure eagerly reaching, balloon within reach
+- Bottom panel: stick figure restrained, balloon receding -- visual metaphor
+  for wanting something you cannot have
 - The humor relies on knowledge that a monitor's refresh rate caps the
-  visible framerate
+  visible framerate -- 300 FPS on a 75 Hz display means ~225 frames per
+  second are never shown
 - 300 FPS vs 75 Hz represents a ~4x mismatch
-- Model response explains the core joke without over-elaborating
+- Art style: minimal line drawing, flat color fills, no shading or gradients
+  on the characters (only the background has a gradient)
+- Text styling: bold black sans-serif on the colored shapes
 
 ### Domain Context [-> Usefulness]
 
 - **Domain:** Internet culture, computer gaming, display technology
-- **Surrounding document context:** Figure 17 in the Gemini report,
-  demonstrating the model's ability to understand internet meme formats and
-  explain humor. Requires recognizing the meme template, reading the text
-  labels, and applying domain knowledge about FPS and monitor refresh rates.
+- **Surrounding document context:** Figure 17 in the Gemini 1.0 technical
+  report (page 83), section "10.4.8. Multimodal humor understanding." On the
+  PDF page, the meme appears inside a "Prompt" box with the instruction "Can
+  you explain this meme?" and the model's response explains the FPS/Hz
+  mismatch humor. These prompt/response elements are page context, not part
+  of the extracted meme image.
 - **Technical terminology:**
   - FPS (frames per second): the rate at which a game renders frames
   - Hz (Hertz): the refresh rate of a monitor (how many frames it can display
@@ -2490,6 +2510,418 @@ zero visible in the chart.
 | Specificity | "Four math plots" with no function names or axis details | Names all 4 functions with grid positions, gives approximate axis ranges, mentions 3D surface has a colormap | Specifies sine period count, tangent asymptote count, exponential knee location, colorbar range and tick interval, line color, colormap type, absence of titles/labels |
 | Completeness | Describes only 2-3 of the 4 subplots; omits the 3D surface or tangent asymptotes | Covers all 4 subplots with function types and approximate ranges; mentions the 2x2 layout | All 4 subplots described with function type, axis ranges, and distinctive features (asymptotes, periods, curve shape, colormap); notes layout, styling (blue lines, no markers), and absence of labels |
 | Usefulness | "Some function plots" -- not searchable for any specific function type or visualization term | Names the functions and "matplotlib subplot grid"; a search for "sine tangent exponential" would find it | Explains this is a visual function identification challenge with no text cues, connects to multimodal code generation context; searchable for specific functions, matplotlib, and visual math reasoning |
+
+<br><br>
+
+## doc05-R25 -- Soccer penalty kick frame 1: setup
+
+**Figure reference:** Figure 23, page 90 (frame 1 of 4)
+**Content type:** photo
+**Annotation difficulty:** Easy
+**Dimensions:** 480x270 pixels (estimated from plan; small video frame)
+
+### Visual Inventory [-> Completeness]
+
+- **Primary subject:** A person seen from behind, standing on a green grass
+  field, facing a soccer goal several meters away
+- **Person:** Wearing a dark patterned/camouflage long-sleeve shirt and dark
+  shorts; standing upright in a ready/sizing-up posture
+- **Soccer ball:** White, on the ground slightly to the person's right, between
+  them and the goal
+- **Goal:** Full-size soccer goal with white posts and white net, positioned in
+  the middle distance
+- **Goalkeeper:** A dark figure is visible in or near the goal (small, hard to
+  distinguish details at this frame size)
+- **Setting:** Outdoor park or recreational grass field -- not a stadium; flat
+  green grass with some bare/worn patches near the edges
+- **Background:** Trees with autumn foliage (mix of orange, yellow, and green),
+  low buildings visible on the horizon, clear blue sky
+- **Lighting:** Daylight, sun appears to be coming from the left/behind the
+  camera, casting soft shadows on the grass
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: The person is seen from behind (back to camera)
+- FACT: They are wearing a dark patterned/camouflage long-sleeve top
+- FACT: A white soccer ball is on the ground between the person and the goal
+- FACT: A full-size soccer goal with white posts is visible
+- FACT: The setting is an outdoor grass field, not a stadium
+- FACT: Trees with autumn coloring are visible in the background
+- FACT: The person is standing upright, not yet in a kicking motion
+- FACT: A dark figure (goalkeeper) is visible near the goal
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might describe the person as wearing a specific team jersey
+  or identify a team logo
+  REALITY: The shirt is dark with a patterned/camouflage design; no team
+  branding is discernible at this resolution
+- RISK: A model might state the person is "about to kick" or "mid-kick"
+  REALITY: In this frame, the person is standing upright in a setup/ready
+  position -- no kicking motion is visible
+- RISK: A model might describe this as a professional stadium or match
+  REALITY: The setting is clearly a casual park/recreational field with
+  trees, no stands, no markings beyond the goal
+- RISK: A model might identify the goalkeeper in detail
+  REALITY: The goalkeeper is a small dark figure; details like clothing or
+  posture are not clearly resolvable
+
+### Detail Inventory [-> Specificity]
+
+- Small video frame (480x270) -- limited detail resolution
+- Person facing away from camera, center-left of frame
+- Ball positioned on ground between person and goal, right of center
+- Goal occupies the middle of the frame in the background
+- Autumn trees line the background (seasonal indicator)
+- Low buildings visible on the horizon to the left of the goal
+- Grass is green but shows some wear/brown patches at the field edges
+- Clear sky with no clouds visible in this frame
+- This is the "before" frame in the penalty kick sequence -- establishes
+  the scene and spatial relationships
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** Sports (soccer/football), video understanding
+- **Surrounding document context:** Frame 1 of 4 from Figure 23 in the Gemini
+  1.0 technical report (page 90), section "10.6.2. Video understanding and
+  reasoning." The four frames show a penalty kick sequence provided as a video
+  prompt. On the PDF page, a "Prompt (video)" box contains the 4 frames with
+  the instruction "How could this person improve their technique?" and the
+  model response provides coaching advice about ball-striking mechanics, body
+  positioning, and follow-through.
+- **Technical terminology:**
+  - Penalty kick: a direct free kick at the goal from the penalty spot
+  - Video frames: individual still images extracted from video for analysis
+- **Why this image matters:** This is the setup frame that establishes the
+  scene. As part of a 4-frame sequence, it tests whether an annotation model
+  describes just this frame (person standing, ball on ground, facing goal)
+  without bleeding in action from later frames.
+
+### Search Keywords [-> Usefulness]
+
+- soccer, football, penalty kick, video frame
+- Gemini, video understanding, sports analysis
+- grass field, goal, goalkeeper, recreational
+- technique analysis, coaching, ball striking
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Says the person is kicking the ball; misidentifies the sport; describes a stadium setting | Correctly identifies person standing facing goal with ball on ground; notes outdoor field setting | Person standing (not kicking), dark camo shirt, white ball on ground, white goal posts, park setting with autumn trees, goalkeeper visible near goal |
+| Specificity | "A person on a soccer field" | Mentions the person's clothing, the ball position, the goal, and the outdoor park setting | Describes clothing pattern, ball position relative to person, goal details (white posts, net), background elements (autumn trees, buildings on horizon), and lighting conditions |
+| Completeness | Describes only the person or only the field; omits the ball or goal | Covers person, ball, goal, and outdoor setting; may omit the goalkeeper or background details | Person with clothing, ball, goal with goalkeeper, field condition, background trees and buildings, sky, lighting, and identifies this as a pre-kick setup frame |
+| Usefulness | "A sports photo" -- not searchable | Mentions soccer, penalty kick setup, outdoor field; findable for "soccer video frame" | Explains this is frame 1 of a penalty kick sequence for video understanding, notes the setup posture, connects to Gemini's video reasoning capability |
+
+<br><br>
+
+## doc05-R26 -- Soccer penalty kick frame 2: approach
+
+**Figure reference:** Figure 23, page 90 (frame 2 of 4)
+**Content type:** photo
+**Annotation difficulty:** Easy
+**Dimensions:** 480x270 pixels (estimated; small video frame)
+
+### Visual Inventory [-> Completeness]
+
+- **Primary subject:** The same person from R25, now in mid-stride approaching
+  the ball -- body angled forward, one leg forward in a walking/jogging step
+- **Person:** Same dark patterned/camouflage long-sleeve shirt and dark shorts;
+  now viewed more from the front-left (camera angle shifted compared to R25)
+- **Soccer ball:** White, on the ground ahead of the person, to their right;
+  the person is closer to the ball than in R25 but still several meters away
+- **Goal:** Same full-size soccer goal with white posts and white net in the
+  background
+- **Goalkeeper:** Dark figure still visible in/near the goal
+- **Setting:** Same outdoor park/recreational grass field
+- **Background:** Same autumn trees; a large blue/dark building is now more
+  visible to the left of the goal (different angle reveals it more clearly
+  than in R25); clear sky
+- **Lighting:** Same daylight conditions as R25
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: The person is in mid-stride, moving toward the ball (approach phase)
+- FACT: The camera angle has shifted from R25 -- more front-left view instead
+  of directly behind
+- FACT: The person is wearing the same dark patterned/camouflage top as R25
+- FACT: The white soccer ball is on the ground ahead of the person
+- FACT: The person has not yet reached the ball -- still several meters away
+- FACT: A large blue/dark building is visible to the left of the goal in the
+  background
+- FACT: The goal and goalkeeper are still visible
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might describe the person as kicking the ball
+  REALITY: They are still approaching -- in mid-stride, not at the ball yet
+- RISK: A model might confuse this frame with R25 since the setting is
+  identical
+  REALITY: The key differences are the camera angle (front-left vs behind)
+  and the person's posture (walking/jogging vs standing still)
+- RISK: A model might describe the person as running at full speed
+  REALITY: The posture suggests a walk or light jog, not a sprint
+- RISK: A model might add details not resolvable at this small frame size
+  (shoe brand, facial features, grass markings)
+  REALITY: The frame is approximately 480x270 pixels -- fine details are not
+  discernible
+
+### Detail Inventory [-> Specificity]
+
+- Small video frame (480x270) -- limited detail resolution
+- Person now center-left of frame, viewed from front-left angle
+- Body posture: leaning slightly forward, one leg stepping forward (approach
+  stride)
+- Ball is ahead and to the right of the person on the grass
+- Distance between person and ball has decreased from R25 but the person has
+  not reached the ball
+- Blue/dark building newly prominent in the left background due to camera
+  angle change
+- Same autumn trees, goal, and field as R25
+- Brown/bare patch visible on the right edge of the field
+- This is the "approach" frame -- the person is moving toward the ball to
+  begin the kick
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** Sports (soccer/football), video understanding
+- **Surrounding document context:** Frame 2 of 4 from Figure 23 in the Gemini
+  1.0 technical report (page 90). The model's response critiques the kicker's
+  ball-striking mechanics, body positioning, and follow-through. This frame
+  shows the approach phase that the model would analyze for body positioning
+  and run-up technique.
+- **Technical terminology:**
+  - Approach / run-up: the steps a kicker takes before striking the ball
+  - Penalty kick: a direct free kick from the penalty spot
+- **Why this image matters:** The approach frame captures the kicker's run-up
+  technique. Annotation should describe the body posture and forward motion
+  without importing details from the setup (R25) or kick (R27-R28) frames.
+
+### Search Keywords [-> Usefulness]
+
+- soccer, football, penalty kick, approach, run-up
+- Gemini, video understanding, sports technique
+- video frame, sequence, kicking mechanics
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Describes the person as kicking or standing still; wrong sport; stadium setting | Correctly identifies person approaching/walking toward ball; notes same field as R25; outdoor park | Person in mid-stride approaching ball (not kicking, not standing still), camera angle shift from R25, dark camo shirt, ball ahead on ground, goal and goalkeeper in background |
+| Specificity | "A person on a soccer field" -- identical to R25 description | Mentions the approach stride, camera angle change from R25, ball position ahead of person | Describes the front-left camera angle, forward-leaning body posture, distance to ball decreased from R25, blue building visible in background, and identifies this as the approach phase |
+| Completeness | Mentions only the person; omits ball, goal, or setting changes from R25 | Covers person, ball, goal, field; notes this is a different frame from R25 | Person with posture, ball position, goal with goalkeeper, background changes (building visibility), camera angle shift, and contextualizes as frame 2 of 4 |
+| Usefulness | "Another soccer photo" -- indistinguishable from R25 | Identifies this as the approach/run-up frame in a kick sequence; findable for "penalty kick technique" | Explains the approach phase, how it differs from the setup frame, what a coach would evaluate (body positioning, run-up angle); connects to Gemini's video reasoning |
+
+<br><br>
+
+## doc05-R27 -- Soccer penalty kick frame 3: kick
+
+**Figure reference:** Figure 23, page 90 (frame 3 of 4)
+**Content type:** photo
+**Annotation difficulty:** Easy
+**Dimensions:** 480x270 pixels (estimated; small video frame)
+
+### Visual Inventory [-> Completeness]
+
+- **Primary subject:** The person is now very close to the ball and the goal,
+  in a kicking posture -- body bent forward at the waist, right leg at or near
+  the ball, weight on the plant foot (left leg)
+- **Person:** Same dark patterned/camouflage long-sleeve shirt and dark shorts;
+  viewed from behind and slightly to the left
+- **Soccer ball:** White, right at the person's feet -- they are in contact
+  with or just about to strike the ball
+- **Goal:** Closer in the frame than in R25/R26 -- the person has moved
+  significantly up the field toward it; white posts and net visible
+- **Goalkeeper:** Small dark figure visible in the goal area
+- **Setting:** Same outdoor park/recreational grass field
+- **Background:** Blue/dark building visible to the left of the goal; same
+  autumn trees; clear sky
+- **Other:** A dark object (possibly a bag or second ball) is visible on the
+  grass at the far left edge of the frame
+- **Lighting:** Same daylight conditions; brown/bare ground visible on the
+  right edge of the field
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: The person is in a kicking posture -- bent forward, leg at the ball
+- FACT: The ball is right at the person's feet (not meters away as in R25/R26)
+- FACT: The person is much closer to the goal than in the previous frames
+- FACT: The camera angle is from behind and slightly left, similar to R25
+- FACT: The same dark patterned/camouflage clothing is worn
+- FACT: The goal and a small dark figure (goalkeeper) are visible
+- FACT: A dark object is visible on the far left of the grass
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might describe the ball as already in flight or in the goal
+  REALITY: In this frame, the ball appears to still be at the person's feet
+  during the strike
+- RISK: A model might describe detailed kicking technique (instep vs laces,
+  plant foot angle) beyond what's resolvable
+  REALITY: At 480x270 pixels, the foot-ball contact details are not clearly
+  visible
+- RISK: A model might confuse this with R28 (the follow-through frame)
+  REALITY: In R27, the person is at the ball in mid-kick; R28 shows the
+  aftermath
+- RISK: A model might describe the goalkeeper's reaction or dive
+  REALITY: The goalkeeper is a tiny dark figure; no reaction details are
+  resolvable
+
+### Detail Inventory [-> Specificity]
+
+- Small video frame (480x270) -- limited detail resolution
+- Person now close to the goal, in the act of kicking
+- Body posture: bent forward at waist, weight on plant foot, kicking leg at
+  the ball
+- Ball at feet -- contact or near-contact moment
+- Person-to-goal distance has dramatically decreased from R25 (setup) through
+  R26 (approach) to R27 (kick)
+- Camera has returned to a behind-the-kicker angle (similar to R25, unlike
+  the front-left angle in R26)
+- Blue/dark building prominent in left background
+- Dark object on far left grass (not present or visible in R25/R26)
+- This is the "kick" frame -- the moment of ball contact in the penalty kick
+  sequence
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** Sports (soccer/football), video understanding
+- **Surrounding document context:** Frame 3 of 4 from Figure 23 in the Gemini
+  1.0 technical report (page 90). The model's response specifically critiques
+  ball-striking mechanics: "Their foot is not making good contact with the
+  ball" and advises leaning into the shot. This frame is the one most directly
+  relevant to that critique.
+- **Technical terminology:**
+  - Plant foot: the non-kicking foot placed beside the ball for balance
+  - Ball striking / contact: the moment the foot meets the ball
+  - Follow-through: the continuation of leg motion after contact (shown in
+    R28, not this frame)
+- **Why this image matters:** This is the critical action frame in the
+  sequence -- the moment of ball contact. Annotation quality depends on
+  correctly describing the kicking posture without over-specifying details
+  that aren't resolvable at this frame size.
+
+### Search Keywords [-> Usefulness]
+
+- soccer, football, penalty kick, ball strike, contact
+- Gemini, video understanding, technique analysis
+- kicking mechanics, plant foot, body positioning
+- video frame, sequence, sports coaching
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Describes the person as standing still or walking; says the ball is in flight; wrong sport | Correctly identifies person in kicking posture with ball at feet; notes proximity to goal | Person bent forward at waist, kicking leg at ball, weight on plant foot; ball at feet (not airborne); much closer to goal than R25/R26; camera angle from behind |
+| Specificity | "A person kicking a soccer ball" | Describes the bent-forward posture, ball at feet, closer to goal than previous frames | Notes body angle, plant foot position, ball-at-feet contact moment, distance change from R25/R26, camera angle return to behind-view, dark object on far left |
+| Completeness | Mentions only the kick; omits goal, setting, or progression from previous frames | Covers person, ball, goal, field; notes this is closer to the goal than before | Person posture, ball position, goal with goalkeeper, field setting, background elements, distance progression, camera angle, and contextualizes as frame 3 of 4 |
+| Usefulness | "A soccer kick" -- not searchable or contextual | Identifies this as the kick frame in a penalty sequence; findable for "penalty kick technique" | Explains this is the ball-contact moment, connects to the model's critique of ball-striking mechanics, identifies what a coach would evaluate in this frame |
+
+<br><br>
+
+## doc05-R28 -- Soccer penalty kick frame 4: follow-through
+
+**Figure reference:** Figure 23, page 90 (frame 4 of 4)
+**Content type:** photo
+**Annotation difficulty:** Easy
+**Dimensions:** 480x270 pixels (estimated; small video frame)
+
+### Visual Inventory [-> Completeness]
+
+- **Primary subject:** The person is now past the kicking point, walking or
+  jogging forward toward the goal in a relaxed follow-through posture
+- **Person:** Same dark top and dark shorts; body upright, arms at sides,
+  moving forward -- no longer in a kicking stance; viewed from behind
+- **Soccer ball:** Small white object visible near the base of the goal or
+  just in front of it -- the ball has traveled from the kicking spot toward
+  the goal
+- **Goal:** Very prominent in the frame, filling much of the background; white
+  posts and net clearly visible; the person is now much closer to the goal
+  than in any previous frame
+- **Goalkeeper:** Not clearly visible in this frame (may have moved or be
+  obscured by angle/distance)
+- **Setting:** Same outdoor park/recreational grass field
+- **Background:** Blue/dark building to the left of the goal; autumn trees on
+  both sides; a white structure or object visible to the right of the goal
+  (not clearly visible in earlier frames); clear blue sky
+- **Shadows:** The person's shadow is visible extending to their right on the
+  grass, indicating sun from the left
+- **Field condition:** Brown/bare ground visible on the right side of the field
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: The person is walking/jogging forward in an upright, relaxed posture
+- FACT: They are past the kicking point -- further up the field than in R27
+- FACT: The ball is visible as a small white object near the goal
+- FACT: The goal is closer and more prominent in this frame than in any
+  previous frame
+- FACT: The person's shadow extends to the right on the grass
+- FACT: A white structure/object is visible to the right of the goal
+- FACT: The goalkeeper is not clearly visible in this frame
+- FACT: Same dark clothing as all previous frames
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might describe the person as still kicking or in mid-kick
+  REALITY: The person is upright and walking forward -- the kick happened in
+  R27
+- RISK: A model might claim the ball is "in the net" or "scored"
+  REALITY: The ball appears near the goal but whether it went in or was saved
+  cannot be determined from this frame
+- RISK: A model might describe the goalkeeper making a save or diving
+  REALITY: The goalkeeper is not clearly visible in this frame
+- RISK: A model might describe this as a celebration or reaction
+  REALITY: The person is simply walking forward in a relaxed post-kick
+  stride -- no celebratory gesture is visible
+
+### Detail Inventory [-> Specificity]
+
+- Small video frame (480x270) -- limited detail resolution
+- Person now between the kicking spot and the goal, walking forward
+- Body posture: upright, relaxed, arms at sides -- contrast with the bent
+  forward kicking posture in R27
+- Ball has traveled from the person's feet (R27) to near the goal -- visible
+  as a small white dot near the goal base
+- Person's shadow clearly visible, longer than in earlier frames (different
+  angle to sun, or later time)
+- White structure to the right of the goal not visible in R25/R26/R27 (newly
+  revealed by the person's forward position and camera angle)
+- Goalkeeper absence notable -- could be obscured, could have moved
+- This is the "follow-through" frame -- the kick is complete and the person
+  is in the aftermath
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** Sports (soccer/football), video understanding
+- **Surrounding document context:** Frame 4 of 4 from Figure 23 in the Gemini
+  1.0 technical report (page 90). The model's response mentions follow-through
+  as an area for improvement: "they should be following through with their
+  kicking leg." This frame shows the post-kick movement that the model would
+  evaluate for follow-through technique.
+- **Technical terminology:**
+  - Follow-through: the continuation of the kicking motion after ball contact;
+    important for power and accuracy
+  - Post-kick: the phase after the ball has been struck
+- **Why this image matters:** This is the final frame in the 4-frame penalty
+  kick sequence. Annotation should describe the relaxed walking posture and
+  ball near the goal without claiming outcomes (scored/saved) that aren't
+  verifiable from the image.
+
+### Search Keywords [-> Usefulness]
+
+- soccer, football, penalty kick, follow-through, post-kick
+- Gemini, video understanding, technique analysis
+- kicking technique, follow-through evaluation
+- video frame, sequence, sports coaching
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Describes the person as kicking the ball or celebrating; claims a goal was scored; wrong sport | Correctly identifies person walking forward post-kick; ball near goal; outdoor setting | Person upright walking forward (not kicking), ball near goal base (not claiming scored/saved), goalkeeper not visible, shadow extending right, relaxed post-kick posture |
+| Specificity | "A person walking on a soccer field" -- indistinguishable from a random photo | Mentions post-kick follow-through, ball near goal, person closer to goal than before | Describes upright vs bent posture contrast with R27, ball travel from feet to near goal, shadow direction, white structure to right of goal, goalkeeper absence |
+| Completeness | Mentions only the person; omits ball location, goal proximity, or sequence context | Covers person, ball near goal, field, and identifies as post-kick frame | Person posture, ball location, goal prominence, shadow, white structure, goalkeeper absence, field condition, and contextualizes as frame 4 of 4 |
+| Usefulness | "Another soccer field photo" -- not distinguishable from other frames | Identifies this as the follow-through frame; findable for "penalty kick follow-through" | Explains the post-kick phase, connects to the model's follow-through critique, notes what a coach would evaluate, avoids claiming unverifiable outcomes |
 
 <br><br>
 
@@ -3339,3 +3771,278 @@ zero visible in the chart.
 | Specificity | "A chart about waste management" with no percentages, no regions, no year | Names the 4 regions, lists several percentages, mentions the 4 waste categories, and the 2019 year | Lists all 16 data points with exact percentages, names the chart title verbatim, cites the data source, describes the horizontal bar format, and notes the model's standout identification and table output |
 | Completeness | Describes only the charts or only the model response; omits regions or categories | Covers all 4 regions, the 4 categories, the prompt instruction, and the model's table output; may omit some percentages or the data source | Accounts for all 4 regional panels with all 16 values, the chart title and source attribution, the prompt text (standout + table), and the model response (standout analysis + rendered markdown table with all columns) |
 | Usefulness | "A chart about pollution" -- wrong topic framing, no specific data | Mentions plastic waste management, regional comparison, 2019 data; searchable for "plastic waste chart" or "Gemini data extraction" | Includes all regional data, the OECD source, the standout analysis (US landfill dominance), the structured table output, and explains the chart-to-table extraction task within the Gemini multimodal capabilities context |
+
+<br><br>
+
+## doc05-V07 -- Calculus implicit differentiation problem and solution
+
+**Figure reference:** Figure 20, page 87
+**Content type:** equation
+**Annotation difficulty:** Hard
+**Dimensions:** vector (rendered from PDF page at 2x scale)
+
+### Visual Inventory [-> Completeness]
+
+- **Layout:** Two-panel figure with dark gray header bars (white text) framing
+  each section; thin black borders around both panels
+- **Panel 1 -- "Prompt":**
+  - Single line: "Find the derivative of sinh x + cosh y = x + y."
+  - Variables in italic math formatting
+- **Panel 2 -- "Model Response (rendered latex)":**
+  - Step 1 (prose): "We have that d/dx sinh x = cosh x and d/dx cosh y =
+    sinh y (dy/dx). Therefore,"
+  - Step 2 (centered equation): cosh x + sinh y (dy/dx) = 1 + dy/dx.
+  - Step 3 (prose): "Solving for dy/dx, we find that"
+  - Step 4 (centered equation): dy/dx = (1 - cosh x) / (sinh y - 1).
+  - Step 5 (prose + inline): "Final Answer: The final answer is
+    (1 - cosh x) / (sinh y - 1)."
+- **Equation rendering:** All equations are rendered in LaTeX with properly
+  typeset fractions (numerator over denominator with horizontal bar),
+  derivative notation (d/dx), and hyperbolic function names (sinh, cosh)
+- **Text formatting:** Prose text is left-aligned, equations are centered;
+  "Final Answer:" appears in bold
+- **Background:** White within both panels
+- **Figure caption:** "Figure 20 | Solving a calculus problem. The model is
+  able to get a solution to a calculus problem with step-by-step explanation
+  and correctly defined LaTeX equations."
+- **Source line:** "Source: question is provided by Macmillan Learning."
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: The prompt asks to find the derivative of sinh x + cosh y = x + y
+- FACT: The solution uses implicit differentiation
+- FACT: Step 1 states d/dx sinh x = cosh x (correct derivative identity)
+- FACT: Step 1 states d/dx cosh y = sinh y (dy/dx) (correct chain rule
+  application)
+- FACT: The intermediate equation is cosh x + sinh y (dy/dx) = 1 + dy/dx
+- FACT: The final answer is dy/dx = (1 - cosh x) / (sinh y - 1)
+- FACT: The "Final Answer" line restates the same result in inline fraction
+  format
+- FACT: The equations are rendered in LaTeX (not plain text)
+- FACT: The source is attributed to Macmillan Learning
+- FACT: The figure is labeled Figure 20
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might misquote the derivative identities (e.g., d/dx sinh x =
+  sinh x instead of cosh x)
+  REALITY: The solution correctly states d/dx sinh x = cosh x and applies
+  chain rule for d/dx cosh y
+- RISK: A model might state the final answer with the wrong sign (e.g.,
+  "cosh x - 1" instead of "1 - cosh x" in the numerator)
+  REALITY: The numerator is "1 - cosh x" and the denominator is "sinh y - 1"
+- RISK: A model might describe additional solution steps not shown (e.g.,
+  simplification, verification, domain restrictions)
+  REALITY: The solution has exactly 5 steps as listed, ending with the final
+  answer
+- RISK: A model might claim this is an ordinary derivative (dy/dx of a single
+  function) rather than implicit differentiation
+  REALITY: The equation sinh x + cosh y = x + y defines y implicitly as a
+  function of x, and the solution differentiates both sides with respect to x
+- RISK: A model might confuse sinh/cosh with sin/cos
+  REALITY: The problem explicitly uses hyperbolic functions (sinh, cosh), not
+  trigonometric functions (sin, cos)
+
+### Detail Inventory [-> Specificity]
+
+- Two-panel prompt-response figure for a calculus problem
+- Prompt: single equation involving hyperbolic functions sinh and cosh
+- Solution method: implicit differentiation (differentiating both sides of
+  an equation with respect to x, using chain rule for the y terms)
+- Three key equations visible:
+  1. Intermediate: cosh x + sinh y (dy/dx) = 1 + dy/dx
+  2. Result: dy/dx = (1 - cosh x) / (sinh y - 1)
+  3. Final answer restated inline
+- LaTeX rendering: proper fractions with horizontal bars, derivative d/dx
+  notation with upright "d", italic variables x and y, properly set function
+  names sinh and cosh in upright font
+- 5 solution steps alternating between prose explanation and centered
+  equations
+- "Final Answer:" label in bold, followed by inline fraction
+- Dark gray header bars label the sections; thin black borders frame both
+  panels
+- Figure caption explicitly notes "correctly defined LaTeX equations" as a
+  quality indicator
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** Mathematics, calculus, implicit differentiation
+- **Surrounding document context:** Figure 20 in the Gemini 1.0 technical
+  report (page 87), section "10.5.2. Mathematics: Calculus." This
+  demonstrates the model's ability to solve calculus problems with
+  step-by-step reasoning and render the solution in properly formatted LaTeX.
+- **Technical terminology:**
+  - Implicit differentiation: differentiating an equation that defines y as
+    an implicit function of x, applying chain rule to y-terms
+  - sinh x (hyperbolic sine): (e^x - e^(-x)) / 2
+  - cosh x (hyperbolic cosine): (e^x + e^(-x)) / 2
+  - dy/dx: the derivative of y with respect to x
+  - Chain rule: d/dx f(y) = f'(y) * dy/dx when y is a function of x
+  - LaTeX: typesetting system for mathematical notation
+- **Why this image matters:** Tests whether an annotation model can accurately
+  transcribe mathematical notation -- a different challenge from describing
+  visual content. The annotation must preserve the exact equations, variable
+  names, and mathematical operations without introducing errors in signs,
+  functions, or notation.
+
+### Search Keywords [-> Usefulness]
+
+- Gemini, calculus, implicit differentiation, derivative
+- sinh, cosh, hyperbolic functions, chain rule
+- LaTeX, mathematical notation, step-by-step solution
+- dy/dx, Macmillan Learning, math problem solving
+- Figure 20, rendered latex, equation rendering
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Confuses sinh/cosh with sin/cos; wrong final answer; misquotes the prompt equation | Correctly identifies sinh/cosh, states the correct final answer (1 - cosh x) / (sinh y - 1), and the correct prompt equation | All equations transcribed exactly (prompt, intermediate, final), derivative identities correct, chain rule application noted, sign and order of terms in numerator and denominator correct |
+| Specificity | "A math problem and solution" with no equations quoted | Names the hyperbolic functions, states the final answer, mentions LaTeX rendering | Quotes all 3 key equations exactly, identifies implicit differentiation method, notes the 5-step structure, describes LaTeX formatting details (fractions, upright d, italic variables) |
+| Completeness | Describes only the prompt or only the final answer; omits the solution steps | Covers prompt equation, solution method, and final answer; may omit intermediate equation or rendering details | Both panels described, all 5 solution steps accounted for, prompt and response equations quoted, LaTeX rendering noted, figure caption and source attribution included |
+| Usefulness | "A calculus solution" -- not searchable for specific functions or methods | Mentions implicit differentiation, sinh/cosh, dy/dx; searchable for "Gemini calculus" | Explains implicit differentiation method, names the hyperbolic functions, connects to Macmillan Learning source, identifies the LaTeX rendering quality demonstration; searchable for specific math terms |
+
+<br><br>
+
+## doc05-V08 -- Multi-step math problem with production table
+
+**Figure reference:** Figure 21, page 88
+**Content type:** other (word problem + table + step-by-step arithmetic)
+**Annotation difficulty:** Hard
+**Dimensions:** vector (rendered from PDF page at 2x scale)
+
+### Visual Inventory [-> Completeness]
+
+- **Layout:** Two-panel figure with dark gray header bars (white text); thin
+  black borders around both panels
+- **Panel 1 -- "Prompt":**
+  - Word problem: Factory A produced 500 million forints in 2018, increases 5%
+    per year. Factory B produced 400 million forints in 2018, increases 6% per
+    year. A commenter claimed the production difference would get smaller.
+  - Task: "Calculate the missing values of the table below and show that the
+    above claim is not true."
+  - Partial table in pipe-delimited text format:
+    - Header: | 2018 | 2019 | 2020 | 2021 |
+    - Production volume of factory A (mln) | 500 | | | |
+    - Production volume of factory B (mln) | 400 | | | |
+  - Only 2018 values are filled in; 2019-2021 cells are empty
+- **Panel 2 -- "Model Response (rendered Markdown)":**
+  - Completed table (rendered as a proper markdown table with borders):
+    - Year | Production volume of factory A (mln) | Production volume of
+      factory B (mln) | Difference (mln)
+    - 2018: 500, 400, 100
+    - 2019: 525, 424, 101
+    - 2020: 551.25, 449.44, 101.81
+    - 2021: 578.81, 476.41, 102.4
+  - Year-by-year calculations shown below the table:
+    - 2019: A = 500 * 1.05 = 525; B = 400 * 1.06 = 424; diff = 101
+    - 2020: A = 525 * 1.05 = 551.25; B = 424 * 1.06 = 449.44; diff = 101.81
+    - 2021: A = 551.25 * 1.05 = 578.81; B = 449.44 * 1.06 = 476.41;
+      diff = 102.4
+  - Conclusion paragraph: the difference is increasing (100, 101, 101.81,
+    102.4), not decreasing; therefore the claim is not true
+- **Figure caption:** "Figure 21 | Solving a multi-step math problem. The model
+  is able to understand the task and generate a markdown table with correctly
+  calculated values. It also explicitly follows the instructions to show where
+  the numbers come from and answer the question given in the task."
+- **Source line:** "Source: Oktatasi Hivatal (2023, p. 20)"
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: Factory A starts at 500 million forints in 2018
+- FACT: Factory B starts at 400 million forints in 2018
+- FACT: Factory A increases 5% per year
+- FACT: Factory B increases 6% per year
+- FACT: 2019 values: A = 525, B = 424, difference = 101
+- FACT: 2020 values: A = 551.25, B = 449.44, difference = 101.81
+- FACT: 2021 values: A = 578.81, B = 476.41, difference = 102.4
+- FACT: The difference sequence is 100, 101, 101.81, 102.4 (increasing)
+- FACT: The model concludes the claim is not true
+- FACT: The model adds a "Difference (mln)" column not present in the prompt
+  table
+- FACT: The prompt table is in pipe-delimited text; the response table is
+  rendered markdown with borders
+- FACT: Each year's calculation is shown as multiplication (e.g., 500 * 1.05)
+- FACT: The figure is labeled Figure 21
+- FACT: The source is Oktatasi Hivatal (2023, p. 20)
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might misquote the percentage growth rates (e.g., 6% for A
+  and 5% for B, reversed)
+  REALITY: Factory A grows at 5%, Factory B at 6%
+- RISK: A model might state the difference is decreasing (repeating the
+  claim) instead of increasing
+  REALITY: The difference increases: 100, 101, 101.81, 102.4
+- RISK: A model might round or truncate the decimal values (e.g., 551 instead
+  of 551.25, or 449.4 instead of 449.44)
+  REALITY: The table shows values to 2 decimal places: 551.25, 449.44,
+  578.81, 476.41
+- RISK: A model might claim the currency is euros, dollars, or Hungarian
+  forints with the wrong denomination
+  REALITY: The unit is "million forints" (mln) -- forints are Hungarian
+  currency
+- RISK: A model might add years beyond 2021 not shown in the table
+  REALITY: The table covers only 2018-2021 (4 years)
+- RISK: A model might describe the prompt table as already having all values
+  filled
+  REALITY: The prompt table has only 2018 values; 2019-2021 cells are empty
+
+### Detail Inventory [-> Specificity]
+
+- Two-panel prompt-response figure for a multi-step math word problem
+- Prompt: compound growth word problem with two factories, two growth rates,
+  and a claim to disprove
+- Prompt table: pipe-delimited text format, 2 rows x 4 year columns, only
+  2018 pre-filled
+- Response table: rendered markdown, 4 rows x 4 columns (Year, Factory A,
+  Factory B, Difference) -- model added the Difference column
+- All 12 calculated values shown in the table (3 years x 4 columns including
+  the added Difference column; plus the given 2018 row)
+- Step-by-step arithmetic shown below the table for each year, using
+  multiplication notation (e.g., "500 * 1.05 = 525")
+- Difference column shows monotonically increasing values: 100, 101, 101.81,
+  102.4
+- The increases in the difference are themselves decreasing: +1, +0.81, +0.59
+  -- meaning the difference grows but at a decelerating rate
+- Conclusion paragraph directly addresses the claim and refutes it
+- Currency: forints (Hungarian), measured in millions
+- Context mentions "economy website" and "comment section" debate
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** Mathematics, compound growth, economics word problem
+- **Surrounding document context:** Figure 21 in the Gemini 1.0 technical
+  report (page 88), section "10.6. Multi-step reasoning and mathematics."
+  Demonstrates the model's ability to parse a multi-step word problem,
+  perform compound growth calculations, generate a structured table, and
+  construct a logical argument to answer the question.
+- **Technical terminology:**
+  - Compound growth: applying a fixed percentage increase year over year
+    (multiplicative, not additive)
+  - Forints: Hungarian currency (HUF)
+  - Million forints (mln): the unit used throughout the problem
+  - Difference: the absolute gap between Factory A and Factory B production
+- **Why this image matters:** Tests annotation of a complex multi-step
+  reasoning figure that includes prose, arithmetic, a table, and a logical
+  conclusion. Unlike chart or photo annotation, accuracy here requires
+  correctly transcribing specific numeric values and understanding the
+  logical structure of the argument. The model's addition of the Difference
+  column (not in the prompt) shows initiative beyond the literal instruction.
+
+### Search Keywords [-> Usefulness]
+
+- Gemini, multi-step reasoning, math problem, word problem
+- compound growth, percentage increase, factory production
+- markdown table, calculated values, forints, Hungarian
+- production volume, difference, increasing vs decreasing
+- Oktatasi Hivatal, structured output, arithmetic
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Wrong growth rates (reversed or different percentages); wrong table values; claims the difference decreases | Correct growth rates (A 5%, B 6%), correct 2018 starting values, most table values correct; correctly states difference is increasing | All 12 table values exact to 2 decimal places, growth rates correct, difference sequence (100, 101, 101.81, 102.4) quoted, conclusion correctly stated, source attribution included |
+| Specificity | "A math problem with a table" -- no numbers or growth rates | States the two factories, growth rates, starting values, and that the difference increases | Quotes all table values, notes the prompt table has empty cells vs the completed response table, describes the step-by-step calculation format, identifies the added Difference column, notes the decelerating growth in the difference itself |
+| Completeness | Describes only the table or only the word problem; omits the conclusion or calculations | Covers the prompt, the completed table, and the conclusion; may omit the step-by-step calculations or source | Both panels complete: prompt with word problem and partial table, response with completed table including added Difference column, step-by-step calculations for each year, conclusion paragraph, figure caption, and source attribution |
+| Usefulness | "A table of numbers" -- no context about what's being calculated or why | Mentions factory production comparison, compound growth, and the disproved claim; searchable for "Gemini math reasoning" | Explains the compound growth setup, the claim being tested, the model's approach (table + calculations + conclusion), identifies this as a multi-step reasoning demonstration; searchable for specific growth rates, values, and reasoning patterns |
