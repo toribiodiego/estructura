@@ -2162,8 +2162,8 @@ the extracted crop.
   - Title text: "Opossum Search" in large white serif or sans-serif font,
     centered at top
   - A small photograph of an opossum centered below the title; the opossum
-    appears to be perched on a white fence or railing at night, with dark
-    fur and a pale/white face; the photo is roughly 100x75 pixels (small
+    appears white/light-colored, perched on a white wooden fence at night
+    against a dark background; the photo is roughly 100x75 pixels (small
     thumbnail within the page)
 - **Search area (white/light gray background):**
   - A text input field spanning most of the width with placeholder text
@@ -2211,7 +2211,8 @@ the extracted crop.
 ### Detail Inventory [-> Specificity]
 
 - Page title: "Opossum Search" (large, white, centered)
-- Opossum photo: small thumbnail, animal on white fence, nighttime
+- Opossum photo: small thumbnail, white/light-colored animal on white
+  wooden fence, nighttime/dark background
 - Search input: wide text field, placeholder "Search the web"
 - Search button: gray, text "Search," right of input
 - Header background: dark gray/charcoal
