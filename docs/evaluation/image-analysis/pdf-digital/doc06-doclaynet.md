@@ -284,7 +284,7 @@ Dataset for Document-Layout Analysis" on the left and "KDD '22, August 14-18,
   yellow Text boxes over body paragraphs, photos of buildings/infrastructure
   scenes in the left column, and orange/red decorative elements.
 - **Panel E (bottom-center):** Aviation operations manual page on pink background.
-  Contains green Section-header boxes ("Circling Minima", "Airport Sketch"),
+  Contains green Section-header boxes ("Circling Minim[ums/a]", "AIRPORT SKETCH"),
   yellow Table boxes around tabular data, and a runway approach diagram/sketch
   at the bottom-right. Multiple form-like fields with pink and yellow background
   sections.
@@ -313,7 +313,8 @@ Dataset for Document-Layout Analysis" on the left and "KDD '22, August 14-18,
 - Panel B contains the text "MODEL AY11236" and section headers "MICROSCOPE
   USAGE" and "CONSTRUCTION"
 - Panel D title reads "SETTING THE FUTURE IN MOTION"
-- Panel E contains section headers "Circling Minima" and "Airport Sketch"
+- Panel E contains green section headers including "Circling Minim[ums/a]"
+  (partially legible) and "AIRPORT SKETCH"
 - Panel F contains "[51] Int. Cl. G06F 1/00 (2006.01)"
 - Panel A has a teal/blue gradient background with an aerial photograph
 - Panel D has a dark red/maroon background
@@ -365,7 +366,7 @@ Dataset for Document-Layout Analysis" on the left and "KDD '22, August 14-18,
   architecture/buildings in left column; body text in yellow Text boxes; overall
   magazine/brochure visual style
 - **Panel E:** Pink tinted background; structured form layout with ruled sections;
-  "Circling Minima" and "Airport Sketch" as green section headers; tabular data
+  "Circling Minim[ums/a]" and "AIRPORT SKETCH" as green section headers; tabular data
   in yellow Table boxes; runway approach diagram/chart at bottom-right showing
   runway orientation and approach paths; text about airport elevation, taxiways,
   and approach bearings
