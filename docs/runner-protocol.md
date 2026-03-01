@@ -326,7 +326,7 @@ The native output reflects Docling's built-in picture description format, which
 differs from the estructura output contract (see the format comparison section
 at the end of this document).
 
-**Java parser action:** Not currently consumed. Used for Task 17 evaluation.
+**Java parser action:** Not currently consumed. Used for evaluation.
 
 <br><br>
 
@@ -347,7 +347,7 @@ runner exports the full `DoclingDocument` structure as JSON via
 
 **Java parser action:** Not currently consumed. Provides lossless structural
 metadata (bounding boxes, section hierarchy, table cells, figure positions) for
-KVision layout-enriched output development.
+layout-enriched output development.
 
 <br><br>
 
@@ -483,7 +483,7 @@ nested objects for each pipeline stage.
 **Java parser action:** Parsed by `parseMetrics()` into a `DoclingMetrics`
 record. Currently extracts `docling`, `ocr`, and `options` sections. The
 `image_capture` and `annotation` sections are not yet parsed -- these require
-adding new nested records to `DoclingMetrics` during the KVision port.
+adding new nested records to `DoclingMetrics` during the production port.
 
 <br><br>
 
@@ -581,7 +581,7 @@ consumes and which are available for future use.
 | `metrics_summary` | Partial | Parses `docling`, `ocr`, `options`; skips `image_capture`, `annotation` |
 | `status` | Yes | Validates status, extracts output paths |
 
-To support the image-aware pipeline, the KVision port needs to:
+To support the image-aware pipeline, the production port needs to:
 
 1. Add `ImageCapture` and `Annotation` nested records to `DoclingMetrics`.
 2. Parse `image_capture` and `annotation` sections in `parseMetrics()`.
@@ -638,10 +638,10 @@ spelled out in a colorful, stylized font.
 
 <br><br>
 
-### Implications for KVision
+### Implications for Production Port
 
 1. **Post-processing required.** Docling's native markdown output does not
-   conform to the output contract. KVision would need to post-process the
+   conform to the output contract. The production port would need to post-process the
    native output to insert stable IDs, file path references, and
    contract-compliant anchor syntax.
 

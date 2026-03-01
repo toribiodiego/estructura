@@ -724,4 +724,4 @@ score lower on Retrieval Value.
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0 | 2026-03-01 | Initial rubric: 3 dimensions (Correctness 40%, Information Recovery 35%, Retrieval Value 25%). Replaces the draft 4-dimension rubric from `tmp/task-17-eval/03-design-evaluation-rubric.md`. |
+| 1.0 | 2026-03-01 | Initial rubric: 3 dimensions (Correctness 40%, Information Recovery 35%, Retrieval Value 25%). Replaces the draft 4-dimension rubric. |

@@ -5,9 +5,9 @@ extracted images alongside document text. The pipeline produces a single
 text artifact per run (`<stem>.md` or `<stem>.txt`) with image anchors
 interleaved at the positions where figures appear in the source document.
 
-All implementations (Python POC and Java KVision port) must conform to
-this contract so downstream consumers can rely on stable identifiers,
-predictable ordering, and consistent anchor syntax.
+All implementations (Python reference implementation and Java production
+port) must conform to this contract so downstream consumers can rely on
+stable identifiers, predictable ordering, and consistent anchor syntax.
 
 <br><br>
 
@@ -442,9 +442,9 @@ SAMPLE LETTER
 | `type` | `report`, `academic paper`, `presentation`, `spreadsheet`, `correspondence`, `form`, `other` | Document category from the 7-type taxonomy |
 | `confidence` | `high`, `medium`, `low` | Model's self-assessed confidence in the classification |
 
-The category set matches the classification prompt. If KVision extends
-the taxonomy with domain-specific types (contract, invoice, filing),
-the `type` field reflects the extended set.
+The category set matches the classification prompt. If the production
+system extends the taxonomy with domain-specific types (contract,
+invoice, filing), the `type` field reflects the extended set.
 
 <br><br>
 
