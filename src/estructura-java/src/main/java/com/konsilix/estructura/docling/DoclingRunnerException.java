@@ -1,5 +1,5 @@
 /* (C) 2026 Konsilix. All rights reserved. */
-package com.konsilix.kvision.docling;
+package com.konsilix.estructura.docling;
 
 /**
  * Checked exception for wrapping Docling ingestion failures.
