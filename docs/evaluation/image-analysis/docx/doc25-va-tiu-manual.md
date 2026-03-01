@@ -152,27 +152,461 @@ term request
 
 <br><br>
 
-## doc25-R02 -- Application window: clinical record view
+## doc25-R02 -- CPRS form letter example with annotation circles
 
 **Content type:** screenshot
 **Annotation difficulty:** Medium
 
-*Ground truth pending.*
+### Visual Inventory
+
+Screenshot of the VistA CPRS (Computerized Patient Record System) desktop
+application showing a clinical note in form letter format. The window has a
+patient banner at the top, a left sidebar with a note tree view, and a main
+content area displaying the letter text. Three hand-drawn red oval annotation
+circles highlight specific parts of the letter (address block, closing, and
+confidentiality footer). The application runs in a Windows XP-era window with
+standard chrome.
+
+- **Window title bar:** "VistA CPRS in use by:"
+- **Menu bar:** File, Edit, View, Action, Options, Tools, Help
+- **Patient banner:** Patient demographics, provider info, and action buttons
+  across the top
+- **Left sidebar:** "Last 100 Signed Notes" tree with one selected item
+- **Main content:** Note metadata header followed by a formatted letter with
+  VA Medical Center address, body text, closing, and confidentiality notice
+- **Red annotation circles:** Three hand-drawn ovals highlighting key parts of
+  the form letter template
+
+### Verifiable Facts
+
+- Window title: "VistA CPRS in use by:"
+- Menu bar: File, Edit, View, Action, Options, Tools, Help
+- **Patient banner fields:**
+  - Patient name: CPRSPATIENT,ONE
+  - SSN: 000-00-0001
+  - DOB: Jan 01,1945 (62)
+  - Location: PBS1 Mar 09,07 09:14
+  - Provider: CPRSPROVIDER,SEVEN
+  - Primary Care Team Unassigned
+  - Buttons (right side): Flag, Remote Data, ? (help), No Postings
+- **Left sidebar:**
+  - Heading: "Last 100 Signed Notes"
+  - Tree items: "All unsigned notes for"
+  - Selected (blue highlight): "Aug 15,07 FORM LETTER EXAMPLE, E..."
+  - Below: "No Matching Documents Found"
+- **Visit bar:** "Visit: 03/09/07 FORM LETTER EXAMPLE, EMERGENCY ROOM,"
+  and "(Aug 15,07@13:31)" at right
+- **Note metadata (monospaced block at top of content area):**
+  - LOCAL TITLE: FORM LETTER EXAMPLE
+  - DATE OF NOTE: AUG 15, 2007@13:31
+  - ENTRY DATE: AUG 15, 2007@13:31:25
+  - AUTHOR: CPRSPROVIDER,TEN
+  - EXP COSIGNER: (empty)
+  - URGENCY: (empty)
+  - STATUS: UNSIGNED
+- **Letter address block (circled in red):**
+  - "Department of Veteran Affairs Medical Center"
+  - "12345 Any Street"
+  - "Salt Lake City, Utah 84207"
+- Date line: "AUG 15, 2007"
+- Salutation: "Dear Cprspatient:"
+- Body text: paragraph about the Church-Turing thesis (placeholder content about
+  computers, versatility, and computational equivalence)
+- **Closing (circled in red):** "Sincerely," followed by "CPRS Provider"
+- **Confidentiality footer (circled in red):** "Confidential Information" /
+  "For Official Use Only"
+- Bottom of window: horizontal scrollbar, "/ Templates" tab, "Encounter" label
+  partially visible
+- Three red hand-drawn oval annotations are NOT part of the CPRS interface --
+  they are editorial markup added to the screenshot for the manual
+
+### Hallucination Risks
+
+- **Red circles as UI elements:** The three red annotation ovals are hand-drawn
+  editorial markup on the screenshot, not CPRS interface elements. An annotator
+  might describe them as error indicators, selection highlights, or validation
+  markers within the application itself.
+- **Body text as clinical content:** The letter body contains a paragraph about
+  the Church-Turing thesis -- this is clearly placeholder/example text, not
+  actual clinical content. An annotator might describe it as medical text or
+  try to interpret it as having clinical significance.
+- **Patient data as real:** All patient data is fictional test data
+  (CPRSPATIENT,ONE, 000-00-0001, CPRSPROVIDER,SEVEN). An annotator might not
+  note this distinction or might treat it as real PHI.
+- **Complete window assumption:** The bottom of the window shows partial UI
+  elements (Templates tab, Encounter label) suggesting more tabs/content below
+  the visible area. An annotator might describe only what is visible as the
+  complete interface.
+- **Address accuracy:** The address reads "Department of Veteran Affairs" (not
+  "Veterans") -- this may be a deliberate simplification for the example or a
+  typo. An annotator might "correct" it to "Veterans Affairs" when the
+  screenshot actually shows "Veteran Affairs".
+
+### Detail Inventory
+
+- **Window chrome:** Windows XP-era title bar with blue gradient, standard
+  minimize/maximize/close buttons (squares and X) at top-right
+- **Patient banner layout:**
+  - Left section: patient name on first line, SSN and DOB on second line
+  - Center section: location code and date/time on first line, "Provider:"
+    with name on second line
+  - Right-center: "Primary Care Team Unassigned"
+  - Right buttons: "Flag" (with flag icon), "Remote Data", "?" (yellow circle),
+    "No Postings"
+- **Left sidebar styling:** White background, tree view with expand/collapse
+  icons, selected item in blue highlight bar, folder icons next to entries
+- **Note metadata:** Monospaced font in a gray/beige header block; field labels
+  right-aligned (LOCAL TITLE:, DATE OF NOTE:, etc.), values left-aligned
+- **Letter formatting:** Proportional serif-like font for the letter body;
+  address block centered; date right-aligned; body text left-justified with
+  full justification; closing indented
+- **Red annotation circles:**
+  - Circle 1 (largest): surrounds the VA Medical Center address block, roughly
+    centered in the upper portion of the letter
+  - Circle 2 (medium): surrounds "Sincerely, / CPRS Provider" at the left side
+  - Circle 3 (medium): surrounds "Confidential Information / For Official Use
+    Only" at the lower-right
+  - Style: red, hand-drawn appearance (not perfectly geometric), approximately
+    2-3px stroke width
+- **Color scheme:** Dark blue/navy patient banner background with white text;
+  white sidebar and content area; gray metadata header; black letter text
+- **Bottom area:** Gray scrollbar, "/ Templates" tab with sheet icon,
+  "Encounter" text partially cut off at bottom edge
+
+### Domain Context
+
+- This screenshot demonstrates the TIU Form Letter template functionality in
+  CPRS, showing how clinicians can create standardized letters using templates
+  that auto-populate with patient and facility information
+- The red annotation circles in the manual highlight the three template-
+  generated sections of the letter: the facility address block, the provider
+  signature line, and the confidentiality notice -- these are the parts that
+  TIU templates automatically insert
+- CPRS is the primary clinical interface for the VA's VistA health information
+  system, used at VA Medical Centers nationwide
+- The fictional test data (CPRSPATIENT,ONE, 000-00-0001) follows VA's standard
+  test patient naming convention for training and documentation
+- The Church-Turing thesis body text is placeholder content used in the example
+  to represent where the actual letter content would go
+- STATUS: UNSIGNED indicates this note has not yet been electronically signed
+  by the provider -- a required step in VA clinical documentation workflow
+- The "Salt Lake City, Utah 84207" address corresponds to the VA Salt Lake City
+  Health Care System, suggesting this manual was produced there
+
+### Search Keywords
+
+CPRS, VistA, TIU, form letter, clinical note, template, VA Medical Center,
+UNSIGNED, electronic signature, patient record, clinical documentation,
+CPRSPROVIDER, annotation circles, confidential information, health information
+system, Salt Lake City
+
+### Annotation Quality Anchors
+
+| Dimension | 40 (poor) | 70 (adequate) | 95 (excellent) |
+|-----------|-----------|---------------|-----------------|
+| Accuracy | "A screenshot of a medical records program with some red circles" (no system or content identified) | "VistA CPRS window showing FORM LETTER EXAMPLE note dated Aug 15, 2007; patient CPRSPATIENT,ONE; three red annotation circles highlight address, closing, and confidentiality footer" (key elements correct) | Window title exact, all patient banner fields (name, SSN, DOB, provider), all note metadata fields with values, address block text verbatim including "Veteran" (not "Veterans"), Church-Turing thesis placeholder identified, red circles correctly described as editorial markup not UI elements, STATUS: UNSIGNED noted |
+| Specificity | "A medical application window" (generic) | "CPRS note viewer with left sidebar showing Last 100 Signed Notes, metadata block with LOCAL TITLE/DATE/AUTHOR/STATUS fields, and letter body with VA address in Salt Lake City" (reads major text elements) | All menu bar items, patient banner button labels (Flag, Remote Data, ?, No Postings), sidebar tree text, note metadata field-value pairs verbatim, address lines verbatim, closing text, confidentiality footer text, Templates tab and Encounter label at bottom, red circle positions and relative sizes |
+| Completeness | Describes the letter content but misses the window chrome, sidebar, or patient banner | Window title, patient banner, sidebar, note metadata, letter content, and red circles all described | Window chrome (title, menu, XP-era styling), patient banner (all fields and buttons), sidebar (heading, tree items, selection state), visit bar, note metadata (all 7 fields), letter content (address, date, salutation, body summary, closing, footer), 3 red circles with positions, bottom area (scrollbar, tabs), color scheme |
+| Usefulness | "A VA hospital program screenshot" (no workflow context) | "CPRS TIU form letter template demonstration from the VA clinical manual; red circles highlight auto-populated template sections (address, signature, confidentiality)" | Explains TIU form letter template purpose, identifies the three circled elements as template-generated sections, notes UNSIGNED status workflow significance, identifies test patient naming convention, connects to VA's clinical documentation requirements, places Salt Lake City VAMC as likely manual origin |
 
 <br><br>
 
-## doc25-R07 -- UI panel: form layout
+## doc25-R07 -- NTRT welcome and login page
 
 **Content type:** screenshot
 **Annotation difficulty:** Medium
 
-*Ground truth pending.*
+### Visual Inventory
+
+Screenshot of the NTRT (New Term Rapid Turnaround) web application welcome and
+login page displayed in Microsoft Internet Explorer. The page has a prominent VA
+Department seal banner at the top, the NTRT acronym and expanded name in the
+upper-left corner, a welcome message with introductory text in the center, and a
+login form with username and password fields in the lower-left. The overall
+layout uses a dark blue and red color scheme consistent with VA branding.
+
+- **Window title bar:** "VA NTRT - New Term Rapid Turnaround - Microsoft
+  Internet Explorer"
+- **Menu bar:** File, Edit, View, Favorites, Tools, Help
+- **IE toolbar:** Back/Forward arrows, Search, Favorites, standard IE icons
+- **Upper-left block:** "NTRT" in large bold dark blue, followed by the words
+  "New", "Term", "Rapid", "Turnaround" stacked vertically, each on its own
+  line, with a horizontal rule beneath
+- **Banner area:** Large VA Department of Veterans Affairs circular seal
+  centered, with a red and dark blue sweeping wave/banner design behind it
+- **Welcome section:** Heading and two lines of introductory text
+- **Login form:** Two labeled fields (Login Name, Password) and a Go button in
+  the lower-left corner
+
+### Verifiable Facts
+
+- Window title: "VA NTRT - New Term Rapid Turnaround - Microsoft Internet
+  Explorer"
+- Menu bar: File, Edit, View, Favorites, Tools, Help
+- Upper-left text block:
+  - "NTRT" in large bold dark blue serif-like font
+  - Below: "New" / "Term" / "Rapid" / "Turnaround" (each word on its own line,
+    bold dark blue, smaller than NTRT)
+  - Horizontal rule separating this block from content below
+- Banner: VA Department of Veterans Affairs seal (eagle, flags, stars, rope
+  border with "DEPARTMENT OF VETERANS AFFAIRS / UNITED STATES OF AMERICA")
+  centered over a red and blue curved banner/wave graphic
+- Welcome heading: "Welcome to NTRT"
+- First paragraph: "Welcome to the VHA New Term Rapid Turnaround Request (NTRT)
+  Web Page."
+- Second paragraph (partially cut off at right edge): "This site was developed
+  to facilitate requests for new terms from VHA users to the Enterprise
+  Refer..." (truncated)
+- Login form:
+  - "Login Name" label in blue bold text
+  - Text input field containing "myaccount"
+  - "Password" label in blue bold text
+  - Empty text input field
+  - "Go" button (small, gray, to the right of the password field)
+- Background: white main content area, light beige/gray behind the IE toolbar
+
+### Hallucination Risks
+
+- **Truncated text:** The second paragraph is cut off at the right edge with
+  "Enterprise Refer..." -- an annotator might complete this as "Enterprise
+  Reference" or "Enterprise Referral" based on context, but the full text is
+  not visible in the crop.
+- **Login credentials:** The Login Name field shows "myaccount" which is example
+  placeholder text. An annotator might describe it as an actual username or
+  miss that it is pre-filled example text shown for documentation purposes.
+- **VA seal details:** The seal is moderately sized and some fine text on it may
+  not be fully legible. An annotator might describe seal details from general
+  knowledge of the VA emblem rather than from what is readable at this
+  resolution.
+- **Page completeness:** The screenshot appears to cut off content at the right
+  and bottom edges. An annotator might describe the visible portion as the
+  complete page layout.
+- **NTRT vs CPRS:** This is the NTRT web application login page, not CPRS
+  itself. An annotator familiar with the document context might incorrectly
+  describe this as a CPRS login screen.
+
+### Detail Inventory
+
+- **Window chrome:** Windows XP-era IE title bar with blue gradient; standard
+  minimize/maximize/close buttons; IE toolbar with green Back arrow, grayed
+  Forward arrow, Search magnifying glass, yellow star Favorites
+- **NTRT text block:**
+  - "NTRT" approximately 36pt bold dark navy serif font
+  - Stacked words approximately 14-16pt bold dark navy
+  - Thin horizontal rule below the stacked text, spanning roughly the width of
+    the text block
+- **Banner design:**
+  - VA seal approximately 150px diameter, positioned center-left of the banner
+  - Red area sweeps from behind the seal to the right edge, tapering to a point
+  - Dark blue area curves below and to the left of the seal
+  - The overall effect is a patriotic wave/ribbon motif
+- **Welcome text:**
+  - "Welcome to NTRT" in approximately 18pt dark serif font
+  - Body text in approximately 12pt dark serif font
+  - Text is left-aligned in the center-right portion of the page
+- **Login form:**
+  - Positioned at bottom-left corner of the visible page
+  - "Login Name" and "Password" labels in blue bold sans-serif
+  - Text input fields: white with thin border, approximately 100px wide
+  - "myaccount" in the Login Name field appears as typed text (dark, sans-serif)
+  - "Go" button: small gray rectangular button with "Go" text
+  - No "Remember me" checkbox or "Forgot password" link visible
+- **Color palette:**
+  - Dark navy blue: NTRT text, page background elements
+  - Red: banner wave, accent color
+  - Blue: login form labels, hyperlink-style text
+  - White: main content background
+  - Gray/beige: toolbar area background
+
+### Domain Context
+
+- This is the login page for the NTRT (New Term Rapid Turnaround) system, a
+  web-based tool for VA clinical staff to request additions to VistA's
+  standardized terminology
+- The screenshot appears in the VA CPRS TIU manual to show users how to access
+  the NTRT system for requesting new document types and clinical terms
+- "Enterprise Refer..." likely continues as "Enterprise Reference" referring to
+  the VA Enterprise Reference Terminology, the standardized vocabulary system
+  used across VHA facilities
+- The "myaccount" placeholder in the Login Name field is example text shown in
+  the manual to illustrate where users would enter their credentials
+- NTRT is separate from CPRS but supports TIU by allowing clinical staff to
+  request new document definition terms that then become available in the CPRS
+  clinical note creation workflow
+- The page design and IE6/XP-era styling is consistent with mid-2000s VA web
+  applications
+
+### Search Keywords
+
+NTRT, New Term Rapid Turnaround, VistA, VHA, login page, welcome page,
+VA seal, Department of Veterans Affairs, Enterprise Reference Terminology,
+clinical terminology, Internet Explorer, web application, CPRS, TIU,
+authentication
+
+### Annotation Quality Anchors
+
+| Dimension | 40 (poor) | 70 (adequate) | 95 (excellent) |
+|-----------|-----------|---------------|-----------------|
+| Accuracy | "A government website login page" (no system identified) | "NTRT (New Term Rapid Turnaround) welcome page in Internet Explorer with VA seal banner, login fields showing 'myaccount' username, and welcome text" (key elements correct) | Window title exact, NTRT stacked text layout described, welcome text quoted, login form details (myaccount pre-filled, empty password, Go button), truncated second paragraph noted with visible text, VA seal in banner design described |
+| Specificity | "A blue and red page with a login form" (generic) | "Large NTRT acronym with stacked expansion in upper-left, VA seal on red/blue wave banner, Login Name field containing 'myaccount', Password field empty, Go button" (reads visible text) | NTRT text size and font style, stacked word layout with horizontal rule, seal position relative to the red/blue wave, welcome heading and paragraph text quoted, truncation point identified ("Enterprise Refer..."), login label colors (blue bold), field widths, Go button styling, XP-era IE chrome details |
+| Completeness | Mentions the login form but omits banner, welcome text, or window chrome | Window title, banner with seal, NTRT branding, welcome text, and login form all described | Window chrome (title, menu, IE toolbar), NTRT text block (acronym + stacked words + rule), banner (seal + red/blue wave design), welcome heading and both paragraphs (with truncation noted), login form (both fields with contents, Go button), color palette, page cut-off at right and bottom edges noted |
+| Usefulness | "A VA website screenshot from a manual" (no system context) | "NTRT login page from the VA CPRS TIU manual; shows how clinical staff access the terminology request system" | Identifies NTRT's role in VA clinical terminology management, explains relationship to TIU/CPRS workflow, notes Enterprise Reference Terminology context, identifies "myaccount" as documentation placeholder, connects to the manual's purpose of guiding users through the term request process |
 
 <br><br>
 
-## doc25-R19 -- Full form: clinical documentation
+## doc25-R19 -- Terminal emulator display settings dialog
 
 **Content type:** screenshot
 **Annotation difficulty:** Medium
 
-*Ground truth pending.*
+### Visual Inventory
+
+Screenshot of a "Set Up Display Settings" dialog window from a terminal
+emulator application (likely Attachmate or similar VistA terminal client). The
+dialog is organized into 5 labeled sections (Display Memory, Scrolling, Control
+Characters, Mouse, Dimensions) with a left sidebar providing "Jump To"
+navigation for each section and a "See Also" section with related settings
+links. The window has a breadcrumb navigation bar, a main scrollable settings
+area with form controls (text fields, checkboxes, radio buttons, dropdowns),
+and OK/Cancel buttons at the bottom.
+
+- **Window title bar:** "Display - BKOUT1.rdox"
+- **Breadcrumb bar:** Documents >> BKOUT1.rdox >> Terminal Configuration >>
+  Display
+- **Left sidebar:** "Jump To" section with 6 links and "See Also" section with
+  4 links
+- **Main content:** 5 settings sections with various form controls
+- **Bottom buttons:** OK, Cancel
+
+### Verifiable Facts
+
+- Window title: "Display - BKOUT1.rdox"
+- Breadcrumb: Documents >> BKOUT1.rdox >> Terminal Configuration >> Display
+- Search box visible in the breadcrumb/toolbar area (empty)
+- Navigation buttons: Back, Forward, and breadcrumb path in toolbar
+- **Left sidebar "Jump To" links:**
+  1. Display Memory
+  2. Scrolling
+  3. Control Characters
+  4. Mouse
+  5. Dimensions
+  6. Options
+- **Left sidebar "See Also" links:**
+  1. Select Terminal Type
+  2. Set Up Safeguards
+  3. Set Up VBA References
+  4. Settings for VT
+- **Main heading:** "Set Up Display Settings" with a small blue icon to its left
+- **Section 1 -- Display Memory:**
+  - "Memory blocks (8K/block):" text field with value "500"
+  - Checkbox (checked): "Enable scrollback"
+  - Checkbox (unchecked): "Compress blank lines"
+  - Checkbox (checked): "Save display before clearing"
+  - Checkbox (unchecked): "Save from scrolling regions"
+- **Section 2 -- Scrolling:**
+  - Radio button (unselected): "Smooth scrolling"
+  - Radio button (selected): "Jump scrolling"
+  - "Jump scroll speed:" dropdown with value "2"
+- **Section 3 -- Control Characters:**
+  - Radio button (selected): "Interpret control characters"
+  - Radio button (unselected): "Display control characters"
+- **Section 4 -- Mouse:**
+  - "Mouse cursor shape:" dropdown with value "I-Beam"
+- **Section 5 -- Dimensions:**
+  - "Number of rows:" text field with value "24"
+  - "Number of characters per row:" text field with value "255"
+- Bottom buttons: "OK" (default/blue-highlighted) and "Cancel" (gray), right-
+  aligned
+- Help button "?" visible in the title bar
+
+### Hallucination Risks
+
+- **Clinical documentation form:** The catalog describes this as "Full form:
+  clinical documentation" but it is a terminal emulator display configuration
+  dialog. An annotator might try to interpret these settings as clinical data
+  entry fields or describe it as a patient-facing form.
+- **Application identification:** The ".rdox" file extension and the UI style
+  suggest Attachmate Reflection or a similar terminal emulator, but the exact
+  product name is not visible. An annotator might state a specific product name
+  with false confidence.
+- **VBA References link:** "Set Up VBA References" in the See Also sidebar
+  suggests this terminal emulator supports Visual Basic for Applications
+  scripting. An annotator might misinterpret "VBA" as a clinical acronym.
+- **Default vs configured values:** The current values (500 memory blocks, Jump
+  scrolling at speed 2, 24 rows, 255 chars) may be defaults or may be
+  custom-configured for VistA. An annotator might assert these are "standard
+  VistA settings" without evidence.
+- **Options section:** The "Options" link in Jump To suggests a 6th settings
+  section exists below the visible area. An annotator might describe the
+  visible content as the complete dialog.
+
+### Detail Inventory
+
+- **Window chrome:** Modern Windows (Vista/7-era) window frame with rounded
+  title bar, minimize/maximize/close buttons, and "?" help button
+- **Breadcrumb bar:** Uses ">>" separators between path segments; segments
+  appear as clickable links; Search text field at the right end of the bar
+- **Section headers:** Each section name (Display Memory, Scrolling, etc.)
+  appears in blue text with a horizontal blue line extending to the right edge,
+  creating a ruled section divider
+- **Form control styling:**
+  - Text fields: white with thin dark border, approximately 80-100px wide
+  - Checkboxes: standard Windows checkbox style, square with checkmark when
+    selected
+  - Radio buttons: standard Windows radio button style, circle with filled dot
+    when selected
+  - Dropdowns: standard Windows dropdown with down-arrow button at right
+  - "500" in the memory blocks field appears selected (highlighted/blue
+    background)
+- **Left sidebar styling:**
+  - "Jump To" heading in dark blue/navy bold text
+  - Links in blue, standard hyperlink style
+  - "See Also" heading in dark blue/navy bold text
+  - Links in blue, slightly smaller than Jump To links
+  - Sidebar has a light gray/white background separated from the main content
+- **Layout:** Left sidebar approximately 25% width, main content approximately
+  75% width, scrollable
+- **Section indentation:** Form controls are indented under their section
+  headers, labels left-aligned with controls to their right
+- **Color scheme:** White background, blue section headers and sidebar headings,
+  blue hyperlinks, standard Windows form control colors
+- **Dialog dimensions noted in catalog:** 686x851 pixels (portrait orientation,
+  taller than wide)
+
+### Domain Context
+
+- This dialog appears in the VA CPRS TIU manual likely in a section about
+  configuring the terminal emulator used to connect to VistA
+- VistA historically uses character-based terminal interfaces accessed through
+  terminal emulators; clinicians and IT staff configure display settings for
+  optimal viewing of VistA screens
+- The ".rdox" file extension and UI design are consistent with Attachmate
+  Reflection, a widely used terminal emulator in VA facilities
+- The "Settings for VT" link in See Also refers to VT (Virtual Terminal)
+  emulation -- VistA traditionally uses VT100/VT220 terminal protocols
+- Key settings for VistA use:
+  - 24 rows is the standard VT100 terminal height
+  - 255 characters per row is generous (VT100 standard is 80; 255 allows for
+    wide VistA screens)
+  - Jump scrolling at speed 2 provides responsive screen updates
+  - 500 memory blocks (8K each = 4MB) provides substantial scrollback history
+  - "Interpret control characters" is required for VT escape sequences to
+    render correctly
+- BKOUT1 in the filename may refer to a specific VistA connection profile or
+  session configuration
+
+### Search Keywords
+
+terminal emulator, display settings, VistA, Attachmate, Reflection, VT100,
+scrollback, memory blocks, jump scrolling, control characters, mouse cursor,
+terminal configuration, CPRS, rdox, VBA, VHA, screen dimensions, rows,
+characters per row
+
+### Annotation Quality Anchors
+
+| Dimension | 40 (poor) | 70 (adequate) | 95 (excellent) |
+|-----------|-----------|---------------|-----------------|
+| Accuracy | "A settings dialog with checkboxes and dropdowns" (no application or purpose identified) | "Terminal emulator display settings dialog (BKOUT1.rdox) with 5 sections: Display Memory (500 blocks), Scrolling (Jump at speed 2), Control Characters (Interpret), Mouse (I-Beam), Dimensions (24 rows x 255 chars); OK/Cancel buttons" (all values correct) | All field values exact, all checkbox/radio states correct (Enable scrollback checked, Compress blank lines unchecked, etc.), breadcrumb path verbatim, all Jump To and See Also links enumerated, "500" shown as selected/highlighted, section header styling noted, Help "?" button in title bar |
+| Specificity | "A form with some settings" (generic) | "5 sections with blue ruled headers: Display Memory has 500 in memory blocks field with Enable scrollback and Save display before clearing checked; Scrolling set to Jump at speed 2; 24 rows x 255 chars" (reads key settings) | All 5 checkbox labels with checked/unchecked states, both radio button pairs with selected state, all 3 dropdown/text field values, Jump To list (6 items) and See Also list (4 items) fully enumerated, breadcrumb separators (">>"), Search field, window title with ".rdox" extension, OK button as default/highlighted |
+| Completeness | Describes some form fields but misses sidebar, breadcrumb, or multiple sections | All 5 sections described, sidebar Jump To links listed, OK/Cancel buttons, window title and breadcrumb | Window chrome (title, help button, Vista/7-era frame), breadcrumb (full path with Search box), sidebar (Jump To with 6 links, See Also with 4 links), all 5 settings sections with every control and value, bottom buttons (OK highlighted, Cancel gray), form control styling, section header blue-rule design, portrait orientation |
+| Usefulness | "A Windows dialog box from a VA manual" (no workflow context) | "Terminal emulator display configuration for VistA connection; 24-row VT terminal with 255-char width and jump scrolling; from the CPRS TIU manual's terminal setup section" | Explains VistA terminal emulator context, identifies likely Attachmate Reflection product from .rdox extension, connects 24 rows to VT100 standard, explains why 255 chars (wide VistA screens), notes Interpret control characters requirement for VT escape sequences, identifies BKOUT1 as connection profile, explains relevance to CPRS clinical workflow |
