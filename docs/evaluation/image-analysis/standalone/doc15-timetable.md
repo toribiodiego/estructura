@@ -30,21 +30,20 @@ schedule.
   4. review
   5. feedback
 - **Data rows (week | date | draft | review | feedback):**
-  1. 3 | 12-Oct | Intro (light blue) | | |
+  1. 3 | 12-Oct | Intro (light green) | | |
   2. 4 | 19-Oct | | Intro (light blue) | |
-  3. 5 | 26-Oct | Methods (light green) | | Intro (light blue) |
-  4. 6 | 2-Nov | | Methods (light green) | |
-  5. 7 | 9-Nov | Results (light pink/red) | | Methods (light green) |
-  6. 8 | 16-Nov | | Results (light pink/red) | |
-  7. 9 | 23-Nov | Discussion (light yellow/cream) | | Results (light pink/red) |
-  8. 10 | 30-Nov | | Discussion (light yellow/cream) | |
-  9. 11 | 7-Dec | Final (bold red text, light red bg) | | |
-- **Color coding by section:**
-  - Intro: light blue background
-  - Methods: light green background
-  - Results: light pink/salmon background
-  - Discussion: light yellow/cream background
-  - Final: light red background with bold red text
+  3. 5 | 26-Oct | Methods (light green) | | Intro (light red/pink) |
+  4. 6 | 2-Nov | | Methods (light blue) | |
+  5. 7 | 9-Nov | Results (light green) | | Methods (light red/pink) |
+  6. 8 | 16-Nov | | Results (light blue) | |
+  7. 9 | 23-Nov | Discussion (light green) | | Results (light red/pink) |
+  8. 10 | 30-Nov | | Discussion (light blue) | |
+  9. 11 | 7-Dec | Final (salmon/red bg, red text) | | |
+- **Color coding by phase (not by section):**
+  - Draft column: light green background
+  - Review column: light blue background
+  - Feedback column: light red/pink background
+  - Final: salmon/red background with bold red text
 - **Pattern:** Each section follows a 3-week cycle:
   - Week N: draft due
   - Week N+1: review due
@@ -106,10 +105,10 @@ schedule.
 - Header row: gray background, bold text, 5 columns
 - Cell borders: thin black lines separating all cells
 - Date format: D-Mon (e.g., "12-Oct", "2-Nov", "7-Dec")
-- Section colors: blue (Intro), green (Methods), pink/salmon (Results),
-  yellow/cream (Discussion), red (Final)
-- "Final" text: bold red font on light red background (distinct from other
-  entries which use black text)
+- Phase colors: green (draft), blue (review), pink/red (feedback),
+  salmon/red (Final)
+- "Final" text: bold red font on salmon/red background (distinct from other
+  entries which use black text on pastel backgrounds)
 - Empty cells: white, no text
 - Week column: single or double digit numbers (3-11)
 - Font: sans-serif, medium size, black (except Final)
@@ -147,6 +146,6 @@ Washington, Introduction, Methods, Results, Discussion, final paper
 | Dimension | 40 (poor) | 70 (adequate) | 95 (excellent) |
 |-----------|-----------|---------------|-----------------|
 | Accuracy | "A colorful schedule table" (no title, no section names, no dates) | "SWORD Deadlines timetable: weeks 3-11, 4 paper sections (Intro/Methods/Results/Discussion) cycling through draft/review/feedback. Color-coded by section. Final due week 11 (7-Dec)." | "5-column table (week/due@9pm/draft/review/feedback), 9 rows (weeks 3-11, 12-Oct to 7-Dec). Each section has 3-week cycle: Intro wk3-5, Methods wk5-7, Results wk7-9, Discussion wk9-10. Discussion feedback absent. Final (red text, red bg) in draft column wk11 only. Overlapping deadlines wk5 and wk7." |
-| Specificity | "Colored cells in a table" | "Blue=Intro, green=Methods, pink=Results, yellow=Discussion, red=Final. Gray header row, black borders, sans-serif font." | "Light blue (Intro), light green (Methods), light pink/salmon (Results), light yellow/cream (Discussion), light red bg + bold red text (Final). Gray header row with bold text. Thin black cell borders. Date format D-Mon. White empty cells. Sans-serif font, black text except Final." |
+| Specificity | "Colored cells in a table" | "Green=draft, blue=review, pink=feedback, red=Final. Gray header row, black borders, sans-serif font." | "Light green (all drafts), light blue (all reviews), light pink/red (all feedback), salmon/red bg + bold red text (Final). Colors map to phase, not section. Gray header row with bold text. Thin black cell borders. Date format D-Mon. White empty cells. Sans-serif font, black text except Final." |
 | Completeness | "A course schedule" (misses column names, dates, color coding, patterns) | "Title, 5 columns, 9 weeks, 4 sections + Final, color coding, 3-week cycle pattern, all dates listed" | "Title 'SWORD Deadlines'. All 5 headers. All 9 rows with week numbers, dates, and section placements. Color coding scheme. 3-week draft-review-feedback cycle. Overlap pattern. Missing Discussion feedback noted. Final distinct styling. No year shown. 9pm deadline." |
 | Usefulness | "A class assignment schedule" | "University course (UW FISH 340) SWORD peer review schedule. 4 paper sections cycle through draft-review-feedback over weeks 3-11. Color coding aids visual tracking." | "SWORD (Scaffolded Writing and Rewriting in the Discipline) framework from UW FISH 340. Iterative peer review: each section gets draft->review->feedback cycle. Cycles overlap (wk5: Methods draft + Intro feedback). Color coding by section. Final paper consolidates all reviewed sections. 9pm online submission deadlines." |
