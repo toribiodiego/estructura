@@ -65,7 +65,7 @@ language model.
 - FACT: Humanity's Last Exam shows two conditions: "No tools" (37.5%) and "With search and code execution" (45.8%) for Gemini 3 Pro
 - FACT: ARC-AGI-2 is described as "Visual reasoning puzzles" with condition "ARC Prize Verified"
 - FACT: Gemini 3 Pro scores 31.1% on ARC-AGI-2 vs 4.9% for Gemini 2.5 Pro
-- FACT: GPQA Diamond (Scientific knowledge, No tools): Gemini 3 Pro 91.9%, Gemini 2.5 Pro 86.4%, Claude Sonnet 4.5 83.4%, GPT-5.1 88.1%
+- FACT: GPQA Diamond (Scientific knowledge, No tools): Gemini 3 Pro 91.9%, Gemini 2.5 Pro 86.4%, Claude Sonnet 4.5 83.4%, GPT-5.1 94.0%
 - FACT: AIME 2025 with code execution shows Gemini 3 Pro at 100% and Claude Sonnet 4.5 at 100%
 - FACT: MathArena Apex scores are Gemini 3 Pro 23.4%, Gemini 2.5 Pro 0.5%, Claude Sonnet 4.5 1.6%, GPT-5.1 1.0%
 - FACT: MMMU-Pro is described as "Multimodal understanding and reasoning"
@@ -87,7 +87,7 @@ language model.
 ### Hallucination Risks [-> Accuracy]
 
 - RISK: A model might state exact rankings like "Gemini 3 Pro leads on all 20 benchmarks"
-  REALITY: Gemini 3 Pro does not lead on all benchmarks -- Claude Sonnet 4.5 leads on SWE-Bench Verified (77.2% vs 76.2%), and Claude Sonnet 4.5 ties on AIME 2025 with code execution (both 100%)
+  REALITY: Gemini 3 Pro does not lead on all benchmarks -- Claude Sonnet 4.5 leads on SWE-Bench Verified (77.2% vs 76.2%), and AIME 2025 with code execution is a three-way tie (Gemini 3 Pro, Claude Sonnet 4.5, GPT-5.1 all at 100%)
 - RISK: A model might report the wrong number of benchmarks (e.g., "15 benchmarks" or "25 benchmarks")
   REALITY: There are exactly 20 benchmark rows
 - RISK: A model might confuse which metric direction applies to OmniDocBench 1.5 (stating "higher is better" when it is "lower is better")
@@ -128,7 +128,7 @@ language model.
 - Benchmarks where Gemini 3 Pro does not lead: SWE-Bench Verified (Claude
   Sonnet 4.5 at 77.2% vs 76.2%)
 - Reference URL mentioned in introductory text:
-  deepmind.com/models/evals-methodology/gemini-3-pro
+  deepmind.google/models/evals-methodology/gemini-3-pro
 
 ### Domain Context [-> Usefulness]
 

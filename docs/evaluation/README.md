@@ -109,55 +109,55 @@ format are completed before moving to the next.
 
 | File | Document | Images | Status |
 |------|----------|--------|--------|
-| `doc00.md` | 00 -- Gemini 3 Pro model card | 1 | Filled |
-| `doc01.md` | 01 -- GPT-4 system card | 13 | Stub |
-| `doc02.md` | 02 -- ICML importance sampling | 18 | Stub |
-| `doc04.md` | 04 -- Anthropic economic index | 22 | Stub |
-| `doc05.md` | 05 -- Gemini multimodal report | 31 | Filled |
-| `doc06.md` | 06 -- DocLayNet paper | 22 | Stub |
-| `doc18.md` | 18 -- IBM microservices redbook | 46 | Stub |
+| `doc00-gemini3-model-card.md` | 00 -- Gemini 3 Pro model card | 1 | Filled |
+| `doc01-gpt4-system-card.md` | 01 -- GPT-4 system card | 13 | Stub |
+| `doc02-icml-importance-sampling.md` | 02 -- ICML importance sampling | 18 | Stub |
+| `doc04-anthropic-econ-index.md` | 04 -- Anthropic economic index | 22 | Stub |
+| `doc05-gemini-multimodal.md` | 05 -- Gemini multimodal report | 31 | Filled |
+| `doc06-doclaynet.md` | 06 -- DocLayNet paper | 22 | Stub |
+| `doc18-ibm-microservices.md` | 18 -- IBM microservices redbook | 46 | Stub |
 
 ### `docx/` (3 documents, 32 images)
 
 | File | Document | Images | Status |
 |------|----------|--------|--------|
-| `doc16.md` | 16 -- Cambridge mitoball biology | 8 | Stub |
-| `doc19.md` | 19 -- CRIS electronic screens | 10 | Stub |
-| `doc25.md` | 25 -- VA TIU clinical manual | 14 | Stub |
+| `doc16-cambridge-mitoball.md` | 16 -- Cambridge mitoball biology | 8 | Stub |
+| `doc19-cris-screens.md` | 19 -- CRIS electronic screens | 10 | Stub |
+| `doc25-va-tiu-manual.md` | 25 -- VA TIU clinical manual | 14 | Stub |
 
 ### `pptx/` (4 documents, 79 images)
 
 | File | Document | Images | Status |
 |------|----------|--------|--------|
-| `doc11.md` | 11 -- Policy gradient RL lecture | 14 | Stub |
-| `doc12.md` | 12 -- MinnState FY2025 budget | 1 | Stub |
-| `doc26.md` | 26 -- Concordia digital logic | 22 | Stub |
-| `doc27.md` | 27 -- ERA annual report 2023 | 42 | Stub |
+| `doc11-policy-gradient-rl.md` | 11 -- Policy gradient RL lecture | 14 | Stub |
+| `doc12-minnstate-budget.md` | 12 -- MinnState FY2025 budget | 1 | Stub |
+| `doc26-concordia-digital-logic.md` | 26 -- Concordia digital logic | 22 | Stub |
+| `doc27-era-annual-report.md` | 27 -- ERA annual report 2023 | 42 | Stub |
 
 ### `standalone/` (4 documents, 4 images)
 
 | File | Document | Images | Status |
 |------|----------|--------|--------|
-| `doc13.md` | 13 -- ArtPro table (WebP) | 1 | Stub |
-| `doc14.md` | 14 -- Simple table (PNG) | 1 | Stub |
-| `doc15.md` | 15 -- Timetable (JPG) | 1 | Stub |
-| `doc29.md` | 29 -- NASA heliophysics fleet (JPG) | 1 | Stub |
+| `doc13-artpro-table.md` | 13 -- ArtPro table (WebP) | 1 | Stub |
+| `doc14-simple-table.md` | 14 -- Simple table (PNG) | 1 | Stub |
+| `doc15-timetable.md` | 15 -- Timetable (JPG) | 1 | Stub |
+| `doc29-nasa-helio-fleet.md` | 29 -- NASA heliophysics fleet (JPG) | 1 | Stub |
 
 ### `xlsx/` (3 documents, 38 images)
 
 | File | Document | Images | Status |
 |------|----------|--------|--------|
-| `doc20.md` | 20 -- Illinois workforce dashboard | 5 | Stub |
-| `doc21.md` | 21 -- Praxie project portfolio | 4 | Stub |
-| `doc28.md` | 28 -- Eurostat climate driving forces | 29 | Stub |
+| `doc20-illinois-workforce.md` | 20 -- Illinois workforce dashboard | 5 | Stub |
+| `doc21-praxie-portfolio.md` | 21 -- Praxie project portfolio | 4 | Stub |
+| `doc28-eurostat-climate.md` | 28 -- Eurostat climate driving forces | 29 | Stub |
 
 ### `html/` (3 documents, 32 images)
 
 | File | Document | Images | Status |
 |------|----------|--------|--------|
-| `doc22.md` | 22 -- NASA global warming | 20 | Stub |
-| `doc23.md` | 23 -- nvie git branching model | 6 | Stub |
-| `doc24.md` | 24 -- Fowler microservices | 6 | Stub |
+| `doc22-nasa-global-warming.md` | 22 -- NASA global warming | 20 | Stub |
+| `doc23-nvie-git-branching.md` | 23 -- nvie git branching model | 6 | Stub |
+| `doc24-fowler-microservices.md` | 24 -- Fowler microservices | 6 | Stub |
 
 ### Totals
 
