@@ -5,6 +5,7 @@ transcription pipeline. Covers both document-level extraction testing and
 image-level annotation quality assessment.
 
 > **Quick links:** [Analysis Template](./analysis-template.md) |
+> [Pass 2 Workflow](./pass2-workflow.md) |
 > [Pipeline Test Set](./pipeline-test-set.md) |
 > [Annotation Test Set](./annotation-test-set.md) |
 > [Image Catalog](../image-catalog.md)
@@ -42,10 +43,10 @@ agree within +/-10 points on >80% of images.
 ## How the Files Relate
 
 ```text
-image-catalog.md              master inventory of all 189 taggable images
-       |                      across 20 evaluation fixtures
+image-catalog.md              master inventory of all 289 taggable images
+       |                      across 31 evaluation fixtures
        v
-pipeline-test-set.md          document-level: 20 documents with extraction
+pipeline-test-set.md          document-level: 31 documents with extraction
        |                      difficulty, format coverage, run instructions
        v
 annotation-test-set.md        image-level: 64-image eval subset with annotation
@@ -71,7 +72,8 @@ Each layer builds on the previous:
 |------|---------|
 | `README.md` | This file: evaluation methodology overview |
 | `analysis-template.md` | Strict template for per-image ground truth, with content-type-specific formats and rubric dimension mapping |
-| `pipeline-test-set.md` | Document-level test index: 20 documents with extraction difficulty, format coverage, and run instructions |
+| `pass2-workflow.md` | Step-by-step workflow for pass 2: independent image extraction, verification, and ground truth recording |
+| `pipeline-test-set.md` | Document-level test index: 31 documents with extraction difficulty, format coverage, and run instructions |
 | `annotation-test-set.md` | Image-level test index: 64-image eval subset with annotation difficulty, content type and format matrices, scoring rubric summary |
 | `image-analysis/` | Per-document ground truth files (one per document with eval subset images) |
 

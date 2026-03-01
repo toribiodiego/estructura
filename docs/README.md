@@ -23,6 +23,7 @@ docs/
   evaluation/
     README.md                          evaluation methodology overview and file relationships
     analysis-template.md               per-image ground truth template with rubric dimension mapping
+    pass2-workflow.md                  step-by-step workflow for ground truth recording
     pipeline-test-set.md               document-level test index for e2e pipeline extraction
     annotation-test-set.md             image-level test index for annotation quality evaluation
     image-analysis/                    per-document ground truth files (populated during pass 2)
@@ -55,7 +56,7 @@ docs/
 
 | File | Purpose |
 |------|---------|
-| `image-catalog.md` | Master catalog of all images, figures, charts, and diagrams across 20 evaluation fixtures. Includes content type classification, difficulty ratings, evaluation subset selection (64 images), and distribution summaries. |
+| `image-catalog.md` | Master catalog of all images, figures, charts, and diagrams across 31 evaluation fixtures. Includes content type classification, difficulty ratings, evaluation subset selection (64 images), and distribution summaries. |
 
 ### Evaluation
 
@@ -63,6 +64,7 @@ docs/
 |------|---------|
 | `evaluation/README.md` | Evaluation methodology overview: two-pass approach (scoring calibration then ground truth recording), file relationships, scoring dimensions. |
 | `evaluation/analysis-template.md` | Strict template for per-image ground truth with content-type-specific visual inventory formats. Every section maps to a rubric scoring dimension. |
+| `evaluation/pass2-workflow.md` | Step-by-step workflow for pass 2 ground truth recording: independent image extraction by format, verification against catalog, and recording principles. |
 | `evaluation/pipeline-test-set.md` | Document-level test index for end-to-end pipeline extraction testing. One row per document with extraction difficulty rating, coverage matrix by format, and gap analysis for missing format coverage. |
 | `evaluation/annotation-test-set.md` | Image-level test index for annotation quality evaluation. Lists the 64-image evaluation subset with annotation difficulty, matrices by content type and source format, and gap analysis for underrepresented image categories. |
 | `evaluation/image-analysis/` | Per-document ground truth files (one per document with eval subset images). Populated during the second evaluation pass using the analysis template. |
