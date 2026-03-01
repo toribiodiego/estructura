@@ -243,21 +243,34 @@ For each image, fill every section of the
 
 <br><br>
 
-## Ordering
+## Ordering: Format-First Approach
 
-Fill documents with the most eval subset images first to maximize coverage
-per file. This prioritization is from the
-[evaluation README](./README.md#image-analysis-files):
+Work through one format group at a time. This catches format-specific
+extraction issues early and resolves them as a batch before moving to the next
+format. Within each format group, process one document at a time -- extract
+all crops, verify against the catalog, then record ground truth before starting
+the next document.
 
-| Priority | Documents | Eval images | Rationale |
-|----------|-----------|-------------|-----------|
-| High | 05, 04, 01, 02, 11, 18 | 47 | 73% of eval subset; diverse content types |
-| Medium | 06, 16, 19 | 12 | 19% of eval subset; fills content type gaps |
-| Low | 00, 12, 13, 14, 15 | 5 | 8% of eval subset; single-image docs, fast to complete |
+The `image-analysis/` directory is organized into 6 format subdirectories.
+Complete all documents in one subdirectory before moving to the next.
 
-Within each priority tier, start with documents whose reference images are
-already available (standalone images, documents with existing extractions)
-before documents that require new extraction work.
+| Order | Format | Directory | Documents | Images | Extraction method |
+|-------|--------|-----------|-----------|--------|-------------------|
+| 1 | Standalone | `standalone/` | 13, 14, 15, 29 | 4 | View directly (no extraction) |
+| 2 | DOCX | `docx/` | 16, 19, 25 | 32 | Unzip `word/media/` |
+| 3 | PPTX | `pptx/` | 11, 12, 26, 27 | 79 | Unzip `ppt/media/` |
+| 4 | XLSX | `xlsx/` | 20, 21, 28 | 38 | Render charts (screenshot or library) |
+| 5 | HTML | `html/` | 22, 23, 24 | 32 | Download `<img>` src URLs |
+| 6 | PDF (digital) | `pdf-digital/` | 00, 01, 02, 04, 05, 06, 18 | 153 | `pdfimages` or page render + crop |
+
+**Why this order:**
+- Standalone images need zero extraction work -- fast wins to calibrate the
+  recording workflow
+- DOCX and PPTX use the same ZIP-based extraction pattern
+- XLSX charts require rendering (harder tooling), grouped to solve once
+- HTML requires network access for remote images
+- PDF is last because it has the most images (153) and the most complex
+  extraction (vector figures, page rendering, manual cropping)
 
 <br><br>
 
@@ -265,8 +278,8 @@ before documents that require new extraction work.
 
 When pass 2 is complete:
 
-- 14 filled analysis files in `image-analysis/`, one per eval-subset document
-- Each file has ground truth for every eval subset image from that document
+- 24 filled analysis files across 6 format subdirectories in `image-analysis/`
+- Each file has ground truth for every taggable image from that document
 - Every section of the analysis template is filled (no blank sections)
 - The rubric can be applied with per-image anchors instead of generic scoring
   band descriptions

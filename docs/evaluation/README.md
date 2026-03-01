@@ -52,8 +52,13 @@ pipeline-test-set.md          document-level: 31 documents with extraction
 annotation-test-set.md        image-level: 64-image eval subset with annotation
        |                      difficulty, content type matrices, scoring rubric
        v
-image-analysis/               per-image ground truth: one file per document,
-                              filled during pass 2 using analysis-template.md
+image-analysis/               per-image ground truth organized by format,
+  pdf-digital/                  filled during pass 2 using analysis-template.md
+  docx/
+  pptx/
+  standalone/
+  xlsx/
+  html/
 ```
 
 Each layer builds on the previous:
@@ -75,7 +80,7 @@ Each layer builds on the previous:
 | `pass2-workflow.md` | Step-by-step workflow for pass 2: independent image extraction, verification, and ground truth recording |
 | `pipeline-test-set.md` | Document-level test index: 31 documents with extraction difficulty, format coverage, and run instructions |
 | `annotation-test-set.md` | Image-level test index: 64-image eval subset with annotation difficulty, content type and format matrices, scoring rubric summary |
-| `image-analysis/` | Per-document ground truth files (one per document with eval subset images) |
+| `image-analysis/` | Per-document ground truth files organized by format (6 subdirectories, 24 files) |
 
 <br><br>
 
@@ -95,25 +100,73 @@ scoring anchors and protocol is maintained in the evaluation work items.
 
 ## Image Analysis Files
 
-The `image-analysis/` directory contains one file per document that has images
-in the 64-image evaluation subset. 14 documents qualify:
+The `image-analysis/` directory contains one file per document that has taggable
+images (24 documents across 6 format subdirectories). Files are organized by
+source format to support a format-first workflow where all documents of one
+format are completed before moving to the next.
 
-| File | Document | Eval images | Priority |
-|------|----------|-------------|----------|
-| `doc05.md` | 05 -- Gemini multimodal report | 14 | High (most images) |
-| `doc04.md` | 04 -- Anthropic economic index | 9 | High |
-| `doc01.md` | 01 -- GPT-4 system card | 6 | High |
-| `doc02.md` | 02 -- ICML importance sampling | 6 | High |
-| `doc11.md` | 11 -- Policy gradient RL lecture | 6 | High |
-| `doc18.md` | 18 -- IBM microservices redbook | 6 | High |
-| `doc06.md` | 06 -- DocLayNet paper | 4 | Medium |
-| `doc16.md` | 16 -- Cambridge mitoball biology | 4 | Medium |
-| `doc19.md` | 19 -- CRIS electronic screens | 4 | Medium |
-| `doc00.md` | 00 -- Gemini 3 Pro model card | 1 | Low (single image) |
-| `doc12.md` | 12 -- MinnState FY2025 budget | 1 | Low |
-| `doc13.md` | 13 -- ArtPro table | 1 | Low |
-| `doc14.md` | 14 -- Simple table | 1 | Low |
-| `doc15.md` | 15 -- Timetable | 1 | Low |
+### `pdf-digital/` (7 documents, 153 images)
 
-Fill documents with the most eval subset images first to maximize coverage per
-file. Single-image documents can be completed in a batch.
+| File | Document | Images | Status |
+|------|----------|--------|--------|
+| `doc00.md` | 00 -- Gemini 3 Pro model card | 1 | Filled |
+| `doc01.md` | 01 -- GPT-4 system card | 13 | Stub |
+| `doc02.md` | 02 -- ICML importance sampling | 18 | Stub |
+| `doc04.md` | 04 -- Anthropic economic index | 22 | Stub |
+| `doc05.md` | 05 -- Gemini multimodal report | 31 | Filled |
+| `doc06.md` | 06 -- DocLayNet paper | 22 | Stub |
+| `doc18.md` | 18 -- IBM microservices redbook | 46 | Stub |
+
+### `docx/` (3 documents, 32 images)
+
+| File | Document | Images | Status |
+|------|----------|--------|--------|
+| `doc16.md` | 16 -- Cambridge mitoball biology | 8 | Stub |
+| `doc19.md` | 19 -- CRIS electronic screens | 10 | Stub |
+| `doc25.md` | 25 -- VA TIU clinical manual | 14 | Stub |
+
+### `pptx/` (4 documents, 79 images)
+
+| File | Document | Images | Status |
+|------|----------|--------|--------|
+| `doc11.md` | 11 -- Policy gradient RL lecture | 14 | Stub |
+| `doc12.md` | 12 -- MinnState FY2025 budget | 1 | Stub |
+| `doc26.md` | 26 -- Concordia digital logic | 22 | Stub |
+| `doc27.md` | 27 -- ERA annual report 2023 | 42 | Stub |
+
+### `standalone/` (4 documents, 4 images)
+
+| File | Document | Images | Status |
+|------|----------|--------|--------|
+| `doc13.md` | 13 -- ArtPro table (WebP) | 1 | Stub |
+| `doc14.md` | 14 -- Simple table (PNG) | 1 | Stub |
+| `doc15.md` | 15 -- Timetable (JPG) | 1 | Stub |
+| `doc29.md` | 29 -- NASA heliophysics fleet (JPG) | 1 | Stub |
+
+### `xlsx/` (3 documents, 38 images)
+
+| File | Document | Images | Status |
+|------|----------|--------|--------|
+| `doc20.md` | 20 -- Illinois workforce dashboard | 5 | Stub |
+| `doc21.md` | 21 -- Praxie project portfolio | 4 | Stub |
+| `doc28.md` | 28 -- Eurostat climate driving forces | 29 | Stub |
+
+### `html/` (3 documents, 32 images)
+
+| File | Document | Images | Status |
+|------|----------|--------|--------|
+| `doc22.md` | 22 -- NASA global warming | 20 | Stub |
+| `doc23.md` | 23 -- nvie git branching model | 6 | Stub |
+| `doc24.md` | 24 -- Fowler microservices | 6 | Stub |
+
+### Totals
+
+| Format | Documents | Images |
+|--------|-----------|--------|
+| PDF (digital) | 7 | 153 |
+| DOCX | 3 | 32 |
+| PPTX | 4 | 79 |
+| Standalone | 4 | 4 |
+| XLSX | 3 | 38 |
+| HTML | 3 | 32 |
+| **Total** | **24** | **338** |

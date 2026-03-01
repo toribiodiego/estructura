@@ -26,8 +26,13 @@ docs/
     pass2-workflow.md                  step-by-step workflow for ground truth recording
     pipeline-test-set.md               document-level test index for e2e pipeline extraction
     annotation-test-set.md             image-level test index for annotation quality evaluation
-    image-analysis/                    per-document ground truth files (populated during pass 2)
-      doc00.md ... doc19.md            14 files, one per eval-subset document
+    image-analysis/                    per-document ground truth files organized by format
+      pdf-digital/                     7 files (docs 00, 01, 02, 04, 05, 06, 18)
+      docx/                            3 files (docs 16, 19, 25)
+      pptx/                            4 files (docs 11, 12, 26, 27)
+      standalone/                      4 files (docs 13, 14, 15, 29)
+      xlsx/                            3 files (docs 20, 21, 28)
+      html/                            3 files (docs 22, 23, 24)
   samples/
     sample-multiimage.md               example Markdown output with image anchors
     sample-multiimage.txt              example TXT output with image anchors
@@ -67,7 +72,7 @@ docs/
 | `evaluation/pass2-workflow.md` | Step-by-step workflow for pass 2 ground truth recording: independent image extraction by format, verification against catalog, and recording principles. |
 | `evaluation/pipeline-test-set.md` | Document-level test index for end-to-end pipeline extraction testing. One row per document with extraction difficulty rating, coverage matrix by format, and gap analysis for missing format coverage. |
 | `evaluation/annotation-test-set.md` | Image-level test index for annotation quality evaluation. Lists the 64-image evaluation subset with annotation difficulty, matrices by content type and source format, and gap analysis for underrepresented image categories. |
-| `evaluation/image-analysis/` | Per-document ground truth files (one per document with eval subset images). Populated during the second evaluation pass using the analysis template. |
+| `evaluation/image-analysis/` | Per-document ground truth files organized by format (6 subdirectories, 24 files covering all documents with taggable images). Populated during the second evaluation pass using the analysis template. |
 
 ### Samples
 
