@@ -10,7 +10,7 @@ lecture slides with 22 circuit and logic diagrams (15 PNG/JPEG raster + 8
 WMF vector metafiles) across 15 of 62 slides. Covers adders, multiplexers,
 decoders, flip-flops, and counter circuits.
 
-**Eval subset:** 4 of 22 content images
+**Eval subset:** 3 of 21 content images
 
 <br><br>
 

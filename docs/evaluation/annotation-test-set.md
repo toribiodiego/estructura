@@ -129,9 +129,8 @@ not on the source document's extraction difficulty.
 | `doc25-R07` | 25 | DOCX | screenshot | Medium | UI panel: form layout |
 | `doc25-R19` | 25 | DOCX | screenshot | Medium | Full form: clinical documentation |
 | `doc26-R01` | 26 | PPTX | diagram | Medium | Full adder circuit schematic |
-| `doc26-R08` | 26 | PPTX | diagram | Medium | Full-slide digital logic diagram |
-| `doc26-R13` | 26 | PPTX | diagram | Medium | Wide-format circuit schematic |
-| `doc26-R22` | 26 | PPTX | diagram | Easy | Narrow circuit detail |
+| `doc26-R08` | 26 | PPTX | other | Medium | IC pinout specification table |
+| `doc26-R13` | 26 | PPTX | diagram | Medium | Sequential multiplier timing/waveform simulation |
 | `doc27-R01` | 27 | PPTX | diagram | Medium | European rail map |
 | `doc27-R03` | 27 | PPTX | chart-complex | Medium | Paired panel (left), medium format |
 | `doc27-R09` | 27 | PPTX | chart-simple | Easy | Wide horizontal chart |
@@ -154,14 +153,14 @@ not on the source document's extraction difficulty.
 |-------------|------|--------|------|-------|
 | chart-simple | 13 | 0 | 0 | 13 |
 | chart-complex | 0 | 10 | 15 | 25 |
-| diagram | 4 | 14 | 4 | 22 |
+| diagram | 3 | 13 | 4 | 20 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 1 | 1 | 0 | 2 |
 | infographic | 1 | 3 | 6 | 10 |
 | photo | 4 | 3 | 4 | 11 |
 | screenshot | 0 | 8 | 5 | 13 |
-| other | 0 | 1 | 0 | 1 |
-| **Total** | **25** | **43** | **34** | **102** |
+| other | 0 | 2 | 0 | 2 |
+| **Total** | **24** | **43** | **34** | **101** |
 
 <br><br>
 
@@ -170,14 +169,14 @@ not on the source document's extraction difficulty.
 | Source Format | Easy | Medium | Hard | Total | % of subset |
 |---------------|------|--------|------|-------|-------------|
 | PDF | 9 | 15 | 22 | 46 | 45% |
-| PPTX | 3 | 11 | 3 | 17 | 17% |
+| PPTX | 2 | 11 | 3 | 16 | 16% |
 | DOCX | 2 | 5 | 5 | 12 | 12% |
 | HTML | 4 | 6 | 2 | 12 | 12% |
 | XLSX | 5 | 4 | 2 | 11 | 11% |
 | JPG | 0 | 2 | 0 | 2 | 2% |
 | WebP | 1 | 0 | 0 | 1 | 1% |
 | PNG | 1 | 0 | 0 | 1 | 1% |
-| **Total** | **25** | **43** | **34** | **102** | **100%** |
+| **Total** | **24** | **43** | **34** | **101** | **100%** |
 
 <br><br>
 
@@ -185,14 +184,14 @@ not on the source document's extraction difficulty.
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 25 | 25% |
-| Medium | 43 | 42% |
+| Easy | 24 | 24% |
+| Medium | 43 | 43% |
 | Hard | 34 | 33% |
-| **Total** | **102** | **100%** |
+| **Total** | **101** | **100%** |
 
-The expanded subset shifts the difficulty balance toward medium images (42%)
+The expanded subset shifts the difficulty balance toward medium images (43%)
 compared to the original 64-image subset (31% medium). Hard images remain
-well-represented at 33%. Medium and hard together comprise 75% of the subset,
+well-represented at 34%. Medium and hard together comprise 76% of the subset,
 ensuring the test set remains weighted toward the cases that differentiate
 model quality.
 
@@ -205,7 +204,7 @@ model quality.
 | Equations | Only 2 images in subset (both from PPTX Doc 11) | Insufficient coverage of equation annotation quality | High |
 | Table-image | 5 images; 3 are standalone, 1 from PPTX, 1 from PDF | No embedded table-images from DOCX in subset | Medium |
 | Standalone hard | 0 hard images from standalone formats | All standalone images are easy or medium; no challenging single-image annotation test | Low |
-| Other content type | Only 1 image (`doc05-R20`, internet meme) | Minimal coverage of non-standard image types | Low |
+| Other content type | 2 images (`doc05-R20` internet meme, `doc26-R08` IC pinout table) | Limited coverage of non-standard image types | Low |
 
 <br><br>
 

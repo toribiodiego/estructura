@@ -748,12 +748,12 @@ logic diagrams. No decorative elements in slide masters.
 | doc26-R05 | 13 | diagram | 1.3x2.0 in | Easy | Logic gate layout (scenario_2b) | -- |
 | doc26-R06 | 13 | diagram | 1.9x1.7 in | Easy | Inverter circuit (inv1) | -- |
 | doc26-R07 | 13 | diagram | 2.8x1.1 in | Easy | Inverter circuit (inv2) | -- |
-| doc26-R08 | 19 | diagram | 8.5x6.2 in | Medium | Full-slide digital logic diagram | -- |
+| doc26-R08 | 19 | other | 8.5x6.2 in | Medium | IC pinout specification table (WMF, not circuit diagram) | -- |
 | doc26-R09 | 21 | diagram | 8.5x4.3 in | Medium | Full-slide circuit schematic | -- |
 | doc26-R10 | 23 | diagram | 8.5x6.6 in | Medium | Full-slide digital design diagram | -- |
 | doc26-R11 | 24 | diagram | 8.5x7.4 in | Medium | Full-slide logic diagram | -- |
 | doc26-R12 | 27 | diagram | 7.8x7.1 in | Medium | Full-slide circuit diagram | -- |
-| doc26-R13 | 30 | diagram | 10.0x4.6 in | Medium | Wide-format circuit schematic | -- |
+| doc26-R13 | 30 | diagram | 10.0x4.6 in | Medium | Sequential multiplier timing/waveform simulation | -- |
 | doc26-R14 | 33 | diagram | 8.2x6.1 in | Medium | Full-slide digital design | -- |
 | doc26-R15 | 34 | diagram | 8.9x6.4 in | Medium | Full-slide circuit layout | -- |
 | doc26-R16 | 35 | diagram | 9.8x6.3 in | Medium | Full-slide digital schematic | -- |
@@ -762,7 +762,7 @@ logic diagrams. No decorative elements in slide masters.
 | doc26-R19 | 58 | diagram | 8.5x7.8 in | Medium | Full-slide logic design | -- |
 | doc26-R20 | 59 | diagram | 8.5x9.0 in | Medium | Full-slide circuit schematic | -- |
 | doc26-R21 | 60 | diagram | 8.5x4.5 in | Medium | Full-slide digital design | -- |
-| doc26-R22 | 61 | diagram | 2.1x4.5 in | Easy | Narrow circuit detail | -- |
+| doc26-R22 | 61 | decorative | 2.1x4.5 in | -- | Clipart: thinking person with question mark (WMF) | Yes: clipart |
 
 Note: Descriptions are based on structural metadata (`descr` attributes and
 slide positions). Detailed content-type classification pending visual
@@ -1156,9 +1156,8 @@ dedicated test set files:
 | doc25-R07 | 25 | -- | screenshot | Medium | UI panel: form layout |
 | doc25-R19 | 25 | -- | screenshot | Medium | Full form: clinical documentation |
 | doc26-R01 | 26 | 13 | diagram | Medium | Full adder circuit schematic |
-| doc26-R08 | 26 | 19 | diagram | Medium | Full-slide digital logic diagram |
-| doc26-R13 | 26 | 30 | diagram | Medium | Wide-format circuit schematic |
-| doc26-R22 | 26 | 61 | diagram | Easy | Narrow circuit detail |
+| doc26-R08 | 26 | 19 | other | Medium | IC pinout specification table |
+| doc26-R13 | 26 | 30 | diagram | Medium | Sequential multiplier timing/waveform simulation |
 | doc27-R01 | 27 | 2 | diagram | Medium | European rail map |
 | doc27-R03 | 27 | 4 | chart-complex | Medium | Paired panel (left), medium format |
 | doc27-R09 | 27 | 7 | chart-simple | Easy | Wide horizontal chart |
