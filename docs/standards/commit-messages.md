@@ -1,10 +1,8 @@
 # Commit Messages
 
-All commits must follow these standards for consistency and clarity. The prefix
-table and message structure below are the same as konsillix -- estructura commits
-should be indistinguishable in style from KVision commits.
+All commits must follow these standards for consistency and clarity.
 
-For development workflow, see [Contributing Guide](../../CONTRIBUTING.md).
+For development workflow, see [README](../../README.md).
 
 <br><br>
 
@@ -153,4 +151,4 @@ enables unit testing annotation logic independently.
 
 <br><br>
 
-[Back to Contributing Guide](../../CONTRIBUTING.md)
+[Back to README](../../README.md)

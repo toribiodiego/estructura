@@ -1,14 +1,11 @@
 # Engineering Standards
 
-Lean engineering standards for the estructura POC, adapted from konsillix's
-production standards. Covers the subset relevant to a single-developer
-proof-of-concept: evidence-based decisions, repository hygiene, and focused
-changes. Production-readiness rules (concurrency, timeouts, load handling,
-scalability) apply to KVision, not here.
+Engineering standards for the estructura project. Covers evidence-based
+decisions, repository hygiene, and focused changes.
 
 For documentation conventions, see
 [Documentation Standards](./documentation.md). For development workflow, see
-[Contributing Guide](../../CONTRIBUTING.md).
+[README](../../README.md).
 
 <br><br>
 
@@ -23,7 +20,7 @@ Support technical decisions with measurable data or clear rationale.
 
 **For architectural decisions:**
 - Explain trade-offs considered
-- Reference similar patterns in the codebase or in Docling/KVision
+- Reference similar patterns in the codebase or in Docling
 - Document why alternatives were rejected
 
 **Example commit body:**
@@ -46,16 +43,16 @@ Tested on all 20 fixtures in Docker dev container (8 GB RAM limit).
 Keep the repository clean and navigable.
 
 **Root directory:** Only project-level files at the root (`docker-compose.yml`,
-`README.md`, `.gitignore`, `CONTRIBUTING.md`). Documentation in `docs/`,
-scripts in `scripts/`, source code in `src/`.
+`README.md`, `LICENSE`, `.gitignore`). Documentation in `docs/`, scripts in
+`scripts/`, source code in `src/`.
 
 **Tool configuration:** Personal or editor-specific config directories (`.idea/`,
 `.vscode/`) stay in `.gitignore`, never committed. Each contributor uses
 different tools -- their configuration stays local.
 
-**Work-in-progress files:** Investigation reports, draft scripts, and planning
-notes go in `tmp/` (gitignored). Only finalized documentation gets committed to
-`docs/`. Transient artifacts stay out of the committed tree.
+**Work-in-progress files:** Only finalized documentation gets committed to
+`docs/`. Transient artifacts (investigation reports, draft scripts, planning
+notes) stay out of the committed tree.
 
 **Secrets and API keys:** Never commit `.env`, API keys, or credentials.
 Use `.env.example` to document required variables without values.
@@ -87,4 +84,4 @@ Keep changes small and well-scoped.
 
 <br><br>
 
-[Back to Contributing Guide](../../CONTRIBUTING.md)
+[Back to README](../../README.md)

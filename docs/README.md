@@ -54,7 +54,7 @@ docs/
 
 | File | Purpose |
 |------|---------|
-| `output-contract.md` | Defines how image-aware Markdown and TXT outputs represent extracted images. Covers anchor syntax, stable identifiers, ordering rules, and manifest schema. All implementations (Python POC and Java KVision port) must conform. |
+| `output-contract.md` | Defines how image-aware Markdown and TXT outputs represent extracted images. Covers anchor syntax, stable identifiers, ordering rules, and manifest schema. All implementations must conform. |
 | `runner-protocol.md` | Defines the JSON event protocol that `run_docling.py` emits on stdout. Java's `DoclingRunner.parseResult()` reads these events to build `DoclingResult` objects. |
 
 ### Reference data
@@ -88,8 +88,8 @@ docs/
 | File | Purpose |
 |------|---------|
 | `standards/commit-messages.md` | Commit message conventions: prefix table with estructura-specific examples, worked examples (feat, fix, docs, build), common mistakes (vague subjects, mixing concerns, HOW vs WHY). |
-| `standards/documentation.md` | Documentation standards adapted from konsillix: active voice, `<br><br>` spacing, language-tagged code blocks, inline backtick rules, Mermaid diagram format, kebab-case filenames. |
-| `standards/engineering.md` | Lean engineering standards for the POC: evidence-based decisions, repository hygiene, focused changes. Skips production-readiness rules that apply to KVision. |
+| `standards/documentation.md` | Documentation standards: active voice, `<br><br>` spacing, language-tagged code blocks, inline backtick rules, Mermaid diagram format, kebab-case filenames. |
+| `standards/engineering.md` | Engineering standards: evidence-based decisions, repository hygiene, focused changes. |
 | `standards/pdf-image-inspection.md` | Two-layer verification methodology (pypdfium2 structural scan + visual page rendering) for cataloging images in PDF fixtures. |
 | `standards/office-document-inspection.md` | Two-layer verification methodology (ZIP structure scan + visual rendering) for cataloging images and charts in DOCX, PPTX, and XLSX fixtures. |
 
@@ -97,5 +97,5 @@ docs/
 
 ## Related Documentation
 
-- [CONTRIBUTING.md](../CONTRIBUTING.md) -- development workflow, testing, commit conventions
+- [README.md](../README.md) -- project overview, quick start, development workflow
 - [fixtures/README.md](../fixtures/README.md) -- test document inventory and evaluation corpus summary

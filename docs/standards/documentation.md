@@ -1,12 +1,11 @@
 # Documentation Standards
 
 All files under `docs/` and `fixtures/` follow these conventions so
-documentation reads consistently across the project and stays aligned with
-konsillix standards. When adding or editing docs, match these patterns rather
-than inventing new ones.
+documentation reads consistently across the project. When adding or editing
+docs, match these patterns rather than inventing new ones.
 
 For development setup and commit conventions, see
-[Contributing Guide](../../CONTRIBUTING.md).
+[README](../../README.md).
 
 <br><br>
 
@@ -161,4 +160,4 @@ Bad:   OutputContract.md, runner_protocol.md, ImageCatalog.md
 
 <br><br>
 
-[Back to Contributing Guide](../../CONTRIBUTING.md)
+[Back to README](../../README.md)
