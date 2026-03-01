@@ -551,7 +551,7 @@ Source: https://www.energyrating.gov.au/sites/default/files/2023-06/Cost%20Recov
 
 | ID | Content Type | Difficulty | Description | Skip? |
 |----|-------------|------------|-------------|-------|
-| doc19-R01 | chart-simple | Easy | Pie chart: equipment market share (5 segments) | -- |
+| doc19-R01 | chart-simple | Easy | Pie chart: equipment market share (6 segments) | -- |
 | doc19-R02 | photo | Medium | Airport departure hall with display screens | -- |
 | doc19-R03 | photo | Easy | Changi Airport digital signage kiosk | -- |
 | doc19-R04 | chart-simple | Easy | Stacked area chart: EU energy use 1990-2030 | -- |
