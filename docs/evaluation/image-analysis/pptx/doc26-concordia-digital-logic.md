@@ -20,7 +20,7 @@ decoders, flip-flops, and counter circuits.
 **Content type:** diagram
 **Annotation difficulty:** Medium
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Digital logic circuit schematic showing a full adder
 - **Size:** Small (2.2x1.1 in per catalog), compact layout
@@ -52,7 +52,7 @@ decoders, flip-flops, and counter circuits.
 - **Style:** Clean technical schematic, not hand-drawn
 - **No title, legend, or annotations** within the image itself
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 3 inputs labeled A, B, and C on the left side
 - FACT: There are exactly 2 outputs: S (red, top-right) and Co (blue,
@@ -66,7 +66,7 @@ decoders, flip-flops, and counter circuits.
 - FACT: The upper path uses red-tinted wiring; the lower path uses
   blue-tinted wiring
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Describing the gate symbols as specific IC part numbers (e.g.,
   "74LS86 XOR gate")
@@ -85,7 +85,7 @@ decoders, flip-flops, and counter circuits.
   REALITY: No timing information is shown; this is a structural schematic
   only
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Input labels: A, B, C in black sans-serif text, left-aligned
 - Output labels: S in red text (upper-right), Co in blue text (lower-right)
@@ -101,7 +101,7 @@ decoders, flip-flops, and counter circuits.
   outlines
 - No grid, no title, no component labels on gates
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is a full adder circuit, a fundamental building block in digital logic
 design. It computes the arithmetic sum of three single-bit inputs:
@@ -122,7 +122,7 @@ The color coding (red for Sum path, blue for Carry path) is a pedagogical
 aid to help students trace the two independent signal paths through the
 shared gate structure.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 full adder, circuit schematic, digital logic, XOR gate, AND gate, OR gate,
 sum, carry, binary addition, COEN 6501, Concordia, logic design, IEEE
@@ -152,7 +152,7 @@ contain additional PowerPoint-native shapes forming a circuit, but the single
 embedded WMF image is a table. Ground truth below describes what the extracted
 image actually shows.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Pinout specification table (not a circuit diagram as the
   catalog describes)
@@ -185,7 +185,7 @@ image actually shows.
 - **No borders, gridlines, or row separators visible** (the table relies on
   spacing and alignment rather than lines)
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The image contains a 4-column table with headers: Pin #, Pin Name,
   I/O Type, Function
@@ -198,7 +198,7 @@ image actually shows.
 - FACT: "DD" and "SS" use subscript formatting
 - FACT: No circuit diagram elements are present in this image
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Describing this as a circuit diagram or logic schematic
   REALITY: This is a text table with pinout specifications. No gates,
@@ -216,7 +216,7 @@ image actually shows.
   the WMF image is a pinout table. The slide may have additional circuit
   content in PowerPoint shapes not captured in the embedded image
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Table headers: bold black serif text
 - Data cells: regular black serif text
@@ -230,7 +230,7 @@ image actually shows.
 - White background
 - Converted from WMF vector format (original 2558 bytes)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This pinout table appears to describe a telecommunications IC, likely a
 T1/E1 line interface or similar digital transceiver. Key indicators:
@@ -245,7 +245,7 @@ The table appears on slide 19 of a digital logic design course, likely
 used to introduce students to IC pin specifications and datasheet reading
 as applied to real-world digital communication chips.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 pinout table, IC specifications, VDD, TXCLK, transmit clock, 5.12 MHz,
 digital transceiver, pin assignment, power supply, I/O type, COEN 6501,
@@ -273,7 +273,7 @@ actual image is a simulation timing/waveform diagram from an HDL simulator
 (ModelSim or similar), not a circuit schematic. Ground truth below describes
 the actual content.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Digital simulation timing/waveform diagram showing a
   sequential binary multiplier operating over approximately 210 nanoseconds
@@ -312,7 +312,7 @@ the actual content.
 - **Format:** Wide landscape orientation (approximately 748x343 pixels,
   10.0x4.6 in at presentation scale)
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 14 signal rows
 - FACT: The time axis runs from 0 to approximately 200+ ns
@@ -328,7 +328,7 @@ the actual content.
 - FACT: The signal labels are in black text on the left margin
 - FACT: This is a simulation waveform, not a circuit schematic
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Describing this as a "circuit schematic" per the catalog
   REALITY: This is a timing/waveform diagram showing simulation results,
@@ -347,7 +347,7 @@ the actual content.
   REALITY: At 748x343 pixels, individual transition times are approximate.
   The gridlines provide 20 ns resolution only
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Image dimensions: 748x343 pixels (wide format, ~10.0x4.6 in)
 - Time axis: "ns" unit label at right, 20 ns gridline intervals
@@ -363,7 +363,7 @@ the actual content.
 - Light gray gridlines in both horizontal and vertical directions
 - White/light background
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This timing diagram shows a simulation of a sequential (shift-and-add)
 binary multiplier performing the multiplication 0x89 x 0xAB = 0x5B83.
@@ -382,7 +382,7 @@ demonstrating how a designed multiplier circuit operates through HDL
 simulation verification. The count signal going 0-7 confirms an 8-bit
 multiplication taking 8 clock cycles.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 timing diagram, waveform, HDL simulation, binary multiplier, shift and
 add, sequential multiplier, ModelSim, clock signal, hexadecimal, COEN
@@ -410,7 +410,7 @@ embedded image (image23.wmf, converted via wmf2svg + rsvg-convert) is a
 decorative clipart figure, not a circuit diagram. This should be
 reclassified as decorative content and excluded from the eval subset.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Decorative clipart (NOT a circuit diagram)
 - **Content:** A gray cartoon stick figure in a "thinking" or "confused"
@@ -427,7 +427,7 @@ reclassified as decorative content and excluded from the eval subset.
   taller than wide
 - **No text, labels, annotations, or technical content**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The image is a cartoon stick figure, not a circuit diagram
 - FACT: A question mark appears near the figure's head
@@ -438,7 +438,7 @@ reclassified as decorative content and excluded from the eval subset.
 - FACT: This is decorative clipart, likely used on the lecture slide for
   visual interest (e.g., introducing a problem or quiz question)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Describing this as a circuit diagram per the catalog
   REALITY: This is a decorative clipart figure with no technical content
@@ -448,7 +448,7 @@ reclassified as decorative content and excluded from the eval subset.
   REALITY: This is stock clipart commonly used in PowerPoint presentations
   to represent confusion, thinking, or a question prompt
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Gray stick figure: medium gray body, darker gray joints
 - Question mark: gray, positioned above-right of head
@@ -458,7 +458,7 @@ reclassified as decorative content and excluded from the eval subset.
 - No text or labels
 - White/transparent background
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This clipart figure appears on slide 61 of the Concordia COEN 6501 lecture
 slides, likely used as a visual element for a quiz question, review
@@ -470,7 +470,7 @@ excluded from the eval subset, similar to other decorative elements
 (author avatars, PDF download icons) that were correctly filtered in
 other documents.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 clipart, stick figure, question mark, thinking, confused, decorative,
 PowerPoint, lecture slide, misclassified

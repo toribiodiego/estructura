@@ -18,7 +18,7 @@ financial awards, and system-wide budget priorities.
 **Annotation difficulty:** Medium
 **Dimensions:** (embedded PPTX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Financial data table rendered as an embedded image in PPTX
 - **Title:** "Table 9: North Star Promise Program Projected Awards, Fiscal
@@ -45,7 +45,7 @@ financial awards, and system-wide budget priorities.
 - **Background:** White with alternating light gray row shading
 - **Dimensions:** Approximately 1009x451 pixels
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The table title reads "Table 9: North Star Promise Program Projected
   Awards, Fiscal Year 2025"
@@ -64,7 +64,7 @@ financial awards, and system-wide budget priorities.
 - FACT: 3,800 + 2,900 + 4,400 + 10 = 11,110, not 11,000 -- the Total row
   value (11,000) appears to be a rounded figure
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Assuming the student counts sum exactly to the Total
   REALITY: 3,800 + 2,900 + 4,400 + 10 = 11,110, but the Total row shows
@@ -81,7 +81,7 @@ financial awards, and system-wide budget priorities.
 - RISK: Missing the Total row and describing only 4 data rows
   REALITY: There are 5 data rows: 4 institutions + 1 Total summary row
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title: bold black text, centered, serif or sans-serif font
 - Header background: dark navy/teal (#003B5C approximate, Minnesota State
@@ -98,7 +98,7 @@ financial awards, and system-wide budget priorities.
 - Clean, professional formatting consistent with government/education
   budget presentations
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 The North Star Promise Program is Minnesota's tuition-free college program
 for eligible students from families with adjusted gross income at or below
@@ -120,7 +120,7 @@ fill the remaining gap.
 The varying average awards ($1,260 for State Colleges vs. $2,790 for
 U of M) reflect the higher tuition at university-level institutions.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 North Star Promise, Minnesota State, tuition-free college, FY2025 budget,
 projected awards, financial aid, student count, average award, University

@@ -18,7 +18,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 **Annotation difficulty:** Medium
 **Dimensions:** 1350x1200 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Log-log line chart with confidence bands
 - **Axes:**
@@ -44,7 +44,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 - **Y-axis tick marks:** 10^-3, 10^-2, 10^-1, 10^0, 10^1, 10^2, 10^3, 10^4
 - **X-axis tick marks:** 10^1, 10^2, 10^3
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 6 lines in the chart, one per method
 - FACT: The y-axis label reads "Mean Squared Error"
@@ -66,7 +66,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 - FACT: The subplot label reads "(a) Gridworld"
 - FACT: All lines have translucent shaded confidence bands
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might report precise MSE values at specific trajectory counts
   (e.g., "RIS has MSE of exactly 150 at 100 trajectories")
@@ -92,7 +92,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
   figure subplot
   REALITY: This is Figure 2a, one of four subplots in Figure 2
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 6 lines in 3 color groups: blue (RIS/OIS), red (RIS WIS/OIS WIS), green
   (RIS WDR/OIS WDR)
@@ -109,7 +109,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
 - White background inside the plot area
 - No annotations, callouts, or additional text beyond labels and legend
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Figure caption context:** Figure 2a from an ICML 2019 paper on importance
   sampling for off-policy evaluation in reinforcement learning. The paper
@@ -133,7 +133,7 @@ AM, DR, etc.) across gridworld, linear dynamical system, and MuJoCo domains.
   - Trajectories: sequences of state-action-reward transitions in the MDP
   - MSE: Mean Squared Error, measuring estimation accuracy
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 importance sampling, off-policy evaluation, reinforcement learning, MSE,
 Mean Squared Error, gridworld, WIS, weighted importance sampling, WDR,
@@ -158,7 +158,7 @@ confidence bands, log-log plot, estimation methods, Hanna
 **Annotation difficulty:** Easy
 **Dimensions:** 1800x1600 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Dual-axis grouped bar chart with error bars
 - **Left y-axis:** "Mean Squared Error" (linear scale, range 0 to 700)
@@ -189,7 +189,7 @@ confidence bands, log-log plot, estimation methods, Hanna
   bars showing actual off-chart values, but these are not clearly readable at
   this crop resolution
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The left y-axis label reads "Mean Squared Error"
 - FACT: The right y-axis label reads "Negative Log Likelihood"
@@ -210,7 +210,7 @@ confidence bands, log-log plot, estimation methods, Hanna
 - FACT: No legend is visible within the chart crop -- bar encoding is defined
   in the figure caption below the subplots
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe the `2-64` architecture as having the lowest
   MSE because it is highlighted (darkest bars)
@@ -236,7 +236,7 @@ confidence bands, log-log plot, estimation methods, Hanna
   different type of data rather than a visual highlight
   REALITY: The hatching distinguishes the lowest-NLL architecture
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 5 architecture categories on x-axis: 0-0 (no hidden layers), 1-64 (1
   layer, 64 units), 2-64 (2 layers, 64 units), 3-64 (3 layers, 64 units),
@@ -251,7 +251,7 @@ confidence bands, log-log plot, estimation methods, Hanna
 - White background inside the plot area
 - No legend within the chart area
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Figure caption context:** Figure 5a from the ICML 2019 paper. The chart
   compares different neural network architectures for regression-based
@@ -271,7 +271,7 @@ confidence bands, log-log plot, estimation methods, Hanna
 - **MSE (Mean Squared Error):** Measures how close the policy value estimate
   is to the true value. Lower MSE = more accurate estimation.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 importance sampling, regression, MSE, Mean Squared Error, negative log
 likelihood, NLL, neural network architecture, Hopper, MuJoCo, bar chart,
@@ -296,7 +296,7 @@ off-policy, ICML 2019, architecture comparison
 **Annotation difficulty:** Hard
 **Dimensions:** 1350x1200 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** 3-panel vertically stacked line charts with shared x-axis
 - **Shared x-axis:** "Training Step" (linear scale, range 0 to 7000, ticks at
@@ -344,7 +344,7 @@ off-policy, ICML 2019, architecture comparison
   True Value
 - Blue confidence band around the RIS line
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 3 vertically stacked panels sharing the x-axis
 - FACT: The x-axis label reads "Training Step" with ticks at 0, 1000, 2000,
@@ -370,7 +370,7 @@ off-policy, ICML 2019, architecture comparison
 - FACT: The RIS value estimate starts far above the True Value and converges
   toward it during training
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might report the exact training step of the minimum
   validation loss (e.g., "step 1742")
@@ -393,7 +393,7 @@ off-policy, ICML 2019, architecture comparison
   REALITY: The shaded regions are confidence/uncertainty bands around their
   respective lines
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 3 panels: Neg. Log Likelihood (top), MSE (middle), Value (bottom)
 - Shared x-axis: Training Step, 0-7000, linear scale
@@ -410,7 +410,7 @@ off-policy, ICML 2019, architecture comparison
 - Gray grid lines at y-axis tick positions in each panel
 - White background in all panels
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Figure caption:** "Figure 6: Mean squared error and estimate of the
   importance sampling estimator during training of pi_D." The figure shows
@@ -434,7 +434,7 @@ off-policy, ICML 2019, architecture comparison
   - Training step: iteration of gradient descent on the behavior policy model
   - Validation/Train Loss: hold-out and training negative log likelihood
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 training curves, MSE, negative log likelihood, validation loss, train loss,
 overfitting, early stopping, importance sampling, RIS, OIS, True Value,
@@ -459,7 +459,7 @@ policy evaluation, off-policy, ICML 2019, confidence bands
 **Annotation difficulty:** Easy
 **Dimensions:** 386x252 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Line chart with 3 overlaid functions
 - **Y-axis:** No label text; tick marks at 0.00, 0.25, 0.50, 0.75, 1.00,
@@ -481,7 +481,7 @@ policy evaluation, off-policy, ICML 2019, confidence bands
 - **Background:** White, with light gray grid lines at major tick positions
 - **No confidence bands or shading** on any line
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The subplot label reads "(a) Policy and Reward"
 - FACT: There are exactly 3 lines in the chart
@@ -498,7 +498,7 @@ policy evaluation, off-policy, ICML 2019, confidence bands
 - FACT: The y-axis range is 0.00 to 2.00
 - FACT: No axis label text is present (only tick values)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe the R line as perfectly linear (R = s)
   REALITY: The R line appears approximately linear but may have slight
@@ -521,7 +521,7 @@ policy evaluation, off-policy, ICML 2019, confidence bands
   consistently above R (blue dotted) in the middle region, though they
   converge near x=0 and x=1
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 3 line styles: green dashed (R-bar-star), blue dotted (R), black dash-dot
   (pi)
@@ -536,7 +536,7 @@ policy evaluation, off-policy, ICML 2019, confidence bands
 - Light gray grid lines at major tick positions
 - Small image (386x252 pixels original)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Figure caption context:** Figure 7a from the paper's appendix section on
   policy evaluation in a continuous armed bandit task. The caption states:
@@ -559,7 +559,7 @@ policy evaluation, off-policy, ICML 2019, confidence bands
   importance sampling behavior in a simple, interpretable domain before
   scaling to complex MuJoCo environments.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 policy, reward function, continuous armed bandit, step function, PDF,
 probability density, importance sampling, R-bar-star, stretched reward,
@@ -583,7 +583,7 @@ state space, evaluation policy, ICML 2019, off-policy, SinglePath MDP
 **Annotation difficulty:** Hard
 **Dimensions:** 1350x1200 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** 3-panel vertically stacked line charts with shared x-axis
 - **Shared x-axis:** "Training Step" (linear scale, range 0 to 1000, ticks at
@@ -629,7 +629,7 @@ state space, evaluation policy, ICML 2019, off-policy, SinglePath MDP
   step ~100, and settling at ~25-30 (underestimation, near OIS level)
 - Blue confidence band around RIS line
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 3 vertically stacked panels sharing the x-axis
 - FACT: The x-axis ticks are at 0, 200, 400, 600, 800, 1000
@@ -653,7 +653,7 @@ state space, evaluation policy, ICML 2019, off-policy, SinglePath MDP
 - FACT: Shaded regions represent 95% confidence intervals (per the caption)
 - FACT: Results are averaged over 200 trials (per the caption)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe the RIS MSE as monotonically decreasing (as in
   a simpler training curve)
@@ -677,7 +677,7 @@ state space, evaluation policy, ICML 2019, off-policy, SinglePath MDP
   REALITY: OIS is visibly below the True Value by a substantial margin
   (~25-30 vs ~50)
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 3 panels: Neg. Log Likelihood (top), MSE (middle), Value (bottom)
 - Shared x-axis: Training Step, 0-1000
@@ -693,7 +693,7 @@ state space, evaluation policy, ICML 2019, off-policy, SinglePath MDP
 - "Training Step" label between middle and bottom panels
 - Gray grid lines in each panel
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Figure caption:** "Figure 10: Mean squared error and estimate of the
   importance sampling estimator during training of pi_D." This is the
@@ -715,7 +715,7 @@ state space, evaluation policy, ICML 2019, off-policy, SinglePath MDP
   - Gradient ascent steps: the training iterations for the policy model
   - Continuous armed bandit: a simplified RL domain with continuous actions
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 training curves, MSE, negative log likelihood, importance sampling, RIS,
 OIS, True Value, overestimation, underestimation, continuous armed bandit,

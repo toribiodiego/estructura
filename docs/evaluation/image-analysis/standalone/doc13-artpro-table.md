@@ -18,7 +18,7 @@ Source is an Australian standup paddleboard/surf foil shop (standupsurfshop.com.
 **Annotation difficulty:** Easy
 **Dimensions:** 1024x179 pixels (WebP)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Product specification data table
 - **Title:** None (no visible title; product context implied by model names)
@@ -61,7 +61,7 @@ Source is an Australian standup paddleboard/surf foil shop (standupsurfshop.com.
   aspect ratio right-aligned
 - **Background:** White overall, clean minimalist design
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 6 models: 1401, 1201, 1121, 1051, 1001, 951
 - FACT: Model names correspond to wingspan in mm (1401 has 1401mm wingspan,
@@ -85,7 +85,7 @@ Source is an Australian standup paddleboard/surf foil shop (standupsurfshop.com.
 - FACT: Projected area is consistently slightly less than actual area for
   every model
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Calling these "aircraft wings"
   REALITY: The source URL (standupsurfshop.com.au) identifies these as SUP
@@ -105,7 +105,7 @@ Source is an Australian standup paddleboard/surf foil shop (standupsurfshop.com.
   REALITY: The 2 and 3 in cm2, cm3, in2, in3 are superscript notation for
   squared and cubed units.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Model number cells: dark charcoal/gray background (#4A4A4A approximate),
   bold white text, large font
@@ -124,7 +124,7 @@ Source is an Australian standup paddleboard/surf foil shop (standupsurfshop.com.
   decimals, mean average chord to 1 decimal, areas to 1 decimal, volume to
   1 decimal, aspect ratio to 2 decimals
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 ArtPro is a brand of hydrofoil wings used in SUP (Stand Up Paddleboard)
 foiling and wing foiling. The table lists technical specifications for 6 wing
@@ -147,7 +147,7 @@ The model numbers (1401, 1201, etc.) directly correspond to wingspan in mm.
 Larger wings provide more lift and stability at lower speeds; smaller wings
 are more maneuverable and suited to higher wind/speed conditions.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 ArtPro, foil wing, SUP foil, hydrofoil, wing specifications, wingspan, chord,
 aspect ratio, projected area, actual area, volume, standup paddleboard, wing

@@ -19,7 +19,7 @@ paths, mission names, and agency logos.
 **Content type:** diagram
 **Annotation difficulty:** Medium
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Space mission fleet infographic showing all active NASA
   heliophysics missions positioned around a Sun-Earth system
@@ -90,7 +90,7 @@ paths, mission names, and agency logos.
     Exploration Agency"
   - QR code in bottom-right corner (black on white square)
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The title reads "Heliophysics Missions" in the upper left
 - FACT: The Sun is depicted on the left side with orange/red surface detail
@@ -110,7 +110,7 @@ paths, mission names, and agency logos.
 - FACT: A QR code appears in the bottom-right corner
 - FACT: The image date reference is December 2025 (from the filename and source)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Listing missions not visible in the image or confusing with historical
   missions
@@ -136,7 +136,7 @@ paths, mission names, and agency logos.
   shows relative positioning (inner heliosphere, near-Earth, deep space) but
   not accurate orbital mechanics
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title font: white italic serif, large, upper-left placement
 - Sun rendering: photorealistic with granulation texture, corona, solar wind
@@ -157,7 +157,7 @@ paths, mission names, and agency logos.
 - Overall color palette: orange/red (Sun), blue/purple (Earth magnetosphere
   and space), orange/brown (bottom info panel)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is an official NASA visualization from the Goddard Space Flight Center
 Scientific Visualization Studio (SVS), cataloged as visualization a014718.
@@ -180,7 +180,7 @@ The spatial positioning of spacecraft in the diagram conveys their approximate
 operational regions in the Sun-Earth system, from the inner corona (Parker)
 to the outer heliosphere (Voyager) and Mars.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 NASA, heliophysics, mission fleet, spacecraft, Sun, Earth, magnetosphere,
 solar wind, Parker Solar Probe, SOHO, SDO, ACE, STEREO, Wind, MMS, THEMIS,

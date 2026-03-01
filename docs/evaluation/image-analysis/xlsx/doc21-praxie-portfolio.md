@@ -21,7 +21,7 @@ risk levels, and budget vs actual expenditure.
 **Note:** Catalog describes "3 bars: Low/Medium/High" but the rendered chart
 has 4 bars including a "Total Result" summary bar. The catalog undercounted.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Horizontal bar chart with 4 categories and a single data
   series
@@ -49,7 +49,7 @@ has 4 bars including a "Total Result" summary bar. The catalog undercounted.
 - **Decorative element:** Blue rectangular band (~50px tall) above the chart
   area, no text visible
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart is a horizontal bar chart (bars extend right from the
   y-axis)
@@ -69,7 +69,7 @@ has 4 bars including a "Total Result" summary bar. The catalog undercounted.
 - FACT: Category labels are gray text in all caps (LOW, MEDIUM, HIGH) except
   "Total Result" which wraps to two lines
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating there are 3 bars (as the catalog says)
   REALITY: There are 4 bars; the catalog omits the "Total Result" bar
@@ -92,7 +92,7 @@ has 4 bars including a "Total Result" summary bar. The catalog undercounted.
 - RISK: Adding a legend description
   REALITY: No legend is present in the chart
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Horizontal bar orientation (not vertical)
 - 4 category labels with exact text and casing: "Total Result" (two lines),
@@ -110,7 +110,7 @@ has 4 bars including a "Total Result" summary bar. The catalog undercounted.
 - White chart background
 - No data labels, no legend, no title text, no annotations
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart appears in the Praxie Project Portfolio Management (PPM) template,
 a spreadsheet tool for tracking multiple projects across dimensions like
@@ -126,7 +126,7 @@ Project Portfolio Management is a business practice for centrally managing a
 collection of projects to achieve strategic objectives, optimize resource
 allocation, and balance risk.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 project portfolio management, PPM, priority distribution, horizontal bar
 chart, project priority, Low Medium High, Praxie template, portfolio
@@ -154,7 +154,7 @@ rendering limitation -- the chart extends beyond the page boundary in the
 LibreOffice conversion. The data table on the following sheet confirms the
 values: Sum of Budget = $600.00, Sum of Actual Expenditure = $500.00.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Vertical bar chart with 2 categories and a single data series
 - **Title:** "BUDGET" (centered, black text, all caps)
@@ -180,7 +180,7 @@ values: Sum of Budget = $600.00, Sum of Actual Expenditure = $500.00.
 - **Rendering artifact:** The right ~15% of the chart is clipped by the page
   boundary, cutting through the second bar and its label
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart title reads "BUDGET" in all caps
 - FACT: There are exactly 2 bars
@@ -199,7 +199,7 @@ values: Sum of Budget = $600.00, Sum of Actual Expenditure = $500.00.
 - FACT: The second bar is partially clipped at the right edge of the rendered
   page
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating the y-axis starts at zero
   REALITY: The y-axis starts at $440.00, making the visual height difference
@@ -225,7 +225,7 @@ values: Sum of Budget = $600.00, Sum of Actual Expenditure = $500.00.
   REALITY: The truncated axis exaggerates the visual difference; $600 vs $500
   is only a 17% difference
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Chart title text: "BUDGET" (all caps, centered, black, sans-serif font)
 - Y-axis labels: $440.00, $460.00, $480.00, $500.00, $520.00, $540.00,
@@ -244,7 +244,7 @@ values: Sum of Budget = $600.00, Sum of Actual Expenditure = $500.00.
 - Right-side clipping: second bar and label cut off by page boundary
 - Chart appears within a gray-bordered cell/frame on the spreadsheet page
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart appears on the Budget sheet of the Praxie Project Portfolio
 Management template. It compares total budgeted amounts against actual
@@ -261,7 +261,7 @@ charting default that visually exaggerates differences between values -- a
 known data visualization concern that document processing systems should
 ideally flag.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 budget vs actual expenditure, project portfolio, PPM, vertical bar chart,
 budget comparison, Praxie template, sum of budget, actual spending, financial

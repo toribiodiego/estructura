@@ -23,7 +23,7 @@ demonstrations.
 Prompt/Response layout as part of the extracted image. The text described
 below IS visible in the crop.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Layout:** Two-panel side-by-side layout with "Prompt" header (left,
   white background) and "Response" header (right, light blue background);
@@ -68,7 +68,7 @@ below IS visible in the crop.
   a student's physics mistake (using slope length L instead of height H for
   potential energy)
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The problem states the slope is frictionless
 - FACT: The height H is labeled as 40 m in the diagram
@@ -90,7 +90,7 @@ below IS visible in the crop.
   a student."
 - FACT: A small pen/pencil icon appears at the top left of the Prompt panel
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might state the student used H instead of L
   REALITY: The student's error was using L (slope length, 80m) instead of H (height, 40m)
@@ -110,7 +110,7 @@ below IS visible in the crop.
   REALITY: The Response panel has a light blue background; the Prompt panel
   is white
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Two-panel layout: "Prompt" (white, left) and "Response" (light blue, right)
 - Pen/pencil icon at top left of Prompt panel
@@ -126,7 +126,7 @@ below IS visible in the crop.
 - Prompt requests: LaTeX formatting, two-decimal-place rounding, step-by-step
   reasoning, identify and explain the error
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Physics education, conservation of energy, kinematics
 - **Surrounding document context:** Figure 1 in the Gemini technical report,
@@ -144,7 +144,7 @@ below IS visible in the crop.
   and handwriting), mathematical reasoning (identifying the error), and
   instruction following (LaTeX, rounding).
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, multimodal reasoning, physics problem
 - conservation of energy, frictionless slope, skier
@@ -171,7 +171,7 @@ below IS visible in the crop.
 **Annotation difficulty:** Medium
 **Dimensions:** 1383x617 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Components/nodes:**
   - "Input Sequence" label in the top-left corner
@@ -205,7 +205,7 @@ below IS visible in the crop.
   - Blue fill on Transformer block emphasizes it as the core component
   - White background throughout
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 4 input modality types (top to bottom): text,
   audio, image, video
@@ -225,7 +225,7 @@ below IS visible in the crop.
 - FACT: The flow direction is left to right
 - FACT: The label "Input Sequence" appears in the top-left corner
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might claim there is an "Audio Decoder" output
   REALITY: Only two decoders are shown: Image Decoder and Text Decoder
@@ -238,7 +238,7 @@ below IS visible in the crop.
 - RISK: A model might state there is a "Video Decoder" output
   REALITY: Only Image Decoder and Text Decoder are shown on the output side
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 4 input modalities with color-coded bordered icons (blue=text, red=audio,
   green=image, yellow/orange=video)
@@ -253,7 +253,7 @@ below IS visible in the crop.
 - Minimalist design with no internal architecture details
 - White background throughout
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Deep learning architecture, multimodal language models
 - **Surrounding document context:** Figure 2 in the Gemini technical report,
@@ -271,7 +271,7 @@ below IS visible in the crop.
   Gemini -- a single Transformer handling all modalities natively, rather than
   separate specialist models stitched together.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, architecture, Transformer, multimodal
 - text audio video image, input modalities
@@ -301,7 +301,7 @@ below IS visible in the crop.
 rendered output section. All text and plots described below are visible in
 the extracted crop.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Layout:** Three sections stacked vertically:
   1. Top: side-by-side Prompt (white, left) and Response (light blue, right)
@@ -340,7 +340,7 @@ the extracted crop.
   mathematical plots, understanding the rearrangement instruction, and
   generating working matplotlib Python code that produces the correct output
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The prompt contains a 2x2 grid of 4 matplotlib subplots
 - FACT: The four plot types are: sine wave, tangent function, exponential
@@ -359,7 +359,7 @@ the extracted crop.
 - FACT: Both grids contain the same 4 plot types
 - FACT: The 3D surface uses a viridis-like colormap (green-yellow-blue)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might state specific axis ranges or tick values for the subplot plots that are not clearly readable at the image resolution
   REALITY: The subplots are relatively small within the composite and exact axis values may not be fully legible
@@ -372,7 +372,7 @@ the extracted crop.
 - RISK: A model might claim there are 5 or 6 subplots
   REALITY: Both the input and output grids contain exactly 4 subplots in a 2x2 arrangement
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Composite image with 3 distinct sections: Prompt panel, Response panel,
   Rendered code output
@@ -386,7 +386,7 @@ the extracted crop.
 - The composite layout is vertically tall (4760x5014 pixels), spanning
   prompt/response and rendered output
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Code generation, data visualization, mathematical plotting
 - **Surrounding document context:** Figure 5 in the Gemini report,
@@ -403,7 +403,7 @@ the extracted crop.
   generate executable code -- combining vision, spatial reasoning, and code
   generation in a single task.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, code generation, matplotlib, Python
 - subplot rearrangement, sine wave, tangent, exponential, 3D surface
@@ -434,7 +434,7 @@ extracted crop shows ingredient preparation on a countertop. No pan is visible.
 This is the first of three photos (R06, R07, R08) used in Table 13's multi-turn
 cooking conversation demonstration.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** Overhead view of omelet ingredients laid out on a white
   countertop before cooking
@@ -454,7 +454,7 @@ cooking conversation demonstration.
   ambient lighting
 - **No cooking equipment visible** -- no pan, no stove, no heat source
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 2 brown eggs visible
 - FACT: The eggs sit on a clear plastic egg carton that is mostly empty
@@ -471,7 +471,7 @@ cooking conversation demonstration.
 - FACT: The countertop surface is white
 - FACT: No pan, stove, or cooking equipment is visible in the image
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe this as "cooking in a pan" based on the
   catalog description or surrounding table context
@@ -490,7 +490,7 @@ cooking conversation demonstration.
   REALITY: This crop is a single photo extracted from the table; the table
   structure and text are not part of this image
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Egg count: exactly 2 brown eggs
 - Egg carton: clear plastic, mostly empty, multiple vacant wells
@@ -504,7 +504,7 @@ cooking conversation demonstration.
 - Camera angle: overhead / bird's-eye view
 - Lighting: even, natural or ambient, no harsh shadows
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Food photography, cooking demonstration, multimodal AI evaluation
 - **Surrounding document context:** This photo is the first of three images
@@ -523,7 +523,7 @@ cooking conversation demonstration.
   available. The model must identify the ingredients from this image to provide
   relevant cooking instructions.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, multimodal conversation, Table 13
 - cooking ingredients, omelet preparation, food photography
@@ -550,7 +550,7 @@ cooking conversation demonstration.
 **Annotation difficulty:** Easy
 **Dimensions:** 3069x3021 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A vegetable omelet in the early-to-mid cooking stage,
   viewed from slightly above at roughly 45 degrees
@@ -578,7 +578,7 @@ cooking conversation demonstration.
   sheen on the liquid egg surface and slight shadow on the far side of the pan
 - **No text visible in the image**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The pan is a dark non-stick frying pan on a gas stovetop
 - FACT: The egg mixture is partially liquid and not fully set
@@ -592,7 +592,7 @@ cooking conversation demonstration.
 - FACT: No utensils, hands, or text are visible in the frame
 - FACT: The egg mixture is yellow (standard beaten egg color)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe this as a "finished omelet" or "fully cooked"
   REALITY: The egg is still partially liquid and clearly not done cooking
@@ -610,7 +610,7 @@ cooking conversation demonstration.
 - RISK: A model might claim cheese is visible
   REALITY: No cheese is visible; the yellow color is from the egg mixture
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Pan material and color: dark gray/black non-stick
 - Pan shape: round, roughly 10-12 inches, with handle extending out of frame
@@ -623,7 +623,7 @@ cooking conversation demonstration.
 - Lighting: overhead kitchen light, mild sheen on liquid egg
 - No text, no utensils, no human hands visible
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Food photography, cooking process documentation
 - **Surrounding document context:** This image appears in Table 13 of the
@@ -643,7 +643,7 @@ cooking conversation demonstration.
   -> cooking -> result) tests whether the model can track state changes
   across sequential images.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - omelet, vegetable omelet, cooking, frying pan, stovetop
 - broccoli, bell pepper, leafy greens, kale, eggs
@@ -674,7 +674,7 @@ cooking conversation demonstration.
 the actual crop shows the omelet still in the pan on the stovetop. No plate
 is visible.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A fully cooked vegetable omelet in a dark non-stick
   frying pan, viewed from above at roughly 45 degrees
@@ -707,7 +707,7 @@ is visible.
 - **No text visible in the image**
 - **No utensils, hands, or plates visible**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The omelet is in a dark non-stick frying pan, not on a plate
 - FACT: The egg is fully cooked and set (no visible liquid egg)
@@ -721,7 +721,7 @@ is visible.
 - FACT: No plate, utensils, or hands are visible
 - FACT: The pan handle extends toward the lower left of the frame
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe this as "on a plate" matching the catalog
   description
@@ -739,7 +739,7 @@ is visible.
   REALITY: The egg appears relatively flat and firm, with browned areas
   suggesting it was cooked at medium-to-high heat
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Pan: dark gray/black non-stick, ~10-12 inches, handle toward lower left
 - Pan condition: browning residue at edges from cooking
@@ -756,7 +756,7 @@ is visible.
 - Camera angle: ~45 degrees above
 - No text, utensils, hands, plates, or garnish
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Food photography, cooking process documentation
 - **Surrounding document context:** This image appears in Table 13 of the
@@ -776,7 +776,7 @@ is visible.
   in a later state (cooked vs. cooking), demonstrating temporal/state
   reasoning across sequential images.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - omelet, vegetable omelet, finished, cooked, frying pan
 - broccoli, bell pepper, leafy greens, eggs, browned
@@ -807,7 +807,7 @@ is visible.
 (photo + prompt text + model response) rather than the extracted raster crop.
 Rewritten based on verified crop, which contains only the photograph.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A Persian shield plant (*Strobilanthes dyerianus*)
   occupying the center and lower two-thirds of the frame, displaying its
@@ -844,7 +844,7 @@ Rewritten based on verified crop, which contains only the photograph.
   degrees
 - **No text, labels, signs, or human-made objects visible in the photo**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The central plant has iridescent purple/magenta lance-shaped leaves
   with darker parallel veins
@@ -861,7 +861,7 @@ Rewritten based on verified crop, which contains only the photograph.
 - FACT: The photo is taken outdoors in natural daylight
 - FACT: No soil is visible due to dense planting
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe the purple leaves as flowers
   REALITY: The purple/magenta features are leaves, not flowers; the Persian
@@ -884,7 +884,7 @@ Rewritten based on verified crop, which contains only the photograph.
   edges; identifications are approximate (the red flowers could be
   impatiens or begonias; the variegated plant could be several species)
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Central plant: Persian shield (*Strobilanthes dyerianus*), 15-20 leaves
 - Leaf characteristics: lance-shaped, iridescent purple/magenta, metallic
@@ -903,7 +903,7 @@ Rewritten based on verified crop, which contains only the photograph.
 - Camera angle: ~30-40 degrees above
 - No text, labels, or human-made objects visible
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Botany, horticulture, plant identification
 - **Surrounding document context:** This photo appears in Figure 11 of the
@@ -925,7 +925,7 @@ Rewritten based on verified crop, which contains only the photograph.
   other garden plants, and can describe the distinctive visual features
   (iridescent leaves) that distinguish it.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Persian shield, Strobilanthes dyerianus, purple leaves, iridescent
 - garden plant, ornamental, tropical plant, foliage
@@ -956,7 +956,7 @@ Rewritten based on verified crop, which contains only the photograph.
 actual crop shows the dog on a city street with a yellow taxi behind it. No
 beach is visible.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A Goldendoodle (or similar doodle-breed dog) sitting
   on a wet city street, facing the camera with mouth open (panting,
@@ -977,7 +977,7 @@ beach is visible.
   lost to compression/resolution
 - **No text visible in the image**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The dog has golden/tan curly-to-wavy fur consistent with a
   Goldendoodle
@@ -990,7 +990,7 @@ beach is visible.
 - FACT: The image is 256x256 pixels (small thumbnail)
 - FACT: No beach, sand, or water is visible
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe this as "at a beach" matching the catalog
   REALITY: The setting is clearly a city street with a taxi and buildings;
@@ -1004,7 +1004,7 @@ beach is visible.
   REALITY: The yellow taxi suggests New York City but this cannot be
   confirmed from the image alone
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Dog: golden/tan, curly-wavy fur, dark collar, mouth open, panting
 - Setting: wet city street, urban canyon with tall buildings
@@ -1015,7 +1015,7 @@ beach is visible.
 - Image size: 256x256 thumbnail
 - No text visible
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Pet photography, dog breed identification
 - **Surrounding document context:** This is the first of three Goldendoodle
@@ -1033,7 +1033,7 @@ beach is visible.
   model can identify the same dog breed across varied contexts. The urban
   setting tests recognition against a complex, distracting background.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Goldendoodle, dog, pet, curly fur, golden
 - city street, yellow taxi, urban, wet street
@@ -1063,7 +1063,7 @@ beach is visible.
 actual crop shows the dog sitting on a path in an autumn park with fallen
 leaves and trees, not in a city setting.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A Goldendoodle (or similar doodle-breed dog) sitting
   on a paved path, facing the camera; the dog appears smaller/younger than
@@ -1086,7 +1086,7 @@ leaves and trees, not in a city setting.
 - **Image quality:** 256x256 thumbnail; some fine detail lost
 - **No text visible in the image**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The dog has golden/tan curly fur
 - FACT: The dog is sitting on a paved path
@@ -1097,7 +1097,7 @@ leaves and trees, not in a city setting.
 - FACT: The setting is a park with a walkway, not a city street
 - FACT: The image is 256x256 pixels
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe this as "in city" matching the catalog
   REALITY: The setting is an autumn park with trees and a walking path;
@@ -1111,7 +1111,7 @@ leaves and trees, not in a city setting.
 - RISK: A model might describe a leash or collar
   REALITY: No collar or leash is clearly visible at this resolution
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Dog: golden/tan curly fur, sitting upright, compact posture
 - Setting: autumn park, paved walkway, fall foliage
@@ -1124,7 +1124,7 @@ leaves and trees, not in a city setting.
 - Color harmony: dog fur matches fall foliage color
 - Image size: 256x256 thumbnail
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Pet photography, dog breed identification
 - **Surrounding document context:** Second of three Goldendoodle photos in
@@ -1135,7 +1135,7 @@ leaves and trees, not in a city setting.
   tones tests whether the model can distinguish the dog from the similarly
   colored background and still identify the breed.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Goldendoodle, dog, pet, curly fur, golden
 - autumn, fall, park, fallen leaves, golden foliage
@@ -1165,7 +1165,7 @@ leaves and trees, not in a city setting.
 actual crop shows the dog from behind, sitting at a waterfront facing a city
 skyline. It is not a portrait in the conventional sense.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A Goldendoodle (or similar doodle-breed dog) sitting
   on a concrete ledge or wall, viewed FROM BEHIND; the dog faces away from
@@ -1189,7 +1189,7 @@ skyline. It is not a portrait in the conventional sense.
   identifiable by silhouette
 - **No text visible in the image**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The dog is viewed from behind, facing away from the camera
 - FACT: The dog sits on a light gray concrete surface
@@ -1201,7 +1201,7 @@ skyline. It is not a portrait in the conventional sense.
 - FACT: Water separates the foreground from the skyline
 - FACT: The image is 256x256 pixels
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe this as a "portrait" matching the catalog
   REALITY: The dog is viewed from behind; this is not a portrait
@@ -1213,7 +1213,7 @@ skyline. It is not a portrait in the conventional sense.
 - RISK: A model might call the location "a beach"
   REALITY: The dog sits on a concrete ledge at a waterfront, not a beach
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Dog: golden/tan curly fur, seen from behind, sitting on concrete ledge
 - Dog posture: upright, head slightly turned, looking toward skyline
@@ -1225,7 +1225,7 @@ skyline. It is not a portrait in the conventional sense.
 - Camera angle: behind and slightly above
 - Image size: 256x256 thumbnail
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Pet photography, scenic/landscape photography
 - **Surrounding document context:** Third and final Goldendoodle photo in
@@ -1238,7 +1238,7 @@ skyline. It is not a portrait in the conventional sense.
   harder, testing whether the model can use fur texture and body shape
   alone. Also tests scene understanding (waterfront, skyline, water).
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Goldendoodle, dog, pet, curly fur, golden
 - waterfront, skyline, city, One World Trade Center, Manhattan
@@ -1268,7 +1268,7 @@ skyline. It is not a portrait in the conventional sense.
 from the PDF page. Revised to describe only the extracted crop (the
 photograph of shapes on paper).
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** Three hand-drawn geometric shapes and a question mark,
   arranged in a horizontal row from left to right on a sheet of paper
@@ -1295,7 +1295,7 @@ photograph of shapes on paper).
 - **Camera angle:** Directly overhead (top-down) or very close to it
 - **No other text, numbers, labels, or objects visible in the image**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 3 drawn geometric shapes plus a question mark
 - FACT: The first shape is a triangle (3 sides)
@@ -1310,7 +1310,7 @@ photograph of shapes on paper).
 - FACT: The shapes increase in number of sides: 3, 4, 5
 - FACT: No other text, numbers, or objects are visible
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might state there are 4 shapes (counting the question mark
   as a geometric shape)
@@ -1330,7 +1330,7 @@ photograph of shapes on paper).
   REALITY: The strokes are bold and dark, consistent with a marker or
   thick pen, not a pencil
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Three geometric shapes in a sequence: triangle (3 sides), square (4
   sides), pentagon (5 sides)
@@ -1346,7 +1346,7 @@ photograph of shapes on paper).
 - Pattern: side count increases by 1 (3, 4, 5, ?)
 - No other text, numbers, labels, or objects
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Visual pattern recognition, geometric reasoning, IQ-test-style
   sequence puzzles
@@ -1368,7 +1368,7 @@ photograph of shapes on paper).
   hand-drawn quality adds difficulty compared to clean computer-generated
   shapes.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, shape sequence, pattern recognition
 - triangle, square, pentagon, hexagon
@@ -1395,7 +1395,7 @@ photograph of shapes on paper).
 **Annotation difficulty:** Easy
 **Dimensions:** 539x158 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Shape:** A parallelogram slanting upward to the right, with the bottom-
   left vertex as the leftmost point and the top-right vertex as the
@@ -1416,7 +1416,7 @@ photograph of shapes on paper).
 - **No other elements:** No formula, no additional measurements, no grid,
   no figure caption in the crop, no background elements
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The shape is a parallelogram (two pairs of parallel sides)
 - FACT: The height is labeled "x" (italic)
@@ -1432,7 +1432,7 @@ photograph of shapes on paper).
 - FACT: The parallelogram slants upward to the right
 - FACT: No formula or equation appears in the image
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: "The base is labeled x + 15" -- REALITY: The TOP edge is labeled
   x + 15, not the base/bottom edge
@@ -1449,7 +1449,7 @@ photograph of shapes on paper).
   label (though it would equal x + 15 since opposite sides of a
   parallelogram are equal)
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Parallelogram shape with upward-right slant
 - Light purple/lilac fill, dark purple/plum outline
@@ -1461,7 +1461,7 @@ photograph of shapes on paper).
 - Clean geometric drawing style (not hand-drawn, digitally rendered)
 - White background, no grid or axis
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is a geometry problem figure from the Gemini technical report (Figure
 14, page 81). It presents a parallelogram with algebraic dimension labels,
@@ -1471,7 +1471,7 @@ The image specifically tests whether the model can distinguish height from
 side length -- the right-angle marker is the visual cue that x is the
 perpendicular height, not a slanted side.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - parallelogram, geometry, area, dimensions
 - algebraic expression, x + 15, variable, height
@@ -1503,7 +1503,7 @@ describe only the extracted R17 crop (the moon photograph). This is also
 another instance of the agent treating a multi-image figure as one unit (see
 DF-01).
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A near-full-disc photograph of the Moon against a
   black background
@@ -1532,7 +1532,7 @@ DF-01).
   limited
 - **No text, labels, or annotations visible**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The image shows the Moon as a near-full disc
 - FACT: The background is solid black (space)
@@ -1545,7 +1545,7 @@ DF-01).
 - FACT: No text, labels, or annotations appear in the image
 - FACT: The Moon fills most of the frame
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might name specific craters or maria with certainty
   REALITY: At 514x510, features are suggestive but not definitively
@@ -1564,7 +1564,7 @@ DF-01).
   telescope/camera used
   REALITY: The equipment cannot be determined from the image
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Moon phase: near-full, brightly illuminated
 - Disc position: fills most of frame, slightly off-center to right
@@ -1577,7 +1577,7 @@ DF-01).
 - Image dimensions: 514x510 pixels
 - No text, labels, or annotations
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Astronomy, space photography
 - **Surrounding document context:** This is the first of two images in
@@ -1599,7 +1599,7 @@ DF-01).
   the model's ability to identify the Moon, recognize a golf ball (R18),
   and connect them through historical knowledge (Apollo 14 lunar golf).
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Moon, lunar surface, full Moon, craters, maria
 - Tycho, ray system, impact crater, highlands
@@ -1630,7 +1630,7 @@ but the actual crop shows a hand holding a single golf ball in an indoor
 setting. No lunar surface is visible. The "lunar" connection is from the
 page context (Apollo 14 puzzle), not from the image content.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A human hand holding a single white golf ball between
   thumb and fingers, held up toward the ceiling
@@ -1655,7 +1655,7 @@ page context (Apollo 14 puzzle), not from the image content.
 - **No clearly legible text in the image** (faint markings on the golf ball
   are too small to read)
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: A single golf ball is held in one hand
 - FACT: The golf ball is white with visible dimpled surface
@@ -1668,7 +1668,7 @@ page context (Apollo 14 puzzle), not from the image content.
   visible
 - FACT: The image is 672x370 pixels
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe "golf balls on lunar surface" matching the
   catalog description
@@ -1685,7 +1685,7 @@ page context (Apollo 14 puzzle), not from the image content.
   REALITY: The Apollo 14 connection is from the page-level prompt context,
   not from anything visible in the crop
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Golf ball: white, single, standard size, dimpled surface, faint markings
 - Hand: light-skinned, thumb and fingers gripping ball, forearm visible
@@ -1697,7 +1697,7 @@ page context (Apollo 14 puzzle), not from the image content.
 - Image dimensions: 672x370 pixels
 - No legible text
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Sports equipment, indoor photography
 - **Surrounding document context:** This is the second of two images in
@@ -1717,7 +1717,7 @@ page context (Apollo 14 puzzle), not from the image content.
   what's actually in the crop (hand, golf ball, indoor setting) vs. what
   the page context says it means (lunar golf).
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - golf ball, hand, indoor, ceiling
 - dimpled surface, white ball, strip lighting
@@ -1747,7 +1747,7 @@ page context (Apollo 14 puzzle), not from the image content.
 (geolocation to 8th Avenue and West 34th Street). Revised to describe only
 the extracted crop.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** Nighttime photograph of a New York City street
   looking north/northeast, with the Empire State Building prominently
@@ -1796,7 +1796,7 @@ the extracted crop.
   resolution; some illuminated signs on buildings at right appear to have
   text but are not clearly legible
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The Empire State Building is visible in the center background,
   illuminated in warm gold/yellow
@@ -1816,7 +1816,7 @@ the extracted crop.
   legible)
 - FACT: The photo is taken from street level, looking along the avenue
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might read specific street names from signs not legible at
   this resolution
@@ -1841,7 +1841,7 @@ the extracted crop.
   REALITY: It appears to be a large black SUV but the exact make/model is
   not definitively identifiable
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Empire State Building: center background, illuminated gold/yellow, tower
   and spire clearly visible
@@ -1860,7 +1860,7 @@ the extracted crop.
 - Sky: dark/black, no stars (light pollution)
 - Camera position: street level, eye height
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Urban photography, geolocation, landmark recognition
 - **Surrounding document context:** This photo appears in Figure 16 of the
@@ -1880,7 +1880,7 @@ the extracted crop.
   the specific avenue and cross-street requires more detailed spatial
   reasoning about viewing angle, nearby buildings, and street layout.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Empire State Building, New York City, NYC, Manhattan
 - nighttime photography, urban scene, street at night
@@ -1907,7 +1907,7 @@ the extracted crop.
 **Annotation difficulty:** Medium
 **Dimensions:** 1521x2046 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Meme format:** "Running Away Balloon" (also called "Daily Struggle")
   internet meme -- two-panel vertical layout
@@ -1935,7 +1935,7 @@ the extracted crop.
   - "Game at 300 FPS" (yellow balloon, both panels)
   - "75 hz Monitor" (pink figure, bottom panel)
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The meme has two panels stacked vertically
 - FACT: The meme is in the "Running Away Balloon" / "Daily Struggle" format
@@ -1948,7 +1948,7 @@ the extracted crop.
 - FACT: The meme uses a cartoon/stick figure art style with flat colors
 - FACT: The text reads "75 hz" (lowercase "hz"), not "75 Hz"
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might call this the wrong meme format (e.g., "Distracted Boyfriend" or "Drake meme")
   REALITY: This is the "Running Away Balloon" or "Daily Struggle" meme format
@@ -1961,7 +1961,7 @@ the extracted crop.
 - RISK: A model might over-explain the meme with technical details about V-Sync, G-Sync, or frame timing not present in the model response
   REALITY: The model's explanation focuses on the basic Hz vs FPS mismatch
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - "Running Away Balloon" meme format, two vertical panels
 - Yellow balloon: "Game at 300 FPS" (large in top panel, small/distant in
@@ -1979,7 +1979,7 @@ the extracted crop.
   on the characters (only the background has a gradient)
 - Text styling: bold black sans-serif on the colored shapes
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Internet culture, computer gaming, display technology
 - **Surrounding document context:** Figure 17 in the Gemini 1.0 technical
@@ -1999,7 +1999,7 @@ the extracted crop.
   represents), reading embedded text, and applying domain-specific knowledge
   (gaming/display technology) to explain the humor.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, meme understanding, humor explanation
 - FPS, frames per second, Hz, refresh rate, monitor
@@ -2025,7 +2025,7 @@ the extracted crop.
 **Annotation difficulty:** Medium
 **Dimensions:** 493x512 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Components/nodes:** Blue circular icons with face silhouettes representing
   family members across 3 generations (11 total nodes):
@@ -2064,7 +2064,7 @@ the extracted crop.
   - Paternal grandparents on the left, maternal grandparents on the right
   - Light gray background for the overall diagram
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The title reads "The Basic Chinese Family Tree"
 - FACT: There are 3 generational rows: grandparents, parents, children
@@ -2085,7 +2085,7 @@ the extracted crop.
 - FACT: The diagram has a light gray background
 - FACT: Connecting lines are light blue
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might confuse paternal and maternal grandparent labels (e.g., assigning "yeye" to the maternal side)
   REALITY: Yeye and nainai are paternal; waigong and waipo are maternal
@@ -2103,7 +2103,7 @@ the extracted crop.
   by hairstyle and accessories within the icons, not by circle color. Only
   "wo" has a red/coral border instead of blue.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title: "The Basic Chinese Family Tree" at top of diagram
 - 3 generational tiers with 11 total family member nodes
@@ -2126,7 +2126,7 @@ the extracted crop.
 - Light gray diagram background
 - Small image dimensions (493x512 pixels) -- compact diagram
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Chinese language, family terminology, cultural knowledge
 - **Surrounding document context:** Figure 18 in the Gemini report,
@@ -2146,7 +2146,7 @@ the extracted crop.
   understand the Chinese terms, and map them to the correct familial
   relationships.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, Chinese family tree, family terminology
 - yeye, nainai, waigong, waipo, baba, mama
@@ -2173,7 +2173,7 @@ the extracted crop.
 **Annotation difficulty:** Medium
 **Dimensions:** 512x271 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Layout:** A rendered webpage mockup of a search engine called "Opossum
   Search," displayed as a browser-like view with no visible browser chrome
@@ -2198,7 +2198,7 @@ the extracted crop.
 - **Image quality:** 512x271 pixels -- moderate resolution; the opossum
   photo is small but identifiable; text is legible
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The page title reads "Opossum Search"
 - FACT: A small photo of an opossum is centered below the title
@@ -2210,7 +2210,7 @@ the extracted crop.
 - FACT: The search area has a white/light background
 - FACT: The image is 512x271 pixels
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe this as an actual website screenshot
   REALITY: This is a rendered mockup generated from code (shown in the
@@ -2228,7 +2228,7 @@ the extracted crop.
   "Search"
   REALITY: The full text reads "Powered by Google Search"
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Page title: "Opossum Search" (large, white, centered)
 - Opossum photo: small thumbnail, white/light-colored animal on white
@@ -2243,7 +2243,7 @@ the extracted crop.
 - Image dimensions: 512x271 pixels
 - No browser chrome visible (no URL bar, tabs, or window controls)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Web development, code generation, UI rendering
 - **Surrounding document context:** This rendered page appears in Figure 19
@@ -2260,7 +2260,7 @@ the extracted crop.
   prompt into a working webpage with correct layout, styling, and embedded
   media. Tests code generation + visual design + brand theming capabilities.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Opossum Search, search engine, website mockup
 - rendered code, HTML, CSS, web page
@@ -2286,7 +2286,7 @@ the extracted crop.
 **Annotation difficulty:** Easy
 **Dimensions:** 512x327 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Single matplotlib line plot on white background
 - **Curve:** One blue line (default matplotlib blue) showing the function
@@ -2303,7 +2303,7 @@ the extracted crop.
 - **Background:** White plot area, no grid lines
 - **No title, no legend, no annotations**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There is exactly one data series (one blue line)
 - FACT: The x-axis spans from 0 to 10 with ticks at even integers
@@ -2316,7 +2316,7 @@ the extracted crop.
 - FACT: The plot uses a white background with a box frame
 - FACT: Y-axis tick labels include 0, 5000, 10000, 15000, 20000
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: "The chart shows an exponential function" -- REALITY: It shows
   1000*sin(x) + exp(x), a combined function. The sinusoidal component is
@@ -2332,7 +2332,7 @@ the extracted crop.
 - RISK: Adding grid lines that don't exist -- REALITY: White background, no
   grid
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Single blue line (matplotlib default color #1f77b4)
 - Local peak near x~1.5-2 reaching approximately 1000
@@ -2346,7 +2346,7 @@ the extracted crop.
 - No axis labels, no title, no legend, no annotations
 - Tick label font: standard matplotlib default (small, black)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is the rendered output of code generated by Gemini in Figure 22. The
 prompt (shown in R23, the 2x2 subplot grid) asks the model to take the
@@ -2363,7 +2363,7 @@ and the dip near x=3*pi/2 (~4.71) should be approximately 1000*(-1) +
 e^4.71 ~ -1000 + 111 ~ -889, which is consistent with the slight dip below
 zero visible in the chart.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - matplotlib, line plot, rendered output, code generation
 - sine function, exponential function, combined function
@@ -2389,7 +2389,7 @@ zero visible in the chart.
 **Annotation difficulty:** Medium
 **Dimensions:** 512x506 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** 2x2 grid of four matplotlib subplots
 - **Panels:**
@@ -2415,7 +2415,7 @@ zero visible in the chart.
   each axis
 - **Background:** White background for all four panels
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The image contains exactly 4 subplots in a 2x2 grid
 - FACT: The top-left subplot shows a sine wave
@@ -2431,7 +2431,7 @@ zero visible in the chart.
 - FACT: All 2D curves are rendered as solid blue lines
 - FACT: No subplot titles or axis labels are present -- only tick values
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might confuse which function is in which subplot position
   REALITY: Sine is top-left, tangent is top-right, exponential is bottom-left,
@@ -2452,7 +2452,7 @@ zero visible in the chart.
   REALITY: 4 vertical asymptotes are visible (approximately at x ~ 1.6, 4.7,
   7.9, and near x ~ 10)
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 2x2 matplotlib subplot grid, 512x506 pixels total
 - Subplot positions: sine (top-left), tangent (top-right), exponential
@@ -2472,7 +2472,7 @@ zero visible in the chart.
 - No titles, no axis labels, no legends -- purely numeric tick annotations
 - White panel backgrounds, thin black borders, white gutters between panels
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Mathematical functions, data visualization, matplotlib plotting
 - **Surrounding document context:** Figure 22 in the Gemini 1.0 technical
@@ -2494,7 +2494,7 @@ zero visible in the chart.
   or titles provide hints). The absence of axis labels makes this a pure visual
   identification task.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - matplotlib, subplot, 2x2 grid, Python plotting
 - sine wave, tangent function, exponential curve, 3D surface plot
@@ -2520,7 +2520,7 @@ zero visible in the chart.
 **Annotation difficulty:** Easy
 **Dimensions:** 480x270 pixels (estimated from plan; small video frame)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** A person seen from behind, standing on a green grass
   field, facing a soccer goal several meters away
@@ -2539,7 +2539,7 @@ zero visible in the chart.
 - **Lighting:** Daylight, sun appears to be coming from the left/behind the
   camera, casting soft shadows on the grass
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The person is seen from behind (back to camera)
 - FACT: They are wearing a dark patterned/camouflage long-sleeve top
@@ -2550,7 +2550,7 @@ zero visible in the chart.
 - FACT: The person is standing upright, not yet in a kicking motion
 - FACT: A dark figure (goalkeeper) is visible near the goal
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe the person as wearing a specific team jersey
   or identify a team logo
@@ -2566,7 +2566,7 @@ zero visible in the chart.
   REALITY: The goalkeeper is a small dark figure; details like clothing or
   posture are not clearly resolvable
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Small video frame (480x270) -- limited detail resolution
 - Person facing away from camera, center-left of frame
@@ -2579,7 +2579,7 @@ zero visible in the chart.
 - This is the "before" frame in the penalty kick sequence -- establishes
   the scene and spatial relationships
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Sports (soccer/football), video understanding
 - **Surrounding document context:** Frame 1 of 4 from Figure 23 in the Gemini
@@ -2597,7 +2597,7 @@ zero visible in the chart.
   describes just this frame (person standing, ball on ground, facing goal)
   without bleeding in action from later frames.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - soccer, football, penalty kick, video frame
 - Gemini, video understanding, sports analysis
@@ -2622,7 +2622,7 @@ zero visible in the chart.
 **Annotation difficulty:** Easy
 **Dimensions:** 480x270 pixels (estimated; small video frame)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** The same person from R25, now in mid-stride approaching
   the ball -- body angled forward, one leg forward in a walking/jogging step
@@ -2639,7 +2639,7 @@ zero visible in the chart.
   than in R25); clear sky
 - **Lighting:** Same daylight conditions as R25
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The person is in mid-stride, moving toward the ball (approach phase)
 - FACT: The camera angle has shifted from R25 -- more front-left view instead
@@ -2651,7 +2651,7 @@ zero visible in the chart.
   background
 - FACT: The goal and goalkeeper are still visible
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe the person as kicking the ball
   REALITY: They are still approaching -- in mid-stride, not at the ball yet
@@ -2666,7 +2666,7 @@ zero visible in the chart.
   REALITY: The frame is approximately 480x270 pixels -- fine details are not
   discernible
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Small video frame (480x270) -- limited detail resolution
 - Person now center-left of frame, viewed from front-left angle
@@ -2682,7 +2682,7 @@ zero visible in the chart.
 - This is the "approach" frame -- the person is moving toward the ball to
   begin the kick
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Sports (soccer/football), video understanding
 - **Surrounding document context:** Frame 2 of 4 from Figure 23 in the Gemini
@@ -2697,7 +2697,7 @@ zero visible in the chart.
   technique. Annotation should describe the body posture and forward motion
   without importing details from the setup (R25) or kick (R27-R28) frames.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - soccer, football, penalty kick, approach, run-up
 - Gemini, video understanding, sports technique
@@ -2721,7 +2721,7 @@ zero visible in the chart.
 **Annotation difficulty:** Easy
 **Dimensions:** 480x270 pixels (estimated; small video frame)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** The person is now very close to the ball and the goal,
   in a kicking posture -- body bent forward at the waist, right leg at or near
@@ -2741,7 +2741,7 @@ zero visible in the chart.
 - **Lighting:** Same daylight conditions; brown/bare ground visible on the
   right edge of the field
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The person is in a kicking posture -- bent forward, leg at the ball
 - FACT: The ball is right at the person's feet (not meters away as in R25/R26)
@@ -2751,7 +2751,7 @@ zero visible in the chart.
 - FACT: The goal and a small dark figure (goalkeeper) are visible
 - FACT: A dark object is visible on the far left of the grass
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe the ball as already in flight or in the goal
   REALITY: In this frame, the ball appears to still be at the person's feet
@@ -2767,7 +2767,7 @@ zero visible in the chart.
   REALITY: The goalkeeper is a tiny dark figure; no reaction details are
   resolvable
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Small video frame (480x270) -- limited detail resolution
 - Person now close to the goal, in the act of kicking
@@ -2783,7 +2783,7 @@ zero visible in the chart.
 - This is the "kick" frame -- the moment of ball contact in the penalty kick
   sequence
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Sports (soccer/football), video understanding
 - **Surrounding document context:** Frame 3 of 4 from Figure 23 in the Gemini
@@ -2801,7 +2801,7 @@ zero visible in the chart.
   correctly describing the kicking posture without over-specifying details
   that aren't resolvable at this frame size.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - soccer, football, penalty kick, ball strike, contact
 - Gemini, video understanding, technique analysis
@@ -2826,7 +2826,7 @@ zero visible in the chart.
 **Annotation difficulty:** Easy
 **Dimensions:** 480x270 pixels (estimated; small video frame)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Primary subject:** The person is now past the kicking point, walking or
   jogging forward toward the goal in a relaxed follow-through posture
@@ -2848,7 +2848,7 @@ zero visible in the chart.
   grass, indicating sun from the left
 - **Field condition:** Brown/bare ground visible on the right side of the field
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The person is walking/jogging forward in an upright, relaxed posture
 - FACT: They are past the kicking point -- further up the field than in R27
@@ -2860,7 +2860,7 @@ zero visible in the chart.
 - FACT: The goalkeeper is not clearly visible in this frame
 - FACT: Same dark clothing as all previous frames
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might describe the person as still kicking or in mid-kick
   REALITY: The person is upright and walking forward -- the kick happened in
@@ -2874,7 +2874,7 @@ zero visible in the chart.
   REALITY: The person is simply walking forward in a relaxed post-kick
   stride -- no celebratory gesture is visible
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Small video frame (480x270) -- limited detail resolution
 - Person now between the kicking spot and the goal, walking forward
@@ -2890,7 +2890,7 @@ zero visible in the chart.
 - This is the "follow-through" frame -- the kick is complete and the person
   is in the aftermath
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Sports (soccer/football), video understanding
 - **Surrounding document context:** Frame 4 of 4 from Figure 23 in the Gemini
@@ -2907,7 +2907,7 @@ zero visible in the chart.
   ball near the goal without claiming outcomes (scored/saved) that aren't
   verifiable from the image.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - soccer, football, penalty kick, follow-through, post-kick
 - Gemini, video understanding, technique analysis
@@ -2932,7 +2932,7 @@ zero visible in the chart.
 **Annotation difficulty:** Hard
 **Dimensions:** vector (rendered from PDF page at 2x scale)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Grouped bar chart with 4 bars per group, 6 groups
 - **Y-axis:** "Normalized Performance vs Pro" (rotated label); scale from 0.0
@@ -2957,7 +2957,7 @@ zero visible in the chart.
 - **Background:** White; no gridlines except the dashed reference line at 1.0
 - **Bar style:** Solid fill, no outlines, no value labels on bars
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 6 category groups on the x-axis
 - FACT: There are exactly 4 bars per group (Nano 1, Nano 2, Pro, Ultra)
@@ -2975,7 +2975,7 @@ zero visible in the chart.
 - FACT: The y-axis scale goes from 0.0 to 1.4
 - FACT: The x-axis labels are rotated diagonally
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might invent specific numeric scores (e.g., "Ultra achieves
   1.32 on Math/Science") when only approximate values are readable from bar
@@ -2996,7 +2996,7 @@ zero visible in the chart.
 - RISK: A model might claim Ultra underperforms Pro in some category
   REALITY: Ultra exceeds 1.0 in all 6 categories
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Grouped bar chart: 4 bars x 6 groups = 24 total bars
 - Normalization: all values expressed relative to Pro (= 1.0 baseline)
@@ -3016,7 +3016,7 @@ zero visible in the chart.
 - Running page header with title and two thin rules at top of crop (not part
   of the chart itself)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** AI/ML model benchmarking, large language model evaluation
 - **Surrounding document context:** Figure 3 in the Gemini 1.0 technical
@@ -3039,7 +3039,7 @@ zero visible in the chart.
   High-value for RAG retrieval since users searching for "Gemini model
   comparison" or "Gemini benchmark results" would want this chart.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, model comparison, benchmark, performance
 - Nano 1, Nano 2, Pro, Ultra, model family
@@ -3066,7 +3066,7 @@ zero visible in the chart.
 **Annotation difficulty:** Medium
 **Dimensions:** vector (rendered from PDF page at 2x scale)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Line chart with 2 data series, logarithmic x-axis
 - **Y-axis:** Labeled "NLL" (rotated vertically); no numeric tick values visible
@@ -3092,7 +3092,7 @@ zero visible in the chart.
   function of token index across 32K context length on a held-out set of long
   documents."
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart contains exactly 2 lines (Pro and Ultra)
 - FACT: The y-axis label reads "NLL"
@@ -3111,7 +3111,7 @@ zero visible in the chart.
 - FACT: No numeric values are shown on the y-axis
 - FACT: The figure caption identifies this as "Figure 4"
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might invent specific NLL values (e.g., "NLL starts at 3.2
   and decreases to 1.1") since no y-axis numbers are visible
@@ -3131,7 +3131,7 @@ zero visible in the chart.
   REALITY: No dataset names appear in the chart; only the caption mentions
   "held-out set of long documents"
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Line chart: 2 data series (Pro, Ultra) over a logarithmic x-axis spanning
   4+ orders of magnitude (8 to 32K)
@@ -3151,7 +3151,7 @@ zero visible in the chart.
   16K, 32K)
 - Chart area relatively compact; lines are clearly distinguishable by color
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Language modeling, long-context evaluation, perplexity measurement
 - **Surrounding document context:** Figure 4 in the Gemini 1.0 technical
@@ -3173,7 +3173,7 @@ zero visible in the chart.
   positions, indicating the model benefits from distant context rather than
   plateauing early. This is a key capability claim for the Gemini model family.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, negative log likelihood, NLL, perplexity
 - long context, sequence position, token index, 32K
@@ -3199,7 +3199,7 @@ zero visible in the chart.
 **Annotation difficulty:** Hard
 **Dimensions:** vector
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Components/nodes (7 labeled):**
   1. "Gemini pre-training" -- 4-pointed star icon (teal/cyan), light blue
@@ -3246,7 +3246,7 @@ zero visible in the chart.
 - **Note:** The crop also includes surrounding paragraph text about RLHF
   above the diagram. The diagram itself is the figure content.
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The main pipeline flows left to right: "Gemini pre-training" ->
   "SFT" -> "RLHF" -> "End users"
@@ -3270,7 +3270,7 @@ zero visible in the chart.
   RLHF, Data flywheel, Demonstration data, Feedback data)
 - FACT: Gemini pre-training and End users are outside the dashed region
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might claim the feedback loop goes back to "Gemini pre-training"
   REALITY: The data flywheel feeds back into SFT, not pre-training
@@ -3285,7 +3285,7 @@ zero visible in the chart.
 - RISK: A model might fabricate specific dataset names or training iteration counts
   REALITY: The diagram uses generic labels (Demonstration data, Feedback data) without specific dataset names
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Main pipeline: 4 stages in left-to-right sequence (pre-training, SFT,
   RLHF, End users)
@@ -3305,7 +3305,7 @@ zero visible in the chart.
 - Figure caption: "Figure 7 | Modeling overview."
 - The diagram is a vector graphic (rendered from page, not rasterized)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Machine learning training pipelines, RLHF, model alignment
 - **Surrounding document context:** Figure 7 in the Gemini report, appearing in
@@ -3325,7 +3325,7 @@ zero visible in the chart.
   continuously improved through user feedback. The flywheel concept is central
   to understanding how deployed models get better over time.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, post-training, data flywheel
 - SFT, supervised fine-tuning, RLHF
@@ -3352,7 +3352,7 @@ zero visible in the chart.
 **Annotation difficulty:** Medium
 **Dimensions:** vector
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Components/nodes (4 process boxes + 1 decision diamond):**
   1. "Prompt" (starting node, left side)
@@ -3388,7 +3388,7 @@ zero visible in the chart.
   Gemini Apps models below the diagram. The diagram itself is the figure
   content.
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The diagram starts with "Prompt" on the left
 - FACT: The diagram ends with "Respond" on the right (for the NO path)
@@ -3407,7 +3407,7 @@ zero visible in the chart.
 - FACT: The figure caption reads "Figure 8 | A Gemini tool-use control
   loop."
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might claim there are multiple decision points or nested conditionals
   REALITY: There is exactly one decision diamond in the entire diagram
@@ -3420,7 +3420,7 @@ zero visible in the chart.
 - RISK: A model might claim the "Respond" node feeds back into "Prompt"
   REALITY: "Respond" is a terminal node with no outgoing connections
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 5 total nodes: Prompt, Sample from LLM, decision diamond, Put execution
   result back in context, Respond
@@ -3439,7 +3439,7 @@ zero visible in the chart.
 - Color coding: green = continue/yes, red = stop/no
 - Figure caption: "Figure 8 | A Gemini tool-use control loop."
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** LLM tool use, function calling, agent architectures
 - **Surrounding document context:** Figure 8 in the Gemini report, appearing in
@@ -3456,7 +3456,7 @@ zero visible in the chart.
   loop) is the standard architecture for LLM agents and establishes how Gemini
   integrates external tools.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, tool use, function calling, control loop
 - LLM agent, tool code block, execution
@@ -3482,7 +3482,7 @@ zero visible in the chart.
 **Annotation difficulty:** Medium
 **Dimensions:** vector (rendered from PDF page at 2x scale)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Grouped bar chart with 2 bars per group, 3 groups
 - **Y-axis:** Labeled "MMLU accuracy (test split)" (rotated vertically); scale
@@ -3507,7 +3507,7 @@ zero visible in the chart.
 - **Figure caption (below chart):** "Figure 9 | Chain-of-Thought with
   uncertainty routing on MMLU."
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 3 evaluation conditions on the x-axis
 - FACT: There are exactly 2 bars per group (GPT-4 and Gemini Ultra)
@@ -3529,7 +3529,7 @@ zero visible in the chart.
 - FACT: Gemini Ultra leads GPT-4 in Uncertainty-Routed by 2.75 points
   (90.04 vs 87.29)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might round or misquote the exact bar values (e.g., "84.2"
   instead of "84.21" or "90.0" instead of "90.04")
@@ -3554,7 +3554,7 @@ zero visible in the chart.
   REALITY: These are two distinct conditions; GPT-4's identical scores
   reflect that uncertainty routing only changes Gemini Ultra's behavior
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Grouped bar chart: 2 models x 3 conditions = 6 total bars
 - All 6 bars have explicit numeric value labels above them (2 decimal places)
@@ -3576,7 +3576,7 @@ zero visible in the chart.
 - X-axis labels for the third category wrap to two lines:
   "Chain-of-Thought@32" on line 1, "(Uncertainty-Routed)" on line 2
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** AI/ML benchmarking, chain-of-thought prompting, uncertainty
   estimation, MMLU evaluation
@@ -3601,7 +3601,7 @@ zero visible in the chart.
   uncertainty routing, GPT-4 actually leads. This nuance is critical for
   accurate annotation.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini Ultra, GPT-4, MMLU, benchmark comparison
 - chain-of-thought, uncertainty routing, majority voting
@@ -3627,7 +3627,7 @@ zero visible in the chart.
 **Annotation difficulty:** Hard
 **Dimensions:** vector (rendered from PDF page at 2x scale)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Layout:** Two-panel composite figure with distinct sections separated by
   dark gray header bars with white text
@@ -3669,7 +3669,7 @@ zero visible in the chart.
   markdown table (shown correctly rendered)."
 - **Source line:** "Source: Our World In Data (Ritchie et al., 2023)."
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart title is "Share of plastic waste that is recycled, landfilled, incinerated and mismanaged, 2019"
 - FACT: Data is attributed to "Our World in Data" and sourced from "OECD (2023)"
@@ -3688,7 +3688,7 @@ zero visible in the chart.
 - FACT: The data year is 2019
 - FACT: The prompt asks to "spot a data point that stands out" and produce a "detailed markdown table"
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might add regions not shown (e.g., "Africa" or "South America")
   REALITY: Only 4 regions are shown: World, United States, Europe, and Asia excl. China and India
@@ -3703,7 +3703,7 @@ zero visible in the chart.
 - RISK: A model might state Europe has the highest recycling rate when it shows 12%
   REALITY: Europe does have the highest recycling rate among the 4 regions (12%), but a model should not overstate this without noting it is still relatively low
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Two-panel composite: Prompt section (chart + instruction) and Model Response
   section (text analysis + rendered table)
@@ -3732,7 +3732,7 @@ zero visible in the chart.
   task as multimodal chart understanding
 - Additional source line: "Source: Our World In Data (Ritchie et al., 2023)."
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Environmental science, waste management, data visualization
 - **Surrounding document context:** Figure 10 in the Gemini report,
@@ -3753,7 +3753,7 @@ zero visible in the chart.
   combines visual data extraction, analytical reasoning, and structured output
   generation.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, chart understanding, data extraction
 - plastic waste, recycling, landfill, incineration, mismanaged
@@ -3781,7 +3781,7 @@ zero visible in the chart.
 **Annotation difficulty:** Hard
 **Dimensions:** vector (rendered from PDF page at 2x scale)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Layout:** Two-panel figure with dark gray header bars (white text) framing
   each section; thin black borders around both panels
@@ -3807,7 +3807,7 @@ zero visible in the chart.
   and correctly defined LaTeX equations."
 - **Source line:** "Source: question is provided by Macmillan Learning."
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The prompt asks to find the derivative of sinh x + cosh y = x + y
 - FACT: The solution uses implicit differentiation
@@ -3822,7 +3822,7 @@ zero visible in the chart.
 - FACT: The source is attributed to Macmillan Learning
 - FACT: The figure is labeled Figure 20
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might misquote the derivative identities (e.g., d/dx sinh x =
   sinh x instead of cosh x)
@@ -3843,7 +3843,7 @@ zero visible in the chart.
   REALITY: The problem explicitly uses hyperbolic functions (sinh, cosh), not
   trigonometric functions (sin, cos)
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Two-panel prompt-response figure for a calculus problem
 - Prompt: single equation involving hyperbolic functions sinh and cosh
@@ -3864,7 +3864,7 @@ zero visible in the chart.
 - Figure caption explicitly notes "correctly defined LaTeX equations" as a
   quality indicator
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Mathematics, calculus, implicit differentiation
 - **Surrounding document context:** Figure 20 in the Gemini 1.0 technical
@@ -3885,7 +3885,7 @@ zero visible in the chart.
   names, and mathematical operations without introducing errors in signs,
   functions, or notation.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, calculus, implicit differentiation, derivative
 - sinh, cosh, hyperbolic functions, chain rule
@@ -3911,7 +3911,7 @@ zero visible in the chart.
 **Annotation difficulty:** Hard
 **Dimensions:** vector (rendered from PDF page at 2x scale)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Layout:** Two-panel figure with dark gray header bars (white text); thin
   black borders around both panels
@@ -3947,7 +3947,7 @@ zero visible in the chart.
   the numbers come from and answer the question given in the task."
 - **Source line:** "Source: Oktatasi Hivatal (2023, p. 20)"
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: Factory A starts at 500 million forints in 2018
 - FACT: Factory B starts at 400 million forints in 2018
@@ -3966,7 +3966,7 @@ zero visible in the chart.
 - FACT: The figure is labeled Figure 21
 - FACT: The source is Oktatasi Hivatal (2023, p. 20)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might misquote the percentage growth rates (e.g., 6% for A
   and 5% for B, reversed)
@@ -3988,7 +3988,7 @@ zero visible in the chart.
   filled
   REALITY: The prompt table has only 2018 values; 2019-2021 cells are empty
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Two-panel prompt-response figure for a multi-step math word problem
 - Prompt: compound growth word problem with two factories, two growth rates,
@@ -4009,7 +4009,7 @@ zero visible in the chart.
 - Currency: forints (Hungarian), measured in millions
 - Context mentions "economy website" and "comment section" debate
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Mathematics, compound growth, economics word problem
 - **Surrounding document context:** Figure 21 in the Gemini 1.0 technical
@@ -4030,7 +4030,7 @@ zero visible in the chart.
   logical structure of the argument. The model's addition of the Difference
   column (not in the prompt) shows initiative beyond the literal instruction.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini, multi-step reasoning, math problem, word problem
 - compound growth, percentage increase, factory production

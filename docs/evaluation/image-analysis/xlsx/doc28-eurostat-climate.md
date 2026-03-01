@@ -28,7 +28,7 @@ markers in the truncated region. Legend text for the first two series is also
 truncated. European comma decimal notation is used throughout (e.g., ",100"
 means 100).
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Line chart with 4 data series
 - **Title:** "Greenhouse gas emissions, EU, 1990-2020 (index 1990 = 100)"
@@ -62,7 +62,7 @@ means 100).
 - **Chart border:** Thin line enclosing the plot area
 - **Background:** White
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart title reads "Greenhouse gas emissions, EU, 1990-2020
   (index 1990 = 100)"
@@ -86,7 +86,7 @@ means 100).
   diamond markers
 - FACT: The source is attributed to "EEA, republished by Eurostat"
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Reporting specific index values for the target lines (e.g., "Target
   for 2020 = 80")
@@ -112,7 +112,7 @@ means 100).
   REALITY: Target lines are likely single points or short segments positioned
   at their respective target years
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Full chart title text (two lines): "Greenhouse gas emissions, EU, 1990-2020"
   and "(index 1990 = 100)"
@@ -133,7 +133,7 @@ means 100).
 - White chart background
 - Right-side truncation at page boundary (~2015-2020 region missing)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart is Figure 1 from the Eurostat "Climate change - driving forces
 2022" statistical workbook. It tracks EU greenhouse gas (GHG) emissions as an
@@ -152,7 +152,7 @@ Including LULUCF typically lowers the net emissions figure because forests
 absorb CO2. The visible dip around 2009 corresponds to the global financial
 crisis reducing industrial output.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 greenhouse gas emissions, GHG, EU, index 1990=100, LULUCF, climate change,
 Eurostat, EEA, line chart, emissions target, 2020 target, 2030 target,
@@ -181,7 +181,7 @@ European Green Deal, net emissions, driving forces, env_air_gge
 (full text: "fugitive emissions", percentage shows only "1..."). The full
 sector names are confirmed from the data table on the same rendered page.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Pie-of-pie chart (main pie with a secondary "drill-down" pie
   connected by lines)
@@ -213,7 +213,7 @@ sector names are confirmed from the data table on the same rendered page.
 - **Background:** White
 - **No legend** -- all labels are directly on or adjacent to slices
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart is a pie-of-pie (two connected pie charts)
 - FACT: The main pie has 9 labeled sectors
@@ -230,7 +230,7 @@ sector names are confirmed from the data table on the same rendered page.
 - FACT: Labels are placed directly on/adjacent to slices (no separate legend)
 - FACT: The data code is env_air_gge
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Fabricating the truncated percentage for "Manufacturing industries
   and construction"
@@ -253,7 +253,7 @@ sector names are confirmed from the data table on the same rendered page.
   REALITY: The connecting lines between pies are small and the wedge they
   delimit is not precisely clear
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title text (truncated): "...ssions by source sector, EU, 2020"
 - 9 sector names with their full text from data table: Energy industries,
@@ -274,7 +274,7 @@ sector names are confirmed from the data table on the same rendered page.
 - No separate legend -- direct labeling only
 - Page boundary truncation affects right-side labels
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is Figure 4 from Eurostat's "Climate change - driving forces 2022"
 workbook. It shows the breakdown of EU greenhouse gas emissions by IPCC source
@@ -292,7 +292,7 @@ Transport and energy industries are nearly equal as the top two sectors (~23%
 each), together accounting for almost half of EU emissions. IPCC = the
 Intergovernmental Panel on Climate Change source categorization framework.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 greenhouse gas emissions, GHG by source sector, EU 2020, pie-of-pie chart,
 fuel combustion, energy industries, transport, manufacturing, agriculture,
@@ -327,7 +327,7 @@ the adjacent rendered page confirms the sector mapping: 1 = Energy industries,
 2 = Manufacturing industries and construction, 3 = Households/commerce/
 institutions/others, 4 = Transport (including international aviation).
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Combo chart with vertical bars and diamond markers (2 visual
   encodings: bars for absolute change, markers likely for % change)
@@ -384,7 +384,7 @@ institutions/others, 4 = Transport (including international aviation).
 - **Background:** White
 - **Chart border:** Thin line enclosing the plot area
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart title includes "Greenhouse gas emissions by source sector, EU
   change from 1990 to 2020 (million tonnes of CO2 equivalent and % change"
@@ -405,7 +405,7 @@ institutions/others, 4 = Transport (including international aviation).
   env_air_gge)"
 - FACT: No secondary y-axis is visible on the right side of the chart
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating specific sector names for bars 1-4 (e.g., "Energy industries",
   "Manufacturing")
@@ -438,7 +438,7 @@ institutions/others, 4 = Transport (including international aviation).
   categories. The "4 series" label in the catalog may refer to categories, not
   data series
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title text across 3 lines (third line truncated at closing parenthesis)
 - Sheet navigation label with yellow arrow icon
@@ -459,7 +459,7 @@ institutions/others, 4 = Transport (including international aviation).
 - No data labels on bars or markers
 - No visible area fill or line connecting diamond markers
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart is Figure 5 from Eurostat's "Climate change - driving forces 2022"
 workbook. It shows the absolute change in greenhouse gas emissions by IPCC source
@@ -487,7 +487,7 @@ distinction between combustion-related emissions (burning fossil fuels) and
 process emissions (e.g., cement production, agricultural methane) -- a key
 analytical distinction in climate policy.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 greenhouse gas emissions, GHG by source sector, EU, change 1990-2020, absolute
 change, percentage change, million tonnes CO2 equivalent, energy industries,
@@ -523,7 +523,7 @@ Solar photovoltaic at 0 in 1990, growing in later years. The note below the
 chart identifies the "Other" category as: geothermal, solar thermal, tide, wave,
 ocean, liquid biofuels and ambient air.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Stacked area chart with multiple colored area layers
 - **Title (3 lines, centered, bold, truncated at right):**
@@ -574,7 +574,7 @@ ocean, liquid biofuels and ambient air.
 - **Background:** White
 - **Chart border:** Thin line enclosing the plot area
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart is a stacked area chart with multiple colored layers
 - FACT: The title begins "Gross electricity and heat production from renewa..."
@@ -601,7 +601,7 @@ ocean, liquid biofuels and ambient air.
 - FACT: The right portion of the chart (~2006-2020) is truncated by the page
   boundary
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating the chart covers data through 2020 (as the title suggests)
   REALITY: Only data through approximately 2005 is visible. The final 15 years
@@ -630,7 +630,7 @@ ocean, liquid biofuels and ambient air.
   precipitation) but has a slight overall upward trend. It appears relatively
   flat compared to the growing renewable sources, but is not constant
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title text across 3 lines (all partially truncated at right edge)
 - Sheet navigation label with yellow arrow: full title visible
@@ -652,7 +652,7 @@ ocean, liquid biofuels and ambient air.
 - Right-side page boundary truncation: ~15 years of data cut off
 - White background, thin chart border
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart is Figure 8 from Eurostat's "Climate change - driving forces 2022"
 workbook. It shows gross electricity and heat production from renewable and
@@ -680,7 +680,7 @@ changes in the EU renewable energy mix occurred after 2005 (the latest visible
 year), with wind and solar capacity expanding enormously under the EU Renewable
 Energy Directive.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 electricity heat production, renewables, biofuels, EU 1990-2020, stacked area
 chart, hydropower, wind energy, solar photovoltaic, primary solid biofuels,
@@ -704,7 +704,7 @@ forces, renewable energy mix, energy transition
 **Content type:** chart-complex
 **Annotation difficulty:** Hard
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Stacked area chart with 6 area series and 1 overlaid line
   (combo area+line)
@@ -758,7 +758,7 @@ forces, renewable energy mix, energy transition
   CO2 equivalent)" with row headers: "Land use, land use change, and
   forestry (LULUCF)" and "Forest land" visible before the crop ends
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart is a stacked area chart with at least one overlaid line
 - FACT: The title begins "Greenhouse gas emissions from LULUCF (Land use,
@@ -785,7 +785,7 @@ forces, renewable energy mix, energy transition
   throughout the visible period
 - FACT: The Cropland band is the only series with values above 0 (net source)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating the x-axis extends to 2020
   REALITY: Only 1990-2007 are visible in the crop; the right portion
@@ -812,7 +812,7 @@ forces, renewable energy mix, energy transition
   distinguish. Only Forest land (teal) and Cropland (dark blue) are clearly
   separable areas
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title text: "Greenhouse gas emissions from LULUCF (Land use, land use
   c..." (truncated, black, bold, sans-serif)
@@ -840,7 +840,7 @@ forces, renewable energy mix, energy transition
 - Right-side truncation: ~40% of time series missing (2008-2020), plus 2+
   legend entries and full title/subtitle text
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart appears on the Fig19 sheet of the Eurostat "Climate change --
 driving forces" statistical annex. It shows greenhouse gas emissions and
@@ -869,7 +869,7 @@ impactful because the EU's LULUCF sink has been declining in recent years
 due to aging forests, increased harvesting, and natural disturbances -- a
 trend that would be visible in the missing portion.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 LULUCF, land use land use change forestry, greenhouse gas emissions,
 carbon sink, forest land, cropland, stacked area chart, EU emissions,
@@ -893,7 +893,7 @@ forces, carbon removals, net sink
 **Content type:** chart-simple
 **Annotation difficulty:** Easy
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Pie chart with 4 slices and direct labels (no legend)
 - **Title:** "Greenhouse gas emissions by gas type in CO..." (truncated at
@@ -919,7 +919,7 @@ forces, carbon removals, net sink
 - **Background:** White
 - **No legend, no border around the pie, no 3D effects**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart is a 2D pie chart with exactly 4 slices
 - FACT: The title begins "Greenhouse gas emissions by gas type in CO..."
@@ -940,7 +940,7 @@ forces, carbon removals, net sink
 - FACT: The source is "EEA, republished by Eurostat (online data code:
   env_air_gge)"
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating the CO2 percentage as "80%" from the chart
   REALITY: The CO2 slice label is truncated and its percentage is not visible
@@ -961,7 +961,7 @@ forces, carbon removals, net sink
   REALITY: The N2O slice is a lighter shade of cyan/mint, distinct from the
   darker teal of the CO2 slice
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Chart title: "Greenhouse gas emissions by gas type in CO..." (truncated,
   bold, black, centered, wraps to 2 lines)
@@ -984,7 +984,7 @@ forces, carbon removals, net sink
 - White background, no gridlines, no axis, no border
 - Right-side truncation: CO2 label and title text cut off
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart appears on the Fig23 sheet of the Eurostat "Climate change --
 driving forces" statistical annex. It shows the breakdown of EU greenhouse
@@ -1008,7 +1008,7 @@ N2O from 7% to 6%; F gases increased from 1% to 3%).
 The note in the data table states: "Including international aviation and
 indirect CO2, excluding LULUCF and memo items."
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 greenhouse gas emissions, gas type, CO2 equivalents, pie chart, carbon
 dioxide, methane, nitrous oxide, fluorinated gases, F gases, EU emissions,

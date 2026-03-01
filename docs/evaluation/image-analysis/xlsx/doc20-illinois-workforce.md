@@ -23,7 +23,7 @@ rendered chart is a stacked bar chart with 4 legend entries and 4 x-axis
 categories. The "12 series" likely refers to XML chart series definitions in
 the XLSX, not visually distinct data series.
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Stacked bar chart with 4 categories and 4 data series
 - **Title:** "Obligations, Accrual & Expense Breakdown"
@@ -53,7 +53,7 @@ the XLSX, not visually distinct data series.
   bottom, yellow middle, blue top) with percentage labels on each segment
 - All percentage labels are placed inside or adjacent to their segment
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart title reads "Obligations, Accrual & Expense Breakdown"
 - FACT: There are exactly 4 x-axis categories: Required, Adult, Dislocated
@@ -71,7 +71,7 @@ the XLSX, not visually distinct data series.
 - FACT: Adult and Dislocated Worker share the same Expense Actual % value
   (22%)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Calling this a "grouped bar chart" (as the catalog does)
   REALITY: This is a stacked bar chart -- segments are stacked vertically
@@ -94,7 +94,7 @@ the XLSX, not visually distinct data series.
   Required has an Obligations Actual % segment)
   REALITY: Only labeled segments are visible; Required shows only 80% navy
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Chart title text: "Obligations, Accrual & Expense Breakdown"
 - All 4 legend entries with exact text and color descriptions
@@ -107,7 +107,7 @@ the XLSX, not visually distinct data series.
 - White background
 - The approximate total heights of each stacked bar
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart appears on the dashboard sheet of an Illinois WorkNet WIOA
 (Workforce Innovation and Opportunity Act) formula grant budget template. It
@@ -124,7 +124,7 @@ WIOA is the primary federal workforce development law in the United States,
 funding job training, education, and employment services through state and
 local boards.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 WIOA, Workforce Innovation and Opportunity Act, Illinois WorkNet, obligations,
 accruals, expenses, formula grant, budget dashboard, stacked bar chart, Adult
@@ -147,7 +147,7 @@ board, financial breakdown
 **Content type:** chart-simple
 **Annotation difficulty:** Easy
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Pie chart with 5 segments
 - **Title (two lines):** "Total WIOA Formula Grant Budget" / "(Amounts in
@@ -175,7 +175,7 @@ the chart on the dashboard shows dollar amounts: Admin $900, Youth In School
 $375, Youth Out of School $2,370, Adult $1,740, Dislocated Worker $2,335,
 Total $7,720. This table is NOT part of the chart object itself.
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart title reads "Total WIOA Formula Grant Budget (Amounts in
   Thousands)"
@@ -192,7 +192,7 @@ Total $7,720. This table is NOT part of the chart object itself.
   equal, together comprising 61% of the budget
 - FACT: There is no separate legend box; labels are on/near each segment
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Claiming the percentages sum to exactly 100%
   REALITY: They sum to 101% due to rounding (each individual percentage is
@@ -213,7 +213,7 @@ Total $7,720. This table is NOT part of the chart object itself.
   "Overhead")
   REALITY: Exactly 5 segments are shown
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Full two-line title text
 - All 5 segment names and percentages
@@ -226,7 +226,7 @@ Total $7,720. This table is NOT part of the chart object itself.
 - White background
 - Clockwise ordering from Admin at ~12 o'clock
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This pie chart shows the budget allocation for a WIOA (Workforce Innovation
 and Opportunity Act) formula grant administered by the Illinois Workforce
@@ -243,7 +243,7 @@ The dashboard is a template for local workforce boards to report to the state
 on their WIOA formula grant spending. Data is reported as of 3/31/2021 for
 a 2-year grant period from 7/1/2020 to 6/30/2022.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 WIOA, Workforce Innovation and Opportunity Act, formula grant, budget
 allocation, pie chart, Illinois WorkNet, Admin, Youth In School, Youth Out
@@ -266,7 +266,7 @@ grant budget breakdown
 **Content type:** chart-simple
 **Annotation difficulty:** Easy
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Grouped bar chart with 3 categories and 4 data series
 - **Title:** "DIRECT TRAINING" (all caps, bold, centered at top)
@@ -301,7 +301,7 @@ grant budget breakdown
 - All data labels appear above their respective bars
 - All three Required bars are identical at 50%
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The chart title reads "DIRECT TRAINING" in all caps
 - FACT: There are exactly 3 x-axis categories
@@ -316,7 +316,7 @@ grant budget breakdown
 - FACT: The legend contains exactly 4 entries
 - FACT: The actual percentages are very close together (61.0%, 60.8%, 60.9%)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Claiming the y-axis starts at 0%
   REALITY: The y-axis starts at 20%, exaggerating the visual difference
@@ -333,7 +333,7 @@ grant budget breakdown
   REALITY: Combined (60.9%) is between Adult (61.0%) and DW (60.8%), which
   is consistent with a weighted average, but the chart does not state this
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Chart title text and style (all caps, bold)
 - All 3 category labels including the two-line wrap on the third
@@ -348,7 +348,7 @@ grant budget breakdown
 - Chart border style
 - 2 bars per category layout
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart appears in the Direct Training section of the Illinois WorkNet
 WIOA dashboard. WIOA requires that by June 30, at least 50% of the combined
@@ -363,7 +363,7 @@ training expenditure mandate.
 Direct Training refers to training services provided directly to participants,
 as opposed to supportive services, administrative costs, or case management.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 WIOA, direct training, workforce board, required percentage, Adult program,
 Dislocated Worker, combined expenditure, grouped bar chart, training

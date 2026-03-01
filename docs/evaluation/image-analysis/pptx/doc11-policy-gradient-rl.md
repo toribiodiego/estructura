@@ -18,7 +18,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 **Annotation difficulty:** Medium
 **Dimensions:** 784x307 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Pseudocode algorithm box from a textbook (Sutton & Barto
   style)
@@ -44,7 +44,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
   - Serif font (Computer Modern or similar LaTeX-typeset font)
 - **No line numbers, no color coding, no annotations**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The title reads "Tabular TD(0) for estimating v_pi"
 - FACT: The input is "the policy pi to be evaluated"
@@ -56,7 +56,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 - FACT: S <- S' updates the current state after each step
 - FACT: The algorithm takes action A according to policy pi, not greedily
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Adding a learning rate decay or step-size schedule
   REALITY: The algorithm uses a fixed alpha with no schedule mentioned
@@ -68,7 +68,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 - RISK: Claiming the image includes a convergence proof or guarantee
   REALITY: Only the algorithm pseudocode is shown, no theoretical analysis
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title bar: dark charcoal/gray (#404040 approximate), bold text
 - Body: light gray background with thin border
@@ -81,7 +81,7 @@ methods (REINFORCE, actor-critic), and asynchronous algorithms (A3C).
 - Set notation: S+ (non-terminal states plus terminal)
 - Image dimensions: 784x307 pixels, ~9.5x3.7 in at slide scale
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is the standard tabular TD(0) algorithm from Sutton and Barto's
 "Reinforcement Learning: An Introduction." TD(0) (Temporal-Difference
@@ -100,7 +100,7 @@ Key concepts:
 This appears on slide 36 of a Princeton COS 598F lecture on RL, in the
 section covering temporal-difference methods.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 TD(0), temporal difference, tabular, state-value, V(s), policy evaluation,
 reinforcement learning, Sutton Barto, pseudocode, alpha, gamma, TD error,
@@ -124,7 +124,7 @@ bootstrap, COS 598F, Princeton
 **Annotation difficulty:** Hard
 **Dimensions:** 699x356 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Screenshot of academic paper text (from Mnih et al. 2015,
   the DQN Nature paper) showing the loss function definition and gradient
@@ -157,7 +157,7 @@ bootstrap, COS 598F, Princeton
   subscripts, superscripts, Greek letters
 - **No figures, diagrams, or color** -- purely text and equations
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: Equation (2) defines L_i(theta_i) as the expected squared difference
   between y_i and Q(s, a; theta_i)
@@ -171,7 +171,7 @@ bootstrap, COS 598F, Princeton
 - FACT: The text explicitly states "the targets depend on the network weights"
 - FACT: Equations are numbered (2) and (3)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Confusing theta_i with theta_{i-1} in the target
   REALITY: The target y_i explicitly uses theta_{i-1} (fixed parameters from
@@ -186,7 +186,7 @@ bootstrap, COS 598F, Princeton
   REALITY: The content is recognizably from Mnih et al. 2015 (DQN Nature
   paper) but the paper title and author names are not visible in this crop
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Font: Computer Modern serif (LaTeX), justified paragraphs
 - Equations: centered, numbered at right margin in parentheses
@@ -200,7 +200,7 @@ bootstrap, COS 598F, Princeton
 - Image dimensions: 699x356 px, ~9.4x4.8 in at slide scale
 - Black text on white background, no color
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is from the landmark DQN paper (Mnih et al., "Human-level control
 through deep reinforcement learning," Nature, 2015). The excerpt defines
@@ -221,7 +221,7 @@ the core optimization objective of DQN:
 The bottom paragraph connects this to standard Q-learning by noting that
 SGD with single samples recovers the familiar Q-learning update.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 DQN, Deep Q-Network, loss function, gradient, Q-learning, Mnih, Nature
 2015, behaviour distribution, target network, theta, neural network,
@@ -245,7 +245,7 @@ function approximation, reinforcement learning, experience replay, SGD
 **Annotation difficulty:** Hard
 **Dimensions:** 717x362 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Full algorithm pseudocode box from a paper (Mnih et al.
   2015, DQN Nature paper)
@@ -286,7 +286,7 @@ function approximation, reinforcement learning, experience replay, SGD
 - **No color coding** (except the red box around reference "3")
 - **Black text on white background**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: Title reads "Algorithm 1 Deep Q-learning with Experience Replay"
 - FACT: Replay memory D is initialized to capacity N
@@ -303,7 +303,7 @@ function approximation, reinforcement learning, experience replay, SGD
 - FACT: The gradient step references "equation 3"
 - FACT: Preprocessing function phi is applied to sequences
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Describing a target network (separate theta^- parameters)
   REALITY: This version of the algorithm uses theta for both the Q-network
@@ -318,7 +318,7 @@ function approximation, reinforcement learning, experience replay, SGD
 - RISK: Stating the minibatch size
   REALITY: No specific minibatch size is given in the algorithm
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Algorithm label: "Algorithm 1" in bold
 - Font: Computer Modern serif (LaTeX)
@@ -332,7 +332,7 @@ function approximation, reinforcement learning, experience replay, SGD
 - Black text on white background
 - Image dimensions: 717x362 px, ~9.6x4.8 in
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is Algorithm 1 from Mnih et al. 2015 (the DQN Nature paper), the
 complete Deep Q-learning with Experience Replay algorithm. Key components:
@@ -350,7 +350,7 @@ This is one of the most cited algorithms in deep RL, demonstrating
 human-level Atari game playing. It appears on slide 49 of the Princeton
 COS 598F lecture.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 DQN, Deep Q-learning, experience replay, algorithm, pseudocode, Mnih,
 Nature 2015, epsilon-greedy, replay memory, minibatch, target, gradient
@@ -374,7 +374,7 @@ descent, Atari, reinforcement learning, COS 598F
 **Annotation difficulty:** Hard
 **Dimensions:** 803x482 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Full algorithm pseudocode box from a paper (Mnih et al.
   2016, A3C paper)
@@ -426,7 +426,7 @@ descent, Atari, reinforcement learning, COS 598F
   - Piecewise curly brace for R
 - **Black text on white background, no color**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: Title reads "Algorithm S3 Asynchronous advantage actor-critic"
 - FACT: There are two sets of parameters: global (theta, theta_v) and
@@ -448,7 +448,7 @@ descent, Atari, reinforcement learning, COS 598F
 - FACT: Asynchronous update pushes d_theta and d_theta_v to global parameters
 - FACT: Outer loop terminates when T > T_max
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Confusing A3C with A2C (synchronous version)
   REALITY: This is explicitly "Asynchronous" -- each thread independently
@@ -462,7 +462,7 @@ descent, Atari, reinforcement learning, COS 598F
 - RISK: Confusing the supplementary algorithm number (S3) with Algorithm 3
   REALITY: The label is "S3" (supplementary), not "3" from the main paper
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Algorithm label: "Algorithm S3" in bold (supplementary material)
 - Full title includes "pseudocode for each actor-learner thread"
@@ -479,7 +479,7 @@ descent, Atari, reinforcement learning, COS 598F
 - Serif font (Computer Modern), LaTeX, black on white
 - Image dimensions: 803x482 px, ~9.5x5.7 in
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is Algorithm S3 from the A3C paper (Mnih et al., "Asynchronous Methods
 for Deep Reinforcement Learning," ICML 2016). A3C (Asynchronous Advantage
@@ -500,7 +500,7 @@ with parallelism:
 This appears on slide 79 of the Princeton COS 598F lecture, in the section
 on asynchronous deep RL methods.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 A3C, asynchronous advantage actor-critic, algorithm, pseudocode, Mnih,
 ICML 2016, policy gradient, value function, advantage, n-step return,
@@ -524,7 +524,7 @@ parallel threads, global parameters, reinforcement learning, COS 598F
 **Annotation difficulty:** Easy
 **Dimensions:** 246x70 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Single mathematical equation, standalone
 - **Equation:**
@@ -547,7 +547,7 @@ parallel threads, global parameters, reinforcement learning, COS 598F
   white background
 - **No equation number, no surrounding text, no box or border**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The equation defines pi(a | s, theta) as a softmax over h(s, a,
   theta)
@@ -557,7 +557,7 @@ parallel threads, global parameters, reinforcement learning, COS 598F
 - FACT: h takes three arguments: s, a (or b), and theta
 - FACT: The conditioning bar separates a from s and theta on the left side
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Defining h(s, a, theta) as a specific function (e.g., linear
   theta^T phi(s,a))
@@ -571,7 +571,7 @@ parallel threads, global parameters, reinforcement learning, COS 598F
   image uses the term "softmax" implicitly through its standard form. No
   name is given in the image itself.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Equation layout: fraction with horizontal bar
 - Font: Computer Modern serif (LaTeX)
@@ -584,7 +584,7 @@ parallel threads, global parameters, reinforcement learning, COS 598F
 - No equation number or label
 - Clean rendering, high contrast
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is the softmax (or Gibbs) policy parameterization, a standard approach
 in policy gradient methods. It maps a preference function h(s, a, theta) to
@@ -602,7 +602,7 @@ action probabilities:
 This appears on slide 55 of the Princeton COS 598F lecture, in the section
 on policy gradient methods, before the REINFORCE algorithm.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 softmax policy, policy parameterization, pi(a|s,theta), preference function,
 Gibbs distribution, policy gradient, reinforcement learning, action
@@ -626,7 +626,7 @@ probability, exponential, COS 598F
 **Annotation difficulty:** Medium
 **Dimensions:** 567x131 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Two-line mathematical equation showing the actor-critic
   policy parameter update rule
@@ -654,7 +654,7 @@ probability, exponential, COS 598F
   the score function ratio.
 - **No equation number, no surrounding text**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The equation has two lines, with the second expanding G_t^{(1)}
 - FACT: G_t^{(1)} = R_{t+1} + gamma v_hat(S_{t+1}, w) (one-step return)
@@ -668,7 +668,7 @@ probability, exponential, COS 598F
 - FACT: Uppercase letters S_t, A_t, R_{t+1} denote random variables
 - FACT: v_hat has a hat accent (estimated value, not true value)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Calling this the REINFORCE update
   REALITY: This is specifically the actor-critic update (one-step return with
@@ -684,7 +684,7 @@ probability, exponential, COS 598F
   REALITY: The dot above = indicates an approximate or proportional
   relationship, acknowledging that the update is a stochastic approximation
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Two-line equation aligned on = sign
 - Line 1: theta_{t+1} .= ... with dot-equals notation
@@ -700,7 +700,7 @@ probability, exponential, COS 598F
 - Image: 567x131 px, ~7.9x1.8 in
 - Black on white, no color, no border
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is the one-step actor-critic update rule from Sutton and Barto's
 "Reinforcement Learning: An Introduction." It combines:
@@ -721,7 +721,7 @@ actor-critic methods including A2C/A3C.
 This appears on slide 62 of the Princeton COS 598F lecture, bridging
 REINFORCE and actor-critic methods.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 actor-critic, policy gradient, baseline, advantage, TD error, one-step
 return, score function, nabla log pi, value function, theta update,

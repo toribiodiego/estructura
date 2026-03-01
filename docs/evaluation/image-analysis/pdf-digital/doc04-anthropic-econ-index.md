@@ -19,7 +19,7 @@ implications based on Claude usage data.
 **Dimensions:** vector
 
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Layout:** 4x2 grid of 8 individual area charts sharing the same visual
   design
@@ -52,7 +52,7 @@ implications based on Claude usage data.
 | 8 | Management | 4.5% | 3.1% | 2.7% | 5 | Steep decline |
 
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 8 panels arranged in a 4x2 grid
 - FACT: The overall title reads "Usage share trends across economic index
@@ -76,7 +76,7 @@ implications based on Claude usage data.
 - FACT: The y-axis label on every panel reads "Percentage"
 
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating the panels represent different models or products
   REALITY: All panels show SOC (Standard Occupational Classification) major
@@ -97,7 +97,7 @@ implications based on Claude usage data.
   no legend and no multi-series comparison within panels
 
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - All 8 panel titles (SOC major group names)
 - All 24 data point values (3 per panel)
@@ -113,7 +113,7 @@ implications based on Claude usage data.
 - The V1/V2/V3 reference in the title (corresponding to the 3 time points)
 
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This figure is from the Anthropic Economic Index, an analysis of how
 Claude.ai usage maps to Standard Occupational Classification (SOC) major
@@ -127,7 +127,7 @@ shifting: Educational usage is growing rapidly while Business/Financial,
 Architecture/Engineering, and Management are declining.
 
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 Claude.ai usage, occupation categories, SOC major groups, usage share
 trends, economic index, Anthropic, Computer and Mathematical, Educational
@@ -157,7 +157,7 @@ Note: Catalog says "Top 20 countries horizontal bar chart" but the actual
 figure shows 30 countries as a vertical bar chart. Corrected here.
 
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Vertical bar chart with 30 bars in descending order
 - **Title:** "Top 30 countries by share of global Claude usage"
@@ -206,7 +206,7 @@ figure shows 30 countries as a vertical bar chart. Corrected here.
 | 30 | South Africa | 0.5% |
 
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 30 bars (not 20 as the catalog states)
 - FACT: This is a vertical bar chart, not horizontal
@@ -224,7 +224,7 @@ figure shows 30 countries as a vertical bar chart. Corrected here.
 - FACT: Poland, Taiwan, Pakistan, and Mexico are all tied at 1.0%
 
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Calling this a "horizontal bar chart" (as the catalog does)
   REALITY: It is a vertical bar chart with country names on the x-axis
@@ -243,7 +243,7 @@ figure shows 30 countries as a vertical bar chart. Corrected here.
   REALITY: Caption specifies Claude.ai Free and Pro conversations only
 
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - All 30 country names in rank order
 - All 30 percentage values
@@ -258,7 +258,7 @@ figure shows 30 countries as a vertical bar chart. Corrected here.
   decline)
 
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This figure appears in Chapter 2 ("Claude diffusion across the globe") of
 the Anthropic Economic Index. The surrounding text notes that "the United
@@ -270,7 +270,7 @@ of their population size." The per-capita analysis appears in the next
 figure (Figure 2.2).
 
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 Claude usage by country, global Claude adoption, geographic distribution,
 Anthropic Economic Index, United States India Brazil, top 30 countries,
@@ -297,7 +297,7 @@ country-level AI usage
 **Dimensions:** vector
 
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** World choropleth map with countries colored by tier
 - **Title:** "Anthropic AI Usage Index tiers by country"
@@ -339,7 +339,7 @@ visually prominent gray country. Several other countries also appear gray,
 indicating Claude is not available there.
 
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The legend has exactly 7 categories: Leading, Upper middle, Lower
   middle, Emerging, Minimal, Claude not available, No data
@@ -357,7 +357,7 @@ indicating Claude is not available there.
   countries, with countries in North America, Europe and Oceania leading"
 
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Assigning specific AUI numeric values to countries from the map
   REALITY: The map shows tier categories only, not numeric values; AUI
@@ -380,7 +380,7 @@ indicating Claude is not available there.
   normalized index, not raw usage volume
 
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - All 7 legend categories with their color descriptions
 - The percentile-based tier definitions (top 25%, 50-75%, etc.)
@@ -396,7 +396,7 @@ indicating Claude is not available there.
 - The color gradient scheme from dark orange through tan to gray
 
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This figure appears in Chapter 2 of the Anthropic Economic Index, in the
 section on geographic distribution of Claude usage. The preceding text
@@ -412,7 +412,7 @@ countries, AUI 1.84-7.00), Upper middle (35, 0.89-1.71), Lower middle
 (39, 0.37-0.85), Emerging (53, 0.01-0.36), Minimal (25, 0.00).
 
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 choropleth map, world map, AI Usage Index, Anthropic Economic Index,
 Claude adoption by country, geographic distribution, per capita AI usage,
@@ -439,7 +439,7 @@ working-age capita, AUI tiers
 **Dimensions:** vector
 
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Chart type:** Scatter plot with regression line and color-coded points
 - **Title:** "Income and Anthropic AI Usage Index by country"
@@ -475,7 +475,7 @@ working-age capita, AUI tiers
 - **Highest income (rightmost):** LUX, CHE, NOR, IRL, SGP
 
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The title reads "Income and Anthropic AI Usage Index by country"
 - FACT: beta = 0.690 with p < 0.001
@@ -494,7 +494,7 @@ working-age capita, AUI tiers
   Claude usage per capita
 
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Reporting precise x,y coordinate values for specific countries
   REALITY: The log-scale axes and dense point clustering make precise
@@ -519,7 +519,7 @@ working-age capita, AUI tiers
   provides redundant visual encoding, not a third variable
 
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Chart title and both axis labels with units
 - The power-law equation in the legend (AUI ~ GDP^0.69)
@@ -538,7 +538,7 @@ working-age capita, AUI tiers
   power law distribution"
 
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This figure appears in Chapter 2 of the Anthropic Economic Index,
 demonstrating that national income is the strongest predictor of per-capita
@@ -555,7 +555,7 @@ as the highest-AUI country (above even the US) despite lower income
 suggests strong tech-sector and knowledge-worker concentration.
 
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 scatter plot, income vs AI usage, GDP per capita, Anthropic AI Usage
 Index, power law, log scale, country-level comparison, R-squared, Israel

@@ -19,7 +19,7 @@ equipment.
 **Annotation difficulty:** Easy
 **Dimensions:** (embedded DOCX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** 2D pie chart on solid teal background
 - **Title:** None visible in the crop
@@ -37,7 +37,7 @@ equipment.
 - **Background:** Solid teal/dark cyan (#00838F approximate)
 - **No axes, legend box, or grid lines**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 6 segments, not 5
 - FACT: Monitors is the largest segment at 44.6%
@@ -50,7 +50,7 @@ equipment.
 - FACT: No chart title is visible in the extracted image
 - FACT: Labels are positioned outside the pie with leader lines
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating there are 5 segments (as the catalog originally claimed)
   REALITY: There are 6 distinct segments. The catalog description is
@@ -69,7 +69,7 @@ equipment.
   REALITY: "Printers and multifunctional devices 3.6%" is a separate,
   distinct wedge between Computers and Monitors.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Background: solid teal/dark cyan
 - Pie: 3D-ish appearance with slight shadow/depth effect
@@ -84,7 +84,7 @@ equipment.
 - Percentage format: one decimal place (X.X%)
 - No border, no title, no legend, no source attribution visible
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This pie chart is from an Australian Cost Recovery Impact Statement (CRIS)
 for electronic screen energy regulations. It shows the market share
@@ -95,7 +95,7 @@ separates products currently regulated under mandatory standards from those
 that are not. Monitors dominating at 44.6% reflects the large installed
 base of computer displays in commercial and residential settings.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 pie chart, equipment market share, monitors, server equipment, computers,
 MEPS, energy efficiency, E3 program, electronic screens, CRIS, Australia,
@@ -119,7 +119,7 @@ energy regulation
 **Annotation difficulty:** Medium
 **Dimensions:** (embedded DOCX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Multi-line chart comparing power consumption limits across
   regulatory standards
@@ -145,7 +145,7 @@ energy regulation
 - **Background:** White with light gray horizontal and vertical gridlines
 - **Chart style:** Standard Excel-style line chart
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 9 lines
 - FACT: AU/NZ-MEPS 2013 is the highest (most permissive) line
@@ -163,7 +163,7 @@ energy regulation
   dashed
 - FACT: Y-axis maximum is 300W, X-axis maximum is 10,000 cm2
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating the AU/NZ MEPS 2013 line is "exponential" or "curved"
   REALITY: All lines appear linear (straight). The AU/NZ MEPS line is
@@ -177,7 +177,7 @@ energy regulation
   REALITY: The chart uses moderate resolution; values at the right edge
   are approximate. Reporting them to the nearest 5W is reasonable.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - White background, light gray gridlines (both horizontal and vertical)
 - X-axis label: "Screen area cm2" with superscript notation
@@ -194,7 +194,7 @@ energy regulation
 - No annotations or callouts
 - Standard Excel chart border (thin black outline)
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart compares on-mode (active use) power consumption limits for
 electronic displays under different regulatory frameworks:
@@ -214,7 +214,7 @@ permissive than EU standards, particularly for larger screens. The linear
 relationship between screen area and power reflects how regulations scale
 allowable consumption with display size.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 on mode power, screen area, MEPS, AU/NZ, EU regulation, energy label,
 grade C, grade F, electronic displays, power consumption limits, ecodesign,
@@ -238,7 +238,7 @@ multi-line chart, regulatory comparison
 **Annotation difficulty:** Hard
 **Dimensions:** (embedded DOCX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Multi-line chart comparing maximum power limits by
   resolution category across regulatory standards, with cutoff annotation
@@ -269,7 +269,7 @@ multi-line chart, regulatory comparison
 - **Background:** White with light gray gridlines
 - **Chart style:** Standard Excel-style line chart
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 11 lines
 - FACT: Y-axis measures "Maximum ON mode power W" (not "On mode power W"
@@ -290,7 +290,7 @@ multi-line chart, regulatory comparison
 - FACT: The legend is positioned outside the plot area on the right
   (unlike R06 which has it inside)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating AU/NZ lines cover the full x-axis range
   REALITY: All 4 AU/NZ lines terminate at the ~2458 cm2 cutoff. Only
@@ -314,7 +314,7 @@ multi-line chart, regulatory comparison
   performance standards (purple). EU label Grades F-C are energy
   labelling thresholds (red/orange/yellow/green).
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - White background, light gray gridlines (horizontal and vertical)
 - X-axis label: "Screen area cm2" with superscript 2
@@ -332,7 +332,7 @@ multi-line chart, regulatory comparison
 - No data point markers on any line
 - Excel chart border: thin black outline
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This chart extends the R06 comparison by breaking down AU/NZ standards
 into resolution-based tiers. Under the AU/NZ 2013 MEPS framework:
@@ -351,7 +351,7 @@ UHD 8MPx allowance is extremely high (~95W at cutoff), while EU
 standards for the same area would allow only ~30-40W depending on
 the regulation.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 maximum ON mode power, screen area, MEPS, AU/NZ resolution tiers,
 UHD 8MPx, 4MPx, HD, SD, EU MEPS 2021, EU label grades, 76cm cutoff,
@@ -375,7 +375,7 @@ UHD 8MPx, 4MPx, HD, SD, EU MEPS 2021, EU label grades, 76cm cutoff,
 **Annotation difficulty:** Easy
 **Dimensions:** (embedded DOCX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Australian Energy Rating label (official government
   format)
@@ -407,7 +407,7 @@ UHD 8MPx, 4MPx, HD, SD, EU MEPS 2021, EU label grades, 76cm cutoff,
 - **Overall shape:** Rounded-top arch at top, straight sides, squared
   bottom
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The banner reads "SUPER EFFICIENCY RATING" (not just "Energy
   Rating")
@@ -423,7 +423,7 @@ UHD 8MPx, 4MPx, HD, SD, EU MEPS 2021, EU label grades, 76cm cutoff,
   Super Efficiency banner)
 - FACT: The "199" appears in large red digits inside a dark-bordered box
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Misquoting the energy consumption value (e.g., "190" or "199W")
   REALITY: The value is "199" and the unit is "kWh per year" (not watts).
@@ -443,7 +443,7 @@ UHD 8MPx, 4MPx, HD, SD, EU MEPS 2021, EU label grades, 76cm cutoff,
   conditions and display modes that materially affect the label's
   interpretation.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Top arch: red background with white stars, curved top edge
 - Banner: dark (black/charcoal) diagonal strip, text appears gold/white
@@ -459,7 +459,7 @@ UHD 8MPx, 4MPx, HD, SD, EU MEPS 2021, EU label grades, 76cm cutoff,
 - Overall dimensions: tall portrait orientation, approximately 2:3 ratio
 - JPEG compression visible but text remains readable
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 The Australian Energy Rating label is mandated by the E3 (Equipment Energy
 Efficiency) program, a joint initiative of Australian and New Zealand
@@ -475,7 +475,7 @@ energyrating.gov.au website provides a comparison tool for consumers.
 This is the more efficient of the two energy labels in the document
 (doc19-R10 shows the Standard label at 485 kWh/year for the same model).
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 energy rating label, Super Efficiency, Australia, E3 program, kWh per
 year, 199, star rating, AS/NZS 62087.2.2, energyrating.gov.au,

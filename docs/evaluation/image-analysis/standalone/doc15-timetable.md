@@ -18,7 +18,7 @@ schedule.
 **Annotation difficulty:** Medium
 **Dimensions:** (full image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Color-coded course assignment timetable
 - **Title:** "SWORD Deadlines" in bold black text, centered at top
@@ -57,7 +57,7 @@ schedule.
   - Empty cells: white background
 - **Font:** Sans-serif, black text (except Final which is red)
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The title reads "SWORD Deadlines"
 - FACT: There are exactly 5 columns: week, due @ 9pm, draft, review, feedback
@@ -78,7 +78,7 @@ schedule.
 - FACT: Sections overlap: weeks 5 and 7 have both a draft and feedback due
 - FACT: All deadlines are at 9pm (per column header "due @ 9pm")
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Assuming "SWORD" stands for a specific acronym
   REALITY: The table only shows "SWORD Deadlines" as the title. Without
@@ -99,7 +99,7 @@ schedule.
   REALITY: The column is labeled "review" not "revision" -- these are peer
   review deadlines, not revision deadlines.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title: "SWORD Deadlines" bold, centered, black text
 - Header row: gray background, bold text, 5 columns
@@ -115,7 +115,7 @@ schedule.
 - Clean rendering, standard table layout
 - No footnotes, legends, or additional annotations
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This timetable is from a university course (source URL:
 courses.washington.edu/fish340) implementing the SWORD (Scaffolded Writing
@@ -135,7 +135,7 @@ have been through peer review.
 This is from FISH 340, a University of Washington fisheries/biology course.
 The 9pm deadline is typical of online submission systems.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 SWORD, timetable, deadlines, peer review, scientific writing, draft, review,
 feedback, course schedule, color-coded, university, FISH 340, University of

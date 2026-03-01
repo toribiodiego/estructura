@@ -18,7 +18,7 @@ language model.
 **Annotation difficulty:** Medium
 **Dimensions:** 2048x1872 pixels
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Column headers:** Benchmark, Description, (unnamed conditions column),
   Gemini 3 Pro, Gemini 2.5 Pro, Claude Sonnet 4.5, GPT-5.1
@@ -57,7 +57,7 @@ language model.
 - **No gridlines between rows** -- rows are separated by whitespace with
   alternating subtle shading
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The table compares 4 models: Gemini 3 Pro, Gemini 2.5 Pro, Claude Sonnet 4.5, and GPT-5.1
 - FACT: There are exactly 20 benchmark rows
@@ -84,7 +84,7 @@ language model.
 - FACT: MRCR v2 128k average: Gemini 3 Pro 77.0%, Gemini 2.5 Pro 58.0%
 - FACT: Terminal-Bench 2.0 condition reads "Terminal-2 agent"
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: A model might state exact rankings like "Gemini 3 Pro leads on all 20 benchmarks"
   REALITY: Gemini 3 Pro does not lead on all benchmarks -- Claude Sonnet 4.5 leads on SWE-Bench Verified (77.2% vs 76.2%), and AIME 2025 with code execution is a three-way tie (Gemini 3 Pro, Claude Sonnet 4.5, GPT-5.1 all at 100%)
@@ -101,7 +101,7 @@ language model.
 - RISK: A model might invent category groupings (e.g., "the table is divided into sections for reasoning, coding, and multimodal")
   REALITY: The table has no visible section dividers or category groupings -- all 20 benchmarks are in a single flat list
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Title context: the table appears under the heading "Evaluation" with
   introductory text stating "Gemini 3 Pro significantly outperforms Gemini
@@ -130,7 +130,7 @@ language model.
 - Reference URL mentioned in introductory text:
   deepmind.google/models/evals-methodology/gemini-3-pro
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 - **Domain:** Machine learning model evaluation, LLM benchmarking
 - **Surrounding document context:** This table appears in the "Evaluation"
@@ -155,7 +155,7 @@ language model.
   benchmark suite. For a reader evaluating whether to adopt Gemini 3 Pro, this
   table is the key decision input.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 - Gemini 3 Pro, Gemini 2.5 Pro, Claude Sonnet 4.5, GPT-5.1
 - benchmark comparison, model evaluation, LLM benchmarks

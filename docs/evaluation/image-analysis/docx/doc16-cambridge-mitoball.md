@@ -19,7 +19,7 @@ sequences.
 **Annotation difficulty:** Hard
 **Dimensions:** (embedded DOCX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** 9-panel composite figure (A-I) combining schematic diagram,
   fluorescence microscopy, electron microscopy, bar charts, time-lapse, and
@@ -76,7 +76,7 @@ sequences.
     colocalization detail
   - Scale bars on Merge and Zoom panels
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: Panel labels are A through I (9 panels total)
 - FACT: Panel A shows GSC -> Spermatogonia -> Primary spermatocytes ->
@@ -92,7 +92,7 @@ sequences.
   ns (Late vs Post)
 - FACT: Panel I uses four fluorescence channels: DAPI, mito-YFP, EdU, Merge
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Misidentifying the organism
   REALITY: This is Drosophila melanogaster spermatogenesis; the species name
@@ -108,7 +108,7 @@ sequences.
   REALITY: Panel E is grayscale EM; panel B is color fluorescence. Different
   imaging modalities showing different aspects of the same stages
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 9 panels spanning 4 imaging modalities: schematic, fluorescence, EM,
   photoconversion time-lapse
@@ -124,7 +124,7 @@ sequences.
 - Yellow/beige highlighting on mitoball stage in panels A and D
 - Panel letters: bold black capital letters (A-I) at upper-left of each panel
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is Figure 1 from a Cambridge research paper characterizing "mitoballs"
 -- large mitochondrial clusters that form transiently during Drosophila
@@ -144,7 +144,7 @@ This figure is extremely dense -- 9 panels across 5+ experimental
 techniques. Annotating it requires identifying each panel type, reading
 axis labels, and understanding the developmental biology context.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 spermatogenesis, mitoball, mitochondria, Drosophila, fluorescence microscopy,
 electron microscopy, EM, ATP5A, mito-YFP, DAPI, EdU, Dendra, photoconversion,
@@ -169,7 +169,7 @@ Cambridge biology
 **Annotation difficulty:** Hard
 **Dimensions:** (embedded DOCX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** 7-panel composite figure (A-G) combining fluorescence
   microscopy, electron microscopy, and multi-channel imaging
@@ -210,7 +210,7 @@ Cambridge biology
   - Tip-to-base testis orientation
   - Scale bar
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: Panel labels are A through G (7 panels)
 - FACT: Panel A shows a coiled/spiral testis with 2 magnified insets
@@ -223,7 +223,7 @@ Cambridge biology
 - FACT: Panel G shows PolG1 (magenta) and DAPI (blue) staining
 - FACT: "n" appears as a label in Panel A's lower inset
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Confusing the mitoball EM with the Nebenkern EM
   REALITY: In Panel B, the mitoball shows a loose cluster of individual
@@ -240,7 +240,7 @@ Cambridge biology
   organism
   REALITY: The spiral structure is a Drosophila testis, which naturally coils.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 7 panels (A-G) spanning fluorescence and EM imaging
 - Fluorescence colors: green (mito-YFP/mitochondria), magenta (membranes/
@@ -254,7 +254,7 @@ Cambridge biology
 - Scale bars (white) on all microscopy panels
 - Bold black panel letters A-G at upper-left corners
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 Figure 2 extends the characterization of mitoballs with additional markers
 and imaging modalities:
@@ -274,7 +274,7 @@ and imaging modalities:
 Together, panels E-G build the case that mitoballs are active sites of
 mitochondrial DNA replication.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 mitoball, Nebenkern, electron microscopy, EM, fluorescence, testis,
 mito-YFP, mtSSB-RFP, dsDNA, EdU, PolG1, DNA polymerase, mitochondrial DNA,
@@ -298,7 +298,7 @@ replication, spermatogenesis, Drosophila, Cambridge biology
 **Annotation difficulty:** Hard
 **Dimensions:** (embedded DOCX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** 5-panel composite figure (A-E) examining mitoball
   structural composition via organelle markers, EM, and cytoskeletal analysis
@@ -332,7 +332,7 @@ replication, spermatogenesis, Drosophila, Cambridge biology
   - Green/magenta/blue fluorescence
   - Scale bars on both views
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: Panel labels are A through E (5 panels)
 - FACT: Panel A has 2 rows testing ER (sqh-YFP-ER) and Golgi (sqh-YFP-Golgi)
@@ -346,7 +346,7 @@ replication, spermatogenesis, Drosophila, Cambridge biology
 - FACT: Panel E has both a dashed white outline and a yellow solid line in
   the magnified view
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating ER or Golgi colocalize with mitoballs
   REALITY: Panel A appears to show that ER (sqh-YFP-ER) and Golgi
@@ -361,7 +361,7 @@ replication, spermatogenesis, Drosophila, Cambridge biology
   REALITY: Panel D shows an hts mutant testis but the specific defect
   requires comparison with wild-type (not shown in this figure)
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 5 panels (A-E) with ~15 individual images plus 1 schematic
 - Panel A: 8 fluorescence images (2 rows x 4 channels)
@@ -379,7 +379,7 @@ replication, spermatogenesis, Drosophila, Cambridge biology
 - Yellow line in Panel E magnified view
 - Scale bars on all microscopy panels
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 Figure 4 investigates the structural scaffold surrounding mitoballs:
 
@@ -399,7 +399,7 @@ Figure 4 investigates the structural scaffold surrounding mitoballs:
 Key finding: mitoballs are held together by a spectrin-based cytoskeletal
 cage, not by ER/Golgi membranes.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 mitoball, ultrastructure, spectrin, alpha-spectrin, hts, adducin, ER, Golgi,
 ATP5A, electron microscopy, fluorescence, cytoskeleton, spermatocyte,
@@ -423,7 +423,7 @@ Drosophila, Cambridge, mitochondrial clustering
 **Annotation difficulty:** Hard
 **Dimensions:** (embedded DOCX image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** 3-panel composite (A-C) showing fluorescence microscopy
   of testis tissue from 10+ insect species, each with overview + magnified
@@ -456,7 +456,7 @@ Drosophila, Cambridge, mitochondrial clustering
   whether mitochondrial clusters (mitoballs) are present. Most species
   show bright green clusters in spermatocytes.
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: Panel labels are A, B, and C
 - FACT: Species shown in Panel A: D. simulans, D. erecta, D. sechellia,
@@ -474,7 +474,7 @@ Drosophila, Cambridge, mitochondrial clustering
 - FACT: Anopheles coluzzii uses green/magenta/blue (3-channel) while most
   others use green/blue (2-channel)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Stating all species have mitoballs
   REALITY: The phylogenetic tree in Figure 5 (separate figure) annotates
@@ -495,7 +495,7 @@ Drosophila, Cambridge, mitochondrial clustering
   magnified cellular view (center), and a wider inset with "n" label and
   bright green clusters (right)
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 3 panels (A-C) with ~22 individual images (11 species x 2 views each)
 - Fluorescence: predominantly green (mitochondria) + blue (DAPI); one
@@ -512,7 +512,7 @@ Drosophila, Cambridge, mitochondrial clustering
   cricket + cockroach
 - Bold black panel letters A, B, C
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 Figure S2 is the extended cross-species survey supporting the paper's claim
 that mitoballs are evolutionarily conserved across insects. It complements
@@ -530,7 +530,7 @@ mitochondrial clusters (mitoballs) across these diverse species supports
 deep evolutionary conservation of the mitoball phenomenon during
 spermatogenesis.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 cross-species, mitoball, conservation, evolution, Drosophila, simulans,
 erecta, sechellia, suzukii, pseudoobscura, bocqueti, Gryllus, cricket,

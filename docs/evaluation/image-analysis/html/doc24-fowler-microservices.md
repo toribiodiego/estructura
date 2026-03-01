@@ -19,7 +19,7 @@ pipeline patterns.
 **Content type:** diagram
 **Annotation difficulty:** Medium
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Side-by-side conceptual comparison with two rows (concept
   and scaling), monolith on the left and microservices on the right
@@ -68,7 +68,7 @@ pipeline patterns.
 - **Style:** Clean hand-drawn/sketch aesthetic with 3D perspective on server
   boxes
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The diagram has 4 panels arranged in a 2x2 layout
 - FACT: The left column shows monolith architecture; the right shows
@@ -84,7 +84,7 @@ pipeline patterns.
 - FACT: Server boxes have 3D perspective with peach/tan shading
 - FACT: The 5 shape colors are consistent across all panels
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Counting exactly 5 microservice boxes on the right
   REALITY: The top-right shows 4 visible separate boxes (one shape may be
@@ -100,7 +100,7 @@ pipeline patterns.
 - RISK: Interpreting the shapes as specific architectural components
   REALITY: The shapes are intentionally abstract and unnamed
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - 4 text labels in italic, black font
 - Monolith server box: 3D perspective, peach/tan (#F5DEB3 approximate)
@@ -116,7 +116,7 @@ pipeline patterns.
 - Bottom-right: 4 servers in 2x2 with different shape subsets per server
 - White background, no borders, no arrows between panels
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is the opening diagram from Martin Fowler and James Lewis's landmark
 2014 article "Microservices" on martinfowler.com. It introduces the core
@@ -137,7 +137,7 @@ focusing on the structural pattern rather than implementation details.
 This diagram has become one of the most widely referenced illustrations
 in software architecture discussions.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 monolith vs microservices, architecture comparison, scaling pattern,
 horizontal scaling, selective replication, Martin Fowler, James Lewis,
@@ -160,7 +160,7 @@ distributed systems
 **Content type:** diagram
 **Annotation difficulty:** Medium
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Two-panel conceptual diagram showing the mapping between
   organizational structure (left) and system architecture (right), separated
@@ -197,7 +197,7 @@ architecture
   is implied by vertical alignment: UI specialists align with UI tier,
   middleware specialists with server tier, DBAs with database tier)
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The diagram has two panels separated by a vertical dashed line
 - FACT: The left panel shows 3 labeled groups of stick figures: "UI
@@ -216,7 +216,7 @@ architecture
   tiers (UI team with UI layer, middleware team with server, DBAs with
   database)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Describing explicit arrows or lines connecting teams to tiers
   REALITY: No arrows cross the dashed line from left to right. The mapping
@@ -234,7 +234,7 @@ architecture
   negative implication comes from context (Fowler's article argues for
   cross-functional teams instead)
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Left panel: 3 clusters of ~5 stick figures each, vertically spaced
 - Stick figure colors: blue (#4169E1 approximate), green/olive (#6B8E23
@@ -250,7 +250,7 @@ architecture
   "... lead to siloed application architectures. Because Conway's Law"
 - White background, no grid, no border
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This diagram illustrates Conway's Law: "organizations which design systems
 are constrained to produce designs which are copies of the communication
@@ -271,7 +271,7 @@ This is a foundational concept in the microservices movement and connects
 to the "Inverse Conway Maneuver" -- deliberately restructuring teams to
 produce the desired system architecture.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 Conway's Law, organizational structure, system architecture, siloed teams,
 three-tier architecture, functional teams, UI specialists, middleware, DBA,
@@ -294,7 +294,7 @@ topology, Inverse Conway Maneuver
 **Content type:** diagram
 **Annotation difficulty:** Medium
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Side-by-side deployment infrastructure comparison,
   monolith (left) vs microservices (right), separated by a dashed vertical
@@ -333,7 +333,7 @@ topology, Inverse Conway Maneuver
 - **Dashed separator:** Vertical dashed line between the two panels
 - **Style:** Same hand-drawn/sketch aesthetic as other doc24 diagrams
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The diagram has two panels separated by a vertical dashed line
 - FACT: Both panels show the same 3 stick figures (users) at the top in
@@ -354,7 +354,7 @@ topology, Inverse Conway Maneuver
 - FACT: The right panel appears to show 2 instances of the red/pink heart
   service (selective replication)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Identifying the blue document icon as a specific technology (e.g.,
   "load balancer", "API gateway", "service mesh")
@@ -371,7 +371,7 @@ topology, Inverse Conway Maneuver
   REALITY: The arrow directions suggest server-to-user flow, but the exact
   semantic (request vs. response, or just "serves") is not labeled
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - User stick figures: 3 at top of each panel, same blue/cyan/green colors
   as R02
@@ -388,7 +388,7 @@ topology, Inverse Conway Maneuver
 - Italic labels at bottom of each panel, black text
 - White background
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This diagram from Fowler's microservices article illustrates the deployment
 infrastructure difference between monolith and microservices approaches.
@@ -410,7 +410,7 @@ fine-grained resource allocation. If only one service is under heavy load,
 only that service needs additional instances, rather than scaling the
 entire monolith.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 micro-deployment, monolith deployment, microservices infrastructure,
 service scaling, independent deployment, Martin Fowler, process isolation,

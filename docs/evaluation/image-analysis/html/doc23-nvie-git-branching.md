@@ -18,7 +18,7 @@ release preparation, and hotfix workflows.
 **Content type:** diagram
 **Annotation difficulty:** Medium
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Vertical swim-lane flow diagram showing a git branching
   model, with time flowing downward
@@ -72,7 +72,7 @@ release preparation, and hotfix workflows.
 - **Style:** Clean diagram with hand-drawn/sketch aesthetic for the Time
   arrow and border scribble marks at the top-left corner
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 5 swim lanes labeled: feature branches, develop,
   release branches, hotfixes, master
@@ -98,7 +98,7 @@ release preparation, and hotfix workflows.
 - FACT: The callouts use bold for version numbers and branch names (e.g.,
   "hotfix **0.2**", "**develop**", "**rel. branch**")
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Counting exact number of nodes per branch
   REALITY: The exact count is hard to verify at this resolution due to
@@ -116,7 +116,7 @@ release preparation, and hotfix workflows.
   "git-flow" (hyphenated, lowercase) is used in the article. The diagram
   itself does not contain the word "Gitflow"
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Diagram dimensions: tall vertical format (~575px wide at 2x per HTML width
   attribute)
@@ -137,7 +137,7 @@ release preparation, and hotfix workflows.
 - Sketch marks at top-left corner (decorative, hand-drawn style)
 - No grid, no axis, no border except decorative sketch marks
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is the central diagram from Vincent Driessen's influential 2010 blog
 post "A successful Git branching model" (nvie.com). It illustrates the
@@ -163,7 +163,7 @@ on the article) in favor of simpler models like GitHub Flow for web
 applications, though it remains widely used for projects with formal
 release cycles.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 git-flow, branching model, Vincent Driessen, nvie, feature branch, release
 branch, hotfix, develop, master, merge workflow, branch topology, git
@@ -185,7 +185,7 @@ workflow, software release, version tagging, continuous integration
 **Content type:** diagram
 **Annotation difficulty:** Easy
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Vertical 2-lane flow diagram showing a single feature
   branch lifecycle, with time flowing downward
@@ -209,7 +209,7 @@ workflow, software release, version tagging, continuous integration
 - **Background:** White with sketch-style gray watermark/texture marks
 - **Style:** Same hand-drawn aesthetic as doc23-R01
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 2 swim lanes: "feature branches" and "develop"
 - FACT: "develop" is in bold text; "feature branches" is regular weight
@@ -226,7 +226,7 @@ workflow, software release, version tagging, continuous integration
 - FACT: Time flows downward (consistent with R01, though no explicit Time
   label here)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Counting exactly 7 yellow nodes
   REALITY: The yellow nodes are closely spaced and the exact count may be
@@ -240,7 +240,7 @@ workflow, software release, version tagging, continuous integration
   (a merge commit is visible on develop), but the diagram does not include
   any command text
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Column header "feature branches": regular weight, wraps to 2 lines,
   left-aligned
@@ -256,7 +256,7 @@ workflow, software release, version tagging, continuous integration
 - No grid, no time label, no tags, no annotations
 - Narrow format: ~133px wide at 2x per HTML width attribute
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This diagram illustrates the simplest workflow in the git-flow model: a
 feature branch lifecycle. A developer creates a feature branch from
@@ -274,7 +274,7 @@ This is the building block for the full git-flow model shown in doc23-R01.
 In practice, a project may have multiple feature branches active
 simultaneously, each following this same fork-work-merge pattern.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 feature branch, git-flow, develop branch, merge workflow, branch topology,
 no-fast-forward merge, git branch lifecycle, fork and merge, Vincent
@@ -296,7 +296,7 @@ Driessen, nvie
 **Content type:** diagram
 **Annotation difficulty:** Easy
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Diagram type:** Side-by-side comparison of two merge strategies, showing
   the resulting commit graph topology for each
@@ -332,7 +332,7 @@ Driessen, nvie
   lines
 - **Style:** Same hand-drawn aesthetic as R01 and R04
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: There are exactly 2 diagrams side by side
 - FACT: The left diagram is labeled "git merge --no-ff" and the right is
@@ -353,7 +353,7 @@ Driessen, nvie
 - FACT: The left diagram has exactly 3 pink/magenta nodes
 - FACT: No annotations or callout boxes are present
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Describing the right diagram as having "no feature commits"
   REALITY: The right diagram still has the feature commits -- they are just
@@ -366,7 +366,7 @@ Driessen, nvie
   REALITY: The labels appear to be in a monospace/code font but the exact
   typeface is not identifiable
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Left diagram: 2 column headers, ~5 yellow + 3 pink nodes, fork and merge
   arrows, left curly brace with "feature" label
@@ -383,7 +383,7 @@ Driessen, nvie
 - No time arrow, no tags, no annotations
 - White background, sketch-style gray texture on separator lines
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This diagram explains the key merge strategy recommendation in the git-flow
 model: always use `--no-ff` (no fast-forward) when merging feature branches
@@ -404,7 +404,7 @@ Driessen recommends --no-ff as the default for all merges in git-flow
 because preserving branch topology provides better traceability and
 auditability of the development history.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 git merge no-ff, fast-forward merge, no-fast-forward, merge strategy,
 branch topology, commit graph, merge commit, git-flow, develop branch,

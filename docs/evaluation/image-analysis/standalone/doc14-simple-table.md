@@ -18,7 +18,7 @@ descriptions, and formulas.
 **Annotation difficulty:** Easy
 **Dimensions:** (full image)
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 - **Image type:** Spreadsheet reference table describing cell formats and
   formulas
@@ -42,7 +42,7 @@ descriptions, and formulas.
 - **Background:** White with a subtle light gray margin at top
 - **No title, legend, or additional annotations**
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 - FACT: The table has exactly 3 columns: Cell, Format, Formula
 - FACT: There are exactly 5 data rows (B4 through F4)
@@ -55,7 +55,7 @@ descriptions, and formulas.
 - FACT: The PMT function takes 3 arguments: B4/12, C4, and D4
 - FACT: All cell references are in column 4 (row 4 of a spreadsheet)
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 - RISK: Assuming this table shows actual cell values or computed results
   REALITY: The table only shows cell references, their format types, and
@@ -72,7 +72,7 @@ descriptions, and formulas.
   spreadsheet showing computed values. It is used as a test fixture for table
   OCR systems.
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 - Table dimensions: 3 columns x 6 rows (including header)
 - Header: bold text, light gray background
@@ -85,7 +85,7 @@ descriptions, and formulas.
 - Overall: clean, simple layout with no color coding or merged cells
 - Small image, high contrast, easy to read
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 This is a test fixture image from the `image-table-ocr` GitHub project
 (eihli/image-table-ocr), used to test optical character recognition of
@@ -103,7 +103,7 @@ loan payment calculation:
 The PMT function is a standard Excel/spreadsheet financial function. This
 table describes the structure of a simple loan amortization worksheet.
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 spreadsheet, table, cell reference, format, formula, PMT function, loan
 payment, percentage, currency, accounting, Excel, OCR test fixture,
