@@ -1057,15 +1057,16 @@ dedicated test set files:
 
 ### Selection criteria
 
-- Target: 40-60 images
+- Target: 80-120 images covering all content-bearing documents
 - Over-represent medium and hard (these differentiate models)
 - At least 2 per content type
-- At least 5 documents represented
+- Every document with content images must have representation
 - Exclude decorative, blank, and scanned-text-only images
-- For Doc 06, include only 2-3 representative screenshots (not all 20)
+- For large repetitive sets, pick 3-6 representative images spanning the
+  difficulty range
 - Prefer diverse content over repetitive examples from the same figure
 
-### Selected subset (64 images)
+### Selected subset (102 images)
 
 | ID | Doc | Page | Content Type | Difficulty | Description |
 |----|-----|------|-------------|------------|-------------|
@@ -1133,33 +1134,82 @@ dedicated test set files:
 | doc19-R06 | 19 | -- | chart-complex | Medium | Multi-line chart: power vs screen area (9 lines) |
 | doc19-R07 | 19 | -- | chart-complex | Hard | Multi-line chart: max power vs area (11 lines, annotated) |
 | doc19-R09 | 19 | -- | infographic | Easy | Energy rating label: Super Efficiency |
+| doc20-C01 | 20 | -- | chart-complex | Medium | Grouped bar: Obligations, Accrual & Expense Breakdown (12 series) |
+| doc20-C03 | 20 | -- | chart-simple | Easy | Pie: Total WIOA Formula Grant Budget (5 segments) |
+| doc20-C04 | 20 | -- | chart-simple | Easy | Grouped bar: Direct Training (4 series) |
+| doc21-C01 | 21 | -- | chart-simple | Easy | Bar: Priority distribution (3 bars) |
+| doc21-C04 | 21 | -- | chart-simple | Easy | Bar: Budget vs Actual Expenditure (2 bars) |
+| doc22-R01 | 22 | -- | chart-complex | Medium | GISS temperature anomaly: global surface temperature 1880-present |
+| doc22-R03 | 22 | -- | chart-complex | Hard | EPICA 800,000-year temperature + CO2 reconstruction from ice cores |
+| doc22-R05 | 22 | -- | chart-complex | Hard | Anthropogenic vs natural climate attribution comparison |
+| doc22-R09 | 22 | -- | chart-simple | Easy | Ocean carbon cycle diagram |
+| doc22-R12 | 22 | -- | photo | Easy | ISS022-E-6674: Earth from space |
+| doc22-R15 | 22 | -- | photo | Medium | Solar corona comparison: solar maximum vs minimum (side-by-side) |
+| doc23-R01 | 23 | -- | diagram | Medium | Complete git-flow branching model with merge topology |
+| doc23-R04 | 23 | -- | diagram | Easy | Feature branch create-and-merge workflow |
+| doc23-R05 | 23 | -- | diagram | Easy | Merge comparison: fast-forward vs no-ff commit graph |
+| doc24-R01 | 24 | -- | diagram | Medium | Monolith vs microservices architecture comparison |
+| doc24-R02 | 24 | -- | diagram | Medium | Conway's Law: org structure mapped to system architecture |
+| doc24-R06 | 24 | -- | diagram | Medium | Micro-deployment: monolith vs microservices infrastructure |
+| doc25-R01 | 25 | -- | screenshot | Medium | Application window: main CPRS interface |
+| doc25-R02 | 25 | -- | screenshot | Medium | Application window: clinical record view |
+| doc25-R07 | 25 | -- | screenshot | Medium | UI panel: form layout |
+| doc25-R19 | 25 | -- | screenshot | Medium | Full form: clinical documentation |
+| doc26-R01 | 26 | 13 | diagram | Medium | Full adder circuit schematic |
+| doc26-R08 | 26 | 19 | diagram | Medium | Full-slide digital logic diagram |
+| doc26-R13 | 26 | 30 | diagram | Medium | Wide-format circuit schematic |
+| doc26-R22 | 26 | 61 | diagram | Easy | Narrow circuit detail |
+| doc27-R01 | 27 | 2 | diagram | Medium | European rail map |
+| doc27-R03 | 27 | 4 | chart-complex | Medium | Paired panel (left), medium format |
+| doc27-R09 | 27 | 7 | chart-simple | Easy | Wide horizontal chart |
+| doc27-R38 | 27 | 29 | chart-complex | Medium | Medium panel |
+| doc27-R41 | 27 | 31 | infographic | Medium | Summary overview |
+| doc27-R42 | 27 | 32 | infographic | Medium | Summary overview (wide) |
+| doc28-C01 | 28 | -- | chart-complex | Medium | Line: GHG emissions index 1990=100, 4 series |
+| doc28-C07 | 28 | -- | chart-complex | Medium | Pie-of-pie: GHG by source sector, EU 2020 |
+| doc28-C08 | 28 | -- | chart-complex | Hard | Combo (area+bar+line): GHG by sector, 4 series |
+| doc28-C11 | 28 | -- | chart-complex | Medium | Stacked area: Electricity/heat from renewables, 7 series |
+| doc28-C24 | 28 | -- | chart-complex | Hard | Combo (area+line): LULUCF GHG, 7 series |
+| doc28-C29 | 28 | -- | chart-simple | Easy | Pie: GHG by gas type in CO2-equivalents, EU |
+| doc29-R01 | 29 | 1 | diagram | Medium | NASA heliophysics fleet: all active missions |
 
 ### Subset statistics
 
-**Total:** 64 images from 14 of 20 documents
+**Total:** 102 images from 24 documents
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 14 | 22% |
-| Medium | 20 | 31% |
-| Hard | 30 | 47% |
+| Easy | 25 | 25% |
+| Medium | 43 | 42% |
+| Hard | 34 | 33% |
 
 | Content Type | Count |
 |-------------|-------|
-| chart-simple | 6 |
-| chart-complex | 14 |
-| diagram | 10 |
+| chart-simple | 13 |
+| chart-complex | 25 |
+| diagram | 22 |
+| screenshot | 13 |
+| photo | 11 |
+| infographic | 10 |
 | table-image | 5 |
 | equation | 2 |
-| infographic | 8 |
-| photo | 9 |
-| screenshot | 9 |
 | other | 1 |
 
-The subset over-represents hard images (47% vs 25% in corpus) as intended.
-Medium and hard together comprise 78%. All content types have at least 1
-example. Doc 17 equations are not in the subset (native LaTeX, not raster)
-but test equation region detection during pipeline evaluation.
+| Source Format | Count |
+|--------------|-------|
+| PDF | 46 |
+| PPTX | 17 |
+| DOCX | 12 |
+| HTML | 12 |
+| XLSX | 11 |
+| JPG | 2 |
+| WebP | 1 |
+| PNG | 1 |
+
+The expanded subset covers all 8 source formats and all content types. Medium
+and hard together comprise 75%. Doc 17 equations are not in the subset (native
+LaTeX, not raster) but test equation region detection during pipeline
+evaluation.
 
 For detailed breakdowns by content type, source format, and coverage gaps,
 see the [Annotation Test Set](./evaluation/annotation-test-set.md).

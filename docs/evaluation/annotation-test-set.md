@@ -1,7 +1,7 @@
 # Annotation Test Set
 
 Image-level test index for annotation quality evaluation. Each row represents
-one image from the 64-image evaluation subset selected in the
+one image from the 102-image evaluation subset selected in the
 [Image Catalog](../image-catalog.md). Difficulty is classified by how
 challenging it is for a vision model to **accurately and completely describe**
 the image content -- independent of how hard the image is to extract from
@@ -107,6 +107,44 @@ not on the source document's extraction difficulty.
 | `doc19-R06` | 19 | DOCX | chart-complex | Medium | Multi-line chart: power vs screen area (9 lines) |
 | `doc19-R07` | 19 | DOCX | chart-complex | Hard | Multi-line chart: max power vs area (11 lines, annotated) |
 | `doc19-R09` | 19 | DOCX | infographic | Easy | Energy rating label: Super Efficiency |
+| `doc20-C01` | 20 | XLSX | chart-complex | Medium | Grouped bar: Obligations, Accrual & Expense Breakdown (12 series) |
+| `doc20-C03` | 20 | XLSX | chart-simple | Easy | Pie: Total WIOA Formula Grant Budget (5 segments) |
+| `doc20-C04` | 20 | XLSX | chart-simple | Easy | Grouped bar: Direct Training (4 series) |
+| `doc21-C01` | 21 | XLSX | chart-simple | Easy | Bar: Priority distribution (3 bars) |
+| `doc21-C04` | 21 | XLSX | chart-simple | Easy | Bar: Budget vs Actual Expenditure (2 bars) |
+| `doc22-R01` | 22 | HTML | chart-complex | Medium | GISS temperature anomaly: global surface temperature 1880-present |
+| `doc22-R03` | 22 | HTML | chart-complex | Hard | EPICA 800,000-year temperature + CO2 reconstruction from ice cores |
+| `doc22-R05` | 22 | HTML | chart-complex | Hard | Anthropogenic vs natural climate attribution comparison |
+| `doc22-R09` | 22 | HTML | chart-simple | Easy | Ocean carbon cycle diagram |
+| `doc22-R12` | 22 | HTML | photo | Easy | ISS022-E-6674: Earth from space |
+| `doc22-R15` | 22 | HTML | photo | Medium | Solar corona comparison: solar maximum vs minimum (side-by-side) |
+| `doc23-R01` | 23 | HTML | diagram | Medium | Complete git-flow branching model with merge topology |
+| `doc23-R04` | 23 | HTML | diagram | Easy | Feature branch create-and-merge workflow |
+| `doc23-R05` | 23 | HTML | diagram | Easy | Merge comparison: fast-forward vs no-ff commit graph |
+| `doc24-R01` | 24 | HTML | diagram | Medium | Monolith vs microservices architecture comparison |
+| `doc24-R02` | 24 | HTML | diagram | Medium | Conway's Law: org structure mapped to system architecture |
+| `doc24-R06` | 24 | HTML | diagram | Medium | Micro-deployment: monolith vs microservices infrastructure |
+| `doc25-R01` | 25 | DOCX | screenshot | Medium | Application window: main CPRS interface |
+| `doc25-R02` | 25 | DOCX | screenshot | Medium | Application window: clinical record view |
+| `doc25-R07` | 25 | DOCX | screenshot | Medium | UI panel: form layout |
+| `doc25-R19` | 25 | DOCX | screenshot | Medium | Full form: clinical documentation |
+| `doc26-R01` | 26 | PPTX | diagram | Medium | Full adder circuit schematic |
+| `doc26-R08` | 26 | PPTX | diagram | Medium | Full-slide digital logic diagram |
+| `doc26-R13` | 26 | PPTX | diagram | Medium | Wide-format circuit schematic |
+| `doc26-R22` | 26 | PPTX | diagram | Easy | Narrow circuit detail |
+| `doc27-R01` | 27 | PPTX | diagram | Medium | European rail map |
+| `doc27-R03` | 27 | PPTX | chart-complex | Medium | Paired panel (left), medium format |
+| `doc27-R09` | 27 | PPTX | chart-simple | Easy | Wide horizontal chart |
+| `doc27-R38` | 27 | PPTX | chart-complex | Medium | Medium panel |
+| `doc27-R41` | 27 | PPTX | infographic | Medium | Summary overview |
+| `doc27-R42` | 27 | PPTX | infographic | Medium | Summary overview (wide) |
+| `doc28-C01` | 28 | XLSX | chart-complex | Medium | Line: GHG emissions index 1990=100, 4 series |
+| `doc28-C07` | 28 | XLSX | chart-complex | Medium | Pie-of-pie: GHG by source sector, EU 2020 |
+| `doc28-C08` | 28 | XLSX | chart-complex | Hard | Combo (area+bar+line): GHG by sector, 4 series |
+| `doc28-C11` | 28 | XLSX | chart-complex | Medium | Stacked area: Electricity/heat from renewables, 7 series |
+| `doc28-C24` | 28 | XLSX | chart-complex | Hard | Combo (area+line): LULUCF GHG, 7 series |
+| `doc28-C29` | 28 | XLSX | chart-simple | Easy | Pie: GHG by gas type in CO2-equivalents, EU |
+| `doc29-R01` | 29 | JPG | diagram | Medium | NASA heliophysics fleet: all active missions |
 
 <br><br>
 
@@ -114,16 +152,16 @@ not on the source document's extraction difficulty.
 
 | Content Type | Easy | Medium | Hard | Total |
 |-------------|------|--------|------|-------|
-| chart-simple | 6 | 0 | 0 | 6 |
-| chart-complex | 0 | 3 | 11 | 14 |
-| diagram | 1 | 5 | 4 | 10 |
+| chart-simple | 13 | 0 | 0 | 13 |
+| chart-complex | 0 | 10 | 15 | 25 |
+| diagram | 4 | 14 | 4 | 22 |
 | table-image | 2 | 3 | 0 | 5 |
 | equation | 1 | 1 | 0 | 2 |
-| infographic | 1 | 1 | 6 | 8 |
-| photo | 3 | 2 | 4 | 9 |
-| screenshot | 0 | 4 | 5 | 9 |
+| infographic | 1 | 3 | 6 | 10 |
+| photo | 4 | 3 | 4 | 11 |
+| screenshot | 0 | 8 | 5 | 13 |
 | other | 0 | 1 | 0 | 1 |
-| **Total** | **14** | **20** | **30** | **64** |
+| **Total** | **25** | **43** | **34** | **102** |
 
 <br><br>
 
@@ -131,14 +169,15 @@ not on the source document's extraction difficulty.
 
 | Source Format | Easy | Medium | Hard | Total | % of subset |
 |---------------|------|--------|------|-------|-------------|
-| PDF | 9 | 15 | 22 | 46 | 72% |
-| DOCX | 2 | 1 | 5 | 8 | 13% |
-| PPTX | 1 | 3 | 3 | 7 | 11% |
-| WebP | 1 | 0 | 0 | 1 | 2% |
-| PNG | 1 | 0 | 0 | 1 | 2% |
-| JPG | 0 | 1 | 0 | 1 | 2% |
-| XLSX | 0 | 0 | 0 | 0 | 0% |
-| **Total** | **14** | **20** | **30** | **64** | **100%** |
+| PDF | 9 | 15 | 22 | 46 | 45% |
+| PPTX | 3 | 11 | 3 | 17 | 17% |
+| DOCX | 2 | 5 | 5 | 12 | 12% |
+| HTML | 4 | 6 | 2 | 12 | 12% |
+| XLSX | 5 | 4 | 2 | 11 | 11% |
+| JPG | 0 | 2 | 0 | 2 | 2% |
+| WebP | 1 | 0 | 0 | 1 | 1% |
+| PNG | 1 | 0 | 0 | 1 | 1% |
+| **Total** | **25** | **43** | **34** | **102** | **100%** |
 
 <br><br>
 
@@ -146,14 +185,16 @@ not on the source document's extraction difficulty.
 
 | Difficulty | Count | Percentage |
 |------------|-------|------------|
-| Easy | 14 | 22% |
-| Medium | 20 | 31% |
-| Hard | 30 | 47% |
-| **Total** | **64** | **100%** |
+| Easy | 25 | 25% |
+| Medium | 43 | 42% |
+| Hard | 34 | 33% |
+| **Total** | **102** | **100%** |
 
-The subset intentionally over-represents hard images (47% vs 25% in the full
-corpus) because these are the cases that differentiate model quality. Medium
-and hard together comprise 78% of the subset.
+The expanded subset shifts the difficulty balance toward medium images (42%)
+compared to the original 64-image subset (31% medium). Hard images remain
+well-represented at 33%. Medium and hard together comprise 75% of the subset,
+ensuring the test set remains weighted toward the cases that differentiate
+model quality.
 
 <br><br>
 
@@ -162,10 +203,8 @@ and hard together comprise 78% of the subset.
 | Area | Gap | Impact | Priority |
 |------|-----|--------|----------|
 | Equations | Only 2 images in subset (both from PPTX Doc 11) | Insufficient coverage of equation annotation quality | High |
-| Table-image | 4 images; 3 are standalone, 1 from PPTX | No embedded table-images from PDF or DOCX in subset | Medium |
-| XLSX source | 0 images (Docs 20, 21 added to corpus; eval subset selection pending) | Annotation quality on spreadsheet-embedded charts untested | Medium |
-| HTML source | 0 images (Docs 22-24 added to corpus; eval subset selection pending) | Annotation quality on web-captured images untested | Medium |
-| Standalone hard | 0 hard images from standalone formats | All standalone images are easy; no challenging single-image annotation test | Low |
+| Table-image | 5 images; 3 are standalone, 1 from PPTX, 1 from PDF | No embedded table-images from DOCX in subset | Medium |
+| Standalone hard | 0 hard images from standalone formats | All standalone images are easy or medium; no challenging single-image annotation test | Low |
 | Other content type | Only 1 image (`doc05-R20`, internet meme) | Minimal coverage of non-standard image types | Low |
 
 <br><br>
