@@ -19,50 +19,76 @@ demonstrations.
 **Annotation difficulty:** Hard
 **Dimensions:** 4760x3421 pixels
 
+**Note:** Unlike the Group A photos, this crop contains the full two-panel
+Prompt/Response layout as part of the extracted image. The text described
+below IS visible in the crop.
+
 ### Visual Inventory [-> Completeness]
 
-- **Application/UI identified:** Two-panel Prompt/Response layout used
-  throughout the Gemini technical report to showcase model capabilities
-- **Text content (Prompt panel, left):**
-  - Problem number "23" with text: "A skier slides down the frictionless slope
-    as shown. What is the skier's speed at the bottom?"
-  - Diagram of a slope showing "Start" at top, height label "H=40m", slope
-    length label "L=80m", and "Finish" at bottom
-  - Handwritten student solution using conservation of energy:
-    - "The conservation of energy means that the energy of the skier is same at
-      the beginning and at the end."
-    - "Start: E = mgL"
-    - "End: E = 1/2 mv^2"
-    - "=> mgL = 1/2 mv^2"
-    - "=> v = sqrt(2gL) = sqrt(2 * 9.81 * 80) = 39.6 m/s"
-  - Instruction text: "Try to reason about the question step by step. Did the
-    student get the correct answer? If the solution is wrong, please explain
-    what is wrong and solve the problem. Make sure to use LaTeX for math and
-    round off the final answer to two decimal places."
-- **Text content (Response panel, right):**
-  - Identifies that the student made an error: used L (slope length, 80m)
-    instead of H (height, 40m) for the potential energy calculation
-  - Correct solution: mgh = 1/2 mv^2, gh = 1/2 v^2, v = sqrt(2gh),
-    v = sqrt(2 x 9.81 x 40) = 28.01 m/s
-- **UI elements:** Panel headers labeled "Prompt" (left) and "Response" (right)
-- **What action or state is being shown:** Gemini correcting a student's
-  physics mistake by identifying the wrong variable (L vs H) and providing the
-  correct calculation
+- **Layout:** Two-panel side-by-side layout with "Prompt" header (left,
+  white background) and "Response" header (right, light blue background);
+  a small pen/pencil icon appears at the top left of the Prompt panel
+- **Prompt panel (left) -- typed text at top:**
+  - Opening line: "Here's a solution to a Physics problem by a student."
+  - Problem number "23." with text: "A skier slides down the frictionless
+    slope as shown. What is the skier's speed at the bottom?"
+- **Prompt panel -- diagram:**
+  - Simple line drawing of a slope: a horizontal line at bottom labeled
+    "Finish" at right end, a diagonal line rising to the left labeled with
+    height "H=40 m" (vertical) and length "L=80 m" (along slope), "Start"
+    labeled at top of slope
+  - A small red curved arrow/line near the top of the slope indicating the
+    skier's starting path
+- **Prompt panel -- handwritten student solution:**
+  - "The conservation of energy means that the energy of the skier is same
+    at the beginning and at the end"
+  - "Start: E = mgL"
+  - "End: E = 1/2 mv^2"
+  - "=> mgL = 1/2 mv^2"
+  - "=> v = sqrt(2gL) = sqrt(2 x 9.81 x 80) = 39.6 m.s^-1"
+  - (Note: the student uses L=80 where H=40 should be used)
+- **Prompt panel -- typed instruction text at bottom:**
+  - "Try to reason about the question step by step."
+  - "Did the student get the correct answer? If the solution is wrong,
+    please explain what is wrong and solve the problem."
+  - "Make sure to use LaTeX for math and round off the final answer to two
+    decimal places."
+- **Response panel (right) -- model's correction:**
+  - Opening: "The student did not get the correct answer. The student made
+    a mistake in the calculation of the potential energy at the start of
+    the slope."
+  - Identifies error: "The student used the length of the slope, L, instead
+    of the height, H, in the calculation of the potential energy."
+  - Step-by-step corrected solution with LaTeX-rendered equations:
+    mgh = 1/2 mv^2, then gh = 1/2 v^2, then v = sqrt(2gh)
+  - Final computation: v = sqrt(2 x 9.81 x 40) = 28.01 m/s
+  - Concluding line: "Therefore, the skier's speed at the bottom of the
+    slope is 28.01 m/s."
+- **What action or state is being shown:** Gemini identifying and correcting
+  a student's physics mistake (using slope length L instead of height H for
+  potential energy)
 
 ### Verifiable Facts [-> Accuracy]
 
 - FACT: The problem states the slope is frictionless
-- FACT: The height H is labeled as 40m in the diagram
-- FACT: The slope length L is labeled as 80m in the diagram
-- FACT: The student's solution uses L=80m in the energy equation (E = mgL) instead of H=40m
-- FACT: The student arrives at v = 39.6 m/s
+- FACT: The height H is labeled as 40 m in the diagram
+- FACT: The slope length L is labeled as 80 m in the diagram
+- FACT: The student's solution uses L=80 in the energy equation (E = mgL)
+  instead of H=40
+- FACT: The student arrives at v = 39.6 m.s^-1 (using SI notation, not m/s)
 - FACT: The student uses g = 9.81 in the calculation
 - FACT: The model's corrected answer is v = 28.01 m/s
-- FACT: The model identifies that the correct formula uses height H, not slope length L
+- FACT: The model identifies the error as using slope length L instead of
+  height H for potential energy
 - FACT: The correct equation shown is v = sqrt(2gh)
-- FACT: The prompt instructs to use LaTeX for math and round to two decimal places
-- FACT: The layout has "Prompt" on the left and "Response" on the right
+- FACT: The prompt instructs to use LaTeX for math and round to two decimal
+  places
+- FACT: The layout has "Prompt" on the left (white) and "Response" on the
+  right (light blue)
 - FACT: Problem number is 23
+- FACT: The opening line reads "Here's a solution to a Physics problem by
+  a student."
+- FACT: A small pen/pencil icon appears at the top left of the Prompt panel
 
 ### Hallucination Risks [-> Accuracy]
 
@@ -74,22 +100,31 @@ demonstrations.
   REALITY: The problem explicitly states the slope is frictionless
 - RISK: A model might state the student used the wrong value of g
   REALITY: The student used g = 9.81 correctly; the error was using L instead of H
-- RISK: A model might fabricate additional elements in the diagram (e.g., a skier figure, angle measurement)
-  REALITY: The diagram shows Start, Finish, H=40m, and L=80m labels on a slope
+- RISK: A model might fabricate additional elements in the diagram (e.g., a
+  skier figure, angle measurement)
+  REALITY: The diagram shows Start, Finish, H=40 m, L=80 m, and a small red
+  curve; no skier figure or angle value is drawn
+- RISK: A model might state the student's units as "m/s" instead of "m.s^-1"
+  REALITY: The handwritten answer uses SI notation "m.s^-1" (with superscript)
+- RISK: A model might claim the response panel has a white background
+  REALITY: The Response panel has a light blue background; the Prompt panel
+  is white
 
 ### Detail Inventory [-> Specificity]
 
-- Two-panel layout with "Prompt" and "Response" headers
+- Two-panel layout: "Prompt" (white, left) and "Response" (light blue, right)
+- Pen/pencil icon at top left of Prompt panel
+- Opening text: "Here's a solution to a Physics problem by a student."
 - Physics problem number 23 about a skier on a frictionless slope
-- Slope diagram with labeled parameters: H=40m (height), L=80m (slope length),
-  Start at top, Finish at bottom
-- Student's handwritten work shows conservation of energy approach
-- Student's specific error: using mgL instead of mgH for potential energy
-- Student's incorrect answer: 39.6 m/s (using L=80m)
-- Model's correct answer: 28.01 m/s (using H=40m)
-- The prompt explicitly requests LaTeX formatting and two-decimal-place rounding
-- The model walks through the correction step by step, identifying the student's
-  error before providing the correct solution
+- Slope diagram with labeled parameters: H=40 m (height), L=80 m (slope
+  length), Start at top, Finish at bottom, red curve near start
+- Student's handwritten work: conservation of energy approach
+- Student's specific error: using mgL instead of mgh for potential energy
+- Student's incorrect answer: 39.6 m.s^-1 (using L=80)
+- Model's correct answer: 28.01 m/s (using H=40)
+- Model walks through correction step by step with LaTeX-rendered equations
+- Prompt requests: LaTeX formatting, two-decimal-place rounding, step-by-step
+  reasoning, identify and explain the error
 
 ### Domain Context [-> Usefulness]
 
@@ -240,40 +275,67 @@ demonstrations.
 **Annotation difficulty:** Hard
 **Dimensions:** 4760x5014 pixels
 
+**Note:** Like R02, this crop contains the full Prompt/Response panels and a
+rendered output section. All text and plots described below are visible in
+the extracted crop.
+
 ### Visual Inventory [-> Completeness]
 
-- **Application/UI identified:** Prompt/Response layout with a rendered code
-  output section below
-- **Text content (Prompt panel, left):**
-  - 2x2 grid of matplotlib subplots:
-    - Top-left: sine wave plot
-    - Top-right: tangent function plot
-    - Bottom-left: exponential curve plot
-    - Bottom-right: 3D surface/paraboloid plot
-  - Instruction text asking to rearrange the subplots using matplotlib:
-    rearrange so the 3D paraboloid goes top-left, tangent goes bottom-right,
-    and others are repositioned accordingly
-- **Text content (Response panel, right):**
-  - Lists the current subplot arrangement and the new desired arrangement
-  - Python code using matplotlib to create the rearranged plots
-- **Rendered code section (below both panels):**
-  - 2x2 grid showing the rearranged subplots in the new positions
+- **Layout:** Three sections stacked vertically:
+  1. Top: side-by-side Prompt (white, left) and Response (light blue, right)
+     panels, each with header text
+  2. Bottom: "Rendered code" section (white background, smaller) showing
+     output of the generated code
+- **Prompt panel (top left):**
+  - Pen/pencil icon at top left
+  - Instruction text describing the rearrangement task: put the 3D
+    paraboloid top-left, tangent function bottom-right; for the remaining
+    two, one stays in place and the other fills the last spot; describe
+    each subplot, explain rearrangement, then write the full code
+  - 2x2 grid of matplotlib subplots (original arrangement):
+    - Top-left: sine wave (blue line, oscillating curve)
+    - Top-right: tangent function (blue line with vertical asymptotes)
+    - Bottom-left: exponential curve (blue line, rising curve)
+    - Bottom-right: 3D surface/paraboloid (colorful surface with viridis
+      colormap, rendered with wireframe visible)
+- **Response panel (top right):**
+  - Lists current subplot arrangement (4 bullets)
+  - Lists new subplot arrangement (4 bullets):
+    - Top left: The 3D paraboloid
+    - Top right: The sine wave
+    - Bottom left: The exponential function
+    - Bottom right: The tangent function
+  - Python code with syntax highlighting (colored text): imports (numpy,
+    matplotlib.pyplot, mpl_toolkits.mplot3d), figure creation, 4 subplot
+    blocks with comments in red/pink, data generation, plotting calls,
+    plt.show()
+- **Rendered code section (bottom):**
+  - Monitor/screen icon at top left
+  - "Rendered code" header text
+  - 2x2 grid showing the rearranged subplots matching the Response's
+    described new arrangement
 - **What action or state is being shown:** Gemini interpreting visual
-  mathematical plots, understanding the subplot arrangement instruction, and
-  generating working matplotlib Python code that rearranges the plots
+  mathematical plots, understanding the rearrangement instruction, and
+  generating working matplotlib Python code that produces the correct output
 
 ### Verifiable Facts [-> Accuracy]
 
 - FACT: The prompt contains a 2x2 grid of 4 matplotlib subplots
-- FACT: The four plot types are: sine wave, tangent function, exponential curve, and 3D surface/paraboloid
-- FACT: The instruction asks to rearrange subplots so the 3D paraboloid moves to top-left
-- FACT: The instruction asks to move the tangent function to bottom-right
-- FACT: The response panel contains Python code using matplotlib
-- FACT: A "Rendered code" section appears below the Prompt/Response panels showing the rearranged output
-- FACT: The rendered output is also a 2x2 grid of subplots
-- FACT: Both the input and output grids contain the same 4 plot types
-- FACT: The layout uses the same two-panel Prompt/Response format as other figures in the paper
-- FACT: The 3D surface plot in the prompt is in the bottom-right position
+- FACT: The four plot types are: sine wave, tangent function, exponential
+  curve, and 3D surface/paraboloid
+- FACT: Original arrangement: sine (top-left), tangent (top-right),
+  exponential (bottom-left), 3D paraboloid (bottom-right)
+- FACT: The instruction asks to rearrange subplots so the 3D paraboloid
+  moves to top-left and tangent to bottom-right
+- FACT: New arrangement per Response: 3D paraboloid (top-left), sine wave
+  (top-right), exponential (bottom-left), tangent (bottom-right)
+- FACT: The response panel contains Python code with syntax highlighting
+  (colored text, red/pink comments)
+- FACT: The code imports numpy, matplotlib.pyplot, and mpl_toolkits.mplot3d
+- FACT: A "Rendered code" section appears below the Prompt/Response panels
+- FACT: The rendered output is also a 2x2 grid matching the new arrangement
+- FACT: Both grids contain the same 4 plot types
+- FACT: The 3D surface uses a viridis-like colormap (green-yellow-blue)
 
 ### Hallucination Risks [-> Accuracy]
 
@@ -1934,6 +1996,221 @@ the extracted crop.
 | Specificity | "A family tree diagram in Chinese" with no specific labels | Names the grandparent terms (yeye, nainai, waigong, waipo), parents, and some siblings; mentions pinyin | Lists all 11 family members with pinyin labels, notes Chinese characters alongside pinyin, describes the red border on "wo," specifies the left-right paternal/maternal split |
 | Completeness | Lists only grandparents or only children; omits the title or the prompt/response | Covers all 3 generations, the title, and the prompt/response; may omit the red border or the exact sibling ordering | Accounts for the title, all 3 generations with all 11 labels, the red border on "wo," the paternal/maternal split, the connecting lines, and the prompt/response content |
 | Usefulness | "A Chinese diagram" -- no family terms, no structure described | Mentions Chinese family terminology, paternal vs maternal distinction; searchable for "Chinese family tree" | Includes all pinyin terms with meanings, explains the paternal/maternal distinction, notes the age-based sibling terminology, and connects to the paper's cross-cultural knowledge demonstration |
+
+<br><br>
+
+## doc05-R22 -- Rendered "Opossum Search" website
+
+**Figure reference:** Figure 19, page 86
+**Content type:** screenshot
+**Annotation difficulty:** Medium
+**Dimensions:** 512x271 pixels
+
+### Visual Inventory [-> Completeness]
+
+- **Layout:** A rendered webpage mockup of a search engine called "Opossum
+  Search," displayed as a browser-like view with no visible browser chrome
+  (no address bar, tabs, or window controls)
+- **Header area (dark gray/charcoal background):**
+  - Title text: "Opossum Search" in large white serif or sans-serif font,
+    centered at top
+  - A small photograph of an opossum centered below the title; the opossum
+    appears to be perched on a white fence or railing at night, with dark
+    fur and a pale/white face; the photo is roughly 100x75 pixels (small
+    thumbnail within the page)
+- **Search area (white/light gray background):**
+  - A text input field spanning most of the width with placeholder text
+    "Search the web" in gray
+  - A "Search" button to the right of the input field (gray button with
+    dark text)
+- **Footer (dark gray/black background):**
+  - Text: "Powered by Google Search" in white, centered
+- **Overall styling:** Clean, minimal design; dark header and footer with
+  white/light content area; resembles a simplified Google-style search page
+  with custom branding
+- **Image quality:** 512x271 pixels -- moderate resolution; the opossum
+  photo is small but identifiable; text is legible
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: The page title reads "Opossum Search"
+- FACT: A small photo of an opossum is centered below the title
+- FACT: The opossum appears to be on a white fence/railing at night
+- FACT: A search input field has placeholder text "Search the web"
+- FACT: A "Search" button appears to the right of the input
+- FACT: The footer reads "Powered by Google Search"
+- FACT: The header and footer have dark gray/black backgrounds
+- FACT: The search area has a white/light background
+- FACT: The image is 512x271 pixels
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might describe this as an actual website screenshot
+  REALITY: This is a rendered mockup generated from code (shown in the
+  surrounding page context); it is not a screenshot of a live website
+- RISK: A model might claim search results are visible
+  REALITY: The search field is empty and no results are shown
+- RISK: A model might describe detailed features of the opossum photo
+  REALITY: The opossum thumbnail is very small (~100x75 pixels within
+  the 512x271 image); only basic details (animal on fence, nighttime)
+  are visible
+- RISK: A model might identify specific CSS frameworks or technologies
+  REALITY: The styling is visible but the specific technology stack
+  cannot be determined from the rendered output alone
+- RISK: A model might state the footer says "Powered by Google" without
+  "Search"
+  REALITY: The full text reads "Powered by Google Search"
+
+### Detail Inventory [-> Specificity]
+
+- Page title: "Opossum Search" (large, white, centered)
+- Opossum photo: small thumbnail, animal on white fence, nighttime
+- Search input: wide text field, placeholder "Search the web"
+- Search button: gray, text "Search," right of input
+- Header background: dark gray/charcoal
+- Content area: white/light gray
+- Footer background: dark gray/black
+- Footer text: "Powered by Google Search" (white, centered)
+- Overall design: minimal, Google-style search page with custom branding
+- Image dimensions: 512x271 pixels
+- No browser chrome visible (no URL bar, tabs, or window controls)
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** Web development, code generation, UI rendering
+- **Surrounding document context:** This rendered page appears in Figure 19
+  of the Gemini 1.0 technical report (arxiv 2312.11805v5), page 86. The
+  figure demonstrates Gemini's ability to generate functional HTML/CSS/JS
+  code from a text description, then render the result. The prompt asks the
+  model to create a search engine page with an opossum theme.
+- **Technical terminology:**
+  - Rendered code: the visual output produced by executing generated
+    HTML/CSS code in a browser
+  - Search engine mockup: a non-functional UI that resembles a search
+    engine's landing page
+- **Why this image matters:** Shows the model can translate a creative text
+  prompt into a working webpage with correct layout, styling, and embedded
+  media. Tests code generation + visual design + brand theming capabilities.
+
+### Search Keywords [-> Usefulness]
+
+- Opossum Search, search engine, website mockup
+- rendered code, HTML, CSS, web page
+- Gemini, Figure 19, code generation, UI rendering
+- Google Search, Powered by, search box
+- web development, frontend, code to UI
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Describes it as a real website screenshot; wrong title text; misreads footer | Correctly identifies "Opossum Search" title, search box, and footer text; correctly notes it's a rendered mockup | All text accurate (title, placeholder, button, footer), correctly identifies opossum photo, notes dark/light color scheme, and that this is rendered code output not a live site |
+| Specificity | "A search engine page" with no title or detail | Names "Opossum Search," describes search box and footer, mentions the opossum image | Describes title font color and position, opossum photo content (animal on fence, nighttime), search field placeholder text, button label, header/footer background colors, and overall design style |
+| Completeness | Mentions title only; omits the search box, footer, or opossum photo | Covers title, opossum photo, search box, and footer; may miss the color scheme or placeholder text | Accounts for all elements: title, opossum photo (with content description), search input (with placeholder), button, header/footer (with colors), content area, and absence of browser chrome |
+| Usefulness | "A webpage" -- not searchable | Mentions Opossum Search, search engine mockup, code generation; searchable for "opossum search engine" | Includes all text content, design description, Gemini Figure 19 context as code-generation demo, and enough detail to understand the complete page layout without viewing the image |
+
+<br><br>
+
+## doc05-R24 -- Rendered combined function plot
+
+**Figure reference:** Figure 22 (rendered output), page 89
+**Content type:** chart-simple
+**Annotation difficulty:** Easy
+**Dimensions:** 512x327 pixels
+
+### Visual Inventory [-> Completeness]
+
+- **Chart type:** Single matplotlib line plot on white background
+- **Curve:** One blue line (default matplotlib blue) showing the function
+  1000*sin(x) + exp(x)
+- **Behavior:** The curve starts near 0 at x=0, rises to a local peak around
+  ~1000 near x=1.5-2, dips back toward 0 around x=4-5, then rises
+  exponentially reaching approximately 22000 at x=10. The sinusoidal
+  oscillation is visible at lower x values but overwhelmed by the
+  exponential at higher x.
+- **X-axis:** Range 0 to 10, tick marks at 0, 2, 4, 6, 8, 10. No axis label.
+- **Y-axis:** Range approximately 0 to ~22000, tick marks at 0, 5000, 10000,
+  15000, 20000. No axis label.
+- **Frame:** Standard matplotlib box frame on all four sides
+- **Background:** White plot area, no grid lines
+- **No title, no legend, no annotations**
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: There is exactly one data series (one blue line)
+- FACT: The x-axis spans from 0 to 10 with ticks at even integers
+- FACT: The y-axis reaches approximately 20000-22000 at the right edge
+- FACT: The curve has a local maximum around x=1.5-2 with value near 1000
+- FACT: The curve dips to near 0 (or slightly below) around x=4-5
+- FACT: The curve rises steeply (exponentially) from x=6 onward
+- FACT: There are no axis labels, title, or legend
+- FACT: There is no grid overlay
+- FACT: The plot uses a white background with a box frame
+- FACT: Y-axis tick labels include 0, 5000, 10000, 15000, 20000
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: "The chart shows an exponential function" -- REALITY: It shows
+  1000*sin(x) + exp(x), a combined function. The sinusoidal component is
+  visible as the local peak and dip at low x values. A pure exponential
+  would not have that local maximum and dip.
+- RISK: "Y-axis label reads 'Value'" or inventing any axis label -- REALITY:
+  There are no axis labels on either axis
+- RISK: "The curve reaches 25000" -- REALITY: The maximum visible value is
+  approximately 22000 at x=10; 20000 is the highest labeled tick
+- RISK: "There are two curves" or "multiple data series" -- REALITY: There
+  is exactly one blue line
+- RISK: "The chart has a title" -- REALITY: No title is present
+- RISK: Adding grid lines that don't exist -- REALITY: White background, no
+  grid
+
+### Detail Inventory [-> Specificity]
+
+- Single blue line (matplotlib default color #1f77b4)
+- Local peak near x~1.5-2 reaching approximately 1000
+- Local minimum near x~4-5 close to 0 or slightly negative
+- Exponential rise dominating from x~6 onward
+- Final value approximately 22000 at x=10
+- Y-axis ticks: 0, 5000, 10000, 15000, 20000
+- X-axis ticks: 0, 2, 4, 6, 8, 10
+- Standard matplotlib box frame (all four sides)
+- White background, no grid
+- No axis labels, no title, no legend, no annotations
+- Tick label font: standard matplotlib default (small, black)
+
+### Domain Context [-> Usefulness]
+
+This is the rendered output of code generated by Gemini in Figure 22. The
+prompt (shown in R23, the 2x2 subplot grid) asks the model to take the
+function from the top-left subplot (sine), multiply by 1000, and add it to
+the bottom-left subplot (exponential), then generate matplotlib code for the
+result. This plot is the rendered output of that generated code:
+`plt.plot(x, 1000*y1 + y2)` where `y1 = np.sin(x)` and `y2 = np.exp(x)`.
+
+The chart demonstrates Gemini's ability to understand visual mathematical
+functions, compose them algebraically, and produce correct executable code.
+The correctness of this output can be verified mathematically: the local
+peak near x=pi/2 (~1.57) should be approximately 1000*1 + e^1.57 ~ 1005,
+and the dip near x=3*pi/2 (~4.71) should be approximately 1000*(-1) +
+e^4.71 ~ -1000 + 111 ~ -889, which is consistent with the slight dip below
+zero visible in the chart.
+
+### Search Keywords [-> Usefulness]
+
+- matplotlib, line plot, rendered output, code generation
+- sine function, exponential function, combined function
+- 1000*sin(x) + exp(x), mathematical composition
+- Gemini code generation, Figure 22, visual math
+- function composition, algebraic combination
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | "An exponential growth chart" -- misses the sinusoidal component entirely; may invent axis labels or a title | Correctly identifies it as a single line plot, notes the curve rises steeply at high x values, correct axis ranges | Identifies the combined sinusoidal + exponential behavior (local peak, dip, then exponential rise), correct axis tick values, correctly notes absence of labels/title/legend/grid |
+| Specificity | "A line chart" with no axis values or curve behavior | Describes "curve rising to about 20000" and "x-axis 0 to 10"; mentions blue line | Specifies local peak near x=1.5-2 (~1000), dip near x=4-5, exponential rise from x=6, maximum ~22000 at x=10; identifies all tick mark positions |
+| Completeness | Mentions only the curve direction; omits axis ranges, styling, or absence of labels | Covers the curve, both axis ranges, and white background; may miss the local peak/dip or frame details | Accounts for curve shape (peak, dip, rise), both axis tick positions, frame style, white background, absence of grid/labels/title/legend, and single data series |
+| Usefulness | "A chart" -- no searchable content | Mentions line plot, exponential behavior, matplotlib styling; findable for "line chart" | Connects to Figure 22 code generation context, identifies 1000*sin(x)+exp(x) function, mentions matplotlib rendered output, findable for "Gemini code generation math plot" |
 
 <br><br>
 
