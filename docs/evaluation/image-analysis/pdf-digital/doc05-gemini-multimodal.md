@@ -174,37 +174,56 @@ below IS visible in the crop.
 ### Visual Inventory [-> Completeness]
 
 - **Components/nodes:**
-  - Input modality icons (left side, 4 stacked vertically):
-    - Text icon (labeled "Aa")
-    - Audio waveform icon
-    - Video/film strip icon with colored dots
-    - Image/mountain icon
-  - Central processing block: blue rounded rectangle labeled "Transformer"
-  - Output decoders (right side, 2):
-    - "Image Decoder" with an image output icon
-    - "Text Decoder" with an "Aa" text output icon
+  - "Input Sequence" label in the top-left corner
+  - Input modality icons (left side, 4 stacked vertically, each in a
+    color-coded square border):
+    1. Text: blue "Aa" in blue-bordered square
+    2. Audio: red vertical waveform bars in red-bordered square
+    3. Image: green mountain/landscape icon in green-bordered square
+    4. Video: yellow/orange play-button icon in yellow/orange-bordered square
+  - Interleaved token sequence: rounded capsule/pill shape containing 6
+    colored rectangles (blue, blue, red, yellow/orange, green, yellow/orange)
+  - Central processing block: large blue rounded rectangle with white
+    "Transformer" text
+  - Output decoders (right side, 2 branches):
+    - "Image Decoder" box with arrow to output icon (green mountain symbol
+      with small sparkle/star decoration)
+    - "Text Decoder" box with arrow to output icon (blue "Aa" with small
+      sparkle/star decoration)
 - **Connections:**
-  - All 4 input modality icons feed into a row of colored tokens
-  - Colored token row connects into the Transformer block
-  - Transformer outputs to both the Image Decoder and the Text Decoder
+  - All 4 input icons connect via black lines into the token capsule
+  - Token capsule feeds into the Transformer block via arrow
+  - Transformer output splits into two branches (Image Decoder, Text Decoder)
+  - Each decoder has an arrow to its respective output icon
 - **Hierarchy or flow direction:** Left-to-right: inputs -> tokenization ->
   Transformer -> decoders -> outputs
 - **Style elements that carry meaning:**
-  - Colored tokens between inputs and Transformer (red, blue, red, green, blue,
-    yellow pattern) represent the interleaved multimodal token sequence
-  - Blue color for the central Transformer block
+  - Each input icon border color matches its modality (blue=text, red=audio,
+    green=image, yellow/orange=video)
+  - Colored token segments represent interleaved multimodal tokenization
+  - Output icons have sparkle decorations suggesting generated/enhanced content
+  - Blue fill on Transformer block emphasizes it as the core component
+  - White background throughout
 
 ### Verifiable Facts [-> Accuracy]
 
-- FACT: There are exactly 4 input modality types shown: text, audio, video, and image
-- FACT: The central processing block is labeled "Transformer"
+- FACT: There are exactly 4 input modality types (top to bottom): text,
+  audio, image, video
+- FACT: The central processing block is labeled "Transformer" in white text
+  on a blue background
 - FACT: There are exactly 2 output decoders: Image Decoder and Text Decoder
-- FACT: The input tokens are represented as a row of colored rectangles between the inputs and the Transformer
-- FACT: The colored tokens include at least red, blue, green, and yellow colors
-- FACT: The text modality is represented with an "Aa" icon
-- FACT: The audio modality is represented with a waveform icon
+- FACT: The input tokens are in a rounded capsule/pill shape containing 6
+  colored rectangle segments
+- FACT: The token color sequence is: blue, blue, red, yellow/orange, green,
+  yellow/orange
+- FACT: The text icon is blue "Aa" in a blue-bordered square
+- FACT: The audio icon is red waveform bars in a red-bordered square
+- FACT: The image icon is a green mountain in a green-bordered square
+- FACT: The video icon is a yellow/orange play button in a yellow/orange-
+  bordered square
+- FACT: Both output icons have small sparkle/star decorations
 - FACT: The flow direction is left to right
-- FACT: The label "Input Sequence" appears on the left side
+- FACT: The label "Input Sequence" appears in the top-left corner
 
 ### Hallucination Risks [-> Accuracy]
 
@@ -221,15 +240,18 @@ below IS visible in the crop.
 
 ### Detail Inventory [-> Specificity]
 
-- 4 input modalities represented with distinct icons on the left
-- "Input Sequence" label on the left grouping the inputs
-- Row of colored tokens (red, blue, red, green, blue, yellow) representing
-  interleaved multimodal tokenization
-- Single blue rounded-rectangle Transformer block at center
-- Two output branches: Image Decoder (with image icon) and Text Decoder
-  (with "Aa" icon)
-- Clean left-to-right flow with no feedback loops or skip connections shown
+- 4 input modalities with color-coded bordered icons (blue=text, red=audio,
+  green=image, yellow/orange=video)
+- "Input Sequence" label in the top-left corner
+- Rounded capsule with 6 colored token segments (blue, blue, red,
+  yellow/orange, green, yellow/orange)
+- Single large blue Transformer block at center with white text
+- Two output branches: Image Decoder (green mountain + sparkle icon) and
+  Text Decoder (blue "Aa" + sparkle icon)
+- Black connecting lines with arrows showing data flow
+- Clean left-to-right flow with no feedback loops or skip connections
 - Minimalist design with no internal architecture details
+- White background throughout
 
 ### Domain Context [-> Usefulness]
 
@@ -1366,6 +1388,108 @@ photograph of shapes on paper).
 
 <br><br>
 
+## doc05-R16 -- Parallelogram with dimensions
+
+**Figure reference:** Figure 14, page 81
+**Content type:** diagram
+**Annotation difficulty:** Easy
+**Dimensions:** 539x158 pixels
+
+### Visual Inventory [-> Completeness]
+
+- **Shape:** A parallelogram slanting upward to the right, with the bottom-
+  left vertex as the leftmost point and the top-right vertex as the
+  rightmost
+- **Fill:** Light purple/lilac
+- **Outline:** Dark purple/plum, relatively thick
+- **Dimension labels (2 total):**
+  - "x" (italic) -- labels the height, positioned to the left of the
+    vertical height line inside the parallelogram
+  - "x + 15" (italic) -- labels the top edge of the parallelogram,
+    positioned above/along that edge
+- **Height indicator:** A vertical line segment drawn inside the
+  parallelogram on the left side, from the top-left slanted edge straight
+  down to the bottom edge
+- **Right-angle marker:** A small red/pink square at the base of the height
+  line where it meets the bottom edge, confirming the height is
+  perpendicular to the base
+- **No other elements:** No formula, no additional measurements, no grid,
+  no figure caption in the crop, no background elements
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: The shape is a parallelogram (two pairs of parallel sides)
+- FACT: The height is labeled "x" (italic)
+- FACT: The top edge is labeled "x + 15" (italic)
+- FACT: There is a right-angle marker (small square) at the base of the
+  height line
+- FACT: The right-angle marker is red/pink colored
+- FACT: The parallelogram fill is light purple/lilac
+- FACT: The outline is dark purple/plum
+- FACT: The height line is vertical, inside the parallelogram on the left
+  side
+- FACT: Only two dimension labels appear -- no other measurements are shown
+- FACT: The parallelogram slants upward to the right
+- FACT: No formula or equation appears in the image
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: "The base is labeled x + 15" -- REALITY: The TOP edge is labeled
+  x + 15, not the base/bottom edge
+- RISK: "The side length is x" -- REALITY: x labels the HEIGHT (the
+  perpendicular distance between parallel edges), not a slanted side
+  length. The right-angle marker confirms this.
+- RISK: "The area formula is shown as x(x + 15)" -- REALITY: No formula
+  appears in the image; only the two labeled dimensions
+- RISK: "All four sides are labeled" -- REALITY: Only the height (x) and
+  top edge (x + 15) are labeled
+- RISK: Inventing a specific numerical value for x -- REALITY: x is a
+  variable, not a specific number
+- RISK: "The bottom edge is labeled" -- REALITY: The bottom edge has no
+  label (though it would equal x + 15 since opposite sides of a
+  parallelogram are equal)
+
+### Detail Inventory [-> Specificity]
+
+- Parallelogram shape with upward-right slant
+- Light purple/lilac fill, dark purple/plum outline
+- Height label "x" in italic, left of the vertical height line
+- Top edge label "x + 15" in italic, along the top edge
+- Vertical height line segment inside the parallelogram on the left
+- Red/pink right-angle square marker at base of height line
+- No other text, labels, measurements, or annotations
+- Clean geometric drawing style (not hand-drawn, digitally rendered)
+- White background, no grid or axis
+
+### Domain Context [-> Usefulness]
+
+This is a geometry problem figure from the Gemini technical report (Figure
+14, page 81). It presents a parallelogram with algebraic dimension labels,
+testing the model's ability to reason about geometric properties. The likely
+question asks for the area: base times height = (x + 15) times x = x^2 + 15x.
+The image specifically tests whether the model can distinguish height from
+side length -- the right-angle marker is the visual cue that x is the
+perpendicular height, not a slanted side.
+
+### Search Keywords [-> Usefulness]
+
+- parallelogram, geometry, area, dimensions
+- algebraic expression, x + 15, variable, height
+- right angle, perpendicular, base times height
+- math problem, visual reasoning, Gemini Figure 14
+- geometric shape, purple parallelogram
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Calls it a rectangle or rhombus; says x labels a side length; claims base is labeled x + 15 | Correctly identifies parallelogram; gives both labels "x" and "x + 15"; notes the right-angle marker | All labels placed correctly (height vs. top edge), right-angle marker noted at base of height line, fill/outline colors accurate, no fabricated measurements |
+| Specificity | "A shape with labels" or "a purple quadrilateral" | Names "parallelogram," gives both labels, mentions purple color | Specifies light purple fill with dark purple outline, height line position (left interior), right-angle marker color (red/pink), label positions and italic style, slant direction |
+| Completeness | Mentions only the shape or only one label; omits the right-angle marker | Covers shape, both labels, and right-angle marker; may miss color details or height line position | Accounts for shape with slant direction, both labels with positions, height line, right-angle marker with color, fill and outline colors, and absence of other measurements |
+| Usefulness | "A purple shape" -- no geometric context | Mentions parallelogram with dimensions, math problem context; searchable for "parallelogram area" | Includes both algebraic labels, identifies this as a geometry/area problem, explains significance of right-angle marker for height vs. side distinction, connects to Gemini Figure 14 visual math reasoning |
+
+<br><br>
+
 ## doc05-R17 -- Moon photograph
 
 **Figure reference:** Figure 15 image 1, page 81
@@ -1884,32 +2008,41 @@ the extracted crop.
 ### Visual Inventory [-> Completeness]
 
 - **Components/nodes:** Blue circular icons with face silhouettes representing
-  family members across 3 generations:
+  family members across 3 generations (11 total nodes):
   - **Top row (grandparents, 4 nodes):**
     - Left pair: yeye (paternal grandfather), nainai (paternal grandmother)
-    - Right pair: waipo (maternal grandmother), waigong (maternal grandfather)
+      -- both have gray hair and glasses
+    - Right pair: waipo (maternal grandmother), waigong (maternal
+      grandfather) -- both have gray hair and glasses
   - **Middle row (parents, 2 nodes):**
-    - baba (father) on the left
-    - mama (mother) on the right
-  - **Bottom row (children, 5 nodes):**
-    - didi (younger brother)
-    - meimei (younger sister)
-    - wo (me) -- highlighted with a red box border
-    - gege (older brother)
-    - jiejie (older sister)
-- **Connections:** Lines connecting grandparents to their respective
-  child (baba or mama), and parents to children below
+    - baba (father) on the left -- dark hair, blue circle
+    - mama (mother) on the right -- dark hair, lighter/white circle
+      background
+  - **Bottom row (children, 5 nodes, left to right):**
+    - didi (younger brother) -- male hairstyle
+    - meimei (younger sister) -- female hairstyle
+    - wo (me) -- highlighted with a red/coral box border
+    - gege (older brother) -- male hairstyle
+    - jiejie (older sister) -- female hairstyle with bun
+- **Connections:** Light blue lines connecting:
+  - Paternal grandparents (yeye, nainai) down to baba
+  - Maternal grandparents (waipo, waigong) down to mama
+  - Baba and mama via a horizontal bar down to all 5 children
 - **Hierarchy or flow direction:** Top-to-bottom generational hierarchy:
   grandparents -> parents -> children
 - **Annotations or callouts:**
-  - Title: "The Basic Chinese Family Tree"
-  - Each node labeled with Chinese characters and pinyin romanization
-  - "wo" (me) node highlighted with a red box border to indicate the reference
-    perspective
+  - Title: "The Basic Chinese Family Tree" in black text at top
+  - Each node labeled with Chinese characters (above) and pinyin
+    romanization with tone marks (below)
+  - "wo" (me) node highlighted with a red/coral box border to indicate the
+    reference perspective
 - **Style elements that carry meaning:**
-  - Blue circular icons for all family members
-  - Red border on "wo" (me) to distinguish the perspective character
+  - Blue circular icons for all family members, with gender-differentiated
+    features (hairstyles, accessories)
+  - Grandparents distinguished by gray hair and glasses
+  - Red/coral border on "wo" (me) vs blue borders on all other children
   - Paternal grandparents on the left, maternal grandparents on the right
+  - Light gray background for the overall diagram
 
 ### Verifiable Facts [-> Accuracy]
 
@@ -1923,9 +2056,14 @@ the extracted crop.
 - FACT: The mother is labeled "mama"
 - FACT: There are 5 children in the bottom row
 - FACT: The children are labeled didi, meimei, wo, gege, jiejie
-- FACT: "wo" (me) has a red box border distinguishing it from other nodes
-- FACT: The prompt asks what to call grandparents on each side of the family
-- FACT: The model correctly identifies: father's side = Yeye and Nainai, mother's side = Waigong and Waipo
+- FACT: "wo" (me) has a red/coral box border distinguishing it from other
+  nodes, which all have blue borders
+- FACT: All grandparent figures have gray hair and glasses
+- FACT: Parent and children figures have dark hair (no glasses)
+- FACT: Face icons have gender-differentiated hairstyles
+- FACT: Pinyin labels include tone marks (e.g., "yeye" with accent marks)
+- FACT: The diagram has a light gray background
+- FACT: Connecting lines are light blue
 
 ### Hallucination Risks [-> Accuracy]
 
@@ -1939,8 +2077,11 @@ the extracted crop.
   REALITY: Gege means older brother; didi means younger brother
 - RISK: A model might claim the Chinese characters are not present and only pinyin is shown
   REALITY: Both Chinese characters and pinyin romanization label each node
-- RISK: A model might state the diagram uses different colored icons for different genders
-  REALITY: All icons are blue circular face silhouettes; only "wo" has a red border
+- RISK: A model might state the diagram uses different colored circles for
+  different genders
+  REALITY: All icons use blue circles (one shade); gender is distinguished
+  by hairstyle and accessories within the icons, not by circle color. Only
+  "wo" has a red/coral border instead of blue.
 
 ### Detail Inventory [-> Specificity]
 
@@ -1950,13 +2091,19 @@ the extracted crop.
 - Middle row: baba (father, left) and mama (mother, right)
 - Bottom row: 5 children ordered left to right: didi (younger brother),
   meimei (younger sister), wo (me), gege (older brother), jiejie (older sister)
-- All nodes are blue circular face silhouettes
-- "wo" (me) has a distinctive red box border
-- Each node has Chinese characters and pinyin romanization labels
-- Lines connect grandparents to their child (baba or mama)
-- Lines connect parents to the children row
-- Paternal side (yeye, nainai) is on the left; maternal side (waipo, waigong)
-  is on the right
+- All nodes are blue circular face silhouettes with gender-differentiated
+  hairstyles
+- Grandparent figures have gray hair and glasses; parent/child figures have
+  dark hair
+- "wo" (me) has a distinctive red/coral box border; all other children have
+  blue borders
+- Each node labeled with Chinese characters (above) and pinyin with tone
+  marks (below)
+- Light blue connecting lines between generations
+- Parents connect to children via a horizontal bar structure
+- Paternal side (yeye, nainai) on the left; maternal side (waipo, waigong)
+  on the right
+- Light gray diagram background
 - Small image dimensions (493x512 pixels) -- compact diagram
 
 ### Domain Context [-> Usefulness]
@@ -2345,47 +2492,74 @@ zero visible in the chart.
 
 ### Visual Inventory [-> Completeness]
 
-- **Components/nodes (6):**
-  1. "Gemini pre-training" (with diamond/star icon)
-  2. "SFT" (with settings/gear icon)
-  3. "RLHF" (with document icon)
-  4. "End users" (with person icon)
-  5. "Demonstration data" (with document icon)
-  6. "Feedback data" (with document icon)
-  - Additionally, a "Data flywheel" box (with database icon) connects several
-    of the above
-- **Connections:**
-  - Gemini pre-training -> SFT (linear flow)
-  - SFT -> RLHF (linear flow)
-  - RLHF -> End users (linear flow)
-  - End users -> Feedback data (feedback loop)
-  - Feedback data -> Data flywheel
-  - Demonstration data -> Data flywheel
-  - Data flywheel -> SFT (closes the loop)
+- **Components/nodes (7 labeled):**
+  1. "Gemini pre-training" -- 4-pointed star icon (teal/cyan), light blue
+     rectangular box, OUTSIDE the dashed region (far left)
+  2. "SFT" -- list/horizontal-lines icon (teal/cyan), light blue rectangular
+     box, inside dashed region (top row)
+  3. "RLHF" -- refresh/loop icon with two curved arrows (teal/cyan), light
+     blue rectangular box, inside dashed region (top row, right of SFT)
+  4. "End users" -- person/user icon (teal/cyan), light blue rectangular
+     box, OUTSIDE the dashed region (far right)
+  5. "Data flywheel" -- circular arrows icon (teal/cyan), in a teal/cyan
+     circular border (not rectangular), center of diagram inside dashed
+     region
+  6. "Demonstration data" -- document icon (teal/cyan), light blue
+     rectangular box, bottom-left inside dashed region
+  7. "Feedback data" -- document icon (teal/cyan), light blue rectangular
+     box, bottom-right inside dashed region
+- **Connections (gray arrows):**
+  - Gemini pre-training -> SFT (right arrow, enters dashed region)
+  - SFT -> RLHF (right arrow)
+  - RLHF -> End users (right arrow, exits dashed region)
+  - End users -> Feedback data (arrow going back left/down, re-enters
+    dashed region)
+  - Feedback data -> Data flywheel (left arrow)
+  - Demonstration data -> Data flywheel (right arrow)
+  - Data flywheel -> SFT (up arrow, closes the loop)
 - **Hierarchy or flow direction:** Left-to-right main pipeline (pre-training
   -> SFT -> RLHF -> End users), with a bottom feedback cycle (End users ->
   Feedback data -> Data flywheel -> SFT)
-- **Layers or groupings:**
-  - Main pipeline (top): pre-training -> SFT -> RLHF -> End users
-  - Data sources (bottom): Demonstration data and Feedback data feeding into
-    the Data flywheel
+- **Visual grouping:** A light blue dashed rectangle encloses the post-
+  training components (SFT, RLHF, Data flywheel, Demonstration data,
+  Feedback data). Gemini pre-training and End users sit outside this region.
 - **Style elements that carry meaning:**
-  - Each node has a distinct icon (star, gear, document, person, database)
-  - The flywheel concept is represented as a cycle connecting user feedback
-    back into training
+  - Each node has a teal/cyan icon in a distinct shape
+  - Data flywheel is circular (not rectangular) emphasizing its cyclical
+    role
+  - All icons share the same teal/cyan color scheme
+  - Gray directional arrows for connections
+  - Light blue rectangular boxes for most nodes
+  - Dashed border groups the iterative post-training components
+- **Figure caption (visible in crop):** "Figure 7 | **Modeling overview.**
+  Post-training utilizes an optimized data flywheel in order to acquire
+  human-AI feedback and continually improve on key areas..."
+- **Note:** The crop also includes surrounding paragraph text about RLHF
+  above the diagram. The diagram itself is the figure content.
 
 ### Verifiable Facts [-> Accuracy]
 
-- FACT: The main pipeline flows from "Gemini pre-training" to "SFT" to "RLHF" to "End users"
-- FACT: "SFT" stands for Supervised Fine-Tuning (labeled in the diagram)
-- FACT: "RLHF" stands for Reinforcement Learning from Human Feedback (labeled in the diagram)
-- FACT: A "Data flywheel" component connects user feedback back into the training process
+- FACT: The main pipeline flows left to right: "Gemini pre-training" ->
+  "SFT" -> "RLHF" -> "End users"
+- FACT: The diagram labels show only abbreviations "SFT" and "RLHF" (the
+  full expansions are domain knowledge, not visible in the image)
+- FACT: A "Data flywheel" component connects user feedback back into the
+  training process
 - FACT: "Feedback data" receives an arrow from "End users"
-- FACT: Both "Demonstration data" and "Feedback data" feed into the "Data flywheel"
-- FACT: The "Data flywheel" connects back to "SFT" (not to pre-training or RLHF)
-- FACT: The diagram contains exactly 6 labeled components plus the Data flywheel box
-- FACT: "Gemini pre-training" has a diamond/star icon
+- FACT: Both "Demonstration data" and "Feedback data" feed into the "Data
+  flywheel"
+- FACT: The "Data flywheel" connects back to "SFT" (not to pre-training or
+  RLHF)
+- FACT: The diagram contains exactly 7 labeled components
+- FACT: "Gemini pre-training" has a 4-pointed star icon
+- FACT: "RLHF" has a refresh/loop icon (two curved arrows), not a document
+  icon
+- FACT: "Data flywheel" is in a circular teal border, distinct from the
+  rectangular boxes used for the other 6 nodes
 - FACT: "End users" has a person icon
+- FACT: A dashed rectangle encloses the post-training components (SFT,
+  RLHF, Data flywheel, Demonstration data, Feedback data)
+- FACT: Gemini pre-training and End users are outside the dashed region
 
 ### Hallucination Risks [-> Accuracy]
 
@@ -2404,17 +2578,23 @@ zero visible in the chart.
 
 ### Detail Inventory [-> Specificity]
 
-- Main pipeline: 4 stages in left-to-right sequence (pre-training, SFT, RLHF,
-  End users)
-- Each stage has a distinctive icon: star (pre-training), gear (SFT), document
-  (RLHF), person (End users)
+- Main pipeline: 4 stages in left-to-right sequence (pre-training, SFT,
+  RLHF, End users)
+- Distinctive icons per node: 4-pointed star (pre-training), list/lines
+  (SFT), refresh/loop arrows (RLHF), person (End users), circular arrows
+  (Data flywheel), document (Demonstration data and Feedback data)
+- All icons are teal/cyan; all boxes are light blue rectangles except Data
+  flywheel which has a teal circular border
+- Dashed blue rectangle groups the post-training components
 - Feedback loop: End users -> Feedback data -> Data flywheel -> back to SFT
 - Two data sources feed the flywheel: Demonstration data and Feedback data
-- Data flywheel has a database icon
-- The cycle represents iterative improvement: user feedback improves training
-  data, which improves the model via SFT
-- Pre-training is the starting point and does not receive feedback loop input
-- The diagram is a vector graphic (not rasterized)
+- Gray directional arrows for all connections
+- The cycle represents iterative improvement: user feedback improves
+  training data, which improves the model via SFT
+- Pre-training is the starting point and does not receive feedback loop
+  input
+- Figure caption: "Figure 7 | Modeling overview."
+- The diagram is a vector graphic (rendered from page, not rasterized)
 
 ### Domain Context [-> Usefulness]
 
@@ -2482,10 +2662,22 @@ zero visible in the chart.
   Prompt -> Sample -> Decision -> (if NO) Respond; (if YES) Execute and loop
   back to Sample
 - **Style elements that carry meaning:**
-  - Red circle for "NO" branch
-  - Green circle for "YES" branch
-  - Diamond shape for the decision point
-  - Rectangular boxes for process steps
+  - Green filled circle with white "YES" text for the YES branch
+  - Red/coral filled circle with white "NO" text for the NO branch
+  - Diamond shape (pink/light red border) for the decision point
+  - Rounded-corner rectangular boxes for process steps, each with a
+    distinct border color:
+    - Purple/violet border: Prompt
+    - Blue border: Sample from LLM, Put execution result back in context
+    - Orange border: Respond
+  - All boxes have no fill (white interior, border only)
+  - Gray arrows with arrowheads for connections (Prompt -> Sample from LLM
+    arrow appears dashed)
+- **Figure caption (visible in crop):** "Figure 8 | A Gemini tool-use
+  control loop."
+- **Note:** The crop also includes the page header and body text about
+  Gemini Apps models below the diagram. The diagram itself is the figure
+  content.
 
 ### Verifiable Facts [-> Accuracy]
 
@@ -2495,9 +2687,16 @@ zero visible in the chart.
 - FACT: The YES path leads to "Put execution result back in context"
 - FACT: The NO path leads directly to "Respond"
 - FACT: The YES path creates a loop back to "Sample from LLM"
-- FACT: YES is indicated by a green circle and NO by a red circle
+- FACT: YES is indicated by a green filled circle with white text; NO by a
+  red/coral filled circle with white text
 - FACT: There are exactly 4 process boxes and 1 decision diamond
+- FACT: Each process box has a distinct border color: purple (Prompt), blue
+  (Sample from LLM and Put execution result), orange (Respond)
+- FACT: The decision diamond has a pink/light red border
+- FACT: All boxes have no fill -- white interior with colored borders only
 - FACT: The diagram shows a simple control loop, not a multi-branch tree
+- FACT: The figure caption reads "Figure 8 | A Gemini tool-use control
+  loop."
 
 ### Hallucination Risks [-> Accuracy]
 
@@ -2517,12 +2716,19 @@ zero visible in the chart.
 - 5 total nodes: Prompt, Sample from LLM, decision diamond, Put execution
   result back in context, Respond
 - Single decision point: "Sample contains tool code block?"
-- Two branches: YES (green, loops) and NO (red, terminates)
-- The loop path: YES -> execute tool -> put result in context -> sample again
+- Two branches: YES (green filled circle, loops) and NO (red filled circle,
+  terminates)
+- The loop path: YES -> Put execution result back in context -> Sample from
+  LLM -> Decision again
 - The termination path: NO -> Respond
+- Distinct border colors per node: purple (Prompt), blue (Sample from LLM,
+  Put execution result), pink/light red (decision diamond), orange (Respond)
+- All boxes unfilled (white interior, border only)
+- Gray arrows with arrowheads; Prompt -> Sample arrow appears dashed
 - Clean, minimal flowchart with no parallel paths or error handling
 - Vector graphic rendering
 - Color coding: green = continue/yes, red = stop/no
+- Figure caption: "Figure 8 | A Gemini tool-use control loop."
 
 ### Domain Context [-> Usefulness]
 
