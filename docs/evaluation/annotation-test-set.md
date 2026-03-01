@@ -15,13 +15,15 @@ its source document.
 
 ## What Annotation Testing Measures
 
-- **Accuracy** -- factual correctness, no hallucinations, no fabricated details
-- **Specificity** -- concrete details (values, labels, trend directions) vs
-  generic descriptions ("a chart about data")
-- **Completeness** -- covers all significant visual elements, not just the
-  main subject
-- **Usefulness** -- searchability and document understanding without seeing the
-  image; would this annotation surface in a relevant search?
+- **Correctness** -- factual accuracy, no hallucinations, no fabricated
+  details, values within content-type-specific tolerance bands
+- **Information Recovery** -- captures the queryable entities the image
+  uniquely contributes (data values, component names, relationships,
+  structure) so image-sourced information is as queryable as text-sourced
+  information
+- **Retrieval Value** -- natural language prose with domain vocabulary,
+  self-contained without surrounding text, findable by relevant queries in
+  a text-based RAG system
 
 <br><br>
 
@@ -210,16 +212,16 @@ model quality.
 
 ## Scoring Rubric
 
-Annotation quality is scored on four weighted dimensions. The full rubric with
-scoring anchors and protocol is in the evaluation work items at
-`tmp/task-17-eval/03-design-evaluation-rubric.md`.
+Annotation quality is scored on three weighted dimensions designed for
+text-only RAG evaluation. The full rubric with scoring anchors, hard rules,
+per-content-type guidance, and scoring protocol is at
+[`docs/evaluation/annotation-rubric.md`](./annotation-rubric.md).
 
 | Dimension | Weight | What it measures |
 |-----------|--------|------------------|
-| Accuracy | 30% | Factual correctness, no hallucinations |
-| Specificity | 25% | Concrete details vs generic descriptions |
-| Completeness | 25% | Coverage of all significant visual elements |
-| Usefulness | 20% | Searchability and understanding without seeing the image |
+| Correctness | 40% | No hallucinations; stated facts verifiable from image; values within tolerance |
+| Information Recovery | 35% | Queryable entities captured; key values extracted; relationships described |
+| Retrieval Value | 25% | Natural language prose; domain vocabulary; self-contained for RAG |
 
 **Weighted score:**
-`score = (accuracy * 0.30) + (specificity * 0.25) + (completeness * 0.25) + (usefulness * 0.20)`
+`score = (correctness * 0.40) + (information_recovery * 0.35) + (retrieval_value * 0.25)`

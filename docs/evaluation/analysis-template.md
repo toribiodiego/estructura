@@ -52,15 +52,15 @@ Identifies the image and classifies it for scoring.
 
 <br><br>
 
-### Visual Inventory [-> Completeness]
+### Visual Inventory [-> Information Recovery]
 
 Enumerate every significant visual element in the image. Use the
 content-type-specific format that matches this image's content type. If the
 image spans multiple types (e.g., an infographic containing charts), use all
 applicable formats.
 
-This section feeds the **Completeness** dimension (25%): scoring checks whether
-the annotation mentioned these elements.
+This section feeds the **Information Recovery** dimension (35%): scoring checks
+whether the annotation recovered the queryable entities listed here.
 
 #### Charts (`chart-simple`, `chart-complex`)
 
@@ -136,11 +136,11 @@ significant elements using the most relevant format.
 
 <br><br>
 
-### Verifiable Facts [-> Accuracy]
+### Verifiable Facts [-> Correctness]
 
 Bullet list of specific claims that can be verified against the image. Each fact
 is something an annotation might state correctly or incorrectly. This section
-feeds the **Accuracy** dimension (30%).
+feeds the **Correctness** dimension (40%).
 
 Format each entry as:
 
@@ -166,11 +166,11 @@ Format each entry as:
 
 <br><br>
 
-### Hallucination Risks [-> Accuracy]
+### Hallucination Risks [-> Correctness]
 
 List plausible-sounding claims a model might fabricate for this image. This
-section also feeds the **Accuracy** dimension (30%) by identifying what to watch
-for during scoring.
+section also feeds the **Correctness** dimension (40%) by identifying what to
+watch for during scoring.
 
 Format each entry as:
 
@@ -207,11 +207,11 @@ Format each entry as:
 
 <br><br>
 
-### Detail Inventory [-> Specificity]
+### Detail Inventory [-> Information Recovery]
 
 List all concrete, specific details visible in the image that a high-quality
-annotation would reference. This section feeds the **Specificity** dimension
-(25%).
+annotation would reference. This section feeds the **Information Recovery**
+dimension (35%) alongside the Visual Inventory.
 
 These are the details that separate a specific annotation ("6 data series with
 confidence bands across 1000 trajectories") from a generic one ("a line chart
@@ -226,10 +226,10 @@ about data"). Include:
 
 <br><br>
 
-### Domain Context [-> Usefulness]
+### Domain Context [-> Retrieval Value]
 
 Background knowledge needed to interpret this image. This section feeds the
-**Usefulness** dimension (20%).
+**Retrieval Value** dimension (25%).
 
 - **Domain:** what field or topic this image belongs to
 - **Surrounding document context:** what the document text says about this
@@ -239,10 +239,10 @@ Background knowledge needed to interpret this image. This section feeds the
 
 <br><br>
 
-### Search Keywords [-> Usefulness]
+### Search Keywords [-> Retrieval Value]
 
 Terms that should surface this image in a document search system. This section
-also feeds the **Usefulness** dimension (20%).
+also feeds the **Retrieval Value** dimension (25%).
 
 Include:
 - **Domain terms:** e.g., "reinforcement learning", "off-policy evaluation"
@@ -256,21 +256,30 @@ Include:
 
 Concrete examples of what scores 40, 70, and 95 on each dimension for THIS
 specific image. This makes the rubric calibration image-specific rather than
-relying on generic scoring band descriptions.
+relying on generic scoring band descriptions. See
+[`annotation-rubric.md`](./annotation-rubric.md) for the full dimension
+definitions, hard rules, and tolerance bands.
 
 ```text
-| Dimension     | Score 40 (poor)   | Score 70 (good)   | Score 95 (excellent) |
-|---------------|-------------------|-------------------|----------------------|
-| Accuracy      | [example]         | [example]         | [example]            |
-| Specificity   | [example]         | [example]         | [example]            |
-| Completeness  | [example]         | [example]         | [example]            |
-| Usefulness    | [example]         | [example]         | [example]            |
+| Dimension            | Score 40 (poor)   | Score 70 (good)   | Score 95 (excellent) |
+|----------------------|-------------------|-------------------|----------------------|
+| Correctness          | [example]         | [example]         | [example]            |
+| Information Recovery | [example]         | [example]         | [example]            |
+| Retrieval Value      | [example]         | [example]         | [example]            |
 ```
 
 Fill in each cell with a concrete description of what an annotation at that
 score level would look like for this particular image. For example:
 
-- **Accuracy 40:** "States the chart shows 5 data series when there are
+- **Correctness 40:** "States the chart shows 5 data series when there are
   actually 6; misidentifies the y-axis as 'accuracy' when it reads 'MSE'"
-- **Accuracy 95:** "All stated values, labels, and relationships match the
-  image exactly; no fabricated details"
+- **Correctness 95:** "All stated values, labels, and relationships match the
+  image exactly; no fabricated details; values within tolerance bands"
+- **Information Recovery 40:** "Names 2 of 9 series, no values extracted,
+  no trend descriptions"
+- **Information Recovery 95:** "All 9 series named, key values at extremes
+  cited, trend patterns described, self-contained for queries"
+- **Retrieval Value 40:** "Generic description with no domain vocabulary;
+  would not surface in a relevant search"
+- **Retrieval Value 95:** "Natural language prose, domain terms present,
+  self-contained without surrounding text, findable for specific queries"

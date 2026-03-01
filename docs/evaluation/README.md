@@ -30,7 +30,7 @@ keywords, and annotation quality anchors. This creates the reference material
 that makes rubric scoring reproducible.
 
 After both passes, the evaluation framework combines:
-1. Generic rubric (4 dimensions, scoring bands)
+1. Annotation rubric (3 dimensions, scoring bands, hard rules)
 2. Per-image ground truth (visual inventory, facts, risks)
 3. Per-image scoring anchors (40/70/95 examples per dimension)
 4. Calibration notes (biases, adjustments)
@@ -49,7 +49,7 @@ image-catalog.md              master inventory of all 289 taggable images
 pipeline-test-set.md          document-level: 31 documents with extraction
        |                      difficulty, format coverage, run instructions
        v
-annotation-test-set.md        image-level: 64-image eval subset with annotation
+annotation-test-set.md        image-level: 101-image eval subset with annotation
        |                      difficulty, content type matrices, scoring rubric
        v
 image-analysis/               per-image ground truth organized by format,
@@ -79,22 +79,24 @@ Each layer builds on the previous:
 | `analysis-template.md` | Strict template for per-image ground truth, with content-type-specific formats and rubric dimension mapping |
 | `pass2-workflow.md` | Step-by-step workflow for pass 2: independent image extraction, verification, and ground truth recording |
 | `pipeline-test-set.md` | Document-level test index: 31 documents with extraction difficulty, format coverage, and run instructions |
-| `annotation-test-set.md` | Image-level test index: 64-image eval subset with annotation difficulty, content type and format matrices, scoring rubric summary |
+| `annotation-test-set.md` | Image-level test index: 101-image eval subset with annotation difficulty, content type and format matrices, scoring rubric summary |
+| `annotation-rubric.md` | Annotation quality rubric: 3 dimensions (Correctness/Information Recovery/Retrieval Value), scoring anchors, hard rules, tolerance bands, scoring protocol |
 | `image-analysis/` | Per-document ground truth files organized by format (6 subdirectories, 24 files) |
 
 <br><br>
 
 ## Scoring Dimensions
 
-Annotation quality is scored on four weighted dimensions. The full rubric with
-scoring anchors and protocol is maintained in the evaluation work items.
+Annotation quality is scored on three weighted dimensions designed for
+text-only RAG evaluation. The full rubric with scoring anchors, hard rules,
+per-content-type guidance, and scoring protocol is at
+[`annotation-rubric.md`](./annotation-rubric.md).
 
 | Dimension | Weight | What it measures |
 |-----------|--------|------------------|
-| Accuracy | 30% | Factual correctness, no hallucinations |
-| Specificity | 25% | Concrete details vs generic descriptions |
-| Completeness | 25% | Coverage of all significant visual elements |
-| Usefulness | 20% | Searchability and understanding without seeing the image |
+| Correctness | 40% | No hallucinations; stated facts verifiable from image; values within tolerance |
+| Information Recovery | 35% | Queryable entities captured; key values extracted; relationships described |
+| Retrieval Value | 25% | Natural language prose; domain vocabulary; self-contained for RAG |
 
 <br><br>
 

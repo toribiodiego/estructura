@@ -214,12 +214,12 @@ For each image, fill every section of the
 
 | Section | What to write | Rubric dimension |
 |---------|---------------|------------------|
-| Visual inventory | Every significant visual element, using the content-type-specific format | Completeness (25%) |
-| Verifiable facts | Specific, falsifiable statements observable in the image | Accuracy (30%) |
-| Hallucination risks | Plausible claims a model might fabricate, with the actual reality | Accuracy (30%) |
-| Detail inventory | All concrete details a high-quality annotation would reference | Specificity (25%) |
-| Domain context | Background knowledge, document context, technical terminology | Usefulness (20%) |
-| Search keywords | Terms that should surface this image in a search system | Usefulness (20%) |
+| Visual inventory | Every significant visual element, using the content-type-specific format | Information Recovery (35%) |
+| Verifiable facts | Specific, falsifiable statements observable in the image | Correctness (40%) |
+| Hallucination risks | Plausible claims a model might fabricate, with the actual reality | Correctness (40%) |
+| Detail inventory | All concrete details a high-quality annotation would reference | Information Recovery (35%) |
+| Domain context | Background knowledge, document context, technical terminology | Retrieval Value (25%) |
+| Search keywords | Terms that should surface this image in a search system | Retrieval Value (25%) |
 | Quality anchors | Concrete examples of score 40, 70, and 95 for each dimension | All dimensions |
 
 ### Recording principles
