@@ -2366,121 +2366,397 @@ zero visible in the chart.
 
 **Figure reference:** Figure 22, page 89
 **Content type:** chart-complex
-**Annotation difficulty:** Hard
+**Annotation difficulty:** Medium
 **Dimensions:** 512x506 pixels
 
 ### Visual Inventory [-> Completeness]
 
-- **Chart type:** 2x2 grid of matplotlib subplots (composite prompt image)
-  plus a single rendered output plot
-- **Panels (prompt, 2x2 grid):**
-  - **Top-left:** Sine wave (oscillating between approximately -1 and 1,
-    x-axis from 0 to 10)
-  - **Top-right:** Tangent function (showing characteristic periodic vertical
-    asymptotes, x-axis from 0 to 10, y-axis approximately -40 to 20)
-  - **Bottom-left:** Exponential curve (rising sharply, y-axis up to
-    approximately 20000, x-axis from 0 to 10)
-  - **Bottom-right:** 3D surface plot (colorful with a colorbar showing values
-    0 to 1)
-- **Prompt instruction:** "I want you to take the function depicted in the top
-  left subplot, multiply it by 1000, and then add it to the function depicted
-  in the bottom left subplot. Generate matplotlib code for the single resulting
-  plot."
-- **Model Response (rendered code):**
-  - Python code: `x = np.linspace(0, 10, 1000)`, `y1 = np.sin(x)`,
-    `y2 = np.exp(x)`, `plt.plot(x, 1000*y1 + y2)`
-  - Rendered graph: single line plot showing the combined function
-    (1000*sin(x) + exp(x)), y-axis up to approximately 20000, x-axis 0 to 10
-- **Axes (prompt subplots):**
-  - Top-left (sine): x 0-10, y approximately -1 to 1
-  - Top-right (tangent): x 0-10, y approximately -40 to 20
-  - Bottom-left (exponential): x 0-10, y approximately 0 to 20000
-  - Bottom-right (3D surface): colorbar 0 to 1
-- **Axes (rendered output):**
-  - x 0-10, y approximately 0 to 20000
+- **Chart type:** 2x2 grid of four matplotlib subplots
+- **Panels:**
+  - **Top-left:** Sine wave -- smooth blue curve oscillating between -1.00 and
+    1.00 over two full periods; x-axis 0 to 10, y-axis ticks at 0.25
+    increments from -1.00 to 1.00
+  - **Top-right:** Tangent function -- blue curve with 4 visible vertical
+    asymptotes (near x ~ 1.6, 4.7, 7.9, and edges); x-axis 0 to 10, y-axis
+    from -40 to 20
+  - **Bottom-left:** Exponential curve -- blue curve near zero for x < 6, then
+    rising sharply; x-axis 0 to 10, y-axis ticks at 0, 5000, 10000, 15000,
+    20000
+  - **Bottom-right:** 3D surface plot -- smooth surface rendered in a
+    viridis-like colormap (blue at low values, green in the middle, yellow at
+    high values); colorbar on right side with ticks from 0.00 to 2.00 at 0.25
+    increments; x and y axes both 0.0 to 1.0
+- **Layout:** Four panels separated by thin white gutters; each panel has a
+  thin black border/frame
+- **Line style:** All 2D plots use a single solid blue line with no markers
+- **Gridlines:** No visible gridlines on the three 2D plots; light gray
+  gridlines visible on the 3D surface
+- **Labels:** No subplot titles, no axis labels -- only numeric tick values on
+  each axis
+- **Background:** White background for all four panels
 
 ### Verifiable Facts [-> Accuracy]
 
-- FACT: The prompt contains exactly 4 subplots in a 2x2 grid
+- FACT: The image contains exactly 4 subplots in a 2x2 grid
 - FACT: The top-left subplot shows a sine wave
-- FACT: The top-right subplot shows a tangent function
+- FACT: The top-right subplot shows a tangent function with vertical asymptotes
 - FACT: The bottom-left subplot shows an exponential curve
 - FACT: The bottom-right subplot shows a 3D surface plot
-- FACT: The instruction asks to multiply the top-left function by 1000
-- FACT: The instruction asks to add the result to the bottom-left function
-- FACT: The model identifies the top-left as sin(x) and the bottom-left as exp(x)
-- FACT: The generated code computes 1000*sin(x) + exp(x)
-- FACT: The rendered output is a single line plot (not a 2x2 grid)
-- FACT: The rendered output y-axis reaches approximately 20000
-- FACT: The code uses `np.linspace(0, 10, 1000)` for x values
+- FACT: The sine wave y-axis ranges from -1.00 to 1.00
+- FACT: The tangent plot y-axis ranges from approximately -40 to 20
+- FACT: The exponential plot y-axis reaches approximately 20000
+- FACT: The 3D surface colorbar ranges from 0.00 to 2.00
+- FACT: All three 2D subplots have x-axis ranging from 0 to 10
+- FACT: The 3D surface x and y axes both range from 0.0 to 1.0
+- FACT: All 2D curves are rendered as solid blue lines
+- FACT: No subplot titles or axis labels are present -- only tick values
 
 ### Hallucination Risks [-> Accuracy]
 
 - RISK: A model might confuse which function is in which subplot position
-  REALITY: Sine is top-left, tangent is top-right, exponential is bottom-left, 3D surface is bottom-right
-- RISK: A model might state the multiplication factor as 100 or 10000 instead of 1000
-  REALITY: The instruction says "multiply it by 1000"
-- RISK: A model might claim the output includes all 4 original plots
-  REALITY: The rendered output is a single combined plot
-- RISK: A model might identify the bottom-left as a polynomial instead of exponential
-  REALITY: The model identifies it as exp(x) and the curve shape (rapidly rising to ~20000) matches an exponential
-- RISK: A model might state the rendered output uses a different x range
-  REALITY: Both the input subplots and the output use x from 0 to 10
-- RISK: A model might claim the 3D surface plot is used in the calculation
-  REALITY: The instruction only uses the top-left (sine) and bottom-left (exponential) subplots
+  REALITY: Sine is top-left, tangent is top-right, exponential is bottom-left,
+  3D surface is bottom-right
+- RISK: A model might identify the bottom-left as a polynomial or logarithmic
+  curve instead of exponential
+  REALITY: The curve shape (flat near zero for small x, sharply rising to
+  ~20000) is characteristic of an exponential function
+- RISK: A model might state the 3D surface colorbar ranges from 0 to 1
+  REALITY: The colorbar clearly shows ticks from 0.00 to 2.00
+- RISK: A model might claim axis labels or subplot titles are present
+  REALITY: Only numeric tick values appear -- no text labels or titles
+- RISK: A model might describe prompt text, code, or a rendered output plot
+  that are on the same PDF page but not in this crop
+  REALITY: The extracted image contains only the 2x2 subplot grid
+- RISK: A model might claim there are more or fewer than 4 asymptotes in the
+  tangent plot
+  REALITY: 4 vertical asymptotes are visible (approximately at x ~ 1.6, 4.7,
+  7.9, and near x ~ 10)
 
 ### Detail Inventory [-> Specificity]
 
-- Prompt image: 2x2 matplotlib subplot grid with 4 distinct function types
+- 2x2 matplotlib subplot grid, 512x506 pixels total
 - Subplot positions: sine (top-left), tangent (top-right), exponential
   (bottom-left), 3D surface (bottom-right)
-- Instruction specifies: 1000 * (top-left function) + (bottom-left function)
-- Model correctly maps: top-left = sin(x), bottom-left = exp(x)
-- Generated formula: 1000*sin(x) + exp(x)
-- Code uses numpy (`np.linspace`, `np.sin`, `np.exp`) and matplotlib
-  (`plt.plot`)
-- Rendered output: single line plot, x range 0-10, y up to ~20000
-- The exponential dominates at larger x values (exp(10) ~ 22026), with the
-  sine component adding oscillation (amplitude 1000)
-- Small image dimensions (512x506 pixels) -- subplot details may be hard
-  to read
+- Sine wave: exactly two full periods visible, smooth curve, y-axis fine
+  graduation at 0.25 intervals
+- Tangent function: 4 vertical asymptotes creating characteristic repeated
+  pole pattern, y-axis range much larger on the negative side (-40) than
+  positive (20)
+- Exponential curve: essentially zero for x < 4, then curves upward steeply;
+  y-axis ticks at 5000 intervals
+- 3D surface: smooth surface with viridis-like colormap gradient, both ground
+  axes 0.0 to 1.0, surface rises toward one corner
+- Colorbar: vertical bar on right side of 3D subplot, 0.00 to 2.00 with 0.25
+  increments
+- All 2D lines are solid blue with no data point markers
+- No titles, no axis labels, no legends -- purely numeric tick annotations
+- White panel backgrounds, thin black borders, white gutters between panels
 
 ### Domain Context [-> Usefulness]
 
-- **Domain:** Mathematical functions, code generation, data visualization
-- **Surrounding document context:** Figure 22 in the Gemini report, another
-  multimodal code generation demonstration. Unlike Figure 5 (subplot
-  rearrangement), this task requires the model to visually identify
-  mathematical functions from their plots, compose a new mathematical
-  expression, and generate executable code.
+- **Domain:** Mathematical functions, data visualization, matplotlib plotting
+- **Surrounding document context:** Figure 22 in the Gemini 1.0 technical
+  report (page 89). On the PDF page, this 2x2 subplot grid serves as the
+  input image for a multimodal code generation task where the model must
+  identify functions from visual plots and compose them mathematically. The
+  surrounding page text includes an instruction prompt and the model's code
+  response, but none of that text appears in this extracted crop.
 - **Technical terminology:**
-  - sin(x): sine function, periodic oscillation between -1 and 1
-  - exp(x): exponential function, grows rapidly
-  - np.linspace: numpy function to create evenly spaced values
-  - matplotlib: Python plotting library
-  - 3D surface plot: visualization of a function of two variables
-- **Why this image matters:** Demonstrates a harder variant of multimodal code
-  generation where the model must identify functions from visual plots (not
-  labels), apply a mathematical transformation (multiply then add), and produce
-  correct executable code. This tests visual math comprehension beyond simple
-  rearrangement.
+  - Sine function: periodic oscillation between -1 and 1
+  - Tangent function: periodic with vertical asymptotes where cos(x) = 0
+  - Exponential function: grows proportional to its current value
+  - 3D surface plot: visualization of a function f(x, y) as a colored surface
+  - Viridis colormap: perceptually uniform colormap from blue through green to
+    yellow
+- **Why this image matters:** The 2x2 grid is the visual input that a
+  multimodal model must interpret. Annotation quality depends on correctly
+  identifying all four function types from their curve shapes alone (no labels
+  or titles provide hints). The absence of axis labels makes this a pure visual
+  identification task.
 
 ### Search Keywords [-> Usefulness]
 
-- Gemini, code generation, matplotlib, Python
-- sine wave, exponential, tangent, 3D surface plot
-- mathematical function identification, plot interpretation
-- numpy, linspace, subplot, combined function
-- visual math reasoning, function composition
+- matplotlib, subplot, 2x2 grid, Python plotting
+- sine wave, tangent function, exponential curve, 3D surface plot
+- mathematical function visualization, plot identification
+- viridis colormap, function plots, multimodal input
+- Gemini, code generation, visual math reasoning
 
 ### Annotation Quality Anchors
 
 | Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
 |-----------|-----------------|-----------------|----------------------|
-| Accuracy | Misidentifies function types (e.g., calls exponential "logarithmic"); states wrong multiplication factor; confuses subplot positions | Correctly identifies all 4 functions and their positions; states the 1000x multiplication; may give imprecise axis ranges | All functions, positions, the 1000x factor, the formula 1000*sin(x) + exp(x), and the rendered output characteristics are accurate |
-| Specificity | "Math plots and code" with no function names or formula | Names all 4 functions, states the combination formula, mentions the rendered output is a single plot | Identifies each function with its subplot position and approximate axis ranges, quotes the code (`np.linspace(0, 10, 1000)`, `1000*y1 + y2`), and describes the rendered output characteristics |
-| Completeness | Describes only the input subplots or only the output; omits the instruction or the code | Covers the 4 input subplots, the combination instruction, and the rendered output; may omit the code details or the 3D surface (unused) subplot | Accounts for all 4 subplots with positions, the instruction text, the model's function identification, the generated code, and the rendered output plot |
-| Usefulness | "Some plots and code output" -- no function names, no task description | Mentions function identification from plots, code generation, the combination formula; searchable for "Gemini math code generation" | Explains the visual function identification task, the mathematical composition (1000*sin + exp), the code generation, and how this differs from simpler code generation tasks (requires visual math comprehension) |
+| Accuracy | Misidentifies function types (e.g., calls exponential "logarithmic" or tangent "cosecant"); gets subplot positions wrong; states wrong axis ranges | Correctly identifies all 4 functions and their grid positions; axis ranges approximately right; may get colorbar range wrong (e.g., 0-1 instead of 0-2) | All 4 functions correctly identified with positions, axis ranges match visible ticks (sine -1 to 1, tangent -40 to 20, exponential to 20000, colorbar 0-2), notes absence of labels/titles |
+| Specificity | "Four math plots" with no function names or axis details | Names all 4 functions with grid positions, gives approximate axis ranges, mentions 3D surface has a colormap | Specifies sine period count, tangent asymptote count, exponential knee location, colorbar range and tick interval, line color, colormap type, absence of titles/labels |
+| Completeness | Describes only 2-3 of the 4 subplots; omits the 3D surface or tangent asymptotes | Covers all 4 subplots with function types and approximate ranges; mentions the 2x2 layout | All 4 subplots described with function type, axis ranges, and distinctive features (asymptotes, periods, curve shape, colormap); notes layout, styling (blue lines, no markers), and absence of labels |
+| Usefulness | "Some function plots" -- not searchable for any specific function type or visualization term | Names the functions and "matplotlib subplot grid"; a search for "sine tangent exponential" would find it | Explains this is a visual function identification challenge with no text cues, connects to multimodal code generation context; searchable for specific functions, matplotlib, and visual math reasoning |
+
+<br><br>
+
+## doc05-V01 -- Grouped bar chart, normalized performance across capabilities
+
+**Figure reference:** Figure 3, page 9
+**Content type:** chart-complex
+**Annotation difficulty:** Hard
+**Dimensions:** vector (rendered from PDF page at 2x scale)
+
+### Visual Inventory [-> Completeness]
+
+- **Chart type:** Grouped bar chart with 4 bars per group, 6 groups
+- **Y-axis:** "Normalized Performance vs Pro" (rotated label); scale from 0.0
+  to 1.4, ticks at 0.2 intervals
+- **X-axis categories (6 groups, rotated diagonal labels):** Factuality,
+  Long-Context, Math/Science, Summarization, Reasoning, Multilinguality
+- **Legend (top-right corner, boxed):** Nano 1 (salmon/pink-red), Nano 2
+  (golden yellow), Pro (muted green), Ultra (muted blue)
+- **Reference line:** Dashed horizontal gray line at y = 1.0 (Pro baseline)
+- **Bar heights (approximate):**
+  - Factuality: Nano 1 ~0.70, Nano 2 ~0.81, Pro = 1.0, Ultra ~1.08
+  - Long-Context: Nano 1 ~0.50, Nano 2 ~0.68, Pro = 1.0, Ultra ~1.25
+  - Math/Science: Nano 1 ~0.55, Nano 2 ~0.62, Pro = 1.0, Ultra ~1.32
+  - Summarization: Nano 1 ~0.30, Nano 2 ~0.55, Pro = 1.0, Ultra ~1.18
+  - Reasoning: Nano 1 ~0.50, Nano 2 ~0.64, Pro = 1.0, Ultra ~1.22
+  - Multilinguality: Nano 1 ~0.65, Nano 2 ~0.78, Pro = 1.0, Ultra ~1.10
+- **Bar colors:** Soft/muted pastel tones -- salmon-red (Nano 1), golden-yellow
+  (Nano 2), sage-green (Pro), periwinkle-blue (Ultra)
+- **Page header:** "Gemini: A Family of Highly Capable Multimodal Models"
+  appears above two thin horizontal gray lines at the very top of the crop
+  (this is a running page header, not a chart title)
+- **Background:** White; no gridlines except the dashed reference line at 1.0
+- **Bar style:** Solid fill, no outlines, no value labels on bars
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: There are exactly 6 category groups on the x-axis
+- FACT: There are exactly 4 bars per group (Nano 1, Nano 2, Pro, Ultra)
+- FACT: The y-axis label reads "Normalized Performance vs Pro"
+- FACT: All Pro bars reach exactly 1.0 (the normalization baseline)
+- FACT: All Ultra bars exceed 1.0 (Ultra outperforms Pro in every category)
+- FACT: All Nano 1 and Nano 2 bars are below 1.0
+- FACT: Nano 1 is consistently the shortest bar in every group
+- FACT: The highest Ultra bar is in Math/Science (~1.32)
+- FACT: The lowest Nano 1 bar is in Summarization (~0.30)
+- FACT: A dashed horizontal reference line appears at y = 1.0
+- FACT: The 6 categories are Factuality, Long-Context, Math/Science,
+  Summarization, Reasoning, Multilinguality
+- FACT: The legend lists 4 entries: Nano 1, Nano 2, Pro, Ultra
+- FACT: The y-axis scale goes from 0.0 to 1.4
+- FACT: The x-axis labels are rotated diagonally
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might invent specific numeric scores (e.g., "Ultra achieves
+  1.32 on Math/Science") when only approximate values are readable from bar
+  heights
+  REALITY: No exact values are labeled on the bars; heights can only be
+  estimated from the y-axis gridlines
+- RISK: A model might add benchmark names not shown (e.g., "MMLU",
+  "HellaSwag", "GSM8K") as if they appear in the chart
+  REALITY: Only the 6 high-level category names appear on the x-axis; no
+  specific benchmark names are visible
+- RISK: A model might claim there is a "Gemini Pro 1.5" or "GPT-4" bar
+  REALITY: Only 4 model variants are shown: Nano 1, Nano 2, Pro, Ultra
+- RISK: A model might state the y-axis goes to 1.5 or 2.0
+  REALITY: The y-axis clearly tops out at 1.4
+- RISK: A model might describe this as showing absolute performance scores
+  REALITY: The y-axis explicitly says "Normalized Performance vs Pro" -- all
+  values are relative to Pro = 1.0
+- RISK: A model might claim Ultra underperforms Pro in some category
+  REALITY: Ultra exceeds 1.0 in all 6 categories
+
+### Detail Inventory [-> Specificity]
+
+- Grouped bar chart: 4 bars x 6 groups = 24 total bars
+- Normalization: all values expressed relative to Pro (= 1.0 baseline)
+- Consistent ordering within each group: Nano 1, Nano 2, Pro, Ultra (left to
+  right, matching legend order top to bottom)
+- Ultra's strongest advantage over Pro: Math/Science (~1.32, or ~32% better)
+- Ultra's smallest advantage over Pro: Factuality (~1.08, or ~8% better)
+- Nano 1's worst category: Summarization (~0.30, or ~70% below Pro)
+- Nano 1's best category: Factuality (~0.70, or ~30% below Pro)
+- The gap between Nano 1 and Nano 2 varies by category -- smallest in
+  Factuality (~0.11 difference), largest in Summarization (~0.25 difference)
+- Dashed reference line at 1.0 visually separates "better than Pro" (above)
+  from "worse than Pro" (below)
+- Pastel color palette: bars are soft/muted tones, not saturated
+- No error bars, confidence intervals, or data point markers
+- X-axis labels rotated approximately 45 degrees for readability
+- Running page header with title and two thin rules at top of crop (not part
+  of the chart itself)
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** AI/ML model benchmarking, large language model evaluation
+- **Surrounding document context:** Figure 3 in the Gemini 1.0 technical
+  report (page 9). This chart summarizes the Gemini model family's
+  performance across 6 broad capability categories. It normalizes all scores
+  to Pro = 1.0, making it easy to see how the smaller (Nano) and larger
+  (Ultra) variants compare to the mid-tier model.
+- **Technical terminology:**
+  - Normalized performance: scores divided by Pro's score so Pro = 1.0
+  - Nano 1, Nano 2: smaller Gemini model variants for on-device use
+  - Pro: mid-tier Gemini model
+  - Ultra: largest Gemini model variant
+  - Factuality, Long-Context, Math/Science, Summarization, Reasoning,
+    Multilinguality: high-level capability categories that aggregate multiple
+    individual benchmarks
+- **Why this image matters:** This is the summary comparison chart for the
+  entire Gemini model family. It establishes the performance hierarchy
+  (Ultra > Pro > Nano 2 > Nano 1) and shows where the gaps are largest
+  (Math/Science, Long-Context) and smallest (Factuality, Multilinguality).
+  High-value for RAG retrieval since users searching for "Gemini model
+  comparison" or "Gemini benchmark results" would want this chart.
+
+### Search Keywords [-> Usefulness]
+
+- Gemini, model comparison, benchmark, performance
+- Nano 1, Nano 2, Pro, Ultra, model family
+- normalized performance, bar chart, capability comparison
+- factuality, long-context, math, science, summarization, reasoning,
+  multilinguality
+- language understanding, model evaluation, grouped bar chart
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Wrong model names or number of categories; claims absolute scores instead of normalized; states Ultra underperforms Pro somewhere | Correctly names all 4 models and 6 categories; states normalization is relative to Pro; gets approximate bar heights roughly right | All 4 models, all 6 categories, normalization to Pro = 1.0, dashed reference line, approximate bar heights correct, notes Ultra always above 1.0 and Nano 1 always lowest |
+| Specificity | "A bar chart comparing models" with no model names or category names | Names all 4 models and 6 categories, states Pro = 1.0 baseline, mentions Ultra is highest | Gives approximate bar heights for each model-category pair, identifies strongest/weakest categories per model, notes color mapping, describes the pastel palette, mentions rotated x-axis labels |
+| Completeness | Describes only 2-3 models or 2-3 categories; omits the reference line or legend | Covers all 4 models and all 6 categories; mentions the reference line and normalization; notes the legend | All 24 bars accounted for with approximate heights, dashed reference line noted, legend described with color mapping, axis labels and scale described, bar ordering within groups noted |
+| Usefulness | "Model performance chart" -- not searchable for specific models or capabilities | Names Gemini model variants and capability categories; searchable for "Gemini benchmark comparison" | Explains the normalization concept (vs Pro), identifies where Ultra has largest/smallest advantages, connects to model family hierarchy; searchable for specific models, categories, and "normalized performance" |
+
+<br><br>
+
+## doc05-V02 -- Negative log likelihood vs sequence position
+
+**Figure reference:** Figure 4, page 11
+**Content type:** chart-simple
+**Annotation difficulty:** Medium
+**Dimensions:** vector (rendered from PDF page at 2x scale)
+
+### Visual Inventory [-> Completeness]
+
+- **Chart type:** Line chart with 2 data series, logarithmic x-axis
+- **Y-axis:** Labeled "NLL" (rotated vertically); no numeric tick values visible
+  on the y-axis -- only the label and unlabeled tick marks
+- **X-axis:** Labeled "Sequence position"; logarithmic scale with 13 ticks: 8,
+  16, 32, 64, 128, 256, 512, 1K, 2K, 4K, 8K, 16K, 32K
+- **Legend (top-right, inside chart area):** Pro (green line), Ultra (blue line)
+- **Lines:**
+  - **Pro (green):** Smooth curve starting high at position 8, decreasing
+    gradually across the full range, flattening toward the right end (16K-32K)
+  - **Ultra (blue):** Smooth curve starting near Pro at position 8 (possibly
+    slightly above), then crossing below Pro around position 32-64 and
+    remaining below Pro through 32K; also flattens toward the right
+- **Crossover:** The two lines are very close at positions 8-16, then Ultra
+  drops below Pro around position 32-64; after that, Ultra stays consistently
+  below Pro
+- **Gridlines:** Faint light gray horizontal gridlines visible; no vertical
+  gridlines
+- **Axes:** Thin black lines on left (y-axis) and bottom (x-axis); chart area
+  open on top and right
+- **Background:** White
+- **Figure caption (below chart):** "Figure 4 | Negative log likelihood as a
+  function of token index across 32K context length on a held-out set of long
+  documents."
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: The chart contains exactly 2 lines (Pro and Ultra)
+- FACT: The y-axis label reads "NLL"
+- FACT: The x-axis label reads "Sequence position"
+- FACT: The x-axis is logarithmic, ranging from 8 to 32K
+- FACT: The x-axis has 13 labeled ticks: 8, 16, 32, 64, 128, 256, 512, 1K,
+  2K, 4K, 8K, 16K, 32K
+- FACT: Pro is represented by a green line and Ultra by a blue line
+- FACT: Both lines show a downward trend from left to right (NLL decreases
+  with sequence position)
+- FACT: Ultra is below Pro for most of the x-axis range (from approximately
+  position 32-64 onward)
+- FACT: The two lines are very close together at the leftmost positions (8-16)
+- FACT: Both lines flatten (become less steep) toward the right end of the
+  x-axis
+- FACT: No numeric values are shown on the y-axis
+- FACT: The figure caption identifies this as "Figure 4"
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might invent specific NLL values (e.g., "NLL starts at 3.2
+  and decreases to 1.1") since no y-axis numbers are visible
+  REALITY: The y-axis has no readable numeric labels; only relative
+  comparisons (higher/lower, above/below) can be made
+- RISK: A model might claim there are more than 2 lines (e.g., Nano 1,
+  Nano 2)
+  REALITY: Only Pro (green) and Ultra (blue) are shown
+- RISK: A model might state the x-axis is linear
+  REALITY: The x-axis is clearly logarithmic (8, 16, 32, 64... doubling)
+- RISK: A model might claim Ultra is always below Pro
+  REALITY: At the leftmost positions (8-16), the lines are very close and
+  may overlap or Ultra may start slightly above Pro
+- RISK: A model might describe the x-axis range as "0 to 32K"
+  REALITY: The x-axis starts at 8 (not 0)
+- RISK: A model might add benchmark dataset names (e.g., "PG-19", "Books3")
+  REALITY: No dataset names appear in the chart; only the caption mentions
+  "held-out set of long documents"
+
+### Detail Inventory [-> Specificity]
+
+- Line chart: 2 data series (Pro, Ultra) over a logarithmic x-axis spanning
+  4+ orders of magnitude (8 to 32K)
+- Both curves are smooth and monotonically decreasing
+- Ultra's steeper initial descent means it gains its advantage over Pro
+  primarily in the low-to-mid sequence positions (32-512)
+- At high sequence positions (4K-32K), both curves are nearly flat and the
+  gap between them narrows
+- The convergence at the right end suggests diminishing returns for longer
+  context for both models
+- Green line color for Pro, blue for Ultra -- consistent with V01's color
+  scheme
+- No data point markers on either line -- smooth curves only
+- Y-axis tick marks present but unlabeled, making absolute NLL values
+  unreadable
+- Logarithmic x-axis ticks use "K" suffix for thousands (1K, 2K, 4K, 8K,
+  16K, 32K)
+- Chart area relatively compact; lines are clearly distinguishable by color
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** Language modeling, long-context evaluation, perplexity measurement
+- **Surrounding document context:** Figure 4 in the Gemini 1.0 technical
+  report (page 11). The surrounding text explains that NLL decreases with
+  sequence position up to the full 32K context length, and that longer context
+  enables new use cases like retrieval and video understanding.
+- **Technical terminology:**
+  - NLL (negative log likelihood): a standard measure of language model
+    quality; lower is better. Closely related to perplexity.
+  - Sequence position / token index: the position of a token within the input
+    sequence; NLL at later positions measures how well the model uses earlier
+    context
+  - 32K context length: the maximum input length supported by these Gemini
+    models
+  - Long documents: test data consisting of documents long enough to stress
+    the full 32K context window
+- **Why this image matters:** Demonstrates that Gemini models (especially Ultra)
+  effectively use long context -- NLL keeps decreasing even at 16K-32K
+  positions, indicating the model benefits from distant context rather than
+  plateauing early. This is a key capability claim for the Gemini model family.
+
+### Search Keywords [-> Usefulness]
+
+- Gemini, negative log likelihood, NLL, perplexity
+- long context, sequence position, token index, 32K
+- Pro, Ultra, model comparison, language modeling
+- context length scaling, long document, held-out evaluation
+- line chart, logarithmic scale
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Calls the x-axis linear instead of logarithmic; invents specific NLL values; claims more than 2 lines; gets line colors wrong | Correctly identifies 2 lines (Pro, Ultra), logarithmic x-axis, downward NLL trend; notes Ultra is generally below Pro; may claim Ultra is always below | Both lines correctly identified with colors; logarithmic x-axis from 8 to 32K noted; correctly describes the initial convergence near position 8-16 and Ultra's advantage from ~32-64 onward; notes y-axis has no numeric labels |
+| Specificity | "A line chart showing NLL" with no model names or axis details | Names Pro and Ultra, states logarithmic x-axis from 8 to 32K, notes downward trend and Ultra below Pro | Lists all 13 x-axis tick values, describes the curve shapes (steep initial descent, flattening at high positions), notes the crossover region, mentions absence of y-axis numeric values, describes line colors |
+| Completeness | Describes only one line or omits the x-axis scale; misses the logarithmic nature | Covers both lines, x-axis range and logarithmic scale, y-axis label, legend, and general trend | Both lines described with trajectory, crossover region noted, all axis labels and ticks documented, legend described, gridlines mentioned, figure caption included, absence of y-axis numbers noted |
+| Usefulness | "NLL chart" -- not searchable for model names or context length | Mentions Gemini Pro and Ultra, NLL, sequence position, 32K context; searchable for "Gemini long context" | Explains NLL as a model quality metric (lower is better), connects to long-context capability, explains the significance of continued decrease at high positions; searchable for NLL, perplexity, Gemini, long context, 32K |
 
 <br><br>
 
@@ -2767,45 +3043,199 @@ zero visible in the chart.
 
 <br><br>
 
+## doc05-V05 -- CoT with uncertainty routing bar chart (MMLU)
+
+**Figure reference:** Figure 9, page 74
+**Content type:** chart-simple
+**Annotation difficulty:** Medium
+**Dimensions:** vector (rendered from PDF page at 2x scale)
+
+### Visual Inventory [-> Completeness]
+
+- **Chart type:** Grouped bar chart with 2 bars per group, 3 groups
+- **Y-axis:** Labeled "MMLU accuracy (test split)" (rotated vertically); scale
+  from 0 to 90, ticks at 10-unit intervals
+- **X-axis categories (3 groups):**
+  1. Score Eval
+  2. Chain-of-Thought@32
+  3. Chain-of-Thought@32 (Uncertainty-Routed)
+- **Legend (top center, above chart area):** GPT-4 (gpt-4-0613) in gray,
+  Gemini Ultra in blue
+- **Bars with exact value labels above each bar:**
+  - Score Eval: GPT-4 = 84.21, Gemini Ultra = 83.96
+  - Chain-of-Thought@32: GPT-4 = 87.29, Gemini Ultra = 84.99
+  - Chain-of-Thought@32 (Uncertainty-Routed): GPT-4 = 87.29,
+    Gemini Ultra = 90.04
+- **Bar colors:** Light gray for GPT-4, medium blue for Gemini Ultra
+- **Gridlines:** Thin horizontal gray gridlines at each 10-unit y-axis tick
+- **Background:** White
+- **Bar style:** Solid fill, no outlines
+- **Y-axis starts at 0** but all bar values are in the 83-90 range, so the
+  bottom ~80% of the chart area is empty
+- **Figure caption (below chart):** "Figure 9 | Chain-of-Thought with
+  uncertainty routing on MMLU."
+
+### Verifiable Facts [-> Accuracy]
+
+- FACT: There are exactly 3 evaluation conditions on the x-axis
+- FACT: There are exactly 2 bars per group (GPT-4 and Gemini Ultra)
+- FACT: The y-axis label reads "MMLU accuracy (test split)"
+- FACT: Score Eval GPT-4 = 84.21
+- FACT: Score Eval Gemini Ultra = 83.96
+- FACT: Chain-of-Thought@32 GPT-4 = 87.29
+- FACT: Chain-of-Thought@32 Gemini Ultra = 84.99
+- FACT: Chain-of-Thought@32 (Uncertainty-Routed) GPT-4 = 87.29
+- FACT: Chain-of-Thought@32 (Uncertainty-Routed) Gemini Ultra = 90.04
+- FACT: GPT-4 scores are identical for Chain-of-Thought@32 and
+  Chain-of-Thought@32 (Uncertainty-Routed): both 87.29
+- FACT: Gemini Ultra exceeds GPT-4 only in the uncertainty-routed condition
+- FACT: The legend identifies GPT-4 as "GPT-4 (gpt-4-0613)"
+- FACT: GPT-4 leads Gemini Ultra in Score Eval by 0.25 points (84.21 vs
+  83.96)
+- FACT: GPT-4 leads Gemini Ultra in Chain-of-Thought@32 by 2.30 points
+  (87.29 vs 84.99)
+- FACT: Gemini Ultra leads GPT-4 in Uncertainty-Routed by 2.75 points
+  (90.04 vs 87.29)
+
+### Hallucination Risks [-> Accuracy]
+
+- RISK: A model might round or misquote the exact bar values (e.g., "84.2"
+  instead of "84.21" or "90.0" instead of "90.04")
+  REALITY: All 6 values are printed explicitly above the bars with 2 decimal
+  places
+- RISK: A model might claim Gemini Ultra beats GPT-4 across all conditions
+  REALITY: Gemini Ultra only leads in the uncertainty-routed condition; GPT-4
+  leads in the other two
+- RISK: A model might state the GPT-4 model version as "gpt-4-turbo" or
+  "gpt-4-1106"
+  REALITY: The legend explicitly says "gpt-4-0613"
+- RISK: A model might claim the y-axis starts at 80 (truncated) to emphasize
+  differences
+  REALITY: The y-axis starts at 0, making the visual differences between bars
+  appear small relative to the total bar height
+- RISK: A model might describe additional models (e.g., "GPT-3.5", "Gemini
+  Pro") as being in the chart
+  REALITY: Only GPT-4 and Gemini Ultra are shown
+- RISK: A model might confuse "Chain-of-Thought@32" with
+  "Chain-of-Thought@32 (Uncertainty-Routed)" since the GPT-4 scores are
+  identical (87.29) in both conditions
+  REALITY: These are two distinct conditions; GPT-4's identical scores
+  reflect that uncertainty routing only changes Gemini Ultra's behavior
+
+### Detail Inventory [-> Specificity]
+
+- Grouped bar chart: 2 models x 3 conditions = 6 total bars
+- All 6 bars have explicit numeric value labels above them (2 decimal places)
+- Score Eval is the simplest condition: GPT-4 slightly leads (84.21 vs 83.96,
+  a 0.25-point gap)
+- Chain-of-Thought@32 widens GPT-4's lead (87.29 vs 84.99, a 2.30-point gap)
+- Uncertainty-Routed reverses the ranking: Gemini Ultra jumps to 90.04 while
+  GPT-4 stays at 87.29 (Gemini leads by 2.75 points)
+- GPT-4's score is identical at 87.29 for both Chain-of-Thought@32 conditions,
+  indicating uncertainty routing is a Gemini-specific technique
+- Gemini Ultra's improvement from Chain-of-Thought@32 to Uncertainty-Routed:
+  +5.05 points (84.99 to 90.04)
+- The y-axis goes from 0 to 90 with the bars clustered in the 83-90 range --
+  the full-scale y-axis makes visual comparison harder since differences are
+  small relative to bar heights
+- Light gray gridlines at every 10 units
+- GPT-4 bars are consistently on the left, Gemini Ultra on the right within
+  each group
+- X-axis labels for the third category wrap to two lines:
+  "Chain-of-Thought@32" on line 1, "(Uncertainty-Routed)" on line 2
+
+### Domain Context [-> Usefulness]
+
+- **Domain:** AI/ML benchmarking, chain-of-thought prompting, uncertainty
+  estimation, MMLU evaluation
+- **Surrounding document context:** Figure 9 in the Gemini 1.0 technical
+  report (page 74). The surrounding text explains the uncertainty-routed
+  chain-of-thought approach: when the model is uncertain about an answer
+  (based on chain-of-thought samples), it falls back to a different strategy
+  rather than committing to a possibly wrong answer.
+- **Technical terminology:**
+  - MMLU: Massive Multitask Language Understanding -- a benchmark covering 57
+    academic subjects
+  - Score Eval: direct scoring of model responses
+  - Chain-of-Thought@32: generating 32 chain-of-thought reasoning samples and
+    selecting the most common answer (majority voting)
+  - Uncertainty-Routed: a technique where uncertain answers (based on
+    agreement among the 32 samples) are routed to a different evaluation
+    strategy
+  - gpt-4-0613: the June 2023 version of GPT-4
+- **Why this image matters:** This is the chart that supports the headline claim
+  "Gemini Ultra exceeds GPT-4 on MMLU" -- but only with the
+  uncertainty-routed technique. The chart makes visible that without
+  uncertainty routing, GPT-4 actually leads. This nuance is critical for
+  accurate annotation.
+
+### Search Keywords [-> Usefulness]
+
+- Gemini Ultra, GPT-4, MMLU, benchmark comparison
+- chain-of-thought, uncertainty routing, majority voting
+- score eval, CoT@32, uncertainty-routed
+- language understanding, test split accuracy
+- bar chart, model comparison, 90.04, 87.29
+
+### Annotation Quality Anchors
+
+| Dimension | Score 40 (poor) | Score 70 (good) | Score 95 (excellent) |
+|-----------|-----------------|-----------------|----------------------|
+| Accuracy | Wrong numeric values; claims Gemini Ultra beats GPT-4 in all conditions; wrong model version | Correct bar values for all 6 bars; correctly identifies that Gemini Ultra only leads in uncertainty-routed; names GPT-4 (gpt-4-0613) | All 6 values exact to 2 decimal places; notes GPT-4 scores are identical in both CoT conditions (87.29); correctly calculates point differences between models |
+| Specificity | "A bar chart comparing two AI models on a benchmark" | Names both models, all 3 conditions, and the key result (Gemini Ultra 90.04); mentions MMLU | All 6 exact values, all 3 condition names quoted exactly, model version noted, point gaps calculated, notes the full-scale y-axis starting at 0, describes the two-line wrapping of the third x-axis label |
+| Completeness | Describes only 1-2 of the 3 conditions; omits one model's values | Covers all 3 conditions and both models' scores; mentions the legend and y-axis label | All 6 bars with values, legend with exact GPT-4 version string, y-axis label and range, x-axis label formatting, gridlines, caption, and the reversal pattern across conditions |
+| Usefulness | "MMLU comparison chart" -- no numeric values, no technique names | Names the models, MMLU, and uncertainty routing; searchable for "Gemini MMLU" | Explains what each condition means (scoring, CoT majority voting, uncertainty routing), notes the reversal that Gemini only leads with uncertainty routing, and connects to the headline MMLU claim; searchable for specific techniques and scores |
+
+<br><br>
+
 ## doc05-V06 -- Multimodal chart understanding + response
 
 **Figure reference:** Figure 10, page 77
 **Content type:** infographic
 **Annotation difficulty:** Hard
-**Dimensions:** vector
+**Dimensions:** vector (rendered from PDF page at 2x scale)
 
 ### Visual Inventory [-> Completeness]
 
-- **Sections/panels identified:**
-  - **Top section (Prompt):** Contains a data visualization and prompt text
-  - **Bottom section (Model Response):** Contains rendered Markdown with a
-    data standout observation and a table
-- **Embedded charts (Prompt section):**
-  - Title: "Share of plastic waste that is recycled, landfilled, incinerated
-    and mismanaged, 2019"
-  - Source attribution: "Our World in Data"
-  - Data source: "OECD (2023)"
-  - 4 regional panels of horizontal bar charts:
+- **Layout:** Two-panel composite figure with distinct sections separated by
+  dark gray header bars with white text
+- **Panel 1 -- "Prompt" (dark gray header bar, white text):**
+  - Chart title: "Share of plastic waste that is recycled, landfilled,
+    incinerated and mismanaged, 2019"
+  - "Our World in Data" boxed logo/badge in the top-right corner of the chart
+  - Subtitle/note: "Mismanaged plastic waste includes materials burned in open
+    pits, dumped into seas or open waters, or disposed of in unsanitary
+    landfills and dumpsites."
+  - 4 regional panels of horizontal bar charts in a 2x2 grid:
     - **World:** Landfilled 49%, Mismanaged 22%, Incinerated 19%, Recycled 9%
     - **United States:** Landfilled 73%, Mismanaged 4%, Incinerated 19%,
       Recycled 4%
     - **Europe:** Landfilled 44%, Mismanaged 6%, Incinerated 38%, Recycled 12%
-    - **Asia excl. China and India:** Landfilled 38%, Mismanaged 34%,
+    - **Asia (excl. China and India):** Landfilled 39%, Mismanaged 34%,
       Incinerated 19%, Recycled 8%
-- **Text blocks (Prompt section):**
-  - Prompt text: "Spot a data point that stands out in these charts and what
-    that implicates. Then produce a detailed markdown table for all the data
-    shown."
-- **Text blocks (Model Response section):**
-  - Standout identification: US landfilled plastic at 73% as the most notable
-    data point
-  - Markdown table with columns: Country/Region, Landfilled (%), Mismanaged
-    (%), Incinerated (%), Recycled (%)
-  - Table rows: World, United States, Europe, Asia excl. China and India
-- **Visual hierarchy:**
-  - Primary: the 4 horizontal bar chart panels
-  - Secondary: prompt instruction text
-  - Tertiary: model response with rendered table
+  - Bar colors: dark red (Landfilled), teal/green (Mismanaged), blue
+    (Incinerated), orange (Recycled) -- consistent across all 4 panels
+  - Data source line: "Data source: OECD (2023)" (left) and
+    "OurWorldInData.org/plastic-pollution | CC BY" (right)
+  - OECD region definition footnotes in small text at bottom of prompt section
+  - Prompt instruction text: "Spot a data point that stands out in these
+    charts and what that implicates. Then produce a detailed markdown table
+    for all the data shown."
+- **Panel 2 -- "Model Response (rendered Markdown)" (dark gray header bar,
+  white text):**
+  - Text response: identifies United States' landfilled plastic waste at 73%
+    as the standout data point; explains the implication (US not recycling or
+    incinerating as much as other regions)
+  - Rendered markdown table with 5 columns: Country/Region, Landfilled (%),
+    Mismanaged (%), Incinerated (%), Recycled (%)
+  - 4 data rows: World, United States, Europe, Asia (excl. China and India)
+  - Table values match the chart data
+- **Figure caption (below both panels):** "Figure 10 | Solving a problem
+  requiring multimodal chart understanding. The model has to read the text,
+  understand the connections between different data points and reason over them
+  to recommend an interesting point and follow the instructions to generate a
+  markdown table (shown correctly rendered)."
+- **Source line:** "Source: Our World In Data (Ritchie et al., 2023)."
 
 ### Verifiable Facts [-> Accuracy]
 
@@ -2816,6 +3246,7 @@ zero visible in the chart.
 - FACT: World Landfilled is 49%
 - FACT: United States Landfilled is 73%
 - FACT: Europe Incinerated is 38%
+- FACT: Asia excl. China and India Landfilled is 39%
 - FACT: Asia excl. China and India Mismanaged is 34%
 - FACT: World Recycled is 9%
 - FACT: United States Recycled is 4%
@@ -2842,20 +3273,32 @@ zero visible in the chart.
 
 ### Detail Inventory [-> Specificity]
 
+- Two-panel composite: Prompt section (chart + instruction) and Model Response
+  section (text analysis + rendered table)
+- Dark gray header bars with white text label each section
 - Chart title with year (2019) and subject (plastic waste management)
-- Source: Our World in Data, OECD (2023)
-- 4 regional panels with 4 categories each (16 total data points)
+- "Our World in Data" boxed logo/badge in top-right of chart
+- Source attribution on two lines: "Data source: OECD (2023)" and
+  "OurWorldInData.org/plastic-pollution | CC BY"
+- 4 regional panels in 2x2 grid with 4 categories each (16 total data points)
 - Specific percentages for all 16 data points:
   - World: 49%, 22%, 19%, 9%
   - United States: 73%, 4%, 19%, 4%
   - Europe: 44%, 6%, 38%, 12%
-  - Asia excl. China and India: 38%, 34%, 19%, 8%
-- Horizontal bar chart format
+  - Asia (excl. China and India): 39%, 34%, 19%, 8%
+- Horizontal bar chart format with consistent color coding: dark red
+  (Landfilled), teal/green (Mismanaged), blue (Incinerated), orange (Recycled)
+- Percentage values printed to the right of each bar
+- OECD region definition footnotes in small text at bottom of prompt section
 - Prompt asks two things: identify a standout data point and produce a table
-- Model response identifies US 73% landfilled as the standout
-- Model produces a markdown table reproducing all the data
+- Model response identifies US 73% landfilled as the standout and explains the
+  implication (US not recycling/incinerating as much as other regions)
+- Model produces a correctly rendered markdown table reproducing all the data
 - Table columns: Country/Region, Landfilled (%), Mismanaged (%), Incinerated
   (%), Recycled (%)
+- Figure caption below both panels references "Figure 10" and describes the
+  task as multimodal chart understanding
+- Additional source line: "Source: Our World In Data (Ritchie et al., 2023)."
 
 ### Domain Context [-> Usefulness]
 
