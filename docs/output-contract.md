@@ -1,13 +1,17 @@
 # Image-Aware Output Contract
 
 This document defines how image-aware Markdown and TXT outputs represent
-extracted images alongside document text. The pipeline produces a single
-text artifact per run (`<stem>.md` or `<stem>.txt`) with image anchors
-interleaved at the positions where figures appear in the source document.
+extracted images alongside document text. The contract is being validated in
+estructura's Python reference implementation before the Java production port
+in KVision commits to it. The pipeline produces a single text artifact per
+run (`<stem>.md` or `<stem>.txt`) with image anchors interleaved at the
+positions where figures appear in the source document.
 
 All implementations (Python reference implementation and Java production
 port) must conform to this contract so downstream consumers can rely on
 stable identifiers, predictable ordering, and consistent anchor syntax.
+The contract may evolve based on evaluation findings before the production
+port finalizes it.
 
 <br><br>
 

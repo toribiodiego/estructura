@@ -1,7 +1,9 @@
 # Engineering Standards
 
-Engineering standards for the estructura project. Covers evidence-based
-decisions, repository hygiene, and focused changes.
+Engineering standards for the estructura project. Design decisions here target
+the KVision production port, so standards emphasize evidence-based validation
+and measurable outcomes. Covers evidence-based decisions, repository hygiene,
+and focused changes.
 
 For documentation conventions, see
 [Documentation Standards](./documentation.md). For development workflow, see

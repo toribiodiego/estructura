@@ -1,8 +1,11 @@
 # Runner Stdout Event Protocol
 
-This document defines the JSON event protocol that `run_docling.py` emits on
-stdout. Java's `DoclingRunner.parseResult()` reads these events line-by-line to
-build a `DoclingResult` object with associated `DoclingMetrics`.
+This protocol was designed and validated in estructura to define the interface
+between Java orchestration and Python pipeline execution, informing the KVision
+production implementation. The document below defines the JSON event protocol
+that `run_docling.py` emits on stdout. Java's `DoclingRunner.parseResult()`
+reads these events line-by-line to build a `DoclingResult` object with
+associated `DoclingMetrics`.
 
 Every JSON event occupies a single line. Non-JSON lines (human-readable
 summaries, log messages) are also emitted and should be silently skipped by

@@ -1,8 +1,9 @@
 # Documentation
 
-Reference documentation for the estructura image-aware document processing
-pipeline. Covers output format contracts, inter-process protocols, sample
-outputs, and project standards.
+Reference documentation covering pipeline contracts under validation,
+evaluation methodology, and engineering standards for the estructura R&D
+project. Findings from these specifications inform KVision production
+decisions on image-aware document transcription.
 
 > **Quick links:** [Output Contract](./output-contract.md) ·
 > [Runner Protocol](./runner-protocol.md) ·
