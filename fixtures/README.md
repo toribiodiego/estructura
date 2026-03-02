@@ -44,7 +44,7 @@ fixtures/
 
 The `--quick` flag downloads only the baseline set for fast iteration.
 The full set adds 3 scanned/OCR documents and 6 additional PDFs from
-the KVision test catalog.
+the extended test catalog.
 
 <br><br>
 

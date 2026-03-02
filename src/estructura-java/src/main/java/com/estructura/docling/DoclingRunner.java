@@ -1,5 +1,5 @@
-/* (C) 2026 Konsilix. All rights reserved. */
-package com.konsilix.estructura.docling;
+/* (C) 2026 Diego Toribio. All rights reserved. */
+package com.estructura.docling;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

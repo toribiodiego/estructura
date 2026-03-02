@@ -557,6 +557,17 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     )
     parser.set_defaults(save_json=False)
     parser.add_argument(
+        "--images-scale",
+        type=float,
+        default=None,
+        help="Override Docling images_scale (default: 2.0). Higher values give better resolution.",
+    )
+    parser.add_argument(
+        "--picture-classification",
+        action="store_true",
+        help="Enable Docling picture classification (adds predicted_class to each PictureItem)",
+    )
+    parser.add_argument(
         "--annotation-cache-dir",
         default=None,
         help="Directory for annotation cache (default: {out_dir}/.annotation-cache)",
@@ -718,7 +729,9 @@ def main(argv: list[str] | None = None):
         opts.do_table_structure = args.table_structure
         opts.generate_page_images = args.image_capture
         opts.generate_picture_images = args.image_capture
-        opts.images_scale = 2.0
+        opts.images_scale = args.images_scale if args.images_scale is not None else 2.0
+        if args.picture_classification:
+            opts.do_picture_classification = True
 
         # Native Docling picture description via external VLM API
         if args.native_vlm:
@@ -1134,6 +1147,8 @@ def main(argv: list[str] | None = None):
             "max_images_per_page": args.max_images_per_page,
             "max_total_images": args.max_total_images,
             "cache_used": args.use_cache,
+            "images_scale": args.images_scale if args.images_scale is not None else 2.0,
+            "picture_classification": args.picture_classification,
         },
         "native_vlm": {
             "enabled": args.native_vlm,

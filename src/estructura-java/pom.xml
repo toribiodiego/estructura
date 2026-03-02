@@ -58,7 +58,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.2.0</version>
         <configuration>
-          <mainClass>com.konsilix.estructura.docling.DoclingCli</mainClass>
+          <mainClass>com.estructura.docling.DoclingCli</mainClass>
         </configuration>
       </plugin>
     </plugins>

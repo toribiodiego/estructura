@@ -1,5 +1,5 @@
-/* (C) 2026 Konsilix. All rights reserved. */
-package com.konsilix.estructura.docling;
+/* (C) 2026 Diego Toribio. All rights reserved. */
+package com.estructura.docling;
 
 /**
  * Structured metrics emitted by the Python Docling runner.

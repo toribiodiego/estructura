@@ -287,7 +287,7 @@ estructura/
     pom.xml
     src/
       main/
-        java/com/konsilix/estructura/docling/
+        java/com/estructura/docling/
           DoclingCli.java                   CLI entry point
           DoclingRunner.java                Subprocess orchestration
           DoclingRunnerOptions.java         Configuration record
@@ -297,7 +297,7 @@ estructura/
         resources/scripts/
           run_docling.py                    Python pipeline (Docling + OCR + annotation)
       test/
-        java/com/konsilix/estructura/docling/
+        java/com/estructura/docling/
           DoclingRunnerTest.java            Unit tests (fake runner, no Docling needed)
         resources/scripts/
           fake_docling_runner.py            Test fake
