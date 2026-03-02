@@ -1,9 +1,9 @@
 # Annotation Quality Rubric
 
 Scoring guide for evaluating VLM-generated image annotations against
-per-image ground truth. This rubric measures annotation quality in the
-context of a text-only RAG pipeline: annotations must recover visual
-information so it becomes queryable and answerable.
+per-image ground truth. Designed for the KVision RAG pipeline, this rubric
+measures whether annotations recover enough visual information to be
+queryable and answerable alongside document text.
 
 > **Related:** [Analysis Template](./analysis-template.md) |
 > [Annotation Test Set](./annotation-test-set.md) |

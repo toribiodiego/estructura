@@ -1,9 +1,11 @@
 # Test Fixtures
 
-This directory contains representative input documents for testing the
-estructura image-aware document processing pipeline. Fixtures cover all
-supported formats (PDF, DOCX, PPTX) and document categories (multi-image,
-vector-heavy, text-heavy, scanned, text-only).
+Evaluation corpus for validating pipeline design decisions before production
+deployment in KVision. The 31-document fixture set covers all formats KVision
+will encounter in production (PDF, DOCX, PPTX, XLSX, HTML, standalone images)
+and all document categories (multi-image, vector-heavy, text-heavy, scanned,
+text-only), ensuring extraction reliability is tested across the full range of
+real-world inputs.
 
 Downloaded files are organized by category in `fixtures/downloaded/` and
 are gitignored. Run `scripts/download-fixtures.sh` to fetch them.

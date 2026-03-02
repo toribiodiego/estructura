@@ -1,8 +1,20 @@
 # Evaluation
 
-Methodology and reference material for evaluating the image-aware document
-transcription pipeline. Covers both document-level extraction testing and
-image-level annotation quality assessment.
+This evaluation framework produces an evidence-based architecture recommendation
+for KVision's image-aware document transcription. The results determine which
+pipeline approach (custom annotation vs Docling's native VLM integration) and
+which vision model to deploy for upstream RAG ingestion on the production
+cluster.
+
+The framework covers two tracks that answer different questions:
+
+- **Pipeline coverage** (document-level): Does the pipeline reliably extract
+  and crop images across all formats KVision will encounter?
+- **Annotation quality** (image-level): Do VLM-generated annotations recover
+  enough visual information to be queryable in a text-only RAG system?
+
+Methodology and reference material below cover both tracks, including
+document-level extraction testing and image-level annotation quality assessment.
 
 > **Quick links:** [Analysis Template](./analysis-template.md) |
 > [Pass 2 Workflow](./pass2-workflow.md) |

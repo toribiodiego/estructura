@@ -4,20 +4,23 @@
 ![Java 21](https://img.shields.io/badge/Java-21-orange)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-Extract, annotate, and transcribe images embedded in PDF, DOCX, XLSX, and PPTX
-documents using [Docling](https://github.com/docling-ai/docling) and vision
-language models.
+estructura validates image-aware document transcription and annotation before
+production implementation in [KVision](https://github.com/konsilix/kvision),
+the Java/Spring Boot system that powers document processing for downstream RAG
+pipelines. The pipeline under evaluation extracts images from PDF, DOCX, XLSX,
+and PPTX documents using [Docling](https://github.com/docling-ai/docling),
+annotates them with vision language models, and assembles annotated Markdown and
+plain text output with stable image references.
 
-estructura combines IBM's Docling document converter with Google AI Studio
-vision models to produce image-aware Markdown and plain text transcriptions.
-Documents go in, annotated text with stable image references comes out. The
-pipeline handles page rendering, region cropping, vision model annotation
-(rate-limited, cached, concurrent), and output assembly into formats suitable
-for RAG ingestion.
+This R&D project answers three questions before KVision commits to an
+architecture:
 
-This project serves as the R&D validation environment for
-[KVision](https://github.com/konsilix/kvision), proving pipeline design
-decisions before production implementation.
+1. **Pipeline coverage** -- Does Docling's native VLM integration capture
+   images as reliably as a custom annotation pipeline?
+2. **Annotation quality** -- Do VLM-generated annotations meet quality
+   standards for RAG ingestion?
+3. **Model selection** -- Which self-hosted vision model delivers acceptable
+   quality within production cluster VRAM constraints?
 
 <br><br>
 
@@ -89,6 +92,25 @@ and TXT formats.
   subprocess with a structured JSON event protocol
 - **Evaluation framework** -- 3-dimension annotation quality rubric, 31-document
   fixture set, and per-image ground truth methodology
+
+<br><br>
+
+## Evaluation Status
+
+The evaluation framework is ready for pipeline comparison (Phase 1):
+
+- **Rubric finalized** -- 3-dimension scoring rubric (Correctness 40%,
+  Information Recovery 35%, Retrieval Value 25%) with scoring anchors,
+  hard rules, and tolerance bands
+- **Corpus cataloged** -- 31 documents, 289 content images inventoried
+  with content type and difficulty ratings
+- **Eval subset selected** -- 101-image subset spanning all content types,
+  difficulty levels, and source formats
+- **Ground truth in progress** -- per-image reference material being recorded
+  for calibrated, reproducible scoring
+
+Next: execute Phase 1 pairwise comparison (Docling native VLM vs custom
+annotation pipeline) to produce the architecture recommendation for KVision.
 
 <br><br>
 
