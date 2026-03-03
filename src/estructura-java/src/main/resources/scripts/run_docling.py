@@ -13,7 +13,7 @@ from urllib.parse import urlparse
 from urllib.request import urlretrieve
 
 PDF_EXTS = {".pdf"}
-IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp", ".gif"}
+IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp", ".gif", ".webp"}
 OFFICE_EXTS = {".docx", ".pptx", ".xlsx"}
 ALL_KNOWN_EXTS = PDF_EXTS | IMAGE_EXTS | OFFICE_EXTS
 
@@ -109,12 +109,65 @@ def convert_image_to_pdf(image_path: Path, dst_dir: Path) -> Path:
     return pdf_path
 
 
+def convert_office_to_pdf(office_path: Path, dst_dir: Path) -> Path:
+    """Convert an Office document (DOCX/PPTX/XLSX) to PDF via LibreOffice.
+
+    Uses headless LibreOffice to render the document to PDF, which can then
+    be processed by the HERON layout model for higher-quality image extraction
+    than SimplePipeline provides.
+
+    Returns the path to the converted PDF, or raises RuntimeError if
+    LibreOffice is not installed or the conversion fails.
+    """
+    import shutil
+    import subprocess
+
+    lo_bin = shutil.which("libreoffice") or shutil.which("soffice")
+    if lo_bin is None:
+        raise RuntimeError(
+            "LibreOffice not found. Install libreoffice-writer, "
+            "libreoffice-calc, and libreoffice-impress for Office-to-PDF conversion."
+        )
+
+    dst_dir.mkdir(parents=True, exist_ok=True)
+    cmd = [lo_bin, "--headless", "--convert-to", "pdf", "--outdir", str(dst_dir), str(office_path)]
+    logging.info("Converting %s to PDF via LibreOffice: %s", office_path.name, " ".join(cmd))
+    t0 = time.perf_counter()
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    elapsed = time.perf_counter() - t0
+
+    pdf_path = dst_dir / (office_path.stem + ".pdf")
+    if result.returncode != 0 or not pdf_path.exists():
+        msg = result.stderr.strip() or result.stdout.strip() or "unknown error"
+        raise RuntimeError(f"LibreOffice conversion failed for {office_path.name}: {msg}")
+
+    logging.info("LibreOffice conversion completed in %.1fs: %s", elapsed, pdf_path.name)
+    print(
+        json.dumps({
+            "event": "office_to_pdf_conversion",
+            "source": office_path.name,
+            "target": pdf_path.name,
+            "seconds": round(elapsed, 3),
+        }),
+        flush=True,
+    )
+    return pdf_path
+
+
+# Global flag set by CLI args; checked in ensure_local_document
+_office_to_pdf_enabled = False
+_office_to_pdf_dir = None
+
+
 def ensure_local_document(src: str, dst_dir: Path) -> Path:
     local_path = ensure_local_file(src, dst_dir)
     suffix = local_path.suffix.lower()
     if suffix in PDF_EXTS:
         return local_path
     if suffix in OFFICE_EXTS:
+        if _office_to_pdf_enabled:
+            convert_dir = _office_to_pdf_dir or dst_dir
+            return convert_office_to_pdf(local_path, convert_dir)
         return local_path  # Docling handles DOCX/PPTX/XLSX natively
     if suffix in IMAGE_EXTS:
         return convert_image_to_pdf(local_path, dst_dir)
@@ -144,6 +197,34 @@ def annotate_stub(image_id: str, page: int, seq: int) -> str:
 
 MIN_CROP_SIZE = 50
 MAX_CROP_SIDE = 1024
+
+
+def is_decorative_crop(pil_image, variance_threshold: float = 50.0) -> bool:
+    """Detect decorative crops using dimension and pixel variance heuristics.
+
+    Applies three rules in order:
+    1. Min dimension < 10px: line separators (623x2, 800x1, etc.)
+    2. Both dimensions < 50px: tiny icons, badges, dots
+    3. Pixel variance below threshold: solid-color or near-blank crops
+
+    Returns True if the crop should be filtered out as decorative.
+    """
+    import numpy as np
+
+    w, h = pil_image.size
+
+    # Rule 1: extremely thin crops are line separators
+    if min(w, h) < 10:
+        return True
+
+    # Rule 2: very small crops in both dimensions
+    if w < 50 and h < 50:
+        return True
+
+    # Rule 3: solid-color or near-blank (low pixel variance)
+    arr = np.asarray(pil_image.convert("RGB"), dtype=np.float32)
+    variance = float(np.var(arr))
+    return variance < variance_threshold
 
 
 def preprocess_crop(image_path: Path, image_id: str):
@@ -568,6 +649,29 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Enable Docling picture classification (adds predicted_class to each PictureItem)",
     )
     parser.add_argument(
+        "--office-to-pdf",
+        action="store_true",
+        help="Convert Office documents (DOCX/PPTX/XLSX) to PDF via LibreOffice before "
+        "extraction. Routes all formats through the HERON layout model for higher recall "
+        "and implicit decorative filtering. Requires LibreOffice installed.",
+    )
+    parser.set_defaults(office_to_pdf=False)
+    parser.add_argument(
+        "--filter-decorative",
+        action="store_true",
+        help="Enable post-extraction decorative image filter. Drops crops with near-zero "
+        "pixel variance (blank bars, solid-color rectangles). Applied after HERON or "
+        "SimplePipeline extraction.",
+    )
+    parser.set_defaults(filter_decorative=False)
+    parser.add_argument(
+        "--decorative-variance-threshold",
+        type=float,
+        default=50.0,
+        help="Pixel variance threshold for decorative filter (default: 50.0). "
+        "Crops with variance below this are discarded.",
+    )
+    parser.add_argument(
         "--annotation-cache-dir",
         default=None,
         help="Directory for annotation cache (default: {out_dir}/.annotation-cache)",
@@ -677,6 +781,12 @@ def main(argv: list[str] | None = None):
         ]
     )
 
+    # Enable LibreOffice pre-conversion for Office formats
+    global _office_to_pdf_enabled, _office_to_pdf_dir
+    if args.office_to_pdf:
+        _office_to_pdf_enabled = True
+        _office_to_pdf_dir = out_dir / "_converted"
+
     # Localize input under a cache folder
     doc_cache = out_dir / "_cache"
     ensure_cache = args.use_cache and doc_cache.exists()
@@ -703,6 +813,7 @@ def main(argv: list[str] | None = None):
     page_images_count = 0
     crops_count = 0
     crop_failures = 0
+    crops_filtered_decorative = 0
     annotations: dict[str, str] = {}
     page_annotations: dict[int, str] = {}
     figure_map: dict[int, str] = {}  # id(PictureItem) -> image_id
@@ -868,6 +979,17 @@ def main(argv: list[str] | None = None):
                 else:
                     bbox_str = "0.0,0.0,0.0,0.0"
 
+                # Decorative filter: skip crops with near-zero pixel variance
+                if args.filter_decorative and is_decorative_crop(
+                    crop_img, args.decorative_variance_threshold
+                ):
+                    crops_filtered_decorative += 1
+                    logging.info(
+                        "Filtered decorative crop: page %d seq %d (%dx%d)",
+                        pg, seq, crop_img.size[0], crop_img.size[1],
+                    )
+                    continue
+
                 page_seq[pg] = seq + 1
                 image_id = f"img-p{pg:03d}-{seq:02d}"
                 figure_map[id(item)] = image_id
@@ -891,7 +1013,7 @@ def main(argv: list[str] | None = None):
                 for img_id, pg, _seq, bbox_s, rel_path in manifest_entries:
                     mf.write(f"{img_id} | {pg} | {bbox_s} | {rel_path}\n")
 
-            print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": crop_failures}), flush=True)
+            print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": crop_failures, "filtered_decorative": crops_filtered_decorative}), flush=True)
 
             # ---- Annotate extracted images ----
             if args.annotate is not None and manifest_entries:
@@ -958,14 +1080,20 @@ def main(argv: list[str] | None = None):
             total_limit_hit = False
             per_page_limit_pages: set[int] = set()
 
+            doc_seq = 0  # fallback sequence for items without prov
+
             for item, _level in res.document.iterate_items():
                 if not isinstance(item, PictureItem):
                     continue
-                if not item.prov:
-                    continue
 
-                prov = item.prov[0]
-                pg = prov.page_no
+                # DOCX backend may not populate prov; use page 0 as fallback
+                if item.prov:
+                    prov = item.prov[0]
+                    pg = prov.page_no
+                else:
+                    prov = None
+                    doc_seq += 1
+                    pg = 0
 
                 # Check total limit
                 if crops_count + crop_failures >= args.max_total_images:
@@ -996,7 +1124,22 @@ def main(argv: list[str] | None = None):
                 except Exception:
                     continue
 
-                bbox_str = f"{prov.bbox.l:.1f},{prov.bbox.t:.1f},{prov.bbox.r:.1f},{prov.bbox.b:.1f}"
+                if prov is not None:
+                    bbox_str = f"{prov.bbox.l:.1f},{prov.bbox.t:.1f},{prov.bbox.r:.1f},{prov.bbox.b:.1f}"
+                else:
+                    w, h = crop_img.size
+                    bbox_str = f"0.0,0.0,{w:.1f},{h:.1f}"
+
+                # Decorative filter: skip crops with near-zero pixel variance
+                if args.filter_decorative and is_decorative_crop(
+                    crop_img, args.decorative_variance_threshold
+                ):
+                    crops_filtered_decorative += 1
+                    logging.info(
+                        "Filtered decorative crop: page %d seq %d (%dx%d)",
+                        pg, seq, crop_img.size[0], crop_img.size[1],
+                    )
+                    continue
 
                 page_seq[pg] = seq + 1
                 image_id = f"img-p{pg:03d}-{seq:02d}"
@@ -1021,7 +1164,7 @@ def main(argv: list[str] | None = None):
                     for img_id, pg, _seq, bbox_s, rel_path in manifest_entries:
                         mf.write(f"{img_id} | {pg} | {bbox_s} | {rel_path}\n")
 
-            print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": crop_failures}), flush=True)
+            print(json.dumps({"event": "crops_extracted", "count": crops_count, "failures": crop_failures, "filtered_decorative": crops_filtered_decorative}), flush=True)
 
             # Annotate extracted images
             if args.annotate is not None and manifest_entries:
@@ -1160,6 +1303,9 @@ def main(argv: list[str] | None = None):
             "pages_saved": page_images_count,
             "crops_extracted": crops_count,
             "crop_failures": crop_failures,
+            "crops_filtered_decorative": crops_filtered_decorative,
+            "office_to_pdf": args.office_to_pdf,
+            "filter_decorative": args.filter_decorative,
         },
         "annotation": {
             "enabled": args.annotate is not None,
@@ -1197,6 +1343,8 @@ def main(argv: list[str] | None = None):
         capture_msg = f"  Image capture: {page_images_count} pages, {crops_count} crops"
         if crop_failures > 0:
             capture_msg += f", {crop_failures} failures"
+        if crops_filtered_decorative > 0:
+            capture_msg += f", {crops_filtered_decorative} filtered decorative"
         capture_msg += (
             f" (limits: pages={args.max_image_pages}"
             f", per_page={args.max_images_per_page}"
