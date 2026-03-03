@@ -1,22 +1,30 @@
 # Evaluation
 
-This evaluation framework produces an evidence-based architecture recommendation
-for KVision's image-aware document transcription. The results determine which
-pipeline approach (custom annotation vs Docling's native VLM integration) and
-which vision model to deploy for upstream RAG ingestion on the production
-cluster.
+This evaluation framework produces quantifiable, empirical data showing
+measurable improvements over default Docling in two independent areas. The
+results determine which extraction architecture and which annotation pipeline
+to deploy for upstream RAG ingestion on the production cluster.
 
-The framework covers two tracks that answer different questions:
+The framework covers two tracks, each with its own baseline (default Docling
+behavior), its own improvements, and its own metrics:
 
-- **Pipeline coverage** (document-level): Does the pipeline reliably extract
-  and crop images across all formats KVision will encounter?
-- **Annotation quality** (image-level): Do VLM-generated annotations recover
-  enough visual information to be queryable in a text-only RAG system?
+- **Extraction pipeline** (Track 1, document-level): Starting from default
+  Docling extraction, how much did the custom pipeline improve image detection,
+  cropping, and format coverage? Measured by recall, noise rate, and content
+  gaps resolved per format.
+- **Annotation quality** (Track 2, image-level): Starting from Docling's
+  default VLM annotation, how much did the custom annotation pipeline improve
+  description quality for RAG retrieval? Measured by a 3-dimension rubric
+  (Correctness, Information Recovery, Retrieval Value) scored against per-image
+  ground truth.
 
-Methodology and reference material below cover both tracks, including
-document-level extraction testing and image-level annotation quality assessment.
+Each track has its own baseline measurement, its own set of improvements, and
+its own aggregate metrics. Together they answer: "Starting from Docling out of
+the box, how much did we improve extraction coverage and annotation quality,
+and what specific engineering produced each gain?"
 
-> **Quick links:** [Analysis Template](./analysis-template.md) |
+> **Quick links:** [Extraction Evaluation](./extraction-evaluation.md) |
+> [Analysis Template](./analysis-template.md) |
 > [Pass 2 Workflow](./pass2-workflow.md) |
 > [Pipeline Test Set](./pipeline-test-set.md) |
 > [Annotation Test Set](./annotation-test-set.md) |
@@ -24,7 +32,33 @@ document-level extraction testing and image-level annotation quality assessment.
 
 <br><br>
 
-## Two-Pass Evaluation Approach
+## Track 1: Extraction Pipeline Evaluation
+
+The extraction evaluation measures default Docling's baseline performance per
+format and quantifies the improvement from each custom pipeline enhancement.
+Results and methodology are in
+[`extraction-evaluation.md`](./extraction-evaluation.md).
+
+**Baseline:** Default Docling `DocumentConverter.convert()` with no
+configuration changes -- HERON layout model for PDF, SimplePipeline for
+Office formats.
+
+**Improvements measured independently:**
+- LibreOffice pre-conversion for XLSX (0% -> ~100% recall)
+- LibreOffice pre-conversion for DOCX (67% -> ~100% recall, 53% -> ~12% noise)
+- Decorative image filter for DOCX line separators (7/7 caught, 0 FP)
+- DOCX provenance bug fix (0 -> 15 crops)
+- WebP format support (unsupported -> supported)
+- Unified HERON path for all formats
+
+**Metrics:** Content recall by format, noise rate by format, format coverage
+(number of formats with working extraction), content gaps resolved.
+
+<br><br>
+
+## Track 2: Annotation Quality Evaluation
+
+### Two-Pass Methodology
 
 Annotation quality evaluation uses a two-pass methodology to produce calibrated,
 reproducible scoring.
@@ -88,6 +122,7 @@ Each layer builds on the previous:
 | File | Purpose |
 |------|---------|
 | `README.md` | This file: evaluation methodology overview |
+| `extraction-evaluation.md` | Track 1 report: default Docling baseline vs improved pipeline across 10 documents and 7 formats, with per-format recall/noise metrics, content gap analysis, and measured improvement from LibreOffice pre-conversion and decorative filtering |
 | `analysis-template.md` | Strict template for per-image ground truth, with content-type-specific formats and rubric dimension mapping |
 | `pass2-workflow.md` | Step-by-step workflow for pass 2: independent image extraction, verification, and ground truth recording |
 | `pipeline-test-set.md` | Document-level test index: 31 documents with extraction difficulty, format coverage, and run instructions |
