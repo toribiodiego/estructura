@@ -6,138 +6,93 @@ set -e
 # Files are organized into category subdirectories under fixtures/downloaded/.
 #
 # Usage:
-#   ./scripts/download-fixtures.sh          # all 31 documents
-#   ./scripts/download-fixtures.sh --quick  # baseline set only (5 docs)
+#   ./scripts/download-fixtures.sh                # all 31 documents
+#   ./scripts/download-fixtures.sh --quick        # baseline set only (5 docs)
+#   ./scripts/download-fixtures.sh --only 00      # single document by number
+#   ./scripts/download-fixtures.sh --only 00,02,05  # multiple documents
+#   ./scripts/download-fixtures.sh --only pdf     # all PDFs
+#   ./scripts/download-fixtures.sh --only pptx    # all PPTX files
+#   ./scripts/download-fixtures.sh --list         # list available documents
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DEST="$REPO_ROOT/fixtures/downloaded"
 
+ONLY=""
 QUICK=false
-if [[ "$1" == "--quick" ]]; then
-    QUICK=true
+LIST=false
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --quick) QUICK=true; shift ;;
+        --only)  ONLY="$2"; shift 2 ;;
+        --list)  LIST=true; shift ;;
+        *)       echo "Unknown option: $1"; echo "Usage: $0 [--quick] [--only NUM,NUM,...] [--list]"; exit 1 ;;
+    esac
+done
+
+# --quick sets ONLY to baseline doc numbers (unless --only already set)
+if [[ "$QUICK" == true && -z "$ONLY" ]]; then
+    ONLY="00,07,10,11"
 fi
 
-# Create category subdirectories
-mkdir -p "$DEST/multi-image"
-mkdir -p "$DEST/vector-heavy"
-mkdir -p "$DEST/text-heavy"
-mkdir -p "$DEST/scanned"
-mkdir -p "$DEST/text-only"
-mkdir -p "$DEST/table-image"
-mkdir -p "$REPO_ROOT/fixtures/other"
-
-TOTAL=0
-FAILED=0
-SKIPPED=0
-
-download() {
-    local category="$1"
-    local name="$2"
-    local url="$3"
-    local sha256="$4"  # empty string if no checksum available
-
-    local dest_dir="$DEST/$category"
-    local filepath="$dest_dir/$name"
-
-    TOTAL=$((TOTAL + 1))
-
-    if [[ -f "$filepath" ]]; then
-        if [[ -n "$sha256" ]]; then
-            local actual
-            actual=$(shasum -a 256 "$filepath" | cut -d' ' -f1)
-            if [[ "$actual" == "$sha256" ]]; then
-                echo "  [skip] $category/$name (already exists, checksum ok)"
-                SKIPPED=$((SKIPPED + 1))
-                return 0
-            else
-                echo "  [warn] $category/$name exists but checksum mismatch, re-downloading"
-            fi
-        else
-            echo "  [skip] $category/$name (already exists)"
-            SKIPPED=$((SKIPPED + 1))
+# Filter: check if a filename should be downloaded
+should_download() {
+    local name="$1"
+    if [[ -z "$ONLY" ]]; then
+        return 0  # no filter, download all
+    fi
+    local doc_num="${name%%_*}"        # e.g. "02" from "02_icml2019..."
+    local doc_ext="${name##*.}"        # e.g. "pdf" from "02_icml2019...pdf"
+    IFS=',' read -ra filters <<< "$ONLY"
+    for f in "${filters[@]}"; do
+        f="$(echo "$f" | tr -d ' ')"  # trim whitespace
+        if [[ "$doc_num" == "$f" ]]; then
             return 0
         fi
-    fi
-
-    echo "  [get]  $category/$name"
-    if ! curl -fSL --retry 2 --retry-delay 3 -o "$filepath" "$url"; then
-        echo "  [FAIL] $category/$name -- download failed"
-        FAILED=$((FAILED + 1))
-        rm -f "$filepath"
-        return 0
-    fi
-
-    if [[ -n "$sha256" ]]; then
-        local actual
-        actual=$(shasum -a 256 "$filepath" | cut -d' ' -f1)
-        if [[ "$actual" != "$sha256" ]]; then
-            echo "  [FAIL] $category/$name -- checksum mismatch"
-            echo "         expected: $sha256"
-            echo "         actual:   $actual"
-            FAILED=$((FAILED + 1))
+        # Match by extension (pdf, docx, pptx, xlsx, html, jpg, png, webp)
+        if [[ "$doc_ext" == "$f" ]]; then
             return 0
         fi
-    fi
-
-    echo "  [ok]   $category/$name ($(du -h "$filepath" | cut -f1))"
+    done
+    return 1
 }
 
-# ---- Baseline set (5 documents) ----
-echo "Downloading baseline fixtures..."
-echo ""
+# ---- Document registry ----
+# All fixtures defined here, flat list. Each entry:
+#   download <category> <filename> <url> [<sha256>]
 
-download "text-heavy" "00_gemini3_pro_model_card.pdf" \
-    "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf" \
-    ""
+all_downloads() {
+    # Baseline set
+    download "text-heavy" "00_gemini3_pro_model_card.pdf" \
+        "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf" \
+        ""
 
-download "scanned" "07_epa_sample_letter.pdf" \
-    "https://19january2021snapshot.epa.gov/sites/static/files/2016-02/documents/epa_sample_letter_sent_to_commissioners_dated_february_29_2015.pdf" \
-    ""
+    download "scanned" "07_epa_sample_letter.pdf" \
+        "https://19january2021snapshot.epa.gov/sites/static/files/2016-02/documents/epa_sample_letter_sent_to_commissioners_dated_february_29_2015.pdf" \
+        ""
 
-download "text-only" "10_medrxiv_llama4_benchmark.docx" \
-    "https://www.medrxiv.org/content/medrxiv/early/2025/10/07/2025.10.05.25337350/DC1/embed/media-1.docx?download=true" \
-    ""
+    download "text-only" "10_medrxiv_llama4_benchmark.docx" \
+        "https://www.medrxiv.org/content/medrxiv/early/2025/10/07/2025.10.05.25337350/DC1/embed/media-1.docx?download=true" \
+        ""
 
-download "multi-image" "11_policy_gradient_rl_lecture.pptx" \
-    "https://www.cs.princeton.edu/courses/archive/spring17/cos598F/lectures/RL.pptx" \
-    ""
+    download "multi-image" "11_policy_gradient_rl_lecture.pptx" \
+        "https://www.cs.princeton.edu/courses/archive/spring17/cos598F/lectures/RL.pptx" \
+        ""
 
-# Non-evaluation fixtures (fixtures/other/)
-OTHER_DIR="$REPO_ROOT/fixtures/other"
+    # OCR and mixed-content set
+    download "scanned" "08_xerox_mfp_scan_forestburg.pdf" \
+        "https://files.gabbart.com/1605/scanned_from_a_xerox_multifunction_printer.pdf" \
+        ""
 
-if [[ ! -f "$OTHER_DIR/medrxiv_llm_imaging_eval.xlsx" ]]; then
-    echo "  [get]  other/medrxiv_llm_imaging_eval.xlsx"
-    curl -fSL --retry 2 --retry-delay 3 \
-        -o "$OTHER_DIR/medrxiv_llm_imaging_eval.xlsx" \
-        "https://www.medrxiv.org/content/medrxiv/early/2025/10/07/2025.10.05.25337350/DC1/embed/media-2.xlsx?download=true" \
-        || echo "  [FAIL] other/medrxiv_llm_imaging_eval.xlsx -- download failed"
-else
-    echo "  [skip] other/medrxiv_llm_imaging_eval.xlsx (already exists)"
-fi
+    download "scanned" "09_archive_newspaper_1948.pdf" \
+        "https://archive.org/download/cupl_003575/cupl_003575_access.pdf" \
+        ""
 
-# ---- OCR and mixed-content set (3 additional documents) ----
-echo ""
-echo "Downloading OCR and mixed-content fixtures..."
-echo ""
+    download "scanned" "30_nrc_correspondence_2024.pdf" \
+        "https://www.nrc.gov/docs/ML2425/ML24253A016.pdf" \
+        ""
 
-download "scanned" "08_xerox_mfp_scan_forestburg.pdf" \
-    "https://files.gabbart.com/1605/scanned_from_a_xerox_multifunction_printer.pdf" \
-    ""
-
-download "scanned" "09_archive_newspaper_1948.pdf" \
-    "https://archive.org/download/cupl_003575/cupl_003575_access.pdf" \
-    ""
-
-download "scanned" "30_nrc_correspondence_2024.pdf" \
-    "https://www.nrc.gov/docs/ML2425/ML24253A016.pdf" \
-    ""
-
-# ---- Extended set (6 additional documents) ----
-if [[ "$QUICK" == false ]]; then
-    echo ""
-    echo "Downloading extended fixtures..."
-    echo ""
-
+    # Extended set
     download "vector-heavy" "01_gpt4_system_card.pdf" \
         "https://cdn.openai.com/papers/gpt-4-system-card.pdf" \
         "ca3677e1b83e255aa1296d432d374378154f230f3c296b32ee67540d571b7004"
@@ -233,6 +188,159 @@ if [[ "$QUICK" == false ]]; then
     download "multi-image" "28_eurostat_climate_driving_forces_2022.xlsx" \
         "https://ec.europa.eu/eurostat/statistics-explained/images/1/18/Climate_change_driving_forces_2022_figures_and_tables.xlsx" \
         ""
+}
+
+# ---- List mode ----
+if [[ "$LIST" == true ]]; then
+    echo "Available fixtures:"
+    echo ""
+    echo "  Num  Category      Format  Filename"
+    echo "  ---  -----------   ------  --------"
+    echo "  00   text-heavy    pdf     00_gemini3_pro_model_card.pdf"
+    echo "  01   vector-heavy  pdf     01_gpt4_system_card.pdf"
+    echo "  02   multi-image   pdf     02_icml2019_importance_sampling.pdf"
+    echo "  03   text-heavy    pdf     03_imf_economic_impacts_ai.pdf"
+    echo "  04   vector-heavy  pdf     04_anthropic_economic_index.pdf"
+    echo "  05   multi-image   pdf     05_gemini_multimodal_report.pdf"
+    echo "  06   multi-image   pdf     06_arxiv_2206_01062.pdf"
+    echo "  07   scanned       pdf     07_epa_sample_letter.pdf"
+    echo "  08   scanned       pdf     08_xerox_mfp_scan_forestburg.pdf"
+    echo "  09   scanned       pdf     09_archive_newspaper_1948.pdf"
+    echo "  10   text-only     docx    10_medrxiv_llama4_benchmark.docx"
+    echo "  11   multi-image   pptx    11_policy_gradient_rl_lecture.pptx"
+    echo "  12   multi-image   pptx    12_minnstate_fy2025_budget.pptx"
+    echo "  13   table-image   webp    13_artpro_table.webp"
+    echo "  14   table-image   png     14_simple_table.png"
+    echo "  15   table-image   jpg     15_timetable.jpg"
+    echo "  16   multi-image   docx    16_cambridge_mitoball_biology.docx"
+    echo "  17   text-heavy    pdf     17_arxiv_fractional_brownian_sde.pdf"
+    echo "  18   multi-image   pdf     18_ibm_microservices_redbook.pdf"
+    echo "  19   multi-image   docx    19_cris_electronic_screens_2023.docx"
+    echo "  20   multi-image   xlsx    20_illinois_workforce_dashboard.xlsx"
+    echo "  21   multi-image   xlsx    21_praxie_project_portfolio.xlsx"
+    echo "  22   multi-image   html    22_nasa_global_warming.html"
+    echo "  23   multi-image   html    23_nvie_git_branching_model.html"
+    echo "  24   multi-image   html    24_fowler_microservices.html"
+    echo "  25   multi-image   docx    25_va_tiu_clinical_manual.docx"
+    echo "  26   multi-image   pptx    26_concordia_coen6501_digital_logic.pptx"
+    echo "  27   multi-image   pptx    27_era_annual_report_2023.pptx"
+    echo "  28   multi-image   xlsx    28_eurostat_climate_driving_forces_2022.xlsx"
+    echo "  29   table-image   jpg     29_nasa_helio_fleet_dec2025.jpg"
+    echo "  30   scanned       pdf     30_nrc_correspondence_2024.pdf"
+    echo ""
+    echo "Filter examples:"
+    echo "  --only 00          single document"
+    echo "  --only 00,02,05    multiple documents"
+    echo "  --only pdf         all PDFs"
+    echo "  --only pptx        all PPTX files"
+    echo "  --quick            baseline set (00,07,10,11)"
+    exit 0
+fi
+
+# Create category subdirectories
+mkdir -p "$DEST/multi-image"
+mkdir -p "$DEST/vector-heavy"
+mkdir -p "$DEST/text-heavy"
+mkdir -p "$DEST/scanned"
+mkdir -p "$DEST/text-only"
+mkdir -p "$DEST/table-image"
+mkdir -p "$REPO_ROOT/fixtures/other"
+
+TOTAL=0
+DOWNLOADED=0
+FAILED=0
+SKIPPED=0
+FILTERED=0
+
+download() {
+    local category="$1"
+    local name="$2"
+    local url="$3"
+    local sha256="$4"  # empty string if no checksum available
+
+    # Check filter before counting
+    if ! should_download "$name"; then
+        FILTERED=$((FILTERED + 1))
+        return 0
+    fi
+
+    local dest_dir="$DEST/$category"
+    local filepath="$dest_dir/$name"
+
+    TOTAL=$((TOTAL + 1))
+
+    if [[ -f "$filepath" ]]; then
+        if [[ -n "$sha256" ]]; then
+            local actual
+            if command -v sha256sum &>/dev/null; then
+                actual=$(sha256sum "$filepath" | cut -d' ' -f1)
+            else
+                actual=$(shasum -a 256 "$filepath" | cut -d' ' -f1)
+            fi
+            if [[ "$actual" == "$sha256" ]]; then
+                echo "  [skip] $category/$name (already exists, checksum ok)"
+                SKIPPED=$((SKIPPED + 1))
+                return 0
+            else
+                echo "  [warn] $category/$name exists but checksum mismatch, re-downloading"
+            fi
+        else
+            echo "  [skip] $category/$name (already exists)"
+            SKIPPED=$((SKIPPED + 1))
+            return 0
+        fi
+    fi
+
+    echo "  [get]  $category/$name"
+    if ! curl -fSL --retry 2 --retry-delay 3 -o "$filepath" "$url"; then
+        echo "  [FAIL] $category/$name -- download failed"
+        FAILED=$((FAILED + 1))
+        rm -f "$filepath"
+        return 0
+    fi
+
+    if [[ -n "$sha256" ]]; then
+        local actual
+        if command -v sha256sum &>/dev/null; then
+            actual=$(sha256sum "$filepath" | cut -d' ' -f1)
+        else
+            actual=$(shasum -a 256 "$filepath" | cut -d' ' -f1)
+        fi
+        if [[ "$actual" != "$sha256" ]]; then
+            echo "  [FAIL] $category/$name -- checksum mismatch"
+            echo "         expected: $sha256"
+            echo "         actual:   $actual"
+            FAILED=$((FAILED + 1))
+            return 0
+        fi
+    fi
+
+    DOWNLOADED=$((DOWNLOADED + 1))
+    echo "  [ok]   $category/$name ($(du -h "$filepath" | cut -f1))"
+}
+
+# ---- Run downloads ----
+if [[ -n "$ONLY" ]]; then
+    echo "Downloading fixtures (filter: $ONLY)..."
+else
+    echo "Downloading all fixtures..."
+fi
+echo ""
+
+all_downloads
+
+# Non-evaluation fixture (only when downloading everything)
+if [[ -z "$ONLY" ]]; then
+    OTHER_DIR="$REPO_ROOT/fixtures/other"
+    if [[ ! -f "$OTHER_DIR/medrxiv_llm_imaging_eval.xlsx" ]]; then
+        echo "  [get]  other/medrxiv_llm_imaging_eval.xlsx"
+        curl -fSL --retry 2 --retry-delay 3 \
+            -o "$OTHER_DIR/medrxiv_llm_imaging_eval.xlsx" \
+            "https://www.medrxiv.org/content/medrxiv/early/2025/10/07/2025.10.05.25337350/DC1/embed/media-2.xlsx?download=true" \
+            || echo "  [FAIL] other/medrxiv_llm_imaging_eval.xlsx -- download failed"
+    else
+        echo "  [skip] other/medrxiv_llm_imaging_eval.xlsx (already exists)"
+    fi
 fi
 
 echo ""
@@ -245,8 +353,8 @@ for dir in multi-image vector-heavy text-heavy scanned text-only table-image; do
     echo "  $dir/ ($count files)"
 done
 echo ""
-echo "Total size: $(du -sh "$DEST" | cut -f1)"
-echo "Results: $TOTAL attempted, $((TOTAL - FAILED - SKIPPED)) downloaded, $SKIPPED skipped, $FAILED failed"
+echo "Total size: $(du -sh "$DEST" 2>/dev/null | cut -f1)"
+echo "Results: $TOTAL selected, $DOWNLOADED downloaded, $SKIPPED skipped, $FAILED failed"
 
 if [[ "$FAILED" -gt 0 ]]; then
     echo ""
