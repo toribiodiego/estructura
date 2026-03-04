@@ -11,15 +11,18 @@ set -e
 # Usage:
 #   batch-extract.sh [OPTIONS] <output_dir>
 #
-#   --filter <spec>   Document filter: "00,02,05", "pdf", "all" (default: all)
-#   --flags  <str>    Extra run_docling.py flags (quoted)
-#   --zip             Zip output directory when done
-#   --help            Show usage
+#   --filter <spec>    Document filter: "00,02,05", "pdf", "all" (default: all)
+#   --flags  <str>     Extra run_docling.py flags (quoted)
+#   --zip              Zip output directory when done
+#   --lean             Remove JSON and page images from output (keeps batch-summary.json)
+#   --drive  <path>    Copy output to Google Drive mount path after completion
+#   --help             Show usage
 #
 # Examples:
 #   batch-extract.sh out/batch-001
 #   batch-extract.sh --filter 00,07,13 --flags "--image-capture --save-json" out/batch-001
 #   batch-extract.sh --filter pdf --zip out/batch-001
+#   batch-extract.sh --lean --drive /content/drive/MyDrive/estructura-runs/baseline out/batch-001
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCRIPT="$REPO_ROOT/src/estructura-java/src/main/resources/scripts/run_docling.py"
@@ -27,6 +30,8 @@ SCRIPT="$REPO_ROOT/src/estructura-java/src/main/resources/scripts/run_docling.py
 FILTER=""
 FLAGS=""
 ZIP=false
+LEAN=false
+DRIVE_PATH=""
 OUTPUT_DIR=""
 
 usage() {
@@ -35,10 +40,12 @@ usage() {
     echo "Run Docling extraction on multiple fixture documents."
     echo ""
     echo "Options:"
-    echo "  --filter <spec>   Document filter: \"00,02,05\", \"pdf\", \"all\" (default: all)"
-    echo "  --flags  <str>    Extra run_docling.py flags (quoted)"
-    echo "  --zip             Zip output directory when done"
-    echo "  --help            Show usage"
+    echo "  --filter <spec>    Document filter: \"00,02,05\", \"pdf\", \"all\" (default: all)"
+    echo "  --flags  <str>     Extra run_docling.py flags (quoted)"
+    echo "  --zip              Zip output directory when done"
+    echo "  --lean             Remove JSON and page images from output (keeps batch-summary.json)"
+    echo "  --drive  <path>    Copy output to Google Drive mount path after completion"
+    echo "  --help             Show usage"
     echo ""
     echo "Filter examples:"
     echo "  --filter 00               single document"
@@ -51,6 +58,7 @@ usage() {
     echo "  $(basename "$0") out/batch-001"
     echo "  $(basename "$0") --filter 00,07,13 --flags \"--image-capture --save-json\" out/batch-001"
     echo "  $(basename "$0") --filter pdf --zip out/batch-001"
+    echo "  $(basename "$0") --lean --drive /content/drive/MyDrive/estructura-runs/baseline out/batch-001"
 }
 
 # ---- Argument parsing ----
@@ -59,6 +67,8 @@ while [[ $# -gt 0 ]]; do
         --filter) FILTER="$2"; shift 2 ;;
         --flags)  FLAGS="$2"; shift 2 ;;
         --zip)    ZIP=true; shift ;;
+        --lean)   LEAN=true; shift ;;
+        --drive)  DRIVE_PATH="$2"; shift 2 ;;
         --help)   usage; exit 0 ;;
         -*)       echo "Unknown option: $1"; usage; exit 1 ;;
         *)
@@ -254,6 +264,20 @@ echo ""
 echo "---"
 echo "Batch complete: $SUCCEEDED ok, $FAILED failed, ${BATCH_SECONDS}s total"
 echo "Summary: $OUTPUT_DIR/batch-summary.json"
+
+# ---- Optional lean cleanup ----
+if [[ "$LEAN" == true ]]; then
+    find "$OUTPUT_DIR" -name "*.json" ! -name "batch-summary.json" -delete 2>/dev/null
+    find "$OUTPUT_DIR" -type d -name "pages" -exec rm -rf {} + 2>/dev/null || true
+    echo "Cleaned: removed JSON and page images (--lean)"
+fi
+
+# ---- Optional Drive copy ----
+if [[ -n "$DRIVE_PATH" ]]; then
+    mkdir -p "$DRIVE_PATH"
+    cp -r "$OUTPUT_DIR"/* "$DRIVE_PATH/"
+    echo "Copied to Drive: $DRIVE_PATH"
+fi
 
 # ---- Optional zip ----
 if [[ "$ZIP" == true ]]; then
