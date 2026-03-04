@@ -836,6 +836,14 @@ def main(argv: list[str] | None = None):
         from docling.document_converter import DocumentConverter, PdfFormatOption
 
         opts = PdfPipelineOptions()
+
+        # GPU acceleration: auto-detect CUDA/MPS, fall back to CPU
+        try:
+            from docling.datamodel.accelerator_options import AcceleratorDevice, AcceleratorOptions
+            opts.accelerator_options = AcceleratorOptions(device=AcceleratorDevice.AUTO)
+        except ImportError:
+            pass  # older docling versions without accelerator support
+
         opts.do_ocr = (args.output == "markdown")  # RapidOCR populates document model for Markdown; TXT uses Tesseract
         opts.do_table_structure = args.table_structure
         opts.generate_page_images = args.image_capture
@@ -871,11 +879,22 @@ def main(argv: list[str] | None = None):
         from importlib.metadata import version as _pkg_version
 
         docling_version = _pkg_version("docling")
+
+        # Detect GPU device for logging
+        _gpu_device = "cpu"
+        try:
+            import torch
+            if torch.cuda.is_available():
+                _gpu_device = torch.cuda.get_device_name(0)
+        except ImportError:
+            pass
+
         print(
             json.dumps(
                 {
                     "event": "docling_object_created",
                     "docling_version": docling_version,
+                    "accelerator": _gpu_device,
                 }
             ),
             flush=True,
