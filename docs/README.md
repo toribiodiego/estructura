@@ -23,6 +23,8 @@ docs/
   image-catalog.md                     master catalog of images across all evaluation fixtures
   evaluation/
     README.md                          evaluation methodology overview and file relationships
+    extraction-evaluation.md           extraction pipeline report with per-format metrics
+    docling-limitations.md             four limitations with root cause analysis and solutions
     analysis-template.md               per-image ground truth template with rubric dimension mapping
     pass2-workflow.md                  step-by-step workflow for ground truth recording
     pipeline-test-set.md               document-level test index for e2e pipeline extraction
@@ -69,6 +71,7 @@ docs/
 | File | Purpose |
 |------|---------|
 | `evaluation/README.md` | Evaluation methodology overview: two-pass approach (scoring calibration then ground truth recording), file relationships, scoring dimensions. |
+| `evaluation/docling-limitations.md` | Engineering solutions to four Docling extraction limitations (L1-L4): LibreOffice pre-conversion, decorative filtering, DOCX provenance fix, GPU auto-detection. Each with discovery, root cause analysis, solution, and measured before/after results. |
 | `evaluation/analysis-template.md` | Strict template for per-image ground truth with content-type-specific visual inventory formats. Every section maps to a rubric scoring dimension. |
 | `evaluation/pass2-workflow.md` | Step-by-step workflow for pass 2 ground truth recording: independent image extraction by format, verification against catalog, and recording principles. |
 | `evaluation/pipeline-test-set.md` | Document-level test index for end-to-end pipeline extraction testing. One row per document with extraction difficulty rating, coverage matrix by format, and gap analysis for missing format coverage. |

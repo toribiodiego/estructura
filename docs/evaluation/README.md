@@ -24,6 +24,7 @@ the box, how much did we improve extraction coverage and annotation quality,
 and what specific engineering produced each gain?"
 
 > **Quick links:** [Extraction Evaluation](./extraction-evaluation.md) |
+> [Limitations & Solutions](./docling-limitations.md) |
 > [Analysis Template](./analysis-template.md) |
 > [Pass 2 Workflow](./pass2-workflow.md) |
 > [Pipeline Test Set](./pipeline-test-set.md) |
@@ -123,6 +124,7 @@ Each layer builds on the previous:
 |------|---------|
 | `README.md` | This file: evaluation methodology overview |
 | `extraction-evaluation.md` | Track 1 report: default Docling baseline vs improved pipeline across 10 documents and 7 formats, with per-format recall/noise metrics, content gap analysis, and measured improvement from LibreOffice pre-conversion and decorative filtering |
+| `docling-limitations.md` | Engineering solutions to four Docling extraction limitations: LibreOffice pre-conversion, decorative filtering, DOCX provenance fix, GPU auto-detection. Each with discovery, root cause, solution, and measured results. |
 | `analysis-template.md` | Strict template for per-image ground truth, with content-type-specific formats and rubric dimension mapping |
 | `pass2-workflow.md` | Step-by-step workflow for pass 2: independent image extraction, verification, and ground truth recording |
 | `pipeline-test-set.md` | Document-level test index: 31 documents with extraction difficulty, format coverage, and run instructions |
