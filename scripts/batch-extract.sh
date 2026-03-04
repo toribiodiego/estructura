@@ -11,26 +11,32 @@ set -e
 # Usage:
 #   batch-extract.sh [OPTIONS] <output_dir>
 #
-#   --filter <spec>    Document filter: "00,02,05", "pdf", "all" (default: all)
-#   --flags  <str>     Extra run_docling.py flags (quoted)
+#   --filter  <spec>   Document filter: "00,02,05", "pdf", "all" (default: all)
+#   --flags   <str>    Extra run_docling.py flags (quoted)
+#   --profile <name>   Save profile: eval, debug, full (default: full)
 #   --zip              Zip output directory when done
-#   --lean             Remove JSON and page images from output (keeps batch-summary.json)
-#   --drive  <path>    Copy output to Google Drive mount path after completion
+#   --lean             Alias for --profile eval (backward compatible)
+#   --drive   <path>   Copy output to Google Drive mount path after completion
 #   --help             Show usage
+#
+# Save profiles control what artifacts are kept after extraction:
+#   eval   -- crops, manifests, logs, batch-summary (smallest)
+#   debug  -- + markdown output
+#   full   -- everything (default)
 #
 # Examples:
 #   batch-extract.sh out/batch-001
 #   batch-extract.sh --filter 00,07,13 --flags "--image-capture --save-json" out/batch-001
 #   batch-extract.sh --filter pdf --zip out/batch-001
-#   batch-extract.sh --lean --drive /content/drive/MyDrive/estructura-runs/baseline out/batch-001
+#   batch-extract.sh --profile eval --drive /content/drive/MyDrive/estructura-runs/baseline out/batch-001
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCRIPT="$REPO_ROOT/src/estructura-java/src/main/resources/scripts/run_docling.py"
 
 FILTER=""
 FLAGS=""
+PROFILE=""
 ZIP=false
-LEAN=false
 DRIVE_PATH=""
 OUTPUT_DIR=""
 
@@ -40,12 +46,18 @@ usage() {
     echo "Run Docling extraction on multiple fixture documents."
     echo ""
     echo "Options:"
-    echo "  --filter <spec>    Document filter: \"00,02,05\", \"pdf\", \"all\" (default: all)"
-    echo "  --flags  <str>     Extra run_docling.py flags (quoted)"
+    echo "  --filter  <spec>   Document filter: \"00,02,05\", \"pdf\", \"all\" (default: all)"
+    echo "  --flags   <str>    Extra run_docling.py flags (quoted)"
+    echo "  --profile <name>   Save profile: eval, debug, full (default: full)"
     echo "  --zip              Zip output directory when done"
-    echo "  --lean             Remove JSON and page images from output (keeps batch-summary.json)"
-    echo "  --drive  <path>    Copy output to Google Drive mount path after completion"
+    echo "  --lean             Alias for --profile eval (backward compatible)"
+    echo "  --drive   <path>   Copy output to Google Drive mount path after completion"
     echo "  --help             Show usage"
+    echo ""
+    echo "Save profiles:"
+    echo "  eval    Keep crops, manifests, logs, batch-summary (~2-5 MB/doc)"
+    echo "  debug   Keep + markdown output (~3-8 MB/doc)"
+    echo "  full    Keep everything (default, ~25-80 MB/doc)"
     echo ""
     echo "Filter examples:"
     echo "  --filter 00               single document"
@@ -58,17 +70,18 @@ usage() {
     echo "  $(basename "$0") out/batch-001"
     echo "  $(basename "$0") --filter 00,07,13 --flags \"--image-capture --save-json\" out/batch-001"
     echo "  $(basename "$0") --filter pdf --zip out/batch-001"
-    echo "  $(basename "$0") --lean --drive /content/drive/MyDrive/estructura-runs/baseline out/batch-001"
+    echo "  $(basename "$0") --profile eval --drive /content/drive/MyDrive/estructura-runs/baseline out/batch-001"
 }
 
 # ---- Argument parsing ----
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --filter) FILTER="$2"; shift 2 ;;
-        --flags)  FLAGS="$2"; shift 2 ;;
-        --zip)    ZIP=true; shift ;;
-        --lean)   LEAN=true; shift ;;
-        --drive)  DRIVE_PATH="$2"; shift 2 ;;
+        --filter)  FILTER="$2"; shift 2 ;;
+        --flags)   FLAGS="$2"; shift 2 ;;
+        --profile) PROFILE="$2"; shift 2 ;;
+        --zip)     ZIP=true; shift ;;
+        --lean)    PROFILE="eval"; shift ;;
+        --drive)   DRIVE_PATH="$2"; shift 2 ;;
         --help)   usage; exit 0 ;;
         -*)       echo "Unknown option: $1"; usage; exit 1 ;;
         *)
@@ -90,6 +103,12 @@ fi
 
 if [[ "$FILTER" == "all" ]]; then
     FILTER=""
+fi
+
+# Validate profile
+if [[ -n "$PROFILE" && "$PROFILE" != "eval" && "$PROFILE" != "debug" && "$PROFILE" != "full" ]]; then
+    echo "Error: unknown profile '$PROFILE'. Use eval, debug, or full."
+    exit 1
 fi
 
 # ---- Filter logic (mirrors download-fixtures.sh) ----
@@ -147,6 +166,9 @@ if [[ -n "$FILTER" ]]; then
     echo "Filter: $FILTER"
 fi
 echo "Flags: ${FLAGS:-(none)}"
+if [[ -n "$PROFILE" ]]; then
+    echo "Profile: $PROFILE"
+fi
 echo "Output: $OUTPUT_DIR"
 echo ""
 
@@ -265,12 +287,22 @@ echo "---"
 echo "Batch complete: $SUCCEEDED ok, $FAILED failed, ${BATCH_SECONDS}s total"
 echo "Summary: $OUTPUT_DIR/batch-summary.json"
 
-# ---- Optional lean cleanup ----
-if [[ "$LEAN" == true ]]; then
-    find "$OUTPUT_DIR" -name "*.json" ! -name "batch-summary.json" -delete 2>/dev/null
-    find "$OUTPUT_DIR" -type d -name "pages" -exec rm -rf {} + 2>/dev/null || true
-    echo "Cleaned: removed JSON and page images (--lean)"
-fi
+# ---- Apply save profile ----
+case "$PROFILE" in
+    eval)
+        find "$OUTPUT_DIR" -name "*.json" ! -name "batch-summary.json" -delete 2>/dev/null
+        find "$OUTPUT_DIR" -name "*.md" -delete 2>/dev/null
+        find "$OUTPUT_DIR" -type d -name "pages" -exec rm -rf {} + 2>/dev/null || true
+        echo "Profile eval: kept crops, manifests, logs"
+        ;;
+    debug)
+        find "$OUTPUT_DIR" -name "*.json" ! -name "batch-summary.json" -delete 2>/dev/null
+        find "$OUTPUT_DIR" -type d -name "pages" -exec rm -rf {} + 2>/dev/null || true
+        echo "Profile debug: kept crops, manifests, logs, markdown"
+        ;;
+    full|"")
+        ;;
+esac
 
 # ---- Optional Drive copy ----
 if [[ -n "$DRIVE_PATH" ]]; then

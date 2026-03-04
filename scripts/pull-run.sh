@@ -9,14 +9,16 @@ set -e
 # Usage:
 #   pull-run.sh [OPTIONS] <run-name> [output-dir]
 #
-#   --include-json    Also download JSON files (excluded by default)
-#   --include-pages   Also download page images (excluded by default)
-#   --dry-run         Show what would be downloaded without transferring
-#   --help            Show usage
+#   --include-json      Also download JSON files (excluded by default)
+#   --include-pages     Also download page images (excluded by default)
+#   --include-markdown  Also download Markdown files (excluded by default)
+#   --dry-run           Show what would be downloaded without transferring
+#   --help              Show usage
 #
 # Examples:
 #   pull-run.sh 2026-03-04-baseline
 #   pull-run.sh --include-json 2026-03-04-baseline out/custom-dir
+#   pull-run.sh --include-markdown 2026-03-04-baseline
 #   pull-run.sh --dry-run 2026-03-04-baseline
 
 REMOTE="gdrive"
@@ -24,6 +26,7 @@ DRIVE_ROOT="estructura-runs"
 
 INCLUDE_JSON=false
 INCLUDE_PAGES=false
+INCLUDE_MARKDOWN=false
 DRY_RUN=false
 RUN_NAME=""
 OUTPUT_DIR=""
@@ -34,27 +37,30 @@ usage() {
     echo "Download a batch run from Google Drive via rclone."
     echo ""
     echo "Options:"
-    echo "  --include-json    Also download JSON files (excluded by default)"
-    echo "  --include-pages   Also download page images (excluded by default)"
-    echo "  --dry-run         Show what would be downloaded without transferring"
-    echo "  --help            Show usage"
+    echo "  --include-json      Also download JSON files (excluded by default)"
+    echo "  --include-pages     Also download page images (excluded by default)"
+    echo "  --include-markdown  Also download Markdown files (excluded by default)"
+    echo "  --dry-run           Show what would be downloaded without transferring"
+    echo "  --help              Show usage"
     echo ""
     echo "Defaults:"
     echo "  Output dir: out/runs/<run-name>"
-    echo "  Excludes *.json (except batch-summary.json) and pages/ by default"
+    echo "  Excludes *.json (except batch-summary.json), *.md, and pages/ by default"
     echo ""
     echo "Examples:"
     echo "  $(basename "$0") 2026-03-04-baseline"
     echo "  $(basename "$0") --include-json 2026-03-04-baseline out/custom-dir"
+    echo "  $(basename "$0") --include-markdown 2026-03-04-baseline"
     echo "  $(basename "$0") --dry-run 2026-03-04-baseline"
 }
 
 # ---- Argument parsing ----
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --include-json)   INCLUDE_JSON=true; shift ;;
-        --include-pages)  INCLUDE_PAGES=true; shift ;;
-        --dry-run)        DRY_RUN=true; shift ;;
+        --include-json)     INCLUDE_JSON=true; shift ;;
+        --include-pages)   INCLUDE_PAGES=true; shift ;;
+        --include-markdown) INCLUDE_MARKDOWN=true; shift ;;
+        --dry-run)         DRY_RUN=true; shift ;;
         --help)           usage; exit 0 ;;
         -*)               echo "Unknown option: $1"; usage; exit 1 ;;
         *)
@@ -105,6 +111,9 @@ FILTERS=()
 if [[ "$INCLUDE_JSON" != true ]]; then
     # Keep batch-summary.json, exclude all other JSON
     FILTERS+=(--filter "+ batch-summary.json" --filter "- *.json")
+fi
+if [[ "$INCLUDE_MARKDOWN" != true ]]; then
+    FILTERS+=(--filter "- *.md")
 fi
 if [[ "$INCLUDE_PAGES" != true ]]; then
     FILTERS+=(--filter "- pages/**")
